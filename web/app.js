@@ -83,7 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
   customApiKeyInput.addEventListener('change', () => {
     localStorage.setItem('gemini_api_key', customApiKeyInput.value);
   });
+
+  // Setup Job Search Listeners
+  setupJobSearchListeners();
 });
+
+let jobsLoadedOnce = false;
 
 // Switch Tabs
 function switchTab(tabId) {
@@ -95,6 +100,11 @@ function switchTab(tabId) {
     jsonEditor.value = JSON.stringify(currentResume, null, 2);
   } else if (tabId === 'tab-form') {
     populateForm();
+  } else if (tabId === 'tab-jobs') {
+    if (!jobsLoadedOnce) {
+      fetchAndRenderJobs();
+      jobsLoadedOnce = true;
+    }
   }
 }
 
@@ -758,3 +768,220 @@ function showLoader(message, isSoft = false) {
 function hideLoader() {
   previewLoader.classList.add('hidden');
 }
+
+// --- Job Search & Matching System ---
+let currentJobsList = [];
+
+function setupJobSearchListeners() {
+  const btnSearch = document.getElementById('btnSearchJobs');
+  const inputSearch = document.getElementById('jobSearchQuery');
+  const filterPills = document.querySelectorAll('.filter-pill');
+
+  if (btnSearch && inputSearch) {
+    btnSearch.addEventListener('click', () => {
+      fetchAndRenderJobs(inputSearch.value.trim());
+    });
+
+    inputSearch.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        fetchAndRenderJobs(inputSearch.value.trim());
+      }
+    });
+  }
+
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      filterPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const q = pill.getAttribute('data-query');
+      if (inputSearch) inputSearch.value = q;
+      fetchAndRenderJobs(q);
+    });
+  });
+}
+
+function getCandidateSkillsList() {
+  const skills = [];
+  if (currentResume && currentResume.skills) {
+    currentResume.skills.forEach(group => {
+      if (Array.isArray(group.items)) {
+        group.items.forEach(item => {
+          // Extract core tech keywords from string like "Next.js & React.js"
+          const tokens = item.split(/[\&,/\(\)]+/).map(s => s.trim()).filter(Boolean);
+          skills.push(...tokens);
+        });
+      }
+    });
+  }
+  // Default fallback tech skills if empty
+  if (skills.length === 0) {
+    skills.push('React', 'TypeScript', 'Node.js', 'Python', 'AWS', 'Docker', 'DevOps', 'PostgreSQL', 'CI/CD');
+  }
+  return [...new Set(skills)];
+}
+
+function evaluateJobMatch(job, candidateSkills) {
+  const textToSearch = `${job.title} ${(job.tags || []).join(' ')} ${job.description || ''}`.toLowerCase();
+  const matched = [];
+
+  candidateSkills.forEach(skill => {
+    const cleanSkill = skill.toLowerCase();
+    if (cleanSkill.length < 2) return;
+    // Word boundary or containment check
+    const regex = new RegExp(`\\b${cleanSkill.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}\\b`, 'i');
+    if (regex.test(textToSearch) || textToSearch.includes(cleanSkill)) {
+      matched.push(skill);
+    }
+  });
+
+  const uniqueMatches = [...new Set(matched)];
+  // Calculate score: base 60% + 5% per matched skill, bounded between 65% and 98%
+  let score = 60 + Math.min(38, uniqueMatches.length * 5);
+  
+  // Extra boost if title matches Full Stack, DevOps, or Engineer
+  const titleLower = (job.title || '').toLowerCase();
+  if (titleLower.includes('full stack') || titleLower.includes('fullstack') || titleLower.includes('devops') || titleLower.includes('frontend')) {
+    score = Math.min(98, score + 6);
+  }
+
+  return {
+    score,
+    matchedSkills: uniqueMatches
+  };
+}
+
+async function fetchAndRenderJobs(searchQuery = 'Full Stack') {
+  const container = document.getElementById('jobsList');
+  const countEl = document.getElementById('jobsCount');
+  if (!container) return;
+
+  container.innerHTML = `
+    <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+      <div class="spinner" style="margin: 0 auto 16px;"></div>
+      <p>Buscando vagas de <strong>${escapeHtml(searchQuery || 'Engenharia')}</strong> que combinam com seu perfil...</p>
+    </div>
+  `;
+
+  try {
+    const res = await fetch(`/api/jobs?search=${encodeURIComponent(searchQuery || 'full stack')}`);
+    const data = await res.json();
+
+    if (!data.success || !data.jobs || data.jobs.length === 0) {
+      container.innerHTML = `
+        <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+          <p>Nenhuma oportunidade encontrada para essa busca no momento.</p>
+          <button class="btn btn-secondary btn-sm" style="margin-top: 10px;" onclick="fetchAndRenderJobs('full stack')">Tentar "Full Stack"</button>
+        </div>
+      `;
+      if (countEl) countEl.innerText = '0 vagas encontradas';
+      return;
+    }
+
+    currentJobsList = data.jobs;
+    const candidateSkills = getCandidateSkillsList();
+
+    // Attach match evaluation to each job
+    const evaluatedJobs = currentJobsList.map(job => {
+      const match = evaluateJobMatch(job, candidateSkills);
+      return { ...job, ...match };
+    });
+
+    // Sort by match score descending
+    evaluatedJobs.sort((a, b) => b.score - a.score);
+
+    if (countEl) {
+      countEl.innerHTML = `<strong>${evaluatedJobs.length} vagas remotas</strong> encontradas para "<em>${escapeHtml(searchQuery)}</em>"`;
+    }
+
+    container.innerHTML = '';
+    evaluatedJobs.forEach(job => {
+      const isHigh = job.score >= 80;
+      const matchClass = isHigh ? 'match-high' : 'match-medium';
+      const matchIcon = isHigh ? '⚡' : '✓';
+
+      const card = document.createElement('div');
+      card.className = 'job-card';
+
+      // Build matched and remaining tags
+      const tagsHtml = (job.tags || []).slice(0, 6).map(tag => {
+        const isMatched = job.matchedSkills.some(s => s.toLowerCase() === tag.toLowerCase());
+        return `<span class="job-tag ${isMatched ? 'tag-matched' : ''}">${escapeHtml(tag)}</span>`;
+      }).join('');
+
+      card.innerHTML = `
+        <div class="job-header-row">
+          <div class="job-title-company">
+            <h4>${escapeHtml(job.title)}</h4>
+            <div class="job-company">
+              <strong>${escapeHtml(job.company)}</strong> • 
+              <span class="job-location-tag">📍 ${escapeHtml(job.location)}</span>
+            </div>
+          </div>
+          <div class="job-match-badge ${matchClass}" title="Compatibilidade com as habilidades do seu currículo">
+            ${matchIcon} ${job.score}% Match
+          </div>
+        </div>
+
+        <p class="job-description-excerpt">${escapeHtml(job.description || '')}</p>
+
+        <div class="job-tags-row">
+          ${tagsHtml}
+        </div>
+
+        <div class="job-footer-actions">
+          <div class="job-salary-text">
+            ${job.salary && job.salary !== 'Não especificado' ? `💰 ${escapeHtml(job.salary)}` : '🌐 100% Remoto'}
+          </div>
+          <div class="job-buttons-group">
+            <a href="${escapeHtml(job.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm flex-center">
+              <span>Ver Vaga</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+            <button type="button" class="btn btn-primary btn-sm flex-center btn-adapt-cv">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              <span>Adaptar Meu CV</span>
+            </button>
+          </div>
+        </div>
+      `;
+
+      // Handle "Adaptar Meu CV" button
+      const adaptBtn = card.querySelector('.btn-adapt-cv');
+      adaptBtn.addEventListener('click', () => {
+        transferJobToOptimizer(job);
+      });
+
+      container.appendChild(card);
+    });
+  } catch (err) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 40px; color: var(--danger);">
+        <p>Erro ao carregar vagas remotas: ${escapeHtml(err.message)}</p>
+        <button class="btn btn-secondary btn-sm" style="margin-top: 10px;" onclick="fetchAndRenderJobs('full stack')">Tentar Novamente</button>
+      </div>
+    `;
+  }
+}
+
+function transferJobToOptimizer(job) {
+  const jobDescriptionInput = document.getElementById('jobDescription');
+  if (!jobDescriptionInput) return;
+
+  // Format job description with title and company context
+  const fullContent = `VAGA: ${job.title} na empresa ${job.company}\nLOCALIZAÇÃO: ${job.location}\nREQUISITOS / DESCRIÇÃO:\n${job.raw_description || job.description}`;
+  jobDescriptionInput.value = fullContent;
+
+  // Switch to AI optimize tab
+  switchTab('tab-optimize');
+
+  // Flash highlight the optimize button
+  const optBtn = document.getElementById('btnOptimize');
+  if (optBtn) {
+    optBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    optBtn.style.boxShadow = '0 0 20px rgba(99, 102, 241, 0.9)';
+    setTimeout(() => {
+      optBtn.style.boxShadow = '';
+    }, 2000);
+  }
+}
+
