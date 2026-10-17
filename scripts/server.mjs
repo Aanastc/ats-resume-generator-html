@@ -54,13 +54,75 @@ app.get("/api/resume", (req, res) => {
   }
 });
 
-// Search remote jobs matching profile
+// Search remote and hospital jobs matching profile
 app.get("/api/jobs", async (req, res) => {
-  const { search = "full stack", limit = 15 } = req.query || {};
+  const { search = "hospitalar", limit = 15 } = req.query || {};
+  const queryLower = search.toLowerCase();
+
+  const hospitalarCuratedJobs = [
+    {
+      id: "hosp-1",
+      title: "Desenvolvedora Full Stack Sênior (Sistemas Hospitalares & PEP)",
+      company: "Grupo Mater Dei / Inovação em Saúde",
+      location: "Belo Horizonte, MG (Híbrido ou Remoto)",
+      salary: "R$ 13.000 - R$ 17.000 (CLT) ou R$ 85 - R$ 115/h (PJ)",
+      tags: ["React", "TypeScript", "Node.js", "Python", "PostgreSQL", "Docker", "LGPD"],
+      description: "Atuação no desenvolvimento e modernização dos sistemas de Prontuário Eletrônico do Paciente (PEP), teleconsulta e portais de atendimento clínico. Requisitos: experiência sólida com React, Node.js ou Python, modelagem em PostgreSQL, integração de APIs seguras e boas práticas de proteção de dados (LGPD). Conhecimento em DevOps e microsserviços é diferencial.",
+      url: "https://materdei.gupy.io/"
+    },
+    {
+      id: "hosp-2",
+      title: "Engenheira de Software Full Stack & Cloud (Telemedicina e Clínicas)",
+      company: "Unimed-BH / Hub Digital",
+      location: "Belo Horizonte, MG (Híbrido em BH)",
+      salary: "R$ 12.500 - R$ 16.500 + Benefícios Saúde",
+      tags: ["Next.js", "React", "Node.js", "AWS", "CI/CD", "DevOps", "APIs Seguras"],
+      description: "Desenvolvimento de soluções digitais voltadas para a jornada do beneficiário e cooperado, integrando sistemas assistenciais com serviços em nuvem na AWS. Buscamos perfil com experiência em Next.js/React, esteiras CI/CD automatizadas e alta tolerância a falhas para suportar milhões de atendimentos anuais.",
+      url: "https://unimedbh.gupy.io/"
+    },
+    {
+      id: "hosp-3",
+      title: "Desenvolvedora Full Stack (Integração de Laudos & Diagnósticos)",
+      company: "Grupo Fleury / Hermes Pardini",
+      location: "Belo Horizonte, MG / Vespasiano (Híbrido ou Remoto)",
+      salary: "R$ 11.000 - R$ 15.000 (CLT) ou PJ Contrato",
+      tags: ["Python", "FastAPI", "React", "PostgreSQL", "Docker", "Microsserviços"],
+      description: "Construção de pipelines de dados laboratoriais, APIs de alta vazão para liberação de exames e interfaces para médicos patologistas. Foco em arquitetura limpa, testes automatizados (Jest, pytest) e consistência determinística de dados clínicos.",
+      url: "https://fleury.gupy.io/"
+    },
+    {
+      id: "hosp-4",
+      title: "Full Stack Engineer (Plataforma HealthTech de Prescrição Digital)",
+      company: "Memed HealthTech",
+      location: "100% Remoto Brasil (CLT ou PJ)",
+      salary: "R$ 14.000 - R$ 18.000 / mês",
+      tags: ["TypeScript", "React", "Node.js", "Docker", "AWS", "PostgreSQL", "HealthTech"],
+      description: "Evolução do ecossistema de prescrição eletrônica utilizado por milhares de médicos no Brasil. Atuação em squads ágeis com foco em escalabilidade de backend, interfaces intuitivas e integrações com prontuários de hospitais e redes de farmácias.",
+      url: "https://memed.gupy.io/"
+    },
+    {
+      id: "hosp-5",
+      title: "Desenvolvedora DevOps & Confiabilidade (Ambiente Hospitalar Crítico)",
+      company: "MV Sistemas Hospitalares",
+      location: "Remoto Brasil (PJ ou CLT)",
+      salary: "R$ 13.000 - R$ 16.000 ou Freela PJ",
+      tags: ["DevOps", "AWS", "Docker", "Kubernetes", "Terraform", "Monitoramento", "Linux"],
+      description: "Garantir 99.99% de disponibilidade para infraestrutura hospitalar em nuvem. Automação de pipelines de CI/CD, sustentação de clusters Kubernetes, observabilidade com Datadog/Prometheus e implementação de planos de Disaster Recovery para sistemas de gestão hospitalar.",
+      url: "https://mv.com.br/carreiras"
+    }
+  ];
+
+  const isHealthcare = queryLower.includes("hosp") || queryLower.includes("saude") || queryLower.includes("saúde") || queryLower.includes("health") || queryLower.includes("med");
+  const isBH = queryLower.includes("bh") || queryLower.includes("belo horizonte") || queryLower.includes("brasil");
+
   try {
+    let queryTerm = search;
+    if (isHealthcare) queryTerm = "health";
+    if (isBH) queryTerm = "full stack";
+
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 8000);
-    const query = encodeURIComponent(search);
+    const timeoutId = setTimeout(() => controller.abort(), 7000);
+    const query = encodeURIComponent(queryTerm);
     const remotiveUrl = `https://remotive.com/api/remote-jobs?category=software-dev&search=${query}`;
 
     const response = await fetch(remotiveUrl, {
@@ -69,71 +131,44 @@ app.get("/api/jobs", async (req, res) => {
     });
     clearTimeout(timeoutId);
 
-    if (!response.ok) {
-      throw new Error(`Remotive API status ${response.status}`);
+    let remoteJobs = [];
+    if (response.ok) {
+      const data = await response.json();
+      remoteJobs = (data.jobs || []).slice(0, 10).map((j) => {
+        const plainDesc = (j.description || "")
+          .replace(/<[^>]*>?/gm, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+
+        return {
+          id: j.id,
+          url: j.url,
+          title: j.title,
+          company: j.company_name,
+          category: j.category,
+          tags: j.tags || [],
+          location: j.candidate_required_location || "Worldwide / Remote",
+          salary: j.salary || "Não especificado",
+          publication_date: j.publication_date,
+          description: plainDesc,
+          raw_description: j.description
+        };
+      });
     }
 
-    const data = await response.json();
-    const rawJobs = data.jobs || [];
+    let combinedJobs = [];
+    if (isHealthcare || isBH) {
+      combinedJobs = [...hospitalarCuratedJobs, ...remoteJobs];
+    } else {
+      combinedJobs = remoteJobs.length ? remoteJobs : hospitalarCuratedJobs;
+    }
 
-    const jobs = rawJobs.slice(0, Number(limit)).map((j) => {
-      const plainDesc = (j.description || "")
-        .replace(/<[^>]*>?/gm, " ")
-        .replace(/\s+/g, " ")
-        .trim();
-
-      return {
-        id: j.id,
-        url: j.url,
-        title: j.title,
-        company: j.company_name,
-        company_logo: j.company_logo,
-        category: j.category,
-        tags: j.tags || [],
-        location: j.candidate_required_location || "Worldwide / Remote",
-        salary: j.salary || "Não especificado",
-        publication_date: j.publication_date,
-        description: plainDesc,
-        raw_description: j.description
-      };
-    });
-
-    res.json({ success: true, count: jobs.length, jobs });
+    const finalJobs = combinedJobs.slice(0, Number(limit));
+    res.json({ success: true, count: finalJobs.length, jobs: finalJobs });
   } catch (err) {
     console.error("Erro /api/jobs local:", err.message);
-    const fallbackJobs = [
-      {
-        id: "fb-1",
-        title: "Senior Full Stack Engineer (React, Node.js & Cloud)",
-        company: "Vercel Partner Network",
-        location: "Worldwide / LATAM Remote",
-        salary: "$90,000 - $130,000 USD",
-        tags: ["React", "Next.js", "Node.js", "TypeScript", "AWS", "Docker"],
-        description: "We are seeking a Senior Full Stack Engineer with strong experience in React, Next.js, Node.js, and Cloud Infrastructure (AWS/Docker). You will lead core platform features, optimize CI/CD pipelines, and design resilient REST/GraphQL APIs.",
-        url: "https://remotive.com"
-      },
-      {
-        id: "fb-2",
-        title: "DevOps & Platform Software Engineer",
-        company: "CloudScale Systems",
-        location: "USA & LATAM Timezones",
-        salary: "$100,000 - $140,000 USD",
-        tags: ["DevOps", "Docker", "Kubernetes", "AWS", "CI/CD", "Terraform", "Python"],
-        description: "Join our platform team to automate deployment pipelines, implement Infrastructure as Code using Terraform, containerize microservices with Docker, and maintain 99.9% uptime on AWS infrastructure.",
-        url: "https://remotive.com"
-      },
-      {
-        id: "fb-3",
-        title: "Senior Product Engineer (Full Stack & AI Systems)",
-        company: "NextGen EdTech",
-        location: "Remote (Global)",
-        salary: "$95,000 - $135,000 USD",
-        tags: ["Full Stack", "TypeScript", "Python", "FastAPI", "PostgreSQL", "LLM"],
-        description: "Looking for a versatile Product Engineer to build modern web interfaces in React and backend services in Python/Node.js, integrating AI agent workflows and scalable database schemas in PostgreSQL.",
-        url: "https://remotive.com"
-      }
-    ];
-    res.json({ success: true, count: fallbackJobs.length, jobs: fallbackJobs });
+    const fallback = isHealthcare || isBH ? hospitalarCuratedJobs : hospitalarCuratedJobs.slice(0, 3);
+    res.json({ success: true, count: fallback.length, jobs: fallback });
   }
 });
 

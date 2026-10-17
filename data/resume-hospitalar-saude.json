@@ -1,0 +1,110 @@
+{
+  "name": "ANA LETÍCIA ALVES CLAUDIANO",
+  "title": "Engenheira de Software Full Stack & DevOps (Sistemas Críticos & Saúde)",
+  "email": "analeticia_ac@outlook.com",
+  "phone_e164": "+5531999679109",
+  "phone_display": "+55 31 99967-9109",
+  "location": "Belo Horizonte, MG (Disponível para Híbrido em BH ou 100% Remoto | CLT / PJ / Freelance)",
+  "linkedin_url": "https://www.linkedin.com/in/analetícia-react/",
+  "github_url": "https://github.com/Aanastc",
+  "website_url": "https://ana-leticia-ac-portifolio-7cxi.vercel.app/",
+  "design_system_url": "https://designsystemeadedo-git-202612-ana-leticias-projects-198dfb27.vercel.app/",
+  "language": "pt",
+  "summary": "Engenheira de Software Full Stack com mais de 5 anos de experiência no desenvolvimento de aplicações escaláveis (TypeScript, React, Next.js, Node.js, Python, PostgreSQL) e infraestrutura em nuvem resiliente (AWS, Docker, CI/CD, Kubernetes). Especializanda em DevOps e Arquitetura Cloud pela FIAP, com sólida bagagem em sistemas de missão crítica, validação e integridade de dados científicos e automação. Focada no desenvolvimento de soluções robustas para o setor de saúde e ambiente hospitalar (PEP, telemedicina, portais clínicos e APIs seguras), assegurando alta disponibilidade (99.9%), conformidade com a LGPD e tempos de resposta sub-segundo. Aberta a contratos CLT, PJ e projetos freelancer em Belo Horizonte ou remoto.",
+  "skills": [
+    {
+      "group": "Desenvolvimento Full-Stack & APIs Seguras",
+      "items": [
+        "TypeScript & JavaScript (ES6+)",
+        "React.js & Next.js (App Router)",
+        "Node.js & Python (FastAPI, Flask)",
+        "APIs RESTful, Webhooks & Integrações Seguras",
+        "Tailwind CSS & Design Systems Acessíveis",
+        "PostgreSQL (Drizzle, SQLAlchemy)",
+        "Autenticação Segura (JWT, OAuth2, RBAC)"
+      ]
+    },
+    {
+      "group": "DevOps, Nuvem & Confiabilidade (Sistemas Hospitalares)",
+      "items": [
+        "AWS (EC2, S3, ECS, Lambda, IAM)",
+        "Docker & Containerização de Microsserviços",
+        "Pipelines de CI/CD (GitHub Actions, Vercel)",
+        "Infraestrutura como Código (Terraform)",
+        "Kubernetes & Orquestração de Aplicações",
+        "Observabilidade & Monitoramento (Datadog, Prometheus, Grafana)",
+        "Testes Automatizados (Playwright, Jest, Vitest, pytest)"
+      ]
+    },
+    {
+      "group": "Governança, Dados & Qualidade",
+      "items": [
+        "Processamento e Validação de Dados Críticos",
+        "Boas Práticas de Privacidade & LGPD",
+        "Arquitetura de Alta Disponibilidade (99.9%+ Uptime)",
+        "Otimização de Consultas SQL & Cache em Redis",
+        "Metodologias Ágeis (Scrum, Kanban, GitFlow)"
+      ]
+    }
+  ],
+  "projects": [],
+  "experience": [
+    {
+      "role": "Engenheira de Software Sênior & Líder de Plataforma",
+      "company": "Universidade de Fortaleza (UNIFOR)",
+      "date": "Set 2025 — Presente",
+      "bullets": [
+        "Liderança técnica e arquitetura de sistemas web escaláveis de ponta a ponta, desenvolvendo interfaces acessíveis com Next.js/React e microsserviços de backend em Node.js e Python.",
+        "Implementação de automação DevOps com Docker e GitHub Actions, reduzindo ciclos de deploy em 45% com zero-downtime e alta disponibilidade na AWS para dezenas de milhares de usuários.",
+        "Padronização de microsserviços containerizados e ambientes de homologação/produção, garantindo paridade de ambiente e estrita tolerância a falhas.",
+        "Otimização de rotinas de banco de dados PostgreSQL e camadas de cache com Redis, reduzindo a latência de resposta de requisições de 420ms para menos de 110ms.",
+        "Estruturação de suítes de testes automatizados (Playwright, Vitest) para assegurar estabilidade contínua e mitigar riscos em fluxos operacionais críticos."
+      ]
+    },
+    {
+      "role": "Desenvolvedora de Software Full Stack (Sistemas Web)",
+      "company": "Universidade de Fortaleza (UNIFOR)",
+      "date": "Abr 2023 — Set 2025",
+      "bullets": [
+        "Desenvolvimento e sustentação de aplicações web complexas, tomando decisões autônomas de arquitetura, segurança e experiência do usuário.",
+        "Desenvolvimento de endpoints de APIs RESTful resilientes e integração de sistemas legados com novos módulos distribuídos em PostgreSQL.",
+        "Construção de pipelines de integração contínua (CI/CD) com validação automatizada de código, cobertura de testes e conformidade de segurança.",
+        "Criação e manutenção de biblioteca de componentes reutilizáveis ([Live Demo](https://designsystemeadedo-git-202612-ana-leticias-projects-198dfb27.vercel.app/)) com React e Tailwind CSS, aumentando a agilidade das equipes em 35%."
+      ]
+    },
+    {
+      "role": "Engenheira de Dados & Automação (Pesquisa e Ciência)",
+      "company": "Universidade de Fortaleza / FUNCEME",
+      "date": "Abr 2022 — Mar 2023",
+      "bullets": [
+        "Desenvolvimento de pipelines automatizados em Python para validação, sanitização e processamento determinístico de grandes volumes de dados complexos.",
+        "Criação de scripts de verificação de anomalias e integridade de métricas para suporte à tomada de decisões estratégicas de órgãos reguladores.",
+        "Aplicação de rigorosas práticas de versionamento, reprodutibilidade e confiabilidade em sistemas orientados a dados."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "title": "Pós-Graduação em Engenharia DevOps e Arquitetura Cloud",
+      "subtitle": "FIAP",
+      "date": "2025 — Presente"
+    },
+    {
+      "title": "Graduação em Análise e Desenvolvimento de Sistemas",
+      "subtitle": "Universidade de Fortaleza (UNIFOR)",
+      "date": "Concluído em 2023"
+    }
+  ],
+  "languages": [
+    {
+      "name": "Português",
+      "level": "Nativo",
+      "note": ""
+    },
+    {
+      "name": "Inglês",
+      "level": "Fluência Profissional (C1+)",
+      "note": "Comunicação técnica e colaboração ativa em equipes distribuídas"
+    }
+  ]
+}
