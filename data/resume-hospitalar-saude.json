@@ -47,7 +47,22 @@
       ]
     }
   ],
-  "projects": [],
+  "projects": [
+    {
+      "title": "Connect Care (Plataforma HealthTech & Home Care)",
+      "stack": "React, TypeScript, Supabase, PostgreSQL, Tailwind CSS, APIs RESTful",
+      "bullets": [
+        "Desenvolvimento e deploy em produção de plataforma web para conectar pacientes e equipes médicas a profissionais especializados em home care, integrando autenticação segura e proteção de dados.",
+        "Modelagem de banco de dados em nuvem com persistência de agendamentos, histórico de atendimento clínico e alta responsividade com Tailwind CSS."
+      ],
+      "links": [
+        {
+          "label": "Live Demo",
+          "url": "https://connect-care-server.vercel.app/#section-1"
+        }
+      ]
+    }
+  ],
   "experience": [
     {
       "role": "Engenheira de Software Sênior & Líder de Plataforma",
@@ -108,3 +123,4 @@
     }
   ]
 }
+
