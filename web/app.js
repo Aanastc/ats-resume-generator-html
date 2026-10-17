@@ -789,6 +789,14 @@ function setupJobSearchListeners() {
     });
   }
 
+  const btnRefresh = document.getElementById('btnRefreshJobs');
+  if (btnRefresh) {
+    btnRefresh.addEventListener('click', () => {
+      const q = inputSearch ? inputSearch.value.trim() : 'hospitalar';
+      fetchAndRenderJobs(q, true);
+    });
+  }
+
   filterPills.forEach(pill => {
     pill.addEventListener('click', () => {
       filterPills.forEach(p => p.classList.remove('active'));
@@ -850,27 +858,32 @@ function evaluateJobMatch(job, candidateSkills) {
   };
 }
 
-async function fetchAndRenderJobs(searchQuery = 'Full Stack') {
+async function fetchAndRenderJobs(searchQuery = 'Hospitalar', forceRefresh = false) {
   const container = document.getElementById('jobsList');
   const countEl = document.getElementById('jobsCount');
+  const syncBanner = document.getElementById('jobsLastUpdated');
   if (!container) return;
 
   container.innerHTML = `
     <div style="text-align: center; padding: 40px; color: var(--text-muted);">
       <div class="spinner" style="margin: 0 auto 16px;"></div>
-      <p>Buscando vagas de <strong>${escapeHtml(searchQuery || 'Engenharia')}</strong> que combinam com seu perfil...</p>
+      <p>Buscando vagas reais e verificadas para <strong>${escapeHtml(searchQuery || 'Sua Área')}</strong>...</p>
     </div>
   `;
 
   try {
-    const res = await fetch(`/api/jobs?search=${encodeURIComponent(searchQuery || 'full stack')}`);
+    const res = await fetch(`/api/jobs?search=${encodeURIComponent(searchQuery || 'hospitalar')}&refresh=${forceRefresh}`);
     const data = await res.json();
+
+    if (syncBanner && data.last_updated) {
+      syncBanner.innerHTML = `🕒 Sincronizado diariamente às <strong>08:00 (BRT)</strong> • Última atualização: <strong>${escapeHtml(data.last_updated)}</strong>`;
+    }
 
     if (!data.success || !data.jobs || data.jobs.length === 0) {
       container.innerHTML = `
         <div style="text-align: center; padding: 40px; color: var(--text-muted);">
           <p>Nenhuma oportunidade encontrada para essa busca no momento.</p>
-          <button class="btn btn-secondary btn-sm" style="margin-top: 10px;" onclick="fetchAndRenderJobs('full stack')">Tentar "Full Stack"</button>
+          <button class="btn btn-secondary btn-sm" style="margin-top: 10px;" onclick="fetchAndRenderJobs('Hospitalar')">Ver Vagas em Saúde / Hospitalar</button>
         </div>
       `;
       if (countEl) countEl.innerText = '0 vagas encontradas';
@@ -890,7 +903,7 @@ async function fetchAndRenderJobs(searchQuery = 'Full Stack') {
     evaluatedJobs.sort((a, b) => b.score - a.score);
 
     if (countEl) {
-      countEl.innerHTML = `<strong>${evaluatedJobs.length} vagas remotas</strong> encontradas para "<em>${escapeHtml(searchQuery)}</em>"`;
+      countEl.innerHTML = `<strong>${evaluatedJobs.length} vagas verificadas</strong> para "<em>${escapeHtml(searchQuery)}</em>" (Total no banco: ${data.total_in_cache || evaluatedJobs.length})`;
     }
 
     container.innerHTML = '';

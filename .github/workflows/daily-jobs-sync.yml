@@ -1,0 +1,32 @@
+name: Atualização Diária de Vagas (08:00 BRT)
+
+on:
+  schedule:
+    # 11:00 UTC = 08:00 Horário de Brasília (BRT)
+    - cron: '0 11 * * *'
+  workflow_dispatch: # Permite disparar manualmente pelo painel do GitHub
+
+jobs:
+  update-jobs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Coletar e Validar Vagas Ativas (Saúde, Brasil, Remoto)
+        run: node scripts/fetch-jobs.mjs
+
+      - name: Commitar e Publicar Lista Atualizada
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/jobs-cache.json
+          git diff --staged --quiet || (git commit -m "chore(jobs): sincronização automática diária de vagas [08:00 BRT]" && git push)

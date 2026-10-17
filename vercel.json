@@ -1,6 +1,12 @@
 {
   "version": 2,
   "outputDirectory": "web",
+  "crons": [
+    {
+      "path": "/api/jobs?refresh=true",
+      "schedule": "0 11 * * *"
+    }
+  ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" }
   ]
