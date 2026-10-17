@@ -6,9 +6,7 @@ const distHtml = path.resolve(process.cwd(), "dist", "cv.html");
 const dataArg = process.argv[2];
 const resumeDataPath = dataArg
   ? path.resolve(process.cwd(), dataArg)
-  : (fs.existsSync(path.resolve(process.cwd(), "data", "resume.optimized.json"))
-      ? path.resolve(process.cwd(), "data", "resume.optimized.json")
-      : path.resolve(process.cwd(), "data", "resume.json"));
+  : path.resolve(process.cwd(), "data", "resume.json");
 
 if (!fs.existsSync(distHtml)) {
   console.error("dist/cv.html não existe. Rode: npm run build");

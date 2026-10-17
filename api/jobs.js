@@ -45,8 +45,8 @@ export default async function handler(req, res) {
       const inTags = (j.tags || []).some(t => t.toLowerCase().includes(q));
       const inDesc = (j.description || "").toLowerCase().includes(q);
 
-      // Handle synonyms
-      if (q.includes("hosp") || q.includes("saude") || q.includes("saúde") || q.includes("health")) {
+      // Handle synonyms & categories
+      if (q.includes("hosp") || q.includes("saude") || q.includes("saúde") || q.includes("health") || q.includes("clinic")) {
         return (
           inTitle || inCategory || inTags ||
           j.category.includes("Saúde") ||
@@ -55,11 +55,28 @@ export default async function handler(req, res) {
         );
       }
 
-      if (q.includes("bh") || q.includes("belo horizonte")) {
+      if (q.includes("edtech") || q.includes("educa") || q.includes("moodle") || q.includes("ensino") || q.includes("ead")) {
         return (
+          inTitle || inCategory || inTags ||
+          j.category.includes("EdTech") ||
+          (j.tags || []).some(t => /edtech|educa|moodle|ensino|ead/i.test(t)) ||
+          /edtech|educa|moodle|ensino|ead|universidade|escola/i.test(j.title + " " + j.description)
+        );
+      }
+
+      if (q.includes("bh") || q.includes("belo horizonte") || q.includes("presencial")) {
+        return (
+          j.location_type === "bh" ||
           inLoc ||
-          /belo horizonte|bh|minas|remoto/i.test(j.location + " " + j.title) ||
-          j.source.includes("Brasil")
+          /belo horizonte|bh|minas|nova lima/i.test(j.location + " " + j.title)
+        );
+      }
+
+      if (q.includes("remoto") || q.includes("pj") || q.includes("clt")) {
+        return (
+          j.location_type === "remote" ||
+          (j.modalities || []).some(m => m.toLowerCase().includes(q)) ||
+          /remoto|remote|pj|clt/i.test(j.location + " " + (j.modalities || []).join(" "))
         );
       }
 

@@ -53,6 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Save base CV action
   saveBaseCvBtn.addEventListener('click', saveBaseCv);
 
+  // Sync portfolio action
+  const btnSyncPortfolio = document.getElementById('btnSyncPortfolio');
+  if (btnSyncPortfolio) {
+    btnSyncPortfolio.addEventListener('click', syncPortfolioCv);
+  }
+
   // Sync edits from Visual Form
   setupFormListeners();
 
@@ -142,6 +148,30 @@ async function saveBaseCv() {
     alert('Currículo base salvo com sucesso!');
   } catch (err) {
     alert('Erro ao salvar currículo base: ' + err.message);
+  } finally {
+    hideLoader();
+  }
+}
+
+// Sync directly from candidate's online portfolio (GitHub Aanastc/ana_leticia.ac__portifolio)
+async function syncPortfolioCv() {
+  showLoader('Sincronizando dados em tempo real com seu Portfólio no GitHub...', true);
+  try {
+    const res = await fetch('/api/sync-portfolio', {
+      method: 'POST'
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) {
+      throw new Error(data.error || 'Erro na resposta do servidor.');
+    }
+    
+    currentResume = data.resume;
+    jsonEditor.value = JSON.stringify(currentResume, null, 2);
+    populateForm();
+    await renderPreview();
+    alert(`✨ Portfólio sincronizado com sucesso!\n• ${data.experiences_count} experiências carregadas (Lingopass, UNIFOR, etc.)\n• ${data.projects_count} projetos integrados (incluindo Connect Care & Design System)\n• Fonte oficial: Aanastc/ana_leticia.ac__portifolio`);
+  } catch (err) {
+    alert('Erro ao sincronizar com portfólio: ' + err.message);
   } finally {
     hideLoader();
   }
@@ -829,13 +859,12 @@ function getCandidateSkillsList() {
 }
 
 function evaluateJobMatch(job, candidateSkills) {
-  const textToSearch = `${job.title} ${(job.tags || []).join(' ')} ${job.description || ''}`.toLowerCase();
+  const textToSearch = `${job.title} ${(job.tags || []).join(' ')} ${job.description || ''} ${job.location || ''} ${job.category || ''}`.toLowerCase();
   const matched = [];
 
   candidateSkills.forEach(skill => {
     const cleanSkill = skill.toLowerCase();
     if (cleanSkill.length < 2) return;
-    // Word boundary or containment check
     const regex = new RegExp(`\\b${cleanSkill.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}\\b`, 'i');
     if (regex.test(textToSearch) || textToSearch.includes(cleanSkill)) {
       matched.push(skill);
@@ -843,18 +872,34 @@ function evaluateJobMatch(job, candidateSkills) {
   });
 
   const uniqueMatches = [...new Set(matched)];
-  // Calculate score: base 60% + 5% per matched skill, bounded between 65% and 98%
-  let score = 60 + Math.min(38, uniqueMatches.length * 5);
+  let score = 55 + Math.min(35, uniqueMatches.length * 5);
   
-  // Extra boost if title matches Full Stack, DevOps, or Engineer
-  const titleLower = (job.title || '').toLowerCase();
-  if (titleLower.includes('full stack') || titleLower.includes('fullstack') || titleLower.includes('devops') || titleLower.includes('frontend')) {
-    score = Math.min(98, score + 6);
+  // Sector bonuses (Healthcare & EdTechs are primary target sectors)
+  const isHealthcare = /hosp|saúde|saude|health|clinic|patient|care|médic/i.test(textToSearch);
+  const isEdTech = /edtech|educa|moodle|ensino|ead|universidade|escola|aluno/i.test(textToSearch);
+  const isTechGeneral = /full stack|fullstack|devops|cloud|react|node|python/i.test(textToSearch);
+
+  if (isHealthcare) score += 10;
+  if (isEdTech) score += 10;
+  if (isTechGeneral) score += 5;
+
+  // Location logic (Candidate is based in BH: must be BH if on-site, or Remote)
+  if (job.location_type === 'bh') {
+    score += 12; // High match for Belo Horizonte local opportunity!
+  } else if (job.location_type === 'remote') {
+    score += 8; // High match for Remote work
+  } else if (job.location_type === 'onsite_outside_bh') {
+    score = Math.max(35, score - 28); // Strongly penalize on-site jobs in other cities
   }
+
+  // Ensure score is within realistic 35-99% range
+  score = Math.max(35, Math.min(99, score));
 
   return {
     score,
-    matchedSkills: uniqueMatches
+    matchedSkills: uniqueMatches,
+    isHealthcare,
+    isEdTech
   };
 }
 
@@ -921,16 +966,41 @@ async function fetchAndRenderJobs(searchQuery = 'Hospitalar', forceRefresh = fal
         return `<span class="job-tag ${isMatched ? 'tag-matched' : ''}">${escapeHtml(tag)}</span>`;
       }).join('');
 
+      // Build location badge
+      let locBadge = `<span class="badge-tag badge-remote">🌐 100% Remoto</span>`;
+      if (job.location_type === 'bh') {
+        locBadge = `<span class="badge-tag badge-bh">📍 Belo Horizonte (Match Presencial/Híbrido)</span>`;
+      } else if (job.location_type === 'onsite_outside_bh') {
+        locBadge = `<span class="badge-tag badge-warning">⚠️ Presencial fora de BH</span>`;
+      }
+
+      // Modality badges
+      const modalities = job.modalities || ['PJ ou CLT'];
+      const modBadges = modalities.map(m => `<span class="badge-tag badge-modality">💼 ${escapeHtml(m)}</span>`).join(' ');
+
+      // Sector badge
+      let sectorBadge = `<span class="badge-tag badge-sector">🏢 Tech</span>`;
+      if (job.isHealthcare || (job.category && job.category.includes('Saúde'))) {
+        sectorBadge = `<span class="badge-tag badge-sector">🏥 Saúde / Hospitalar</span>`;
+      } else if (job.isEdTech || (job.category && job.category.includes('EdTech'))) {
+        sectorBadge = `<span class="badge-tag badge-sector">🎓 EdTech / Educação</span>`;
+      }
+
       card.innerHTML = `
         <div class="job-header-row">
           <div class="job-title-company">
             <h4>${escapeHtml(job.title)}</h4>
             <div class="job-company">
               <strong>${escapeHtml(job.company)}</strong> • 
-              <span class="job-location-tag">📍 ${escapeHtml(job.location)}</span>
+              <span class="job-location-tag">${escapeHtml(job.location)}</span>
+            </div>
+            <div class="job-meta-badges">
+              ${locBadge}
+              ${modBadges}
+              ${sectorBadge}
             </div>
           </div>
-          <div class="job-match-badge ${matchClass}" title="Compatibilidade com as habilidades do seu currículo">
+          <div class="job-match-badge ${matchClass}" title="Compatibilidade calculada com seu perfil e preferências">
             ${matchIcon} ${job.score}% Match
           </div>
         </div>
@@ -943,7 +1013,7 @@ async function fetchAndRenderJobs(searchQuery = 'Hospitalar', forceRefresh = fal
 
         <div class="job-footer-actions">
           <div class="job-salary-text">
-            ${job.salary && job.salary !== 'Não especificado' ? `💰 ${escapeHtml(job.salary)}` : '🌐 100% Remoto'}
+            ${job.salary && job.salary !== 'Não especificado' ? `💰 ${escapeHtml(job.salary)}` : 'Negociável (PJ/CLT)'}
           </div>
           <div class="job-buttons-group">
             <a href="${escapeHtml(job.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm flex-center">

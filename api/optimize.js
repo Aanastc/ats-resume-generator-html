@@ -28,10 +28,18 @@ Sua tarefa é ler um currículo estruturado em JSON e a descrição de uma vaga 
 Siga rigorosamente as seguintes diretrizes:
 1. Detecte se a vaga está em inglês ou português e adapte todo o conteúdo para esse idioma. Defina o campo "language" como "en" ou "pt".
 2. NÃO use buzzwords ou adjetivos vazios (ex: "proativo", "motivado"). Foque em fatos e realizações técnicas.
-3. Integre as palavras-chave da vaga de forma natural nas experiências e competências.
+3. Integre as palavras-chave da vaga de forma natural nas experiências, projetos e competências.
 4. Comece cada bullet point com um verbo de ação forte no passado e quantifique resultados sempre que possível.
-5. NÃO invente empresas, datas ou formações acadêmicas. Preserve os campos de contato e URLs.
-6. O resultado deve ser EXCLUSIVAMENTE um objeto JSON válido no mesmo schema.
+5. **Alinhamento Estratégico aos Setores da Candidata**:
+   - **Hospitais, Clínicas & Saúde (HealthTech)**: Destaque o projeto Connect Care, sistemas de agendamento e telemedicina, proteção de dados sensíveis (LGPD/HIPAA), alta disponibilidade e microsserviços resilientes.
+   - **EdTechs & Plataformas Educacionais**: Destaque o desenvolvimento de plugins Moodle em PHP e temas na Lingopass, integrações corporativas (HubSpot, Stripe, BigQuery), e o Design System institucional em React e portais acadêmicos na UNIFOR.
+   - **Empresas Convencionais & Tech Geral**: Destaque arquitetura Full Stack moderna (React, Next.js, Node.js, TypeScript, Python), automação DevOps (AWS, Docker, Kubernetes, Terraform, CI/CD GitHub Actions, ArgoCD, Prometheus/Grafana).
+6. **Localidade e Modalidade Contratual**:
+   - A candidata aceita regimes **PJ, CLT ou Freelance**.
+   - Se a vaga for presencial ou híbrida, a localização deve ser **Belo Horizonte, MG** (ou Região Metropolitana). Se a vaga for remota, mencione disponibilidade remota para todo o Brasil ou global.
+7. NÃO invente empresas, datas ou formações acadêmicas. Preserve os campos de contato e links (incluindo repositório e demos).
+8. Mantenha os projetos relevantes no array "projects" adaptando seus resumos para ressaltar aderência com a vaga.
+9. O resultado deve ser EXCLUSIVAMENTE um objeto JSON válido no mesmo schema.
 `;
 
     const userPrompt = `

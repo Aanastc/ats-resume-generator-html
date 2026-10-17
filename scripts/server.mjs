@@ -6,6 +6,7 @@ import { GoogleGenAI } from "@google/genai";
 import { execSync } from "node:child_process";
 import { chromium } from "playwright";
 import { runJobSync } from "./fetch-jobs.mjs";
+import { runPortfolioSync } from "./sync-portfolio.mjs";
 
 dotenv.config();
 
@@ -89,7 +90,7 @@ app.get("/api/jobs", async (req, res) => {
       const inTags = (j.tags || []).some(t => t.toLowerCase().includes(q));
       const inDesc = (j.description || "").toLowerCase().includes(q);
 
-      if (q.includes("hosp") || q.includes("saude") || q.includes("saúde") || q.includes("health")) {
+      if (q.includes("hosp") || q.includes("saude") || q.includes("saúde") || q.includes("health") || q.includes("clinic")) {
         return (
           inTitle || inCategory || inTags ||
           j.category.includes("Saúde") ||
@@ -98,11 +99,28 @@ app.get("/api/jobs", async (req, res) => {
         );
       }
 
-      if (q.includes("bh") || q.includes("belo horizonte")) {
+      if (q.includes("edtech") || q.includes("educa") || q.includes("moodle") || q.includes("ensino") || q.includes("ead")) {
         return (
+          inTitle || inCategory || inTags ||
+          j.category.includes("EdTech") ||
+          (j.tags || []).some(t => /edtech|educa|moodle|ensino|ead/i.test(t)) ||
+          /edtech|educa|moodle|ensino|ead|universidade|escola/i.test(j.title + " " + j.description)
+        );
+      }
+
+      if (q.includes("bh") || q.includes("belo horizonte") || q.includes("presencial")) {
+        return (
+          j.location_type === "bh" ||
           inLoc ||
-          /belo horizonte|bh|minas|remoto/i.test(j.location + " " + j.title) ||
-          j.source.includes("Brasil")
+          /belo horizonte|bh|minas|nova lima/i.test(j.location + " " + j.title)
+        );
+      }
+
+      if (q.includes("remoto") || q.includes("pj") || q.includes("clt")) {
+        return (
+          j.location_type === "remote" ||
+          (j.modalities || []).some(m => m.toLowerCase().includes(q)) ||
+          /remoto|remote|pj|clt/i.test(j.location + " " + (j.modalities || []).join(" "))
         );
       }
 
@@ -123,6 +141,17 @@ app.get("/api/jobs", async (req, res) => {
     next_update: cacheData?.next_update || "Diariamente às 08:00 (Horário de Brasília)",
     jobs: finalJobs
   });
+});
+
+// Sync resume directly with portfolio
+app.all("/api/sync-portfolio", async (req, res) => {
+  try {
+    const result = await runPortfolioSync();
+    res.json(result);
+  } catch (err) {
+    console.error("Erro sync portfólio:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
 });
 
 // Save resume
@@ -184,10 +213,19 @@ Siga rigorosamente as seguintes diretrizes:
 
 6. **Preservação de Dados Reais**:
    - **NÃO invente** experiências de trabalho, nomes de empresas, datas, certificados, formação acadêmica ou dados de contato.
-   - Mantenha inalterados os campos: "name", "email", "phone_e164", "phone_display", "location", "linkedin_url", "github_url", "website_url".
+   - Mantenha inalterados os campos: "name", "email", "phone_e164", "phone_display", "linkedin_url", "github_url", "website_url".
    - Mantenha os períodos de data ("date") e nomes de instituições/empresas exatamente como estão, apenas traduzindo termos de cargo/função e descrições conforme necessário.
 
-7. **Formato de Saída**:
+7. **Alinhamento Estratégico aos Setores da Candidata**:
+   - **Hospitais, Clínicas & Saúde (HealthTech)**: Destaque o projeto Connect Care, agendamentos, segurança de dados (LGPD/HIPAA), microsserviços confiáveis e alta disponibilidade.
+   - **EdTechs & Plataformas Educacionais**: Destaque a experiência Moodle (plugins PHP e temas) e integrações corporativas na Lingopass, e o Design System institucional e portais acadêmicos na UNIFOR.
+   - **Empresas Convencionais & Tech Geral**: Destaque Full Stack moderna (React, Next.js, Node.js, Python), automação DevOps (AWS, Docker, Kubernetes, CI/CD GitHub Actions, Terraform, Observabilidade).
+   - **Localidade e Contrato**: A candidata aceita regimes PJ, CLT ou Freelance. Se a vaga for presencial ou híbrida, a localidade deve ser estritamente Belo Horizonte, MG (ou Região Metropolitana). Se for remota, mencione disponibilidade 100% remota Brasil ou Global.
+
+8. **Projetos Relevantes**:
+   - Mantenha os projetos pertinentes no array "projects" adaptando seus resumos para demonstrar aderência técnica direta à vaga.
+
+9. **Formato de Saída**:
    - O resultado deve ser EXCLUSIVAMENTE um objeto JSON válido, contendo exatamente a mesma estrutura (schema) do JSON de entrada, com os campos adaptados e traduzidos.
    - Não inclua markdown de código (\`\`\`json ...) na resposta, envie apenas a estrutura do JSON pura.
 `;

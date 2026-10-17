@@ -21,6 +21,9 @@
         <div class="api-key-wrapper">
           <input type="password" id="customApiKey" placeholder="Chave de API do Gemini (opcional)..." title="Se deixado em branco, utilizará a chave configurada no .env do servidor.">
         </div>
+        <button id="btnSyncPortfolio" class="btn btn-secondary" title="Sincroniza automaticamente com seu Portfólio (Aanastc/ana_leticia.ac__portifolio)">
+          🔄 Sincronizar Portfólio
+        </button>
         <button id="saveBaseCv" class="btn btn-secondary" title="Salva o JSON atual como o currículo base oficial (resume.json)">
           Salvar Base
         </button>
@@ -207,13 +210,13 @@
             </div>
 
             <div class="quick-filters">
-              <span>Filtros rápidos:</span>
-              <button type="button" class="filter-pill active" data-query="Hospitalar">🏥 Hospitalar / Saúde</button>
-              <button type="button" class="filter-pill" data-query="Full Stack">⚡ Full Stack</button>
-              <button type="button" class="filter-pill" data-query="DevOps">☁️ DevOps</button>
-              <button type="button" class="filter-pill" data-query="Belo Horizonte">📍 BH / Brasil (PJ e CLT)</button>
-              <button type="button" class="filter-pill" data-query="Python">Python</button>
-              <button type="button" class="filter-pill" data-query="React">React</button>
+              <span>Filtros direcionados:</span>
+              <button type="button" class="filter-pill active" data-query="Hospitalar">🏥 Hospitais & Clínicas</button>
+              <button type="button" class="filter-pill" data-query="EdTech">🎓 EdTechs & Educação</button>
+              <button type="button" class="filter-pill" data-query="Full Stack">🏢 Empresas Tech / Full Stack</button>
+              <button type="button" class="filter-pill" data-query="Belo Horizonte">📍 Presencial / Híbrido BH</button>
+              <button type="button" class="filter-pill" data-query="Remoto">🇧🇷 Remoto (PJ ou CLT)</button>
+              <button type="button" class="filter-pill" data-query="DevOps">☁️ DevOps & Cloud</button>
             </div>
 
             <div class="jobs-sync-banner">

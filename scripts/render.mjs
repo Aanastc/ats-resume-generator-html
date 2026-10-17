@@ -154,6 +154,13 @@ function languagesHtml(langs) {
     ? ` |\n          <a href="${data.design_system_url}" target="_blank" rel="noopener noreferrer">Design System (Live Demo)</a>`
     : "";
 
+  const projectsSection = (data.projects && data.projects.length > 0)
+    ? `<section class="section">
+        <h2 class="section-title">${t.projects}</h2>
+        ${projectsHtml(data.projects)}
+      </section>`
+    : "";
+
 const html = tpl
   .replace(
     `<link rel="stylesheet" href="./style.css" />`,
@@ -174,6 +181,7 @@ const html = tpl
   .replaceAll("{{DESIGN_SYSTEM_LINK}}", dsLink)
   .replaceAll("{{SUMMARY}}", escapeHtml(data.summary))
   .replaceAll("{{SKILLS_HTML}}", skillsHtml(data.skills))
+  .replaceAll("{{PROJECTS_SECTION}}", projectsSection)
   .replaceAll("{{PROJECTS_HTML}}", projectsHtml(data.projects))
   .replaceAll("{{EXPERIENCE_HTML}}", experienceHtml(data.experience))
   .replaceAll("{{EDUCATION_HTML}}", educationHtml(data.education))

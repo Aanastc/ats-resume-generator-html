@@ -1,110 +1,325 @@
 {
   "name": "ANA LETÍCIA ALVES CLAUDIANO",
-  "title": "Senior Full Stack & DevOps Engineer",
+  "title": "Desenvolvedora Full Stack & DevOps (Sistemas Críticos, Hospitais/Saúde & EdTechs)",
   "email": "analeticia_ac@outlook.com",
   "phone_e164": "+5531999679109",
   "phone_display": "+55 31 99967-9109",
-  "location": "Brazil (Open to Relocation & Remote)",
+  "location": "Belo Horizonte, MG (Presencial/Híbrido) | Remoto (Brasil e Global)",
+  "modalities": "PJ, CLT e Freelance",
+  "work_preference": {
+    "remote": "Remoto (Brasil ou Global)",
+    "onsite_hybrid": "Presencial/Híbrido estritamente em Belo Horizonte/MG (ou Região Metropolitana)",
+    "contracts": [
+      "PJ",
+      "CLT",
+      "Freelance"
+    ],
+    "target_sectors": [
+      "Hospitais & Clínicas (HealthTech)",
+      "EdTechs & Educação",
+      "Empresas Convencionais & Tech"
+    ]
+  },
   "linkedin_url": "https://www.linkedin.com/in/analetícia-react/",
   "github_url": "https://github.com/Aanastc",
   "website_url": "https://ana-leticia-ac-portifolio-7cxi.vercel.app/",
   "design_system_url": "https://designsystemeadedo-git-202612-ana-leticias-projects-198dfb27.vercel.app/",
-  "language": "en",
-  "summary": "Senior Full Stack & DevOps Engineer with 5+ years of software engineering experience architecting scalable web applications (TypeScript, Next.js, React, Node.js, Python, PostgreSQL) and automated cloud infrastructure (AWS, Docker, CI/CD pipelines, Kubernetes). Proven track record leading core platform delivery in mission-critical environments, establishing robust CI/CD automation with GitHub Actions, containerizing microservices, and reducing deployment times while maintaining 99.9% uptime. Bilingual communicator (C1+ English) experienced in agile, cross-functional, and US-distributed teams.",
+  "portfolio_source_repo": "https://github.com/Aanastc/ana_leticia.ac__portifolio",
+  "language": "pt",
+  "summary": "Desenvolvedora Full Stack & DevOps com mais de 5 anos de experiência na concepção e sustentação de sistemas escaláveis e de alta criticidade. Atuação especializada em três ecossistemas fundamentais: 1) Ambientes Hospitalares e Clínicas (Connect Care HealthTech, agendamentos, segurança de dados em saúde); 2) EdTechs e Plataformas Educacionais (desenvolvimento de plugins e sustentação Moodle na Lingopass, Design System institucional e portais de ensino na UNIFOR); 3) Empresas Convencionais & Tech (microsserviços Node/Python, esteiras CI/CD, Docker, Kubernetes e AWS). Especialista em React, Node.js, TypeScript, Python e PHP. Aberta a regimes PJ, CLT e Freelance (presencial/híbrido estritamente em Belo Horizonte/MG ou 100% remoto para todo o Brasil/exterior).",
   "skills": [
     {
-      "group": "Cloud, DevOps & Infrastructure",
+      "group": "Hospitais, Clínicas & Saúde (HealthTech)",
+      "items": [
+        "Arquitetura da Plataforma Connect Care (Home Care e Clínicas)",
+        "Sistemas de Agendamento e Fluxo de Pacientes",
+        "Privacidade e Segurança de Dados em Saúde (Conformidade LGPD)",
+        "APIs Resilientes e Alta Disponibilidade para Ambientes Críticos"
+      ]
+    },
+    {
+      "group": "EdTechs & Plataformas Educacionais",
+      "items": [
+        "Desenvolvimento Moodle LMS (Plugins Customizados em PHP e Temas)",
+        "Integrações Corporativas (HubSpot, Stripe, Intercom, BigQuery)",
+        "Design Systems Institucionais Reutilizáveis (NPM, Storybook, CI/CD)",
+        "Portais Acadêmicos de Alto Tráfego para Milhares de Alunos"
+      ]
+    },
+    {
+      "group": "Desenvolvimento Full Stack & Backend",
+      "items": [
+        "React.js, Next.js e React Native",
+        "Node.js, TypeScript e JavaScript (ES6+)",
+        "Python (FastAPI, Flask) e PHP",
+        "APIs RESTful, Webhooks e Microsserviços",
+        "PostgreSQL, Supabase, MySQL e Cache Redis"
+      ]
+    },
+    {
+      "group": "DevOps, Cloud & Observabilidade (SRE)",
       "items": [
         "AWS (EC2, S3, ECS, Lambda, IAM)",
-        "Docker & Containerization",
-        "CI/CD Automation (GitHub Actions, Vercel)",
-        "Infrastructure as Code (Terraform)",
-        "Kubernetes & Orchestration",
-        "Linux Administration",
-        "Observability & Monitoring (Datadog, Prometheus)"
-      ]
-    },
-    {
-      "group": "Full-Stack & Backend Engineering",
-      "items": [
-        "Node.js & Python (FastAPI, Flask)",
-        "TypeScript & JavaScript (ES6+)",
-        "RESTful APIs, Webhooks & tRPC",
-        "Microservices Architecture",
-        "PostgreSQL (Drizzle, SQLAlchemy)",
-        "Redis Caching & Data Pipelines",
-        "Automated Testing (Playwright, Vitest, Jest, pytest)"
-      ]
-    },
-    {
-      "group": "Frontend & UI Systems",
-      "items": [
-        "Next.js & React.js",
-        "Tailwind CSS & shadcn/ui",
-        "Design Systems & Reusable Components",
-        "State Management (Zustand, Redux)",
-        "Responsive & Accessible UI (WCAG 2.1)"
+        "Conteinerização com Docker e Orquestração com Kubernetes (EKS)",
+        "Automação de CI/CD (GitHub Actions, Vercel)",
+        "Infraestrutura como Código (Terraform) e GitOps (ArgoCD)",
+        "Observabilidade Ponta a Ponta (Prometheus, Grafana, OpenTelemetry)"
       ]
     }
   ],
-  "projects": [],
+  "projects": [
+    {
+      "title": "Design System - EAD Unifor",
+      "category": "React",
+      "stack": "React, NPM, Vercel, Storybook, CI/CD",
+      "bullets": [
+        "Biblioteca institucional de componentes em React distribuída via npm e integrada à Vercel com CI/CD, padronizando o ecossistema visual educacional e acelerando o ciclo de desenvolvimento."
+      ],
+      "links": [
+        {
+          "label": "Acessar Projeto",
+          "url": "https://design-system-project-git-20242-ana-leticias-projects-198dfb27.vercel.app/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Aanastc/design_system-project.git"
+        }
+      ]
+    },
+    {
+      "title": "Controle de Finanças Pessoais",
+      "category": "Fullstack",
+      "stack": "React, React Native, Expo, TypeScript, Tailwind CSS, API REST, Supabase, Vercel",
+      "bullets": [
+        "Plataforma full stack para gestão financeira integrada (web e mobile), oferecendo controle de fluxo de caixa, projeções orçamentárias e persistência em tempo real com Supabase e TypeScript."
+      ],
+      "links": [
+        {
+          "label": "Acessar Projeto",
+          "url": "https://financeiro-app-web-dqgn.vercel.app"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Aanastc/Financeiro_app"
+        }
+      ]
+    },
+    {
+      "title": "Folders Interativos - EAD Unifor",
+      "category": "React",
+      "stack": "React, Tailwind CSS, Vercel, Mobile First",
+      "bullets": [
+        "Aplicação web interativa para apresentação de cursos acadêmicos, desenvolvida em React.js com foco em UX fluida, acessibilidade, alta performance de carregamento e deploy na Vercel."
+      ],
+      "links": [
+        {
+          "label": "Acessar Projeto",
+          "url": "https://feira-das-profi.vercel.app/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Aanastc/FeiraDasProfi.git"
+        }
+      ]
+    },
+    {
+      "title": "Connect Care (HealthTech)",
+      "category": "React",
+      "stack": "React, Supabase, API REST, Tailwind CSS, Vercel",
+      "bullets": [
+        "Plataforma web para conexão de pacientes a profissionais especializados em home care, integrando autenticação segura, gestão de serviços e persistência em banco de dados em nuvem."
+      ],
+      "links": [
+        {
+          "label": "Acessar Projeto",
+          "url": "https://connect-care-server.vercel.app/#section-1"
+        }
+      ]
+    },
+    {
+      "title": "Gestão de Locação de Frotas",
+      "category": "Fullstack",
+      "stack": "React, Vite, Tailwind CSS, Supabase, PostgreSQL, React Router, Vercel",
+      "bullets": [
+        "Sistema completo para gestão de frotas e locação de veículos com dashboard analítico, gestão de contratos (diário/semanal/mensal), controle financeiro com fluxo de caixa, vistorias com fotos, manutenção e autenticação segura no Supabase."
+      ],
+      "links": [
+        {
+          "label": "Acessar Projeto",
+          "url": "https://locacao-de-carros.vercel.app/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Aanastc/locacao_de_carros"
+        }
+      ]
+    },
+    {
+      "title": "SolidaryTech (Plataforma ONG & Resiliência SRE)",
+      "category": "DevOps",
+      "stack": "Go, Python, Kubernetes, Terraform, AWS SQS, SRE & FinOps, PostgreSQL",
+      "bullets": [
+        "Projeto final de consolidação da Pós Tech: arquitetura de alta resiliência e microsserviços distribuídos (Go e Python) para gestão de ONGs e doações, com mensageria assíncrona AWS SQS, princípios de SRE (SLIs, SLOs e Error Budgets), FinOps para governança de custos e orquestração Kubernetes gerenciada via Terraform."
+      ],
+      "links": [
+        {
+          "label": "Acessar Projeto",
+          "url": "https://drive.google.com/file/d/1Uc8Hf2My_-ubR3oo7kJ8n7BSGZYIXOj3/view?usp=drive_link"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Aanastc/Fase5_posTech"
+        }
+      ]
+    },
+    {
+      "title": "ToggleMaster (Feature Flag Platform & Cloud)",
+      "category": "DevOps",
+      "stack": "Kubernetes (EKS), Terraform, ArgoCD (GitOps), DevSecOps, OpenTelemetry, Prometheus & Grafana, Docker",
+      "bullets": [
+        "Plataforma de Feature Flags distribuída em microsserviços, com provisionamento de infraestrutura imutável via Terraform na AWS (EKS, RDS, Redis, DynamoDB), esteiras DevSecOps com GitHub Actions, deploy contínuo GitOps orquestrado por ArgoCD e observabilidade total (OpenTelemetry, Prometheus, Grafana, Loki)."
+      ],
+      "links": [
+        {
+          "label": "Acessar Projeto",
+          "url": "https://drive.google.com/file/d/1PTc8-QVeOJazfpVTVbRjyUZ_q0OqQMj6/view?usp=drive_link"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Santosu01/techchallenger-fases-postech"
+        }
+      ]
+    }
+  ],
   "experience": [
     {
-      "role": "Senior Full Stack & DevOps Engineer (Platform Lead)",
-      "company": "Universidade de Fortaleza (UNIFOR)",
-      "date": "Sep 2025 — Present",
+      "role": "Desenvolvedora Full Stack (Moodle)",
+      "company": "Lingopass (EdTech)",
+      "date": "Set/2026 – Atual",
+      "mode": "Remoto (São Paulo, Brasil)",
       "bullets": [
-        "Architect and lead end-to-end platform delivery for core EdTech services, developing high-performance full-stack systems with Next.js, React, TypeScript, and Node.js/Python microservices.",
-        "Spearhead DevOps automation by designing and managing production CI/CD workflows with GitHub Actions and Docker, accelerating release frequency by 45% with zero-downtime deployments on AWS.",
-        "Containerize services and standardize staging and production cloud environments, enforcing environment parity and maintaining 99.9% platform availability across tens of thousands of active users.",
-        "Optimize backend data throughput and query execution across PostgreSQL and Redis caching layers, slashing median API response latencies from 420ms to under 110ms.",
-        "Integrate robust automated testing suites (Playwright, Vitest) and continuous monitoring pipelines, eliminating behavioral regressions and ensuring production stability."
+        "Desenvolvimento e customização de plugins em PHP (atividades, blocos e relatórios analíticos) e evolução de temas (Boost e derivados) com foco em usabilidade, performance e aderência aos protótipos de UI.",
+        "Integração do Moodle com serviços corporativos e plataformas de CRM, pagamentos e dados (HubSpot, Intercom, Stripe, BigQuery) via APIs REST e Webhooks, utilizando Node.js e TypeScript.",
+        "Sustentação proativa da infraestrutura da plataforma educacional, atuando no monitoramento de disponibilidade, otimização de cache e mitigação preventiva de falhas críticas em produção.",
+        "Homologação contínua de releases e implementação de rotinas de testes antes dos deploys em produção, assegurando confiabilidade operacional e alinhamento com engenharia e produto."
+      ],
+      "stacks": [
+        "Moodle",
+        "PHP",
+        "Node.js",
+        "TypeScript",
+        "APIs REST",
+        "Webhooks",
+        "BigQuery",
+        "HubSpot",
+        "Stripe"
       ]
     },
     {
-      "role": "Full Stack & DevOps Software Engineer",
-      "company": "Universidade de Fortaleza (UNIFOR)",
-      "date": "Apr 2023 — Sep 2025",
+      "role": "Desenvolvedora Full Stack",
+      "company": "Universidade de Fortaleza (UNIFOR - EdTech)",
+      "date": "Set/2025 – Set/2026",
+      "mode": "Tempo integral • Presencial (Fortaleza, Ceará)",
       "bullets": [
-        "Owned web application lifecycles from architecture design to production release, making critical engineering decisions on distributed system scalability and user experience.",
-        "Engineered scalable RESTful APIs and asynchronous webhook processors in Python and Node.js, ensuring reliable data synchronization across multi-tenant PostgreSQL databases.",
-        "Built automated CI/CD deployment pipelines using GitHub Actions and Docker, establishing automated linting, test validation (Jest, Playwright), and consistent cloud deployments.",
-        "Engineered reusable frontend design systems and component libraries ([Live Demo](https://designsystemeadedo-git-202612-ana-leticias-projects-198dfb27.vercel.app/)) using React and Tailwind CSS, speeding up cross-squad feature delivery by 35%."
+        "Liderança técnica na concepção, arquitetura e manutenção do Design System institucional, estruturado como biblioteca front-end reutilizável e versionada via npm, integrada a pipeline de CI/CD e deploy contínuo na Vercel.",
+        "Capacitação e mentoria técnica de equipes de desenvolvimento, estruturando documentação de arquitetura, onboarding técnico e padronização dos fluxos de publicação no Moodle.",
+        "Arquitetura e sustentação de automações com Node.js, Selenium (RPA) e web scraping para rotinas operacionais e testes, reduzindo erros manuais e aumentando a estabilidade do ecossistema.",
+        "Gestão e resolução de incidentes críticos de primeiro nível (L1) no Moodle, assegurando conformidade com SLAs, alta disponibilidade da plataforma e continuidade dos serviços acadêmicos."
+      ],
+      "stacks": [
+        "React",
+        "Design System",
+        "npm",
+        "Vercel",
+        "CI/CD",
+        "Node.js",
+        "Selenium",
+        "APIs REST",
+        "Moodle",
+        "Git"
       ]
     },
     {
-      "role": "Data & Automation Engineer",
+      "role": "Programadora Front-end",
+      "company": "Universidade de Fortaleza (UNIFOR)",
+      "date": "Abr/2023 – Set/2025",
+      "mode": "Tempo integral • Presencial (Fortaleza, Ceará)",
+      "bullets": [
+        "Desenvolvimento de interfaces responsivas e acessíveis no Moodle utilizando Bootstrap e JavaScript, garantindo padrões institucionais e conformidade com diretrizes de acessibilidade (WCAG).",
+        "Implementação de esteiras de automação com Node.js, Selenium e GitHub Labs para empacotamento e distribuição ágil de componentes padronizados aos desenvolvedores.",
+        "Construção de folders digitais interativos com React.js e esteira de deploy contínuo via Vercel, alcançando alta performance, manutenibilidade e escalabilidade."
+      ],
+      "stacks": [
+        "React.js",
+        "JavaScript",
+        "Bootstrap",
+        "Moodle",
+        "Node.js",
+        "Selenium",
+        "Acessibilidade (WCAG)",
+        "Vercel"
+      ]
+    },
+    {
+      "role": "Estagiária de Desenvolvimento Web",
+      "company": "Universidade de Fortaleza (UNIFOR)",
+      "date": "Jul/2022 – Abr/2023",
+      "mode": "Estágio • Presencial (Fortaleza, Ceará)",
+      "bullets": [
+        "Construção de interfaces web dinâmicas e responsivas com JavaScript (ES6+), semântica HTML5 e estilização modular com SASS/CSS3 sob metodologia Mobile-First.",
+        "Customização técnica e sustentação de instâncias Moodle, atuando na integração de novos plugins, configuração de webhooks e extensão de funcionalidades da plataforma."
+      ],
+      "stacks": [
+        "JavaScript (ES6+)",
+        "HTML5",
+        "CSS3 / SASS",
+        "Bootstrap",
+        "Moodle",
+        "Webhooks"
+      ]
+    },
+    {
+      "role": "Pesquisadora Científica & Desenvolvedora",
       "company": "Universidade de Fortaleza / FUNCEME",
-      "date": "Apr 2022 — Mar 2023",
+      "date": "Abr/2022 – Mar/2023",
+      "mode": "Bolsista • Híbrido (Fortaleza, Ceará)",
       "bullets": [
-        "Developed automated Python pipelines and validation workflows to process, sanitize, and analyze large-scale scientific datasets with deterministic accuracy.",
-        "Constructed automated data validation rubrics and quality evaluation scripts to assess dataset integrity and model consistency for public decision-makers.",
-        "Maintained version-controlled repositories and reproducible CI/CD execution environments across an agile research team."
+        "Pesquisa aplicada no projeto de Otimização Geoespacial do Sistema de Abastecimento de Água do Ceará através de Ciência de Dados e Teoria de Redes Complexas.",
+        "Construção de pipelines de dados (ETL) e análise estatística geoespacial com Python, Pandas e Matplotlib para suporte técnico a decisões governamentais em recursos hídricos."
+      ],
+      "stacks": [
+        "Python",
+        "Pandas",
+        "Matplotlib",
+        "ETL",
+        "Ciência de Dados",
+        "Redes Complexas"
       ]
     }
   ],
   "education": [
     {
-      "title": "Postgraduate Degree in DevOps and Cloud Architecture",
+      "title": "Pós Tech – DevOps & Arquitetura Cloud",
       "subtitle": "FIAP",
-      "date": "2025 — Present"
+      "date": "Out/2025 – Em andamento"
     },
     {
-      "title": "Bachelor's Degree in Systems Analysis and Development",
+      "title": "Graduação em Análise e Desenvolvimento de Sistemas",
       "subtitle": "Universidade de Fortaleza (UNIFOR)",
-      "date": "Completed in 2023"
+      "date": "Concluído em Dez/2023"
     }
   ],
   "languages": [
     {
-      "name": "English",
-      "level": "Full Professional Working Proficiency (C1+)",
-      "note": "Fluent in technical communication, asynchronous documentation, and US-team collaboration"
+      "name": "Inglês",
+      "level": "Avançado / Fluente (C1+)",
+      "note": "Proficiência profissional completa"
     },
     {
-      "name": "Portuguese",
-      "level": "Native",
-      "note": ""
+      "name": "Português",
+      "level": "Nativo",
+      "note": "Língua materna"
     }
-  ]
+  ],
+  "synced_at": "2026-10-17T16:43:48.573Z"
 }
