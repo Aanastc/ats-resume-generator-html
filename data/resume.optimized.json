@@ -1,0 +1,110 @@
+{
+  "name": "ANA LETÍCIA ALVES CLAUDIANO",
+  "title": "Product Engineer (Full Stack & AI Systems)",
+  "email": "analeticia_ac@outlook.com",
+  "phone_e164": "+5531999679109",
+  "phone_display": "+55 31 99967-9109",
+  "location": "Brazil (100% Remote / LATAM)",
+  "linkedin_url": "https://www.linkedin.com/in/analetícia-react/",
+  "github_url": "https://github.com/Aanastc",
+  "website_url": "https://ana-leticia-ac-portifolio-7cxi.vercel.app/",
+  "design_system_url": "https://designsystemeadedo-git-202612-ana-leticias-projects-198dfb27.vercel.app/",
+  "language": "en",
+  "summary": "Product Engineer with 5+ years of software development experience specializing in full-stack architecture (TypeScript, Next.js, React, Node.js, Python, PostgreSQL) and production AI/LLM systems. Proven track record owning platforms end-to-end in the EdTech sector, building tool-using agents, context assembly pipelines, and automated evaluation harnesses (deterministic checks, LLM judges). Daily power user of Claude Code and modern AI workflows to accelerate feature delivery, establish robust CI/CD, and translate ambiguous product requirements into high-impact user experiences.",
+  "skills": [
+    {
+      "group": "Full-Stack & Product Engineering",
+      "items": [
+        "TypeScript & JavaScript (ES6+)",
+        "Next.js & React.js",
+        "Node.js & Python (FastAPI, Flask)",
+        "tRPC & RESTful APIs",
+        "Tailwind CSS & shadcn/ui",
+        "PostgreSQL (Drizzle, SQLAlchemy)",
+        "Responsive & Accessible UI (WCAG 2.1)"
+      ]
+    },
+    {
+      "group": "AI Technologies & LLM Engineering",
+      "items": [
+        "LLM Application Development (Tool-Using Agents, Context Management)",
+        "Evaluation Systems (LLM Judges, Deterministic Checks, Threshold Calibration)",
+        "Hybrid Search & Retrieval (Sparse/Dense Retrieval, Reranking, Vector DBs)",
+        "AI-Assisted Engineering (Claude Code, Cursor, Copilot)",
+        "Streaming Interfaces & Chat Surfaces",
+        "Persistent Memory & Multi-Turn Sessions"
+      ]
+    },
+    {
+      "group": "Cloud, DevOps & System Reliability",
+      "items": [
+        "AWS Cloud Services",
+        "Docker & Containerization",
+        "CI/CD Automation (GitHub Actions, Vercel)",
+        "Automated Testing (Playwright, Vitest, Jest, pytest)",
+        "Turborepo & pnpm Monorepos",
+        "Observability & Production Monitoring"
+      ]
+    }
+  ],
+  "projects": [],
+  "experience": [
+    {
+      "role": "Senior Product Engineer (Full Stack & Platform Lead)",
+      "company": "Universidade de Fortaleza (UNIFOR)",
+      "date": "Sep 2025 — Present",
+      "bullets": [
+        "Own end-to-end architecture and feature delivery for core EdTech platforms, shipping full-stack capabilities with Next.js, React, TypeScript, and Python/Node.js services.",
+        "Architect and stand up production LLM agentic workflows and tool-calling interfaces with persistent sessions, dynamic context assembly, and vector search, replacing high-friction manual operational tasks.",
+        "Expand evaluation systems using deterministic checks and LLM-as-a-judge harnesses to monitor agent accuracy, eliminate behavioral drift, and maintain high metric fidelity.",
+        "Build streaming chat surfaces, operator interfaces, and reusable component libraries ([Live Demo](https://designsystemeadedo-git-202612-ana-leticias-projects-198dfb27.vercel.app/)) using Tailwind CSS and shadcn principles, ensuring sub-second response times.",
+        "Drive daily AI-assisted development workflows with Claude Code, accelerating end-to-end delivery, automated test scaffolding (Vitest, Playwright), and zero-downtime releases on AWS and Docker."
+      ]
+    },
+    {
+      "role": "Full Stack Software Engineer (Web & Systems)",
+      "company": "Universidade de Fortaleza (UNIFOR)",
+      "date": "Apr 2023 — Sep 2025",
+      "bullets": [
+        "Owned production web applications from product discovery to deployment, making independent UX and architectural calls on complex workflows without prior specs or mockups.",
+        "Engineered scalable RESTful API endpoints and webhook handlers in Python and Node.js, integrating distributed services and managing multi-tenant PostgreSQL databases.",
+        "Automated CI/CD pipelines using GitHub Actions and Docker, enforcing strict quality gates, automated test coverage (Playwright, Jest), and predictable release cadence.",
+        "Led frontend system initiatives, designing accessible, component-driven interfaces that reduced user operational toil and accelerated cross-team feature adoption."
+      ]
+    },
+    {
+      "role": "Data & Automation Engineer (Scientific Research)",
+      "company": "Universidade de Fortaleza / FUNCEME",
+      "date": "Apr 2022 — Mar 2023",
+      "bullets": [
+        "Engineered automated Python pipelines and anomaly detection models to process, validate, and analyze complex multidimensional datasets with high reliability.",
+        "Constructed deterministic validation rubrics and quality evaluation scripts to assess dataset integrity and model consistency for public decision-makers.",
+        "Maintained version-controlled repositories and reproducible workflows within an agile, collaborative research team."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "title": "Postgraduate Degree in DevOps and Cloud Architecture",
+      "subtitle": "FIAP",
+      "date": "2025 — Present"
+    },
+    {
+      "title": "Bachelor's Degree in Systems Analysis and Development",
+      "subtitle": "Universidade de Fortaleza (UNIFOR)",
+      "date": "Completed in 2023"
+    }
+  ],
+  "languages": [
+    {
+      "name": "English",
+      "level": "Full Professional Working Proficiency (C1+)",
+      "note": "Fluent in technical communication, asynchronous documentation, and US-team collaboration"
+    },
+    {
+      "name": "Portuguese",
+      "level": "Native",
+      "note": ""
+    }
+  ]
+}

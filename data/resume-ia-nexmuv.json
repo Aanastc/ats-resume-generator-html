@@ -1,0 +1,90 @@
+{
+  "name": "ANA LETÍCIA ALVES CLAUDIANO",
+  "title": "Senior Fullstack Engineer | IA & Web",
+  "email": "analeticia_ac@outlook.com",
+  "phone_e164": "+5531999679109",
+  "phone_display": "(31) 99967-9109",
+  "location": "Fortaleza, CE - Brasil (Remoto)",
+  "linkedin_url": "https://www.linkedin.com/in/analet%C3%ADcia-react/",
+  "github_url": "https://github.com/ana-leticia-ac",
+  "website_url": "https://ana-leticia-ac-portifolio-7cxi.vercel.app/",
+
+  "summary": "Desenvolvedora Full Stack Sênior com mais de 5 anos de experiência na construção de sistemas escaláveis utilizando Node.js, TypeScript e ecossistemas modernos de Frontend (React/Next.js). Especialista em arquiteturas distribuídas e automação de processos complexos, atualmente aprofundando conhecimentos em DevOps e Cloud Architecture (FIAP). Possuo sólido background em Ciência de Dados e Machine Learning, com foco na integração de IA/LLMs para criar experiências proativas e contextuais. Experiência comprovada em liderança técnica de Design Systems e otimização de performance voltada para UX.",
+
+  "skills": [
+    {
+      "group": "Backend & IA",
+      "items": ["Node.js", "TypeScript", "PostgreSQL", "Redis", "IA/LLMs", "Orquestração de Agentes (LangGraph)", "RAG & Bancos Vetoriais", "Python"]
+    },
+    {
+      "group": "Frontend & UX",
+      "items": ["React", "Next.js", "Design Systems", "Tailwind CSS", "WebSockets (Real-time)", "Performance Optimization", "UX/UI Design"]
+    },
+    {
+      "group": "Cloud & Infra",
+      "items": ["GCP (Vertex AI)", "AWS", "Docker", "CI/CD (GitHub/Vercel)", "Arquitetura Distribuída", "DevOps Culture"]
+    },
+    {
+      "group": "Dados",
+      "items": ["ETL & Web Scraping", "Pandas/NumPy", "Machine Learning (Scikit-Learn)", "Data Visualization"]
+    }
+  ],
+
+  "experience": [
+    {
+      "role": "Engenheiro Full Stack",
+      "company": "Universidade de Fortaleza (UNIFOR)",
+      "date": "Set 2025 — Presente",
+      "bullets": [
+        "Garantia de estabilidade e SLAs da plataforma Moodle, realizando troubleshooting em ambiente de produção, monitoramento de logs de aplicação (PHP/Apache/Linux) e diagnóstico de chamados de Nível 1/2.",
+        "Desenvolvimento de scripts e bots de automação utilizando Python (Selenium WebDriver, Requests) e JavaScript (Node.js) integrados a APIs REST e Webhooks para configuração em lote de cursos e automação de rotinas de administração.",
+        "Modelagem de pipelines de dados e processos de ETL com Python (Pandas, SQLAlchemy) para extração de bancos de dados relacionais (MySQL/PostgreSQL) e criação de dashboards analíticos interativos no Looker Studio.",
+        "Desenvolvimento e customização de blocos e interfaces frontend no Moodle utilizando HTML5 semântico, CSS3 (SASS/SCSS, Flexbox, Grid) e Vanilla JavaScript, garantindo acessibilidade (padrões WCAG 2.1) e responsividade mobile-first.",
+        "Criação e manutenção do Design System institucional utilizando React.js e Tailwind CSS, além de gerenciar a hospedagem em servidores Linux (Nginx/Apache), versionamento com Git e conteinerização com Docker."
+      ]
+    },
+    {
+      "role": "Desenvolvedora Full Stack (Foco em Web Design & Sistemas)",
+      "company": "Universidade de Fortaleza (UNIFOR)",
+      "date": "Abr 2023 — Ago 2025",
+      "bullets": [
+        "Liderança da equipe de Web Designers, coordenando a criação, manutenção e evolução do Design System institucional, garantindo consistência visual e performance.",
+        "Desenvolvimento de interfaces modernas e performáticas com React, TypeScript e Node.js, com foco em acessibilidade e UX de alta qualidade.",
+        "Implementação de pipelines de CI/CD via GitHub e Vercel, reduzindo o tempo de entrega e aumentando a confiabilidade dos deploys.",
+        "Colaboração em arquiteturas de sistemas distribuídos para suportar o crescimento das plataformas digitais da universidade."
+      ]
+    },
+    {
+      "role": "Bolsista de Iniciação Científica (Pesquisa em IA/Dados)",
+      "company": "FUNCEME / UNIFOR",
+      "date": "Abr 2022 — Mar 2023",
+      "bullets": [
+        "Desenvolvimento de modelos de Machine Learning para análise preditiva e otimização de dados geoespaciais voltados ao abastecimento de água do Ceará.",
+        "Implementação de fluxos de ETL complexos utilizando Python (Pandas), garantindo a integridade e limpeza de dados para suporte à tomada de decisão governamental.",
+        "Criação de visualizações de dados avançadas (Matplotlib/Seaborn) para traduzir complexidade técnica em insights claros para pesquisadores.",
+        "Otimização de algoritmos de processamento de dados para suporte à pesquisa científica em escala."
+      ]
+    }
+  ],
+
+  "education": [
+    {
+      "title": "Pós-graduação em DevOps and Cloud Architecture",
+      "subtitle": "FIAP",
+      "date": "2025 — Em andamento"
+    },
+    {
+      "title": "Análise e Desenvolvimento de Sistemas",
+      "subtitle": "Universidade de Fortaleza (UNIFOR)",
+      "date": "Concluído em 2023"
+    }
+  ],
+
+  "languages": [
+    {
+      "name": "Inglês",
+      "level": "Avançado (C1)",
+      "note": "Comunicação profissional e leitura técnica fluida"
+    }
+  ]
+}

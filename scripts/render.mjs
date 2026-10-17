@@ -4,7 +4,10 @@ import path from "node:path";
 const root = process.cwd();
 const templatePath = path.join(root, "templates", "ats.html");
 const cssPath = path.join(root, "templates", "style.css");
-const dataPath = path.join(root, "data", "resume.example.json");
+
+// Allow custom resume file path via CLI argument
+const dataArg = process.argv[2];
+const dataPath = dataArg ? path.resolve(root, dataArg) : path.join(root, "data", "resume.json");
 const distDir = path.join(root, "dist");
 
 fs.mkdirSync(distDir, { recursive: true });
@@ -12,6 +15,31 @@ fs.mkdirSync(distDir, { recursive: true });
 const tpl = fs.readFileSync(templatePath, "utf8");
 const css = fs.readFileSync(cssPath, "utf8");
 const data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
+
+// Localization
+const l10n = {
+  pt: {
+    summary: "Resumo",
+    skills: "Habilidades",
+    projects: "Projetos",
+    experience: "Experiência",
+    education: "Formação Acadêmica",
+    languages: "Idiomas",
+    stack: "Stack"
+  },
+  en: {
+    summary: "Summary",
+    skills: "Skills",
+    projects: "Projects",
+    experience: "Experience",
+    education: "Education",
+    languages: "Languages",
+    stack: "Tech Stack"
+  }
+};
+
+const lang = data.language === "en" ? "en" : "pt";
+const t = l10n[lang];
 
 function escapeHtml(s) {
   return String(s)
@@ -22,6 +50,7 @@ function escapeHtml(s) {
 }
 
 function skillsHtml(skills) {
+  if (!skills) return "";
   return skills
     .map(
       (g) =>
@@ -33,12 +62,21 @@ function skillsHtml(skills) {
 }
 
 function bulletsHtml(bullets) {
+  if (!bullets) return "";
   return `<ul class="bullets">${bullets
-    .map((b) => `<li>${escapeHtml(b)}</li>`)
+    .map((b) => {
+      const escaped = escapeHtml(b);
+      const withLinks = escaped.replace(
+        /\[([^\]]+)\]\((https?:\/\/[^\s\)]+)\)/g,
+        '<a href="$2" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">$1</a>'
+      );
+      return `<li>${withLinks}</li>`;
+    })
     .join("")}</ul>`;
 }
 
 function projectsHtml(projects) {
+  if (!projects) return "";
   return projects
     .map((p) => {
       const links = (p.links ?? [])
@@ -52,7 +90,7 @@ function projectsHtml(projects) {
       return `
 <div class="item">
   <div class="item-title">${escapeHtml(p.title)}</div>
-  <div class="tech-line">Stack: ${escapeHtml(p.stack)}</div>
+  <div class="tech-line">${t.stack}: ${escapeHtml(p.stack)}</div>
   ${bulletsHtml(p.bullets)}
   ${links ? `<ul class="bullets">${links}</ul>` : ""}
 </div>`;
@@ -61,6 +99,7 @@ function projectsHtml(projects) {
 }
 
 function experienceHtml(exps) {
+  if (!exps) return "";
   return exps
     .map(
       (e) => `
@@ -79,6 +118,7 @@ function experienceHtml(exps) {
 }
 
 function educationHtml(eds) {
+  if (!eds) return "";
   return eds
     .map(
       (e) => `
@@ -96,6 +136,7 @@ function educationHtml(eds) {
 }
 
 function languagesHtml(langs) {
+  if (!langs) return "";
   return langs
     .map(
       (l) => `
@@ -108,6 +149,10 @@ function languagesHtml(langs) {
     )
     .join("\n");
 }
+
+  const dsLink = data.design_system_url
+    ? ` |\n          <a href="${data.design_system_url}" target="_blank" rel="noopener noreferrer">Design System (Live Demo)</a>`
+    : "";
 
 const html = tpl
   .replace(
@@ -125,13 +170,20 @@ const html = tpl
   .replaceAll("{{WEBSITE_URL}}", data.website_url)
   .replaceAll("{{LINKEDIN_TEXT}}", data.linkedin_url.replace(/^https?:\/\//, ""))
   .replaceAll("{{GITHUB_TEXT}}", data.github_url.replace(/^https?:\/\//, ""))
-  .replaceAll("{{WEBSITE_TEXT}}", data.website_url.replace(/^https?:\/\//, ""))
+  .replaceAll("{{WEBSITE_TEXT}}", data.language === "en" ? "Portfolio" : "Portfólio")
+  .replaceAll("{{DESIGN_SYSTEM_LINK}}", dsLink)
   .replaceAll("{{SUMMARY}}", escapeHtml(data.summary))
   .replaceAll("{{SKILLS_HTML}}", skillsHtml(data.skills))
   .replaceAll("{{PROJECTS_HTML}}", projectsHtml(data.projects))
   .replaceAll("{{EXPERIENCE_HTML}}", experienceHtml(data.experience))
   .replaceAll("{{EDUCATION_HTML}}", educationHtml(data.education))
-  .replaceAll("{{LANGUAGES_HTML}}", languagesHtml(data.languages));
+  .replaceAll("{{LANGUAGES_HTML}}", languagesHtml(data.languages))
+  .replaceAll("{{L10N_SUMMARY}}", t.summary)
+  .replaceAll("{{L10N_SKILLS}}", t.skills)
+  .replaceAll("{{L10N_PROJECTS}}", t.projects)
+  .replaceAll("{{L10N_EXPERIENCE}}", t.experience)
+  .replaceAll("{{L10N_EDUCATION}}", t.education)
+  .replaceAll("{{L10N_LANGUAGES}}", t.languages);
 
 fs.writeFileSync(path.join(distDir, "cv.html"), html, "utf8");
 console.log("Gerado: dist/cv.html");

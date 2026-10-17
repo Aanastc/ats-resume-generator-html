@@ -1,0 +1,36 @@
+Product Engineer
+Accepting Applications
+US Company | Small (11-50 employees)
+LATAM (100% remote)
+Seniority: 5+ years
+Commitment: Long-term · 40h/week
+Industry: Education (EdTech)
+Work model: Full Remote
+
+Required skills:
+TypeScript, Next.js, React.js, tRPC, Python, Node.js, LLM, AI Technologies, Claude Code, Postgres, AWS, Docker
+
+Requirements:
+- 5+ years of software development experience
+- Experience owning at least one system in production
+- Experience with Node.js, Python, React, Next.js, Postgres
+- Experience with AWS, including regulated or restricted environments requiring self-hosted services
+- Experience building LLM applications (e.g., tool-using agents, retrieval and reranking, context management, long-running sessions)
+- Experience evaluating AI systems (e.g., deterministic checks, LLM judges, threshold calibration)
+- Experience with DevOps practices (CI/CD pipelines, containerization, infrastructure as code with Docker, Terraform, Pulumi, SST)
+- Experience shipping products that real users rely on, with a clear account of post-launch outcomes
+- Proficiency with AI-assisted development workflows (Claude Code, Cursor, Copilot)
+- Ability to make UX and product calls on problems that arrive without a spec or a mockup
+- Deep knowledge of production-grade system design, reliability, and observability
+- Strong communication skills in both spoken and written English
+
+What you will work on:
+- Own the architecture of your domain end to end: data modeling, API design, cloud infrastructure, and CI/CD
+- Build and release full-stack features spanning front-end, back-end, and infrastructure
+- Develop production AI agents with per-turn context assembly, database-writing tool calls, persistent memory, and runtime redirection
+- Expand evaluation systems tracking agent performance, deterministic checks, and LLM-as-a-judge harnesses
+- Develop hybrid matching and search: parallel sparse and dense retrieval, reranking, and recency handling
+- Create interfaces: streaming chat surfaces, admin consoles, and whitelabeled deployments
+- Own the DevOps lifecycle: containerization, deployment pipelines, monitoring, and cloud environments
+
+Our Stack: TypeScript, Next.js, React, tRPC, Postgres with Drizzle, Tailwind and a shadcn-based design system, Python, AWS, Pulumi, SST, Docker, Qdrant, Bedrock, Turborepo, pnpm, Vitest, Playwright

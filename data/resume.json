@@ -1,0 +1,110 @@
+{
+  "name": "ANA LETÍCIA ALVES CLAUDIANO",
+  "title": "Senior Full Stack & DevOps Engineer",
+  "email": "analeticia_ac@outlook.com",
+  "phone_e164": "+5531999679109",
+  "phone_display": "+55 31 99967-9109",
+  "location": "Brazil (Open to Relocation & Remote)",
+  "linkedin_url": "https://www.linkedin.com/in/analetícia-react/",
+  "github_url": "https://github.com/Aanastc",
+  "website_url": "https://ana-leticia-ac-portifolio-7cxi.vercel.app/",
+  "design_system_url": "https://designsystemeadedo-git-202612-ana-leticias-projects-198dfb27.vercel.app/",
+  "language": "en",
+  "summary": "Senior Full Stack & DevOps Engineer with 5+ years of software engineering experience architecting scalable web applications (TypeScript, Next.js, React, Node.js, Python, PostgreSQL) and automated cloud infrastructure (AWS, Docker, CI/CD pipelines, Kubernetes). Proven track record leading core platform delivery in mission-critical environments, establishing robust CI/CD automation with GitHub Actions, containerizing microservices, and reducing deployment times while maintaining 99.9% uptime. Bilingual communicator (C1+ English) experienced in agile, cross-functional, and US-distributed teams.",
+  "skills": [
+    {
+      "group": "Cloud, DevOps & Infrastructure",
+      "items": [
+        "AWS (EC2, S3, ECS, Lambda, IAM)",
+        "Docker & Containerization",
+        "CI/CD Automation (GitHub Actions, Vercel)",
+        "Infrastructure as Code (Terraform)",
+        "Kubernetes & Orchestration",
+        "Linux Administration",
+        "Observability & Monitoring (Datadog, Prometheus)"
+      ]
+    },
+    {
+      "group": "Full-Stack & Backend Engineering",
+      "items": [
+        "Node.js & Python (FastAPI, Flask)",
+        "TypeScript & JavaScript (ES6+)",
+        "RESTful APIs, Webhooks & tRPC",
+        "Microservices Architecture",
+        "PostgreSQL (Drizzle, SQLAlchemy)",
+        "Redis Caching & Data Pipelines",
+        "Automated Testing (Playwright, Vitest, Jest, pytest)"
+      ]
+    },
+    {
+      "group": "Frontend & UI Systems",
+      "items": [
+        "Next.js & React.js",
+        "Tailwind CSS & shadcn/ui",
+        "Design Systems & Reusable Components",
+        "State Management (Zustand, Redux)",
+        "Responsive & Accessible UI (WCAG 2.1)"
+      ]
+    }
+  ],
+  "projects": [],
+  "experience": [
+    {
+      "role": "Senior Full Stack & DevOps Engineer (Platform Lead)",
+      "company": "Universidade de Fortaleza (UNIFOR)",
+      "date": "Sep 2025 — Present",
+      "bullets": [
+        "Architect and lead end-to-end platform delivery for core EdTech services, developing high-performance full-stack systems with Next.js, React, TypeScript, and Node.js/Python microservices.",
+        "Spearhead DevOps automation by designing and managing production CI/CD workflows with GitHub Actions and Docker, accelerating release frequency by 45% with zero-downtime deployments on AWS.",
+        "Containerize services and standardize staging and production cloud environments, enforcing environment parity and maintaining 99.9% platform availability across tens of thousands of active users.",
+        "Optimize backend data throughput and query execution across PostgreSQL and Redis caching layers, slashing median API response latencies from 420ms to under 110ms.",
+        "Integrate robust automated testing suites (Playwright, Vitest) and continuous monitoring pipelines, eliminating behavioral regressions and ensuring production stability."
+      ]
+    },
+    {
+      "role": "Full Stack & DevOps Software Engineer",
+      "company": "Universidade de Fortaleza (UNIFOR)",
+      "date": "Apr 2023 — Sep 2025",
+      "bullets": [
+        "Owned web application lifecycles from architecture design to production release, making critical engineering decisions on distributed system scalability and user experience.",
+        "Engineered scalable RESTful APIs and asynchronous webhook processors in Python and Node.js, ensuring reliable data synchronization across multi-tenant PostgreSQL databases.",
+        "Built automated CI/CD deployment pipelines using GitHub Actions and Docker, establishing automated linting, test validation (Jest, Playwright), and consistent cloud deployments.",
+        "Engineered reusable frontend design systems and component libraries ([Live Demo](https://designsystemeadedo-git-202612-ana-leticias-projects-198dfb27.vercel.app/)) using React and Tailwind CSS, speeding up cross-squad feature delivery by 35%."
+      ]
+    },
+    {
+      "role": "Data & Automation Engineer",
+      "company": "Universidade de Fortaleza / FUNCEME",
+      "date": "Apr 2022 — Mar 2023",
+      "bullets": [
+        "Developed automated Python pipelines and validation workflows to process, sanitize, and analyze large-scale scientific datasets with deterministic accuracy.",
+        "Constructed automated data validation rubrics and quality evaluation scripts to assess dataset integrity and model consistency for public decision-makers.",
+        "Maintained version-controlled repositories and reproducible CI/CD execution environments across an agile research team."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "title": "Postgraduate Degree in DevOps and Cloud Architecture",
+      "subtitle": "FIAP",
+      "date": "2025 — Present"
+    },
+    {
+      "title": "Bachelor's Degree in Systems Analysis and Development",
+      "subtitle": "Universidade de Fortaleza (UNIFOR)",
+      "date": "Completed in 2023"
+    }
+  ],
+  "languages": [
+    {
+      "name": "English",
+      "level": "Full Professional Working Proficiency (C1+)",
+      "note": "Fluent in technical communication, asynchronous documentation, and US-team collaboration"
+    },
+    {
+      "name": "Portuguese",
+      "level": "Native",
+      "note": ""
+    }
+  ]
+}
