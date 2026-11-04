@@ -1,12 +1,15 @@
+// Servidor local (Express). Usa os mesmos módulos de lib/ que a API da Vercel.
 import express from "express";
 import path from "node:path";
 import fs from "node:fs";
 import dotenv from "dotenv";
-import { GoogleGenAI } from "@google/genai";
-import { execSync } from "node:child_process";
-import { chromium } from "playwright";
 import { runJobSync } from "./fetch-jobs.mjs";
 import { runPortfolioSync } from "./sync-portfolio.mjs";
+import { renderToHtml } from "../lib/render-files.mjs";
+import { buildJobsResponse } from "../lib/jobs-filter.mjs";
+import { optimizeResume } from "../lib/gemini.mjs";
+import { talentHandler } from "../lib/talent.mjs";
+import { projectIdeasHandler } from "../lib/project-ideas.mjs";
 
 dotenv.config();
 
@@ -14,329 +17,151 @@ const app = express();
 const port = process.env.PORT || 3000;
 const root = process.cwd();
 
-app.use(express.json());
+app.use(express.json({ limit: "2mb" }));
 app.use(express.static(path.join(root, "web")));
 
-// Ensure directories exist
 const dataDir = path.join(root, "data");
 const distDir = path.join(root, "dist");
 fs.mkdirSync(dataDir, { recursive: true });
 fs.mkdirSync(distDir, { recursive: true });
 
-// Get current base resume
+const EMPTY_RESUME = {
+  name: "Seu Nome",
+  title: "Seu Cargo",
+  email: "seu.email@exemplo.com",
+  phone_e164: "+5531999999999",
+  phone_display: "(31) 99999-9999",
+  location: "Belo Horizonte, MG",
+  linkedin_url: "",
+  github_url: "",
+  website_url: "",
+  summary: "",
+  skills: [],
+  projects: [],
+  experience: [],
+  education: [],
+  languages: []
+};
+
+// Currículo base
 app.get("/api/resume", (req, res) => {
   const resumePath = path.join(dataDir, "resume.json");
   const examplePath = path.join(dataDir, "resume.example.json");
 
+  if (!fs.existsSync(resumePath) && fs.existsSync(examplePath)) {
+    fs.copyFileSync(examplePath, resumePath);
+  }
   if (fs.existsSync(resumePath)) {
     return res.json(JSON.parse(fs.readFileSync(resumePath, "utf8")));
-  } else if (fs.existsSync(examplePath)) {
-    // Copy example to resume.json if resume.json doesn't exist
-    fs.copyFileSync(examplePath, resumePath);
-    return res.json(JSON.parse(fs.readFileSync(resumePath, "utf8")));
-  } else {
-    // Return empty schema if nothing is found
-    return res.json({
-      name: "Seu Nome",
-      title: "Seu Cargo",
-      email: "seu.email@exemplo.com",
-      phone_e164: "+5531999999999",
-      phone_display: "(31) 99999-9999",
-      location: "Belo Horizonte, MG",
-      linkedin_url: "",
-      github_url: "",
-      website_url: "",
-      summary: "",
-      skills: [],
-      projects: [],
-      experience: [],
-      education: [],
-      languages: []
-    });
+  }
+  return res.json(EMPTY_RESUME);
+});
+
+app.post("/api/resume", (req, res) => {
+  if (!req.body || typeof req.body !== "object" || Array.isArray(req.body)) {
+    return res.status(400).json({ error: "Currículo inválido." });
+  }
+  try {
+    fs.writeFileSync(path.join(dataDir, "resume.json"), JSON.stringify(req.body, null, 2), "utf8");
+    res.json({ success: true, message: "Currículo base salvo com sucesso." });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 
-// Search verified jobs with daily cache
+// Vagas (cache diário; ?refresh=true coleta ao vivo — liberado localmente)
 app.get("/api/jobs", async (req, res) => {
   const { search = "", limit = 30, refresh = "false" } = req.query || {};
   const cachePath = path.join(dataDir, "jobs-cache.json");
-  let cacheData = null;
 
   try {
-    if (fs.existsSync(cachePath) && refresh !== "true") {
-      cacheData = JSON.parse(fs.readFileSync(cachePath, "utf8"));
-    } else {
-      cacheData = await runJobSync();
-    }
+    const cacheData =
+      refresh !== "true" && fs.existsSync(cachePath)
+        ? JSON.parse(fs.readFileSync(cachePath, "utf8"))
+        : await runJobSync({ persist: true });
+    res.json(buildJobsResponse(cacheData, search, limit));
   } catch (err) {
-    console.error("Erro cache:", err.message);
-    try {
-      cacheData = await runJobSync();
-    } catch (e) {
-      return res.status(500).json({ error: "Erro ao buscar vagas." });
-    }
+    console.error("Erro ao carregar vagas:", err.message);
+    res.status(500).json({ error: "Erro ao buscar vagas." });
   }
-
-  const allJobs = cacheData?.jobs || [];
-  const q = search.trim().toLowerCase();
-  let filteredJobs = allJobs;
-
-  if (q && q !== "todas") {
-    filteredJobs = allJobs.filter((j) => {
-      const inTitle = (j.title || "").toLowerCase().includes(q);
-      const inCompany = (j.company || "").toLowerCase().includes(q);
-      const inLoc = (j.location || "").toLowerCase().includes(q);
-      const inCategory = (j.category || "").toLowerCase().includes(q);
-      const inTags = (j.tags || []).some(t => t.toLowerCase().includes(q));
-      const inDesc = (j.description || "").toLowerCase().includes(q);
-
-      if (q.includes("hosp") || q.includes("saude") || q.includes("saúde") || q.includes("health") || q.includes("clinic")) {
-        return (
-          inTitle || inCategory || inTags ||
-          j.category.includes("Saúde") ||
-          (j.tags || []).some(t => /health|saúde|med|care|hosp/i.test(t)) ||
-          /hospital|saúde|saude|health|patient|clínic|clinic/i.test(j.title + " " + j.description)
-        );
-      }
-
-      if (q.includes("edtech") || q.includes("educa") || q.includes("moodle") || q.includes("ensino") || q.includes("ead")) {
-        return (
-          inTitle || inCategory || inTags ||
-          j.category.includes("EdTech") ||
-          (j.tags || []).some(t => /edtech|educa|moodle|ensino|ead/i.test(t)) ||
-          /edtech|educa|moodle|ensino|ead|universidade|escola/i.test(j.title + " " + j.description)
-        );
-      }
-
-      if (q.includes("bh") || q.includes("belo horizonte") || q.includes("presencial")) {
-        return (
-          j.location_type === "bh" ||
-          inLoc ||
-          /belo horizonte|bh|minas|nova lima/i.test(j.location + " " + j.title)
-        );
-      }
-
-      if (q.includes("remoto") || q.includes("pj") || q.includes("clt")) {
-        return (
-          j.location_type === "remote" ||
-          (j.modalities || []).some(m => m.toLowerCase().includes(q)) ||
-          /remoto|remote|pj|clt/i.test(j.location + " " + (j.modalities || []).join(" "))
-        );
-      }
-
-      return inTitle || inCompany || inLoc || inCategory || inTags || inDesc;
-    });
-
-    if (filteredJobs.length === 0) {
-      filteredJobs = allJobs.slice(0, 15);
-    }
-  }
-
-  const finalJobs = filteredJobs.slice(0, Number(limit));
-  res.json({
-    success: true,
-    count: finalJobs.length,
-    total_in_cache: allJobs.length,
-    last_updated: cacheData?.formatted_date || "Hoje às 08:00 (BRT)",
-    next_update: cacheData?.next_update || "Diariamente às 08:00 (Horário de Brasília)",
-    jobs: finalJobs
-  });
 });
 
-// Sync resume directly with portfolio
+// Sincroniza o currículo com o portfólio
 app.all("/api/sync-portfolio", async (req, res) => {
   try {
-    const result = await runPortfolioSync();
-    res.json(result);
+    res.json(await runPortfolioSync({ persist: true }));
   } catch (err) {
     console.error("Erro sync portfólio:", err);
     res.status(500).json({ success: false, error: err.message });
   }
 });
 
-// Save resume
-app.post("/api/resume", (req, res) => {
-  try {
-    const resumePath = path.join(dataDir, "resume.json");
-    fs.writeFileSync(resumePath, JSON.stringify(req.body, null, 2), "utf8");
-    res.json({ success: true, message: "Currículo base salvos com sucesso." });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+// Cadastros em sites de talentos (estado salvo em data/talent-status.json)
+app.all("/api/talent", (req, res) => talentHandler(req, res, { persist: true, root }));
 
-// Optimize resume using Gemini
+// Ideias de projetos a partir das lacunas entre vagas e currículo
+app.post("/api/project-ideas", (req, res) => projectIdeasHandler(req, res, { root }));
+
+// Otimização com Gemini
 app.post("/api/optimize", async (req, res) => {
-  const { resume, jobDescription, customApiKey } = req.body;
+  const { resume, jobDescription, customApiKey } = req.body || {};
   const apiKey = customApiKey || process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
-    return res.status(400).json({ error: "Chave de API do Gemini (GEMINI_API_KEY) não encontrada. Configure-a no arquivo .env ou informe-a no painel." });
-  }
-
-  if (!jobDescription || !jobDescription.trim()) {
-    return res.status(400).json({ error: "Descrição da vaga não informada." });
+    return res.status(400).json({
+      error: "Chave de API do Gemini (GEMINI_API_KEY) não encontrada. Configure-a no arquivo .env ou informe-a no painel."
+    });
   }
 
   try {
-    const ai = new GoogleGenAI({ apiKey });
-
-    const systemPrompt = `
-Você é um especialista em recrutamento técnico de elite, recolocação profissional e otimização de currículos para sistemas de triagem ATS (Applicant Tracking Systems) e para revisão humana por recrutadores técnicos (Tech Recruiters).
-Sua tarefa é ler um currículo estruturado em JSON e a descrição de uma vaga de emprego, e então adaptar o currículo de forma personalizada para a vaga.
-
-Siga rigorosamente as seguintes diretrizes:
-
-1. **Idioma**:
-   - Detecte se a descrição da vaga está em inglês ou português.
-   - Traduza todo o conteúdo adaptável do currículo (title, summary, skills, projects, experience, education, languages) para o idioma da vaga.
-   - Defina o campo "language" no JSON resultante como "en" (se a vaga for em inglês) ou "pt" (se a vaga for em português).
-
-2. **Evitar Generalidades e Clichês (Aparência Não-Genérica para o Recrutador)**:
-   - **NÃO use buzzwords ou adjetivos vazios** (ex: "motivado", "proativo", "focado em resultados", "líder dinâmico", "team player"). Recrutadores ignoram esses termos.
-   - Em vez de descrever o candidato com adjetivos, **mostre suas qualidades através de fatos e realizações**.
-   - Mantenha o tom profissional, direto, técnico e focado em engenharia.
-
-3. **Otimização ATS Natural**:
-   - Alinhe a terminologia técnica do currículo com os termos exatos utilizados na descrição da vaga (ex: se a vaga pede "Internal Developer Platforms" e o currículo diz "portais de componentes", use o termo da vaga).
-   - Integre as palavras-chave de forma fluida e gramaticalmente natural na descrição das experiências e competências. Evite "keyword stuffing" (repetição artificial e sem nexo).
-
-4. **Metodologia de Impacto nos Bullet Points (Experiências e Projetos)**:
-   - Cada tópico (bullet) deve começar com um **verbo de ação forte** (ex: "Liderei", "Arquiteturei", "Otimizei", "Automatizei", "Implementei" / "Led", "Designed", "Optimized", "Automated", "Implemented").
-   - Escreva os tópicos focando no **impacto prático e resultados técnicos**. Quando o currículo original fornecer dados ou quando puder ser inferido logicamente, conecte a ação ao resultado técnico (ex: "Reduzi o atrito no desenvolvimento ao padronizar o Design System...").
-   - Relacione as tecnologias utilizadas diretamente na ação (ex: "...utilizando React, TypeScript e Storybook").
-
-5. **Ajuste de Seções**:
-   - **title**: Ajuste o título para corresponder diretamente ao cargo da vaga (ex: "Platform Engineer" ou "Engenheiro de Software Front-end"), desde que faça sentido com o perfil do currículo.
-   - **summary**: O resumo deve conter no máximo 3 ou 4 frases. Ele deve ser uma síntese concisa que responde diretamente à pergunta: "Por que este candidato é ideal para esta vaga específica?". Destaque as principais tecnologias exigidas pela vaga que o candidato domina e a área de atuação dele.
-   - **skills**: Organize os grupos de competências de forma lógica, colocando no topo o grupo que contém as principais habilidades solicitadas na vaga. Remova habilidades irrelevantes para a vaga se necessário para manter o currículo focado, mas preserve a amplitude técnica do candidato.
-
-6. **Preservação de Dados Reais**:
-   - **NÃO invente** experiências de trabalho, nomes de empresas, datas, certificados, formação acadêmica ou dados de contato.
-   - Mantenha inalterados os campos: "name", "email", "phone_e164", "phone_display", "linkedin_url", "github_url", "website_url".
-   - Mantenha os períodos de data ("date") e nomes de instituições/empresas exatamente como estão, apenas traduzindo termos de cargo/função e descrições conforme necessário.
-
-7. **Alinhamento Estratégico aos Setores da Candidata**:
-   - **Hospitais, Clínicas & Saúde (HealthTech)**: Destaque o projeto Connect Care, agendamentos, segurança de dados (LGPD/HIPAA), microsserviços confiáveis e alta disponibilidade.
-   - **EdTechs & Plataformas Educacionais**: Destaque a experiência Moodle (plugins PHP e temas) e integrações corporativas na Lingopass, e o Design System institucional e portais acadêmicos na UNIFOR.
-   - **Empresas Convencionais & Tech Geral**: Destaque Full Stack moderna (React, Next.js, Node.js, Python), automação DevOps (AWS, Docker, Kubernetes, CI/CD GitHub Actions, Terraform, Observabilidade).
-   - **Localidade e Contrato**: A candidata aceita regimes PJ, CLT ou Freelance. Se a vaga for presencial ou híbrida, a localidade deve ser estritamente Belo Horizonte, MG (ou Região Metropolitana). Se for remota, mencione disponibilidade 100% remota Brasil ou Global.
-
-8. **Projetos Relevantes**:
-   - Mantenha os projetos pertinentes no array "projects" adaptando seus resumos para demonstrar aderência técnica direta à vaga.
-
-9. **Formato de Saída**:
-   - O resultado deve ser EXCLUSIVAMENTE um objeto JSON válido, contendo exatamente a mesma estrutura (schema) do JSON de entrada, com os campos adaptados e traduzidos.
-   - Não inclua markdown de código (\`\`\`json ...) na resposta, envie apenas a estrutura do JSON pura.
-`;
-
-    const userPrompt = `
-CURRÍCULO BASE (JSON):
-${JSON.stringify(resume, null, 2)}
-
-DESCRIÇÃO DA VAGA:
-${jobDescription}
-`;
-
-    const response = await ai.models.generateContent({
-      model: "gemini-3.1-flash-lite",
-      contents: [
-        { role: "user", parts: [{ text: systemPrompt + "\n\n" + userPrompt }] }
-      ],
-      config: {
-        responseMimeType: "application/json"
-      }
-    });
-
-    const text = response.text;
-    if (!text) {
-      throw new Error("A resposta obtida da IA está vazia.");
-    }
-
-    const tailoredJson = JSON.parse(text);
-    res.json(tailoredJson);
+    res.json(await optimizeResume({ resume, jobDescription, apiKey }));
   } catch (err) {
-    res.status(500).json({ error: `Erro na otimização da IA: ${err.message}` });
+    res.status(err.status || 500).json({ error: `Erro na otimização da IA: ${err.message}` });
   }
 });
 
-// Render HTML on the fly and return it
+// Renderiza o HTML em memória (sem arquivo temporário, sem processo filho)
 app.post("/api/render", (req, res) => {
   try {
-    const tempJsonPath = path.join(dataDir, "resume.temp.json");
-    fs.writeFileSync(tempJsonPath, JSON.stringify(req.body, null, 2), "utf8");
-
-    // Run render script on temp file
-    execSync(`node scripts/render.mjs data/resume.temp.json`);
-
-    const htmlPath = path.join(distDir, "cv.html");
-    const htmlContent = fs.readFileSync(htmlPath, "utf8");
-
-    // Clean up temp file
-    if (fs.existsSync(tempJsonPath)) {
-      fs.unlinkSync(tempJsonPath);
-    }
-
-    res.send(htmlContent);
+    res.type("html").send(renderToHtml(req.body || {}, root));
   } catch (err) {
     res.status(500).send(`Erro ao renderizar HTML: ${err.message}`);
   }
 });
 
-// Export to PDF
+// Exporta PDF com Playwright (carregado sob demanda: é dependência só de desenvolvimento)
 app.post("/api/export-pdf", async (req, res) => {
+  let browser;
   try {
-    const tempJsonPath = path.join(dataDir, "resume.temp.json");
-    fs.writeFileSync(tempJsonPath, JSON.stringify(req.body, null, 2), "utf8");
+    const { chromium } = await import("playwright");
+    const html = renderToHtml(req.body || {}, root);
+    fs.writeFileSync(path.join(distDir, "cv.html"), html, "utf8");
 
-    // Render first
-    execSync(`node scripts/render.mjs data/resume.temp.json`);
-
-    // Clean up temp file
-    if (fs.existsSync(tempJsonPath)) {
-      fs.unlinkSync(tempJsonPath);
-    }
-
-    // Now export PDF using Playwright
-    const distHtml = path.join(distDir, "cv.html");
     const outPdf = path.join(distDir, "cv.pdf");
-
-    if (!fs.existsSync(distHtml)) {
-      return res.status(500).json({ error: "Erro: cv.html não foi gerado." });
-    }
-
-    const html = fs.readFileSync(distHtml, "utf8");
-    const baseUrl = `file://${path.dirname(distHtml)}/`;
-
-    const browser = await chromium.launch();
+    browser = await chromium.launch();
     const page = await browser.newPage();
-    await page.setContent(html, { waitUntil: "load", baseURL: baseUrl });
-
+    await page.setContent(html, { waitUntil: "load" });
     await page.pdf({
       path: outPdf,
       format: "A4",
       printBackground: true,
-      margin: { top: "0.5in", right: "0.5in", bottom: "0.5in", left: "0.5in" },
+      margin: { top: "0.5in", right: "0.5in", bottom: "0.5in", left: "0.5in" }
     });
-
-    await browser.close();
 
     res.json({ success: true, path: outPdf });
   } catch (err) {
     res.status(500).json({ error: `Erro ao exportar PDF: ${err.message}` });
+  } finally {
+    await browser?.close();
   }
 });
 
-// Download PDF directly from browser
 app.get("/api/download-pdf", (req, res) => {
   const pdfPath = path.join(distDir, "cv.pdf");
-  if (fs.existsSync(pdfPath)) {
-    res.setHeader("Content-Type", "application/pdf");
-    res.setHeader("Content-Disposition", 'attachment; filename="cv.pdf"');
-    fs.createReadStream(pdfPath).pipe(res);
-  } else {
-    res.status(404).send("Arquivo PDF não encontrado. Por favor, exporte o PDF primeiro.");
+  if (!fs.existsSync(pdfPath)) {
+    return res.status(404).send("Arquivo PDF não encontrado. Por favor, exporte o PDF primeiro.");
   }
+  res.download(pdfPath, "cv.pdf");
 });
 
 app.listen(port, () => {

@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { IS_SERVERLESS } from "../lib/runtime.mjs";
 
 export default function handler(req, res) {
   const root = process.cwd();
@@ -8,26 +9,28 @@ export default function handler(req, res) {
 
   if (req.method === "GET") {
     try {
-      if (fs.existsSync(dataPath)) {
-        const content = fs.readFileSync(dataPath, "utf8");
-        return res.status(200).json(JSON.parse(content));
-      } else if (fs.existsSync(examplePath)) {
-        const content = fs.readFileSync(examplePath, "utf8");
-        return res.status(200).json(JSON.parse(content));
-      }
-      return res.status(404).json({ error: "Currículo não encontrado." });
+      const source = fs.existsSync(dataPath) ? dataPath : fs.existsSync(examplePath) ? examplePath : null;
+      if (!source) return res.status(404).json({ error: "Currículo não encontrado." });
+      return res.status(200).json(JSON.parse(fs.readFileSync(source, "utf8")));
     } catch (err) {
       return res.status(500).json({ error: err.message });
     }
   }
 
   if (req.method === "POST") {
+    // Na Vercel o disco é somente leitura: avisamos o cliente em vez de fingir que salvou.
+    // O front-end guarda o currículo no navegador quando recebe 501.
+    if (IS_SERVERLESS) {
+      return res.status(501).json({
+        error: "Salvar no servidor não está disponível na versão online.",
+        storage: "browser"
+      });
+    }
     try {
-      try {
-        fs.writeFileSync(dataPath, JSON.stringify(req.body, null, 2), "utf8");
-      } catch (e) {
-        // Vercel serverless environment has read-only filesystem
+      if (!req.body || typeof req.body !== "object" || Array.isArray(req.body)) {
+        return res.status(400).json({ error: "Currículo inválido." });
       }
+      fs.writeFileSync(dataPath, JSON.stringify(req.body, null, 2), "utf8");
       return res.status(200).json({ success: true, message: "Currículo atualizado com sucesso." });
     } catch (err) {
       return res.status(500).json({ error: err.message });
@@ -36,4 +39,3 @@ export default function handler(req, res) {
 
   return res.status(405).json({ error: "Método não permitido." });
 }
-

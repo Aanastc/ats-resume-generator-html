@@ -92,6 +92,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Setup Job Search Listeners
   setupJobSearchListeners();
+
+  // Ideias de projetos
+  const btnIdeas = document.getElementById('btnGenerateIdeas');
+  if (btnIdeas) btnIdeas.addEventListener('click', generateProjectIdeas);
+
+  // Cadastros: carrega já na abertura para mostrar o contador de desatualizados na aba
+  loadTalentTracker();
 });
 
 let jobsLoadedOnce = false;
@@ -114,14 +121,41 @@ function switchTab(tabId) {
   }
 }
 
-// Load CV from API
+// Na versão online (Vercel) o servidor não grava arquivos: o currículo base fica no navegador.
+const LOCAL_RESUME_KEY = 'base_resume';
+
+function readLocalResume() {
+  try {
+    const raw = localStorage.getItem(LOCAL_RESUME_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeLocalResume(resume) {
+  try {
+    if (resume) localStorage.setItem(LOCAL_RESUME_KEY, JSON.stringify(resume));
+    else localStorage.removeItem(LOCAL_RESUME_KEY);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// Load CV from API (ou do navegador, se houver uma versão salva localmente)
 async function loadBaseCv() {
   showLoader('Carregando currículo base...', true);
   try {
-    const res = await fetch('/api/resume');
-    if (!res.ok) throw new Error('Não foi possível carregar o currículo.');
-    currentResume = await res.json();
-    
+    const localResume = readLocalResume();
+    if (localResume) {
+      currentResume = localResume;
+    } else {
+      const res = await fetch('/api/resume');
+      if (!res.ok) throw new Error('Não foi possível carregar o currículo.');
+      currentResume = await res.json();
+    }
+
     // Sync UI
     jsonEditor.value = JSON.stringify(currentResume, null, 2);
     populateForm();
@@ -144,7 +178,13 @@ async function saveBaseCv() {
       body: JSON.stringify(currentResume)
     });
     const data = await res.json();
+    if (res.status === 501 && data.storage === 'browser') {
+      if (!writeLocalResume(currentResume)) throw new Error('Não foi possível salvar no navegador.');
+      alert('Currículo base salvo neste navegador (a versão online não grava no servidor).');
+      return;
+    }
     if (!res.ok) throw new Error(data.error || 'Erro ao salvar.');
+    writeLocalResume(null); // o servidor passa a ser a fonte da verdade
     alert('Currículo base salvo com sucesso!');
   } catch (err) {
     alert('Erro ao salvar currículo base: ' + err.message);
@@ -164,7 +204,9 @@ async function syncPortfolioCv() {
     if (!res.ok || !data.success) {
       throw new Error(data.error || 'Erro na resposta do servidor.');
     }
-    
+    // Dados novos do portfólio substituem qualquer versão antiga guardada no navegador
+    writeLocalResume(null);
+
     currentResume = data.resume;
     jsonEditor.value = JSON.stringify(currentResume, null, 2);
     populateForm();
@@ -874,14 +916,21 @@ function evaluateJobMatch(job, candidateSkills) {
   const uniqueMatches = [...new Set(matched)];
   let score = 55 + Math.min(35, uniqueMatches.length * 5);
   
-  // Sector bonuses (Healthcare & EdTechs are primary target sectors)
-  const isHealthcare = /hosp|saúde|saude|health|clinic|patient|care|médic/i.test(textToSearch);
-  const isEdTech = /edtech|educa|moodle|ensino|ead|universidade|escola|aluno/i.test(textToSearch);
+  // Sector bonuses (Healthcare & EdTechs are primary target sectors).
+  // O setor vem classificado da coleta; o texto só é usado em vagas antigas sem esse campo.
+  const isHealthcare = job.sector ? job.sector === 'saude' : /\b(hospital\w*|sa[uú]de|healthcare|cl[ií]nic\w*|patients?)\b/i.test(textToSearch);
+  const isEdTech = job.sector ? job.sector === 'edtech' : /\b(edtech|educa\w*|moodle|ensino|ead|universidade|escola|alunos?)\b/i.test(textToSearch);
   const isTechGeneral = /full stack|fullstack|devops|cloud|react|node|python/i.test(textToSearch);
 
   if (isHealthcare) score += 10;
   if (isEdTech) score += 10;
   if (isTechGeneral) score += 5;
+
+  // International remote check (English B2-C1 compatible & remote from Brazil)
+  const isInternational = /internacional|aceita brasil|usd|worldwide|global/i.test(`${job.location || ''} ${job.salary || ''}`);
+  if (isInternational && job.location_type === 'remote') {
+    score += 8; // High match for Remote English B2-C1 opportunities
+  }
 
   // Location logic (Candidate is based in BH: must be BH if on-site, or Remote)
   if (job.location_type === 'bh') {
@@ -899,7 +948,8 @@ function evaluateJobMatch(job, candidateSkills) {
     score,
     matchedSkills: uniqueMatches,
     isHealthcare,
-    isEdTech
+    isEdTech,
+    isInternational
   };
 }
 
@@ -921,7 +971,11 @@ async function fetchAndRenderJobs(searchQuery = 'Hospitalar', forceRefresh = fal
     const data = await res.json();
 
     if (syncBanner && data.last_updated) {
-      syncBanner.innerHTML = `🕒 Sincronizado diariamente às <strong>08:00 (BRT)</strong> • Última atualização: <strong>${escapeHtml(data.last_updated)}</strong>`;
+      const discardedTotal = Object.values(data.discarded || {}).reduce((a, b) => a + b, 0);
+      const discardedInfo = discardedTotal
+        ? ` • 🧹 <span title="${escapeHtml(Object.entries(data.discarded).map(([k, v]) => `${v}: ${k}`).join('\n'))}">${discardedTotal} vagas antigas, duplicadas ou de banco de talentos descartadas</span>`
+        : '';
+      syncBanner.innerHTML = `🕒 Atualizado diariamente às <strong>08:00 (BRT)</strong> • Última coleta: <strong>${escapeHtml(data.last_updated)}</strong>${discardedInfo}`;
     }
 
     if (!data.success || !data.jobs || data.jobs.length === 0) {
@@ -944,11 +998,13 @@ async function fetchAndRenderJobs(searchQuery = 'Hospitalar', forceRefresh = fal
       return { ...job, ...match };
     });
 
-    // Sort by match score descending
-    evaluatedJobs.sort((a, b) => b.score - a.score);
+    // Maior match primeiro; em empate, a vaga mais recente
+    evaluatedJobs.sort((a, b) => b.score - a.score || (a.days_ago ?? 99) - (b.days_ago ?? 99));
 
     if (countEl) {
-      countEl.innerHTML = `<strong>${evaluatedJobs.length} vagas verificadas</strong> para "<em>${escapeHtml(searchQuery)}</em>" (Total no banco: ${data.total_in_cache || evaluatedJobs.length})`;
+      const fromCompanies = evaluatedJobs.filter(j => j.source_type === 'empresa').length;
+      const maxAge = data.max_age_days ? ` • publicadas nos últimos ${data.max_age_days} dias` : '';
+      countEl.innerHTML = `<strong>${evaluatedJobs.length} vagas ativas</strong> para "<em>${escapeHtml(searchQuery)}</em>" • ${fromCompanies} direto do site da empresa${maxAge} (total no banco: ${data.total_in_cache || evaluatedJobs.length})`;
     }
 
     container.innerHTML = '';
@@ -980,10 +1036,16 @@ async function fetchAndRenderJobs(searchQuery = 'Hospitalar', forceRefresh = fal
 
       // Sector badge
       let sectorBadge = `<span class="badge-tag badge-sector">🏢 Tech</span>`;
-      if (job.isHealthcare || (job.category && job.category.includes('Saúde'))) {
+      if (job.isHealthcare) {
         sectorBadge = `<span class="badge-tag badge-sector">🏥 Saúde / Hospitalar</span>`;
-      } else if (job.isEdTech || (job.category && job.category.includes('EdTech'))) {
+      } else if (job.isEdTech) {
         sectorBadge = `<span class="badge-tag badge-sector">🎓 EdTech / Educação</span>`;
+      }
+
+      // International remote badge
+      let intlBadge = '';
+      if (job.isInternational) {
+        intlBadge = `<span class="badge-tag badge-intl">🗣️ Inglês B2-C1 (OK) • 🇧🇷 Sem Visto</span>`;
       }
 
       card.innerHTML = `
@@ -991,13 +1053,15 @@ async function fetchAndRenderJobs(searchQuery = 'Hospitalar', forceRefresh = fal
           <div class="job-title-company">
             <h4>${escapeHtml(job.title)}</h4>
             <div class="job-company">
-              <strong>${escapeHtml(job.company)}</strong> • 
+              <strong>${escapeHtml(job.company)}</strong> •
               <span class="job-location-tag">${escapeHtml(job.location)}</span>
             </div>
+            <div class="job-trust-row">${jobTrustHtml(job)}</div>
             <div class="job-meta-badges">
               ${locBadge}
               ${modBadges}
               ${sectorBadge}
+              ${intlBadge}
             </div>
           </div>
           <div class="job-match-badge ${matchClass}" title="Compatibilidade calculada com seu perfil e preferências">
@@ -1044,6 +1108,258 @@ async function fetchAndRenderJobs(searchQuery = 'Hospitalar', forceRefresh = fal
       </div>
     `;
   }
+}
+
+// ===========================================================================
+// Ideias de projetos (lacunas entre vagas e currículo)
+// ===========================================================================
+async function generateProjectIdeas() {
+  const container = document.getElementById('ideasResult');
+  const btn = document.getElementById('btnGenerateIdeas');
+  const useAi = document.getElementById('ideasUseAi')?.checked;
+  if (!container || !currentResume) return;
+
+  btn.disabled = true;
+  container.innerHTML = `<div class="muted-center"><div class="spinner" style="margin: 0 auto 12px;"></div>Analisando as vagas ativas${useAi ? ' e gerando ideias com IA' : ''}...</div>`;
+
+  try {
+    const res = await fetch('/api/project-ideas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ resume: currentResume, customApiKey: customApiKeyInput.value || null, useAi })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) throw new Error(data.error || 'Erro ao gerar ideias.');
+    renderProjectIdeas(container, data);
+  } catch (err) {
+    container.innerHTML = `<p class="muted-center" style="color: var(--danger);">${escapeHtml(err.message)}</p>`;
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function renderProjectIdeas(container, data) {
+  const a = data.analysis;
+  const maxJobs = Math.max(1, ...a.top_demand.map(s => s.jobs));
+  const statusOf = (s) => s.proven_by_project
+    ? ['proven', '✅ comprovado por projeto']
+    : s.in_resume ? ['unproven', '🟡 no currículo, sem projeto'] : ['missing', '❌ falta no currículo'];
+
+  const bars = a.top_demand.slice(0, 15).map(s => {
+    const [cls, label] = statusOf(s);
+    return `
+      <div class="demand-row" title="${escapeHtml(s.sample_jobs.join('\n'))}">
+        <span class="demand-tech">${escapeHtml(s.tech)}</span>
+        <span class="demand-bar"><span class="demand-fill ${cls}" style="width:${Math.round((s.jobs / maxJobs) * 100)}%"></span></span>
+        <span class="demand-count">${s.jobs} vagas</span>
+        <span class="demand-status ${cls}">${label}</span>
+      </div>`;
+  }).join('');
+
+  const ideas = (data.ideas || []).map((idea, idx) => `
+    <div class="idea-card">
+      <div class="idea-header">
+        <h4>${escapeHtml(idea.title)}</h4>
+        <span class="badge-tag badge-sector">${escapeHtml(idea.sector || '')}</span>
+      </div>
+      <p class="idea-problem"><strong>Problema real:</strong> ${escapeHtml(idea.problem || '')}</p>
+      <div class="idea-covers">Comprova: ${(idea.covers || []).map(c => `<span class="job-tag tag-matched">${escapeHtml(c)}</span>`).join(' ')}</div>
+      <div class="idea-stack">Stack: ${escapeHtml((idea.stack || []).join(', '))}</div>
+      <ul class="idea-features">${(idea.features || []).map(f => `<li>${escapeHtml(f)}</li>`).join('')}</ul>
+      <div class="idea-footer">
+        <span>⏱️ ~${escapeHtml(String(idea.weeks || '?'))} semanas • ${escapeHtml(idea.difficulty || '')}</span>
+        <button type="button" class="btn btn-secondary btn-sm" data-copy-idea="${idx}" title="Copia um bullet pronto para o currículo (use quando o projeto estiver publicado)">📋 Copiar bullet para o CV</button>
+      </div>
+    </div>`).join('');
+
+  const source = data.generated_by === 'ia'
+    ? '🤖 Ideias geradas pela IA com base nas suas lacunas'
+    : '📚 Ideias do catálogo curado, ranqueadas pelas suas lacunas' + (data.warning ? ` — ${escapeHtml(data.warning)}` : '');
+
+  container.innerHTML = `
+    <div class="ideas-summary">
+      <strong>${a.jobs_analyzed} vagas analisadas</strong> (coleta de ${escapeHtml(data.jobs_updated_at || '—')}) •
+      ${a.missing.length} tecnologias faltando • ${a.unproven.length} sem projeto que comprove
+    </div>
+    <h4 class="ideas-subtitle">Tecnologias mais pedidas x seu currículo</h4>
+    <div class="demand-chart">${bars || '<p class="muted-center">Poucas vagas para analisar.</p>'}</div>
+    <h4 class="ideas-subtitle">Projetos sugeridos <small>${source}</small></h4>
+    <div class="ideas-grid">${ideas || '<p class="muted-center">Nenhuma lacuna relevante encontrada — seu currículo já cobre o que as vagas pedem.</p>'}</div>`;
+
+  container.querySelectorAll('[data-copy-idea]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const idea = data.ideas[Number(btn.dataset.copyIdea)];
+      try {
+        await navigator.clipboard.writeText(idea.resume_bullet || idea.title);
+        btn.textContent = '✅ Copiado';
+        setTimeout(() => (btn.textContent = '📋 Copiar bullet para o CV'), 1800);
+      } catch {
+        prompt('Copie o texto:', idea.resume_bullet || idea.title);
+      }
+    });
+  });
+}
+
+// ===========================================================================
+// Cadastros em sites de talentos
+// ===========================================================================
+const TALENT_LOCAL_KEY = 'talent_status';
+let talentState = { platforms: [], categories: {}, status: {}, portfolio: null, persist: false };
+
+function readLocalTalent() {
+  try { return JSON.parse(localStorage.getItem(TALENT_LOCAL_KEY) || '{}'); } catch { return {}; }
+}
+
+// Junta o estado do servidor com o do navegador, ficando com a marcação mais recente de cada site.
+function mergeTalentStatus(server = {}, local = {}) {
+  const stamp = (s) => new Date(s?.changed_at || s?.updated_at || s?.registered_at || 0).getTime();
+  const out = { ...server };
+  Object.entries(local).forEach(([id, s]) => {
+    if (!out[id] || stamp(s) > stamp(out[id])) out[id] = s;
+  });
+  return out;
+}
+
+function isTalentOutdated(entry) {
+  const changed = talentState.portfolio?.last_change_at;
+  if (!entry?.registered || !changed) return false;
+  return new Date(entry.updated_at || entry.registered_at || 0) < new Date(changed);
+}
+
+async function loadTalentTracker() {
+  try {
+    const res = await fetch('/api/talent');
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Erro ao carregar sites.');
+    talentState = { ...data, status: mergeTalentStatus(data.status, readLocalTalent()) };
+    renderTalentTracker();
+  } catch (err) {
+    const list = document.getElementById('talentList');
+    if (list) list.innerHTML = `<p class="muted-center" style="color: var(--danger);">${escapeHtml(err.message)}</p>`;
+  }
+}
+
+async function saveTalentStatus() {
+  try { localStorage.setItem(TALENT_LOCAL_KEY, JSON.stringify(talentState.status)); } catch { /* sem storage */ }
+  if (!talentState.persist) return; // versão online: fica no navegador
+  try {
+    await fetch('/api/talent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status: talentState.status })
+    });
+  } catch (err) {
+    console.warn('Não foi possível salvar no servidor:', err.message);
+  }
+}
+
+function updateTalentEntry(id, changes) {
+  const now = new Date().toISOString();
+  const prev = talentState.status[id] || {};
+  const next = { ...prev, ...changes, changed_at: now };
+  if (changes.registered === true && !prev.registered) { next.registered_at = now; next.updated_at = now; }
+  if (changes.registered === false) { next.registered_at = null; next.updated_at = null; }
+  if (changes.touch) { delete next.touch; next.updated_at = now; }
+  talentState.status[id] = next;
+  saveTalentStatus();
+  renderTalentTracker();
+}
+
+function formatDateBR(iso) {
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime()) ? '—' : d.toLocaleDateString('pt-BR');
+}
+
+function renderTalentTracker() {
+  const list = document.getElementById('talentList');
+  const summary = document.getElementById('talentSummary');
+  const counter = document.getElementById('talentOutdatedCount');
+  if (!list) return;
+
+  const { platforms, categories, status, portfolio } = talentState;
+  const registered = platforms.filter(p => status[p.id]?.registered);
+  const outdated = registered.filter(p => isTalentOutdated(status[p.id]));
+
+  if (counter) {
+    counter.textContent = outdated.length;
+    counter.classList.toggle('hidden', outdated.length === 0);
+  }
+
+  if (summary) {
+    const portfolioInfo = portfolio?.last_change_at
+      ? `Última alteração do portfólio: <a href="${escapeHtml(portfolio.url)}" target="_blank" rel="noopener noreferrer"><strong>${formatDateBR(portfolio.last_change_at)}</strong></a> <span class="muted">(“${escapeHtml(portfolio.message)}”)</span>`
+      : `Não foi possível consultar o portfólio agora${talentState.portfolio_error ? ` (${escapeHtml(talentState.portfolio_error)})` : ''}.`;
+    const storage = talentState.persist
+      ? 'Salvo em <code>data/talent-status.json</code> (versionado no git).'
+      : 'Salvo neste navegador.';
+    summary.innerHTML = `
+      <div><strong>${registered.length}/${platforms.length}</strong> cadastros feitos •
+        ${outdated.length ? `<span class="legend-outdated">${outdated.length} desatualizado(s)</span>` : '<span class="legend-ok">todos em dia</span>'}</div>
+      <div>${portfolioInfo}</div>
+      <div class="muted">${storage}</div>`;
+  }
+
+  const byCat = {};
+  platforms.forEach(p => (byCat[p.category] = byCat[p.category] || []).push(p));
+
+  list.innerHTML = Object.entries(byCat).map(([cat, items]) => `
+    <h4 class="talent-category">${escapeHtml(categories[cat] || cat)}</h4>
+    ${items.map(p => {
+      const s = status[p.id] || {};
+      const isOut = isTalentOutdated(s);
+      const stateCls = !s.registered ? '' : isOut ? 'is-outdated' : 'is-ok';
+      const stateText = !s.registered ? 'Não cadastrado'
+        : isOut ? `⚠️ Desatualizado — perfil atualizado em ${formatDateBR(s.updated_at || s.registered_at)}, portfólio mudou depois`
+        : `✅ Em dia — atualizado em ${formatDateBR(s.updated_at || s.registered_at)}`;
+      return `
+        <div class="talent-item ${stateCls}">
+          <label class="talent-check">
+            <input type="checkbox" data-talent-check="${escapeHtml(p.id)}" ${s.registered ? 'checked' : ''}>
+          </label>
+          <div class="talent-body">
+            <div class="talent-title">
+              <a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.name)}</a>
+              <span class="talent-state">${stateText}</span>
+            </div>
+            <div class="talent-why">${escapeHtml(p.why)}</div>
+            <div class="talent-tip">💡 ${escapeHtml(p.tip)}</div>
+          </div>
+          <div class="talent-actions">
+            ${s.registered
+              ? `<button type="button" class="btn btn-sm ${isOut ? 'btn-primary' : 'btn-secondary'}" data-talent-touch="${escapeHtml(p.id)}" title="Marque depois de atualizar este perfil com as novidades do portfólio">🔄 Atualizei</button>`
+              : `<a class="btn btn-primary btn-sm" href="${escapeHtml(p.signup_url || p.url)}" target="_blank" rel="noopener noreferrer">Cadastrar ↗</a>`}
+          </div>
+        </div>`;
+    }).join('')}`).join('');
+
+  list.querySelectorAll('[data-talent-check]').forEach(cb => {
+    cb.addEventListener('change', () => updateTalentEntry(cb.dataset.talentCheck, { registered: cb.checked }));
+  });
+  list.querySelectorAll('[data-talent-touch]').forEach(btn => {
+    btn.addEventListener('click', () => updateTalentEntry(btn.dataset.talentTouch, { touch: true }));
+  });
+}
+
+// Selos de confiança: de onde veio a vaga, quando foi publicada e se o link foi conferido.
+function jobTrustHtml(job) {
+  const parts = [];
+  if (job.source_type === 'empresa') {
+    parts.push(`<span class="trust-badge trust-company" title="Lida direto da página de carreiras oficial da empresa">✅ Site oficial da empresa</span>`);
+  } else if (job.source_type === 'comunidade') {
+    parts.push(`<span class="trust-badge trust-community" title="${escapeHtml(job.source || '')}">👥 Comunidade (issue aberta)</span>`);
+  } else {
+    parts.push(`<span class="trust-badge trust-aggregator" title="Vaga de agregador; link conferido na coleta">🔗 ${escapeHtml(job.source || 'Agregador')}${job.verified ? ' • link verificado' : ''}</span>`);
+  }
+  if (job.days_ago !== null && job.days_ago !== undefined) {
+    const fresh = job.days_ago <= 7;
+    const label = job.days_ago === 0 ? 'Publicada hoje' : job.days_ago === 1 ? 'Publicada ontem' : `Publicada há ${job.days_ago} dias`;
+    parts.push(`<span class="trust-badge ${fresh ? 'trust-fresh' : 'trust-age'}">🕒 ${label}</span>`);
+  }
+  if (job.expires_at) {
+    const d = new Date(job.expires_at);
+    if (!Number.isNaN(d.getTime())) parts.push(`<span class="trust-badge trust-age">⏳ Inscrições até ${d.toLocaleDateString('pt-BR', { timeZone: 'UTC' })}</span>`);
+  }
+  return parts.join(' ');
 }
 
 function transferJobToOptimizer(job) {

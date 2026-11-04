@@ -51,6 +51,15 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             Buscar Vagas
           </button>
+          <button class="tab-btn" data-tab="tab-ideas">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>
+            Ideias de Projetos
+          </button>
+          <button class="tab-btn" data-tab="tab-talent">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Cadastros
+            <span id="talentOutdatedCount" class="tab-counter hidden" title="Cadastros desatualizados"></span>
+          </button>
         </div>
 
         <div class="tab-content">
@@ -211,11 +220,13 @@
 
             <div class="quick-filters">
               <span>Filtros direcionados:</span>
+              <button type="button" class="filter-pill" data-query="Site da empresa">✅ Direto do site da empresa</button>
               <button type="button" class="filter-pill active" data-query="Hospitalar">🏥 Hospitais & Clínicas</button>
               <button type="button" class="filter-pill" data-query="EdTech">🎓 EdTechs & Educação</button>
               <button type="button" class="filter-pill" data-query="Full Stack">🏢 Empresas Tech / Full Stack</button>
+              <button type="button" class="filter-pill" data-query="Internacional">🌐 Internacional (Sem Visto / USD)</button>
               <button type="button" class="filter-pill" data-query="Belo Horizonte">📍 Presencial / Híbrido BH</button>
-              <button type="button" class="filter-pill" data-query="Remoto">🇧🇷 Remoto (PJ ou CLT)</button>
+              <button type="button" class="filter-pill" data-query="Remoto">🇧🇷 Remoto Brasil (PJ ou CLT)</button>
               <button type="button" class="filter-pill" data-query="DevOps">☁️ DevOps & Cloud</button>
             </div>
 
@@ -231,6 +242,39 @@
 
             <div id="jobsList" class="jobs-list-container">
               <!-- Injected dynamically via JS -->
+            </div>
+          </div>
+
+          <!-- Tab: Project ideas from job market gaps -->
+          <div id="tab-ideas" class="tab-pane">
+            <div class="pane-intro">
+              <h3>Ideias de projetos para comprovar o que as vagas pedem</h3>
+              <p>O sistema lê as vagas ativas, conta as tecnologias mais pedidas e compara com o seu currículo:
+                o que <strong>falta</strong> e o que está nas skills, mas <strong>nenhum projeto comprova</strong>.
+                Depois sugere projetos pessoais que cobrem essas lacunas.</p>
+            </div>
+            <div class="ideas-actions">
+              <button id="btnGenerateIdeas" class="btn btn-primary">💡 Analisar vagas e gerar ideias</button>
+              <label class="checkbox-inline" title="Sem IA, as ideias vêm de um catálogo curado ranqueado pelas suas lacunas">
+                <input type="checkbox" id="ideasUseAi" checked> Usar IA (Gemini) para ideias sob medida
+              </label>
+            </div>
+            <div id="ideasResult" class="ideas-result">
+              <p class="muted-center">Clique em “Analisar vagas e gerar ideias” para começar.</p>
+            </div>
+          </div>
+
+          <!-- Tab: Talent platforms registration tracker -->
+          <div id="tab-talent" class="tab-pane">
+            <div class="pane-intro">
+              <h3>Onde se cadastrar para ser encontrada</h3>
+              <p>Sites onde empresas e recrutadores procuram profissionais. Marque quando se cadastrar.
+                Se o seu portfólio mudar depois da última atualização de um perfil, ele fica
+                <span class="legend-outdated">laranja (desatualizado)</span> até você clicar em “Atualizei”.</p>
+            </div>
+            <div id="talentSummary" class="talent-summary"></div>
+            <div id="talentList" class="talent-list">
+              <p class="muted-center">Carregando sites...</p>
             </div>
           </div>
         </div>

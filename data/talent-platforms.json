@@ -1,0 +1,254 @@
+{
+  "_info": "Sites onde empresas e recrutadores procuram profissionais. Links verificados em nov/2026. Para adicionar um site, inclua um objeto com id único.",
+  "categories": {
+    "vitrine": "Vitrines e comunidades tech (empresas procuram você)",
+    "brasil": "Bancos de currículos no Brasil",
+    "internacional": "Remoto internacional (empresas de fora contratando do Brasil)",
+    "freelance": "Freelance e projetos"
+  },
+  "platforms": [
+    {
+      "id": "backend-br-talentos",
+      "name": "Back-End Brasil — Talentos",
+      "category": "vitrine",
+      "url": "https://backend-br.github.io/talentos/",
+      "signup_url": "https://github.com/backend-br/me-contrata/issues/new/choose",
+      "why": "Vitrine da comunidade Back-End Brasil: seu perfil vira uma issue que recrutadores consultam.",
+      "tip": "Use o modelo da issue; destaque stack, senioridade, modalidade (PJ/CLT, remoto/BH) e links."
+    },
+    {
+      "id": "linkedin",
+      "name": "LinkedIn (Open to Work para recrutadores)",
+      "category": "vitrine",
+      "url": "https://www.linkedin.com/",
+      "signup_url": "https://www.linkedin.com/jobs/",
+      "why": "Principal ferramenta de busca de recrutadores; o modo 'Open to Work' pode ficar visível só para eles.",
+      "tip": "Título com cargo + stack, seção Destaques com Connect Care e Design System, competências iguais às do currículo."
+    },
+    {
+      "id": "github-profile",
+      "name": "GitHub (perfil + Available for hire)",
+      "category": "vitrine",
+      "url": "https://github.com/Aanastc",
+      "signup_url": "https://github.com/settings/profile",
+      "why": "Recrutadores técnicos olham o GitHub; o selo 'Available for hire' e um README de perfil ajudam a ser encontrada.",
+      "tip": "Fixe os 6 melhores repositórios com README, demo e decisões técnicas."
+    },
+    {
+      "id": "programathor",
+      "name": "ProgramaThor",
+      "category": "vitrine",
+      "url": "https://programathor.com.br/",
+      "signup_url": "https://programathor.com.br/users/sign_up",
+      "why": "Plataforma brasileira só para devs; empresas filtram perfis por tecnologia e nível.",
+      "tip": "Preencha todas as tecnologias com nível e pretensão salarial (aumenta a visibilidade)."
+    },
+    {
+      "id": "geekhunter",
+      "name": "GeekHunter",
+      "category": "vitrine",
+      "url": "https://www.geekhunter.com/pt",
+      "signup_url": "https://www.geekhunter.com/pt",
+      "why": "Empresas buscam e convidam devs diretamente para entrevistas.",
+      "tip": "Perfil completo e pretensão realista; responda rápido aos convites para manter o ranking."
+    },
+    {
+      "id": "coodesh",
+      "name": "Coodesh",
+      "category": "vitrine",
+      "url": "https://coodesh.com/",
+      "signup_url": "https://coodesh.com/",
+      "why": "Empresas recrutam devs por testes técnicos; bons resultados destacam seu perfil.",
+      "tip": "Faça os desafios das stacks que você quer (React, Node, DevOps)."
+    },
+    {
+      "id": "gupy",
+      "name": "Gupy (perfil de candidata)",
+      "category": "brasil",
+      "url": "https://portal.gupy.io/",
+      "signup_url": "https://login.gupy.io/candidates/signup",
+      "why": "Usada por hospitais (Rede D'Or, Mater Dei), universidades e grandes empresas; o perfil é reaproveitado em todas as vagas.",
+      "tip": "Mantenha experiências idênticas ao currículo; a triagem da Gupy compara palavras-chave."
+    },
+    {
+      "id": "catho",
+      "name": "Catho",
+      "category": "brasil",
+      "url": "https://www.catho.com.br/",
+      "signup_url": "https://www.catho.com.br/",
+      "why": "Grande banco de currículos consultado por RHs de empresas tradicionais e da saúde.",
+      "tip": "Cargo pretendido e cidade (Belo Horizonte) bem definidos."
+    },
+    {
+      "id": "infojobs",
+      "name": "InfoJobs",
+      "category": "brasil",
+      "url": "https://www.infojobs.com.br/",
+      "signup_url": "https://www.infojobs.com.br/",
+      "why": "Recrutadores pesquisam currículos por palavra-chave e localidade.",
+      "tip": "Inclua as palavras-chave das vagas-alvo no resumo."
+    },
+    {
+      "id": "vagas-com",
+      "name": "Vagas.com",
+      "category": "brasil",
+      "url": "https://www.vagas.com.br/",
+      "signup_url": "https://www.vagas.com.br/",
+      "why": "Muito usado por empresas grandes e hospitais para triagem e busca de currículos.",
+      "tip": "Atualize o currículo periodicamente: perfis recentes aparecem antes nas buscas."
+    },
+    {
+      "id": "indeed",
+      "name": "Indeed (currículo visível)",
+      "category": "brasil",
+      "url": "https://br.indeed.com/",
+      "signup_url": "https://br.indeed.com/",
+      "why": "Com o currículo público, empresas podem encontrar e contatar você.",
+      "tip": "Ative a opção de currículo pesquisável."
+    },
+    {
+      "id": "remotar",
+      "name": "Remotar",
+      "category": "brasil",
+      "url": "https://remotar.com.br/",
+      "signup_url": "https://remotar.com.br/",
+      "why": "Especializada em vagas 100% remotas no Brasil.",
+      "tip": "Ative alertas para Full Stack, DevOps e Moodle."
+    },
+    {
+      "id": "trampos",
+      "name": "Trampos",
+      "category": "brasil",
+      "url": "https://trampos.co/",
+      "signup_url": "https://trampos.co/",
+      "why": "Plataforma de recrutamento de startups e agências brasileiras.",
+      "tip": "Portfólio com links de demo bem visíveis."
+    },
+    {
+      "id": "revelo",
+      "name": "Revelo",
+      "category": "internacional",
+      "url": "https://www.revelo.com/work",
+      "signup_url": "https://www.revelo.com/work",
+      "why": "Conecta devs da América Latina a empresas dos EUA, em USD e remoto.",
+      "tip": "Faça a avaliação de inglês e técnica com calma: ela define em quais vagas você aparece."
+    },
+    {
+      "id": "turing",
+      "name": "Turing",
+      "category": "internacional",
+      "url": "https://www.turing.com/",
+      "signup_url": "https://www.turing.com/",
+      "why": "Empresas americanas contratam devs remotos já avaliados pela plataforma.",
+      "tip": "Os testes por stack (React, Node, DevOps) entram no perfil: priorize os mais fortes."
+    },
+    {
+      "id": "strider",
+      "name": "Strider",
+      "category": "internacional",
+      "url": "https://www.onstrider.com/",
+      "signup_url": "https://www.onstrider.com/",
+      "why": "Foco em devs da América Latina para empresas dos EUA (já aparece nas vagas de comunidade).",
+      "tip": "Perfil em inglês com resultados mensuráveis."
+    },
+    {
+      "id": "arc",
+      "name": "Arc.dev",
+      "category": "internacional",
+      "url": "https://arc.dev/",
+      "signup_url": "https://arc.dev/",
+      "why": "Empresas buscam devs remotos avaliados; aceita contractor do Brasil.",
+      "tip": "Complete o perfil e faça a verificação técnica para ganhar o selo."
+    },
+    {
+      "id": "wellfound",
+      "name": "Wellfound (AngelList Talent)",
+      "category": "internacional",
+      "url": "https://wellfound.com/",
+      "signup_url": "https://wellfound.com/",
+      "why": "Startups do mundo todo recrutam aqui; dá para sinalizar remoto e país.",
+      "tip": "Marque 'open to remote' e o fuso horário de Brasília."
+    },
+    {
+      "id": "himalayas",
+      "name": "Himalayas",
+      "category": "internacional",
+      "url": "https://himalayas.app/",
+      "signup_url": "https://himalayas.app/",
+      "why": "Board remoto com perfil público; empresas veem candidatas por país (também é fonte de vagas deste sistema).",
+      "tip": "Defina Brasil como localização para aparecer nas vagas que aceitam o país."
+    },
+    {
+      "id": "toptal",
+      "name": "Toptal",
+      "category": "internacional",
+      "url": "https://www.toptal.com/developers",
+      "signup_url": "https://www.toptal.com/developers",
+      "why": "Rede seletiva de freelancers sênior com clientes internacionais.",
+      "tip": "O processo tem várias etapas; aplique quando tiver tempo para os testes."
+    },
+    {
+      "id": "lemon",
+      "name": "Lemon.io",
+      "category": "internacional",
+      "url": "https://lemon.io/",
+      "signup_url": "https://lemon.io/",
+      "why": "Conecta devs sênior a startups dos EUA e Europa (aparece nas vagas coletadas).",
+      "tip": "Exige experiência sólida comprovada; destaque projetos com usuários reais."
+    },
+    {
+      "id": "braintrust",
+      "name": "Braintrust",
+      "category": "internacional",
+      "url": "https://www.usebraintrust.com/",
+      "signup_url": "https://www.usebraintrust.com/",
+      "why": "Rede de talentos com clientes enterprise; contratos remotos.",
+      "tip": "Perfil com taxa horária em USD."
+    },
+    {
+      "id": "crossover",
+      "name": "Crossover",
+      "category": "internacional",
+      "url": "https://www.crossover.com/",
+      "signup_url": "https://www.crossover.com/",
+      "why": "Vagas remotas globais com salário fixo em USD e processo por testes.",
+      "tip": "Os testes de aptidão vêm primeiro; reserve um horário tranquilo."
+    },
+    {
+      "id": "contra",
+      "name": "Contra",
+      "category": "freelance",
+      "url": "https://contra.com/",
+      "signup_url": "https://contra.com/",
+      "why": "Rede profissional para independentes, sem comissão; portfólio em destaque.",
+      "tip": "Publique Connect Care e Design System como cases."
+    },
+    {
+      "id": "workana",
+      "name": "Workana",
+      "category": "freelance",
+      "url": "https://www.workana.com/",
+      "signup_url": "https://www.workana.com/",
+      "why": "Maior plataforma de freelance da América Latina.",
+      "tip": "Comece com projetos menores para ganhar avaliações."
+    },
+    {
+      "id": "99freelas",
+      "name": "99Freelas",
+      "category": "freelance",
+      "url": "https://www.99freelas.com.br/",
+      "signup_url": "https://www.99freelas.com.br/",
+      "why": "Projetos freelance de clientes brasileiros.",
+      "tip": "Propostas curtas e específicas para o problema do cliente."
+    },
+    {
+      "id": "upwork",
+      "name": "Upwork",
+      "category": "freelance",
+      "url": "https://www.upwork.com/",
+      "signup_url": "https://www.upwork.com/",
+      "why": "Maior marketplace freelance global, em USD.",
+      "tip": "Nicho claro no título (ex.: 'Moodle & React developer')."
+    }
+  ]
+}

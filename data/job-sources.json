@@ -1,0 +1,285 @@
+{
+  "_info": "Páginas de carreira de empresas lidas direto da fonte (ATS oficial da empresa). Para adicionar uma empresa, descubra o identificador na URL da página de vagas: boards.greenhouse.io/<token>, jobs.lever.co/<token>, jobs.ashbyhq.com/<token> ou <token>.gupy.io. sector: saude | edtech | tech. Todas as entradas abaixo foram verificadas em nov/2026. br: true = empresa brasileira (\"Remote\" sem país é tratado como remoto no Brasil).",
+  "greenhouse": [
+    {
+      "token": "inter",
+      "name": "Banco Inter",
+      "sector": "tech",
+      "city": "Belo Horizonte",
+      "br": true
+    },
+    {
+      "token": "blip",
+      "name": "Blip",
+      "sector": "tech",
+      "city": "Belo Horizonte",
+      "br": true
+    },
+    {
+      "token": "c6bank",
+      "name": "C6 Bank",
+      "sector": "tech",
+      "br": true
+    },
+    {
+      "token": "stone",
+      "name": "Stone",
+      "sector": "tech",
+      "br": true
+    },
+    {
+      "token": "quintoandar",
+      "name": "QuintoAndar",
+      "sector": "tech",
+      "br": true
+    },
+    {
+      "token": "vtex",
+      "name": "VTEX",
+      "sector": "tech",
+      "br": true
+    },
+    {
+      "token": "ebanx",
+      "name": "EBANX",
+      "sector": "tech",
+      "br": true
+    },
+    {
+      "token": "rdstation",
+      "name": "RD Station",
+      "sector": "tech",
+      "br": true
+    },
+    {
+      "token": "jusbrasil",
+      "name": "Jusbrasil",
+      "sector": "tech",
+      "br": true
+    },
+    {
+      "token": "wildlifestudios",
+      "name": "Wildlife Studios",
+      "sector": "tech",
+      "br": true
+    },
+    {
+      "token": "gympass",
+      "name": "Wellhub",
+      "sector": "saude",
+      "br": true
+    },
+    {
+      "token": "vercel",
+      "name": "Vercel",
+      "sector": "tech"
+    },
+    {
+      "token": "gitlab",
+      "name": "GitLab",
+      "sector": "tech"
+    },
+    {
+      "token": "arcoeducacao",
+      "name": "Arco Educação",
+      "sector": "edtech",
+      "br": true
+    },
+    {
+      "token": "coursera",
+      "name": "Coursera",
+      "sector": "edtech"
+    },
+    {
+      "token": "duolingo",
+      "name": "Duolingo",
+      "sector": "edtech"
+    },
+    {
+      "token": "datacamp",
+      "name": "DataCamp",
+      "sector": "edtech"
+    },
+    {
+      "token": "d2l",
+      "name": "D2L (Brightspace)",
+      "sector": "edtech"
+    }
+  ],
+  "lever": [
+    {
+      "token": "ciandt",
+      "name": "CI&T",
+      "sector": "tech",
+      "br": true
+    },
+    {
+      "token": "neon",
+      "name": "Neon",
+      "sector": "tech",
+      "br": true
+    },
+    {
+      "token": "toptal",
+      "name": "Toptal",
+      "sector": "tech"
+    }
+  ],
+  "ashby": [
+    {
+      "token": "nubank",
+      "name": "Nubank",
+      "sector": "tech"
+    },
+    {
+      "token": "docplanner",
+      "name": "Docplanner / Feegow",
+      "sector": "saude"
+    },
+    {
+      "token": "supabase",
+      "name": "Supabase",
+      "sector": "tech"
+    },
+    {
+      "token": "preply",
+      "name": "Preply",
+      "sector": "edtech"
+    },
+    {
+      "token": "instructure",
+      "name": "Instructure (Canvas LMS)",
+      "sector": "edtech"
+    },
+    {
+      "token": "docebo",
+      "name": "Docebo (LMS)",
+      "sector": "edtech"
+    },
+    {
+      "token": "babbel",
+      "name": "Babbel",
+      "sector": "edtech"
+    },
+    {
+      "token": "cambly",
+      "name": "Cambly",
+      "sector": "edtech"
+    }
+  ],
+  "gupy": [
+    {
+      "token": "localiza",
+      "name": "Localiza&Co",
+      "sector": "tech",
+      "city": "Belo Horizonte"
+    },
+    {
+      "token": "materdei",
+      "name": "Rede Mater Dei de Saúde",
+      "sector": "saude",
+      "city": "Belo Horizonte"
+    },
+    {
+      "token": "meliuz",
+      "name": "Méliuz",
+      "sector": "tech",
+      "city": "Belo Horizonte"
+    },
+    {
+      "token": "algar",
+      "name": "Algar",
+      "sector": "tech"
+    },
+    {
+      "token": "usiminas",
+      "name": "Usiminas",
+      "sector": "tech"
+    },
+    {
+      "token": "rededor",
+      "name": "Rede D'Or",
+      "sector": "saude"
+    },
+    {
+      "token": "hapvidandi",
+      "name": "Hapvida NotreDame Intermédica",
+      "sector": "saude"
+    },
+    {
+      "token": "hospitalmoinhos",
+      "name": "Hospital Moinhos de Vento",
+      "sector": "saude"
+    },
+    {
+      "token": "vidalink",
+      "name": "Vidalink",
+      "sector": "saude"
+    },
+    {
+      "token": "memed",
+      "name": "Memed",
+      "sector": "saude"
+    },
+    {
+      "token": "afya",
+      "name": "Afya",
+      "sector": "edtech"
+    },
+    {
+      "token": "cogna",
+      "name": "Cogna Educação",
+      "sector": "edtech"
+    },
+    {
+      "token": "yduqs",
+      "name": "YDUQS (Estácio)",
+      "sector": "edtech"
+    },
+    {
+      "token": "somos",
+      "name": "Somos Educação",
+      "sector": "edtech"
+    },
+    {
+      "token": "cruzeirodosul",
+      "name": "Cruzeiro do Sul Educacional",
+      "sector": "edtech"
+    },
+    {
+      "token": "inatel",
+      "name": "Inatel",
+      "sector": "edtech"
+    },
+    {
+      "token": "stefanini",
+      "name": "Stefanini",
+      "sector": "tech"
+    },
+    {
+      "token": "pagseguro",
+      "name": "PagBank",
+      "sector": "tech"
+    },
+    {
+      "token": "bemobi",
+      "name": "Bemobi",
+      "sector": "tech"
+    },
+    {
+      "token": "zenvia",
+      "name": "Zenvia",
+      "sector": "tech"
+    },
+    {
+      "token": "creditas",
+      "name": "Creditas",
+      "sector": "tech"
+    },
+    {
+      "token": "sicredi",
+      "name": "Sicredi",
+      "sector": "tech"
+    }
+  ]
+}

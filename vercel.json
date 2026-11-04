@@ -1,13 +1,31 @@
 {
   "version": 2,
   "outputDirectory": "web",
-  "crons": [
-    {
-      "path": "/api/jobs?refresh=true",
-      "schedule": "0 11 * * *"
+  "functions": {
+    "api/render.js": {
+      "includeFiles": "templates/**"
+    },
+    "api/resume.js": {
+      "includeFiles": "data/resume*.json"
+    },
+    "api/jobs.js": {
+      "includeFiles": "data/jobs-cache.json"
+    },
+    "api/optimize.js": {
+      "maxDuration": 60
+    },
+    "api/talent.js": {
+      "includeFiles": "data/talent-*.json"
+    },
+    "api/project-ideas.js": {
+      "includeFiles": "data/{jobs-cache,resume}.json",
+      "maxDuration": 60
     }
-  ],
+  },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" }
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    }
   ]
 }

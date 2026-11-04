@@ -1,368 +1,204 @@
+// Coleta diária de vagas: sites de carreira das empresas + agregadores + comunidades.
+// Só entram vagas reais e ativas: descartamos banco de talentos, vagas antigas,
+// prazos vencidos, links quebrados e duplicatas. CLI: npm run jobs
 import fs from "node:fs";
 import path from "node:path";
+import { IS_SERVERLESS } from "../lib/runtime.mjs";
+import { daysAgo, ghostReason, MAX_AGE_DAYS, normalizeKey } from "../lib/job-quality.mjs";
+import {
+  fetchAshby,
+  fetchGitHubCommunities,
+  fetchGreenhouse,
+  fetchGupy,
+  fetchHimalayas,
+  fetchJobicy,
+  fetchLever,
+  fetchRemoteOK,
+  fetchRemotive,
+  fetchWithTimeout,
+  mapLimit
+} from "../lib/job-sources.mjs";
+
+// Reexportados para manter compatibilidade com imports existentes (testes, API).
+export { isSoftwareDevRole, isEligibleInternationalLocation } from "../lib/job-quality.mjs";
 
 const root = process.cwd();
 const dataDir = path.join(root, "data");
-fs.mkdirSync(dataDir, { recursive: true });
 
-async function fetchWithTimeout(url, options = {}, timeoutMs = 8000) {
-  const controller = new AbortController();
-  const id = setTimeout(() => controller.abort(), timeoutMs);
+// Prioridade na deduplicação: site da empresa > comunidade > agregador.
+const SOURCE_RANK = { empresa: 0, comunidade: 1, agregador: 2 };
+
+function loadCompanies() {
   try {
-    const res = await fetch(url, { ...options, signal: controller.signal });
-    clearTimeout(id);
-    return res;
+    return JSON.parse(fs.readFileSync(path.join(dataDir, "job-sources.json"), "utf8"));
+  } catch {
+    return { greenhouse: [], lever: [], ashby: [], gupy: [] };
+  }
+}
+
+// Link ainda abre? Descartamos 404/410 e redirecionamentos para a página inicial do site.
+// 403/429 (proteção anti-robô) não provam que a vaga sumiu, então a vaga é mantida.
+async function checkLink(url) {
+  try {
+    let res = await fetchWithTimeout(url, { method: "HEAD", redirect: "follow" }, 10000);
+    if (res.status === 405 || res.status === 501) {
+      res = await fetchWithTimeout(url, { method: "GET", redirect: "follow" }, 10000);
+    }
+    if (res.status === 404 || res.status === 410) return { alive: false, reason: `link retornou ${res.status}` };
+    const finalPath = new URL(res.url).pathname.replace(/\/+$/, "");
+    if (res.redirected && (finalPath === "" || /\/(jobs|careers|vagas)$/.test(finalPath))) {
+      return { alive: false, reason: "link redireciona para a lista geral (vaga encerrada)" };
+    }
+    return { alive: true, verified: res.ok };
+  } catch {
+    return { alive: true, verified: false }; // falha de rede não é prova de vaga encerrada
+  }
+}
+
+function loadPreviousCache() {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(dataDir, "jobs-cache.json"), "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+// Se uma fonte falhar (timeout, instabilidade), reaproveita as vagas dela da coleta anterior,
+// desde que continuem passando nas regras anti-fantasma. Evita que uma falha passageira
+// apague dezenas de vagas válidas por um dia inteiro.
+export async function runSource(label, fn, report, previousJobs = []) {
+  const started = Date.now();
+  try {
+    const jobs = (await fn()).map((j) => ({ ...j, source_key: label }));
+    report.sources.push({ source: label, ok: true, found: jobs.length, ms: Date.now() - started });
+    return jobs;
   } catch (err) {
-    clearTimeout(id);
-    throw err;
+    const reused = previousJobs.filter((j) => j.source_key === label);
+    report.sources.push({ source: label, ok: false, error: err.message, reused_from_previous: reused.length, ms: Date.now() - started });
+    console.warn(`Aviso [${label}]: ${err.message}${reused.length ? ` — reaproveitando ${reused.length} vagas da coleta anterior` : ""}`);
+    return reused.map((j) => ({ ...j, from_previous_run: true }));
   }
 }
 
-function cleanHtml(str) {
-  if (!str) return "";
-  return str
-    .replace(/<[^>]*>?/gm, " ")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/\s+/g, " ")
-    .trim();
-}
+export async function collectJobs({ verifyLinks = true, now = new Date() } = {}) {
+  const previousJobs = loadPreviousCache()?.jobs || [];
+  const companies = loadCompanies();
+  const report = { sources: [], discarded: {}, checked_links: 0 };
 
-function detectLocationType(title, desc, rawLocation = "") {
-  const fullText = `${title} ${desc} ${rawLocation}`.toLowerCase();
-  
-  const isBH = /belo horizonte|\bbh\b|minas gerais|\bmg\b|nova lima|contagem|betim/i.test(fullText);
-  if (isBH) {
-    return {
-      type: "bh",
-      label: "📍 Belo Horizonte, MG (Presencial / Híbrido)",
-      isCandidateCompatible: true
-    };
-  }
+  const companyTasks = [
+    ...(companies.greenhouse || []).map((c) => [`Greenhouse/${c.name}`, () => fetchGreenhouse(c)]),
+    ...(companies.lever || []).map((c) => [`Lever/${c.name}`, () => fetchLever(c)]),
+    ...(companies.ashby || []).map((c) => [`Ashby/${c.name}`, () => fetchAshby(c)]),
+    ...(companies.gupy || []).map((c) => [`Gupy/${c.name}`, () => fetchGupy(c)])
+  ];
+  const otherTasks = [
+    ["Himalayas", fetchHimalayas],
+    ["Remotive", fetchRemotive],
+    ["Jobicy", fetchJobicy],
+    ["Remote OK", fetchRemoteOK],
+    ["Comunidades GitHub", fetchGitHubCommunities]
+  ];
 
-  const isRemote = /remoto|remote|anywhere|worldwide|100% remoto|home office|teletrabalho/i.test(fullText);
-  if (isRemote) {
-    return {
-      type: "remote",
-      label: "🌐 100% Remoto (Brasil / Global)",
-      isCandidateCompatible: true
-    };
-  }
+  const results = await mapLimit([...companyTasks, ...otherTasks], 6, ([label, fn]) => runSource(label, fn, report, previousJobs));
+  const raw = results.flat().filter((j) => j && !j.error);
 
-  const isOnsiteOther = /(são paulo|sp|rio de janeiro|rj|curitiba|florianopolis|porto alegre|brasilia|recife|salvador).*(presencial|híbrido|hibrido)/i.test(fullText) ||
-                        /(presencial|híbrido|hibrido).*(são paulo|sp|rio de janeiro|rj|curitiba|florianopolis|porto alegre|brasilia)/i.test(fullText);
-
-  if (isOnsiteOther) {
-    return {
-      type: "onsite_outside_bh",
-      label: "⚠️ Presencial fora de BH (Incompatível com perfil)",
-      isCandidateCompatible: false
-    };
-  }
-
-  return {
-    type: "remote_fallback",
-    label: rawLocation || "Remoto / A Definir",
-    isCandidateCompatible: true
-  };
-}
-
-function detectModality(title, tags = [], desc = "") {
-  const fullText = `${title} ${tags.join(" ")} ${desc}`.toLowerCase();
-  const modalities = [];
-  if (/\bpj\b|pessoa jurídica|prestador|contractor/i.test(fullText)) modalities.push("PJ");
-  if (/\bclt\b|efetivo|carteira assinada/i.test(fullText)) modalities.push("CLT");
-  if (/freela|freelance|temporário|projeto/i.test(fullText)) modalities.push("Freelance");
-  
-  return modalities.length > 0 ? modalities : ["PJ ou CLT"];
-}
-
-// 1. Brazilian tech communities (general + targeted)
-async function fetchBrazilianJobs() {
-  const repos = ["backend-br/vagas", "frontendbr/vagas", "react-brasil/vagas"];
-  const allIssues = [];
-
-  for (const repo of repos) {
-    try {
-      const res = await fetchWithTimeout(`https://api.github.com/repos/${repo}/issues?state=open&per_page=15`, {
-        headers: { "User-Agent": "ATS-Resume-Job-Matcher/1.0" }
-      });
-      if (res.ok) {
-        const issues = await res.json();
-        for (const issue of issues) {
-          if (issue.pull_request) continue;
-          const loc = detectLocationType(issue.title, issue.body || "", "");
-          const mods = detectModality(issue.title, (issue.labels || []).map(l => l.name), issue.body || "");
-          
-          allIssues.push({
-            id: `br-${issue.id}`,
-            title: issue.title.replace(/^\[.*?\]\s*/, ""),
-            company: issue.user?.login || "Empresa Contratante",
-            location: loc.label,
-            location_type: loc.type,
-            is_compatible_location: loc.isCandidateCompatible,
-            modalities: mods,
-            url: issue.html_url,
-            tags: (issue.labels || []).map(l => l.name).filter(Boolean),
-            salary: mods.join(" / "),
-            publication_date: issue.created_at,
-            description: cleanHtml(issue.body?.slice(0, 1000) || issue.title),
-            source: "Vagas Brasil (GitHub)",
-            category: "Empresas Tech / Full Stack"
-          });
-        }
-      }
-    } catch (e) {
-      console.warn(`Aviso ao buscar vagas de ${repo}:`, e.message);
+  // 1) Regras anti-fantasma
+  const discard = (reason) => (report.discarded[reason] = (report.discarded[reason] || 0) + 1);
+  const valid = raw.filter((j) => {
+    const reason = ghostReason(j, now);
+    if (reason) {
+      discard(reason.replace(/\d+ dias/, `mais de ${MAX_AGE_DAYS} dias`));
+      return false;
     }
-  }
+    return true;
+  });
 
-  // Targeted GitHub Search for BH, Healthcare, EdTech/Moodle
-  try {
-    const searchRes = await fetchWithTimeout(
-      `https://api.github.com/search/issues?q=repo:backend-br/vagas+repo:frontendbr/vagas+state:open+belo+OR+bh+OR+saude+OR+moodle+OR+edtech&per_page=15`,
-      { headers: { "User-Agent": "ATS-Resume-Job-Matcher/1.0" } }
-    );
-    if (searchRes.ok) {
-      const searchData = await searchRes.json();
-      for (const issue of searchData.items || []) {
-        if (issue.pull_request) continue;
-        const loc = detectLocationType(issue.title, issue.body || "", "");
-        const mods = detectModality(issue.title, (issue.labels || []).map(l => l.name), issue.body || "");
-        
-        let cat = "Empresas Tech / Full Stack";
-        const titleLower = issue.title.toLowerCase();
-        if (/saúde|saude|hosp|clinic|health/i.test(titleLower)) {
-          cat = "Hospitais & Clínicas (Saúde)";
-        } else if (/edtech|educa|moodle|ensino|ead/i.test(titleLower)) {
-          cat = "EdTechs & Educação";
-        } else if (loc.type === "bh") {
-          cat = "Presencial / Híbrido BH";
-        }
-
-        allIssues.push({
-          id: `br-search-${issue.id}`,
-          title: issue.title.replace(/^\[.*?\]\s*/, ""),
-          company: issue.user?.login || "Empresa Contratante",
-          location: loc.label,
-          location_type: loc.type,
-          is_compatible_location: loc.isCandidateCompatible,
-          modalities: mods,
-          url: issue.html_url,
-          tags: (issue.labels || []).map(l => l.name).filter(Boolean),
-          salary: mods.join(" / "),
-          publication_date: issue.created_at,
-          description: cleanHtml(issue.body?.slice(0, 1000) || issue.title),
-          source: "GitHub Vagas Diretas",
-          category: cat
-        });
-      }
+  // 2) Deduplicação (mesma URL ou mesma empresa + cargo), preferindo o site da empresa
+  valid.sort((a, b) => (SOURCE_RANK[a.source_type] ?? 9) - (SOURCE_RANK[b.source_type] ?? 9));
+  const seen = new Set();
+  const unique = [];
+  for (const j of valid) {
+    const keys = [j.url.toLowerCase(), `${normalizeKey(j.company)}|${normalizeKey(j.title)}`];
+    if (keys.some((k) => seen.has(k))) {
+      discard("duplicada em outra fonte");
+      continue;
     }
-  } catch (e) {
-    console.warn("Aviso busca direcionada GitHub:", e.message);
+    keys.forEach((k) => seen.add(k));
+    unique.push(j);
   }
 
-  return allIssues;
-}
+  // 3) Links de agregadores/comunidades: confirma que a vaga ainda abre.
+  //    Vagas do site da empresa vêm da API oficial e já estão ativas por definição.
+  const verifiedAt = now.toISOString();
+  const checks = await mapLimit(unique, 8, async (j) => {
+    if (j.source_type === "empresa" || !verifyLinks) return { alive: true, verified: j.source_type === "empresa" };
+    report.checked_links++;
+    return checkLink(j.url);
+  });
 
-// 2. Healthcare & Hospitals / Clinical (Jobicy Healthcare)
-async function fetchHealthcareJobs() {
   const jobs = [];
-
-  try {
-    const res = await fetchWithTimeout("https://jobicy.com/api/v2/remote-jobs?count=15&tag=healthcare", {
-      headers: { "User-Agent": "ATS-Resume-Job-Matcher/1.0" }
-    });
-    if (res.ok) {
-      const data = await res.json();
-      (data.jobs || []).forEach(j => {
-        const loc = detectLocationType(j.jobTitle, j.jobDescription || "", j.jobGeo || "");
-        const mods = detectModality(j.jobTitle, j.jobTags || [], j.jobDescription || "");
-        jobs.push({
-          id: `jobicy-${j.id}`,
-          title: j.jobTitle,
-          company: j.companyName,
-          location: loc.label,
-          location_type: loc.type,
-          is_compatible_location: loc.isCandidateCompatible,
-          modalities: mods,
-          url: j.url,
-          tags: ["HealthTech", "Saúde", ...(j.jobTags || [])],
-          salary: j.annualSalaryMin ? `$${j.annualSalaryMin} - $${j.annualSalaryMax}` : "Competitivo (PJ/Contrato)",
-          publication_date: j.pubDate,
-          description: cleanHtml(j.jobDescription?.slice(0, 1000) || j.jobExcerpt),
-          source: "Jobicy HealthTech",
-          category: "Hospitais & Clínicas (Saúde)"
-        });
-      });
+  unique.forEach((j, idx) => {
+    const check = checks[idx] || { alive: true };
+    if (!check.alive) return discard(check.reason || "link indisponível");
+    // Vaga internacional sem modalidade explícita: contratação a partir do Brasil é como contractor/PJ.
+    if (/internacional|aceita brasil/i.test(j.location) && j.modalities.join() === "PJ ou CLT") {
+      j.modalities = ["PJ Internacional / Contractor"];
     }
-  } catch (e) {
-    console.warn("Aviso Jobicy Healthcare:", e.message);
-  }
+    jobs.push({
+      ...j,
+      verified: Boolean(check.verified),
+      verified_at: verifiedAt,
+      days_ago: daysAgo(j.publication_date, now),
+      salary: j.salary || j.modalities.join(" / ")
+    });
+  });
 
-  return jobs;
+  // Mais recentes primeiro; site da empresa desempata
+  jobs.sort(
+    (a, b) =>
+      (a.days_ago ?? 99) - (b.days_ago ?? 99) || (SOURCE_RANK[a.source_type] ?? 9) - (SOURCE_RANK[b.source_type] ?? 9)
+  );
+
+  return { jobs, report: { ...report, raw: raw.length, kept: jobs.length } };
 }
 
-// 3. EdTechs & Education (Jobicy & Remotive)
-async function fetchEdTechJobs() {
-  const jobs = [];
-
-  // Jobicy Education
-  try {
-    const res = await fetchWithTimeout("https://jobicy.com/api/v2/remote-jobs?count=12&tag=education", {
-      headers: { "User-Agent": "ATS-Resume-Job-Matcher/1.0" }
-    });
-    if (res.ok) {
-      const data = await res.json();
-      (data.jobs || []).forEach(j => {
-        const loc = detectLocationType(j.jobTitle, j.jobDescription || "", j.jobGeo || "");
-        const mods = detectModality(j.jobTitle, j.jobTags || [], j.jobDescription || "");
-        jobs.push({
-          id: `jobicy-edu-${j.id}`,
-          title: j.jobTitle,
-          company: j.companyName,
-          location: loc.label,
-          location_type: loc.type,
-          is_compatible_location: loc.isCandidateCompatible,
-          modalities: mods,
-          url: j.url,
-          tags: ["EdTech", "Educação", ...(j.jobTags || [])],
-          salary: j.annualSalaryMin ? `$${j.annualSalaryMin} - $${j.annualSalaryMax}` : "Negociável (PJ/CLT)",
-          publication_date: j.pubDate,
-          description: cleanHtml(j.jobDescription?.slice(0, 1000) || j.jobExcerpt),
-          source: "Jobicy EdTech",
-          category: "EdTechs & Educação"
-        });
-      });
-    }
-  } catch (e) {
-    console.warn("Aviso Jobicy EdTech:", e.message);
-  }
-
-  // Remotive Education
-  try {
-    const res = await fetchWithTimeout("https://remotive.com/api/remote-jobs?search=education&limit=12", {
-      headers: { "User-Agent": "ATS-Resume-Job-Matcher/1.0" }
-    });
-    if (res.ok) {
-      const data = await res.json();
-      (data.jobs || []).forEach(j => {
-        const loc = detectLocationType(j.title, j.description || "", j.candidate_required_location || "");
-        const mods = detectModality(j.title, j.tags || [], j.description || "");
-        jobs.push({
-          id: `remotive-edu-${j.id}`,
-          title: j.title,
-          company: j.company_name,
-          location: loc.label,
-          location_type: loc.type,
-          is_compatible_location: loc.isCandidateCompatible,
-          modalities: mods,
-          url: j.url,
-          tags: ["EdTech", ...(j.tags || [])],
-          salary: j.salary || "Negociável",
-          publication_date: j.publication_date,
-          description: cleanHtml(j.description?.slice(0, 1000)),
-          source: "Remotive EdTech",
-          category: "EdTechs & Educação"
-        });
-      });
-    }
-  } catch (e) {
-    console.warn("Aviso Remotive EdTech:", e.message);
-  }
-
-  return jobs;
-}
-
-// 4. Conventional Tech / Full Stack & DevOps (Remotive)
-async function fetchRemoteTechJobs() {
-  const jobs = [];
-
-  try {
-    const res = await fetchWithTimeout("https://remotive.com/api/remote-jobs?category=software-dev&limit=25", {
-      headers: { "User-Agent": "ATS-Resume-Job-Matcher/1.0" }
-    });
-    if (res.ok) {
-      const data = await res.json();
-      (data.jobs || []).forEach(j => {
-        const loc = detectLocationType(j.title, j.description || "", j.candidate_required_location || "");
-        const mods = detectModality(j.title, j.tags || [], j.description || "");
-        jobs.push({
-          id: `remotive-${j.id}`,
-          title: j.title,
-          company: j.company_name,
-          location: loc.label,
-          location_type: loc.type,
-          is_compatible_location: loc.isCandidateCompatible,
-          modalities: mods,
-          url: j.url,
-          tags: j.tags || [],
-          salary: j.salary || "Negociável",
-          publication_date: j.publication_date,
-          description: cleanHtml(j.description?.slice(0, 1000)),
-          source: "Remotive Remote Dev",
-          category: "Empresas Tech / Full Stack"
-        });
-      });
-    }
-  } catch (e) {
-    console.warn("Aviso Remotive:", e.message);
-  }
-
-  return jobs;
-}
-
-export async function runJobSync() {
-  console.log("Iniciando coleta e validação diária de vagas ativas (Saúde, EdTechs, BH e Remoto)...");
-
-  const [brJobs, healthJobs, edTechJobs, remoteJobs] = await Promise.all([
-    fetchBrazilianJobs(),
-    fetchHealthcareJobs(),
-    fetchEdTechJobs(),
-    fetchRemoteTechJobs()
-  ]);
-
-  // Combine and remove any jobs with invalid URLs
-  const rawList = [...brJobs, ...healthJobs, ...edTechJobs, ...remoteJobs];
-  const verifiedList = rawList.filter(j => j.url && j.url.startsWith("http"));
-
-  // De-duplicate by URL
-  const seenUrls = new Set();
-  const uniqueJobs = [];
-  for (const j of verifiedList) {
-    if (!seenUrls.has(j.url)) {
-      seenUrls.add(j.url);
-      uniqueJobs.push(j);
-    }
-  }
-
+// persist=false (padrão na Vercel, disco somente leitura) apenas coleta e devolve as vagas.
+export async function runJobSync({ persist = !IS_SERVERLESS, verifyLinks = true } = {}) {
+  console.log("Coletando vagas (sites de empresas, agregadores e comunidades)...");
   const now = new Date();
-  const nextUpdate = new Date(now);
-  nextUpdate.setDate(nextUpdate.getDate() + 1);
-  nextUpdate.setHours(8, 0, 0, 0); // 08:00 AM next day
+  const { jobs, report } = await collectJobs({ verifyLinks, now });
 
+  const bySource = jobs.reduce((acc, j) => ((acc[j.source_type] = (acc[j.source_type] || 0) + 1), acc), {});
   const cachePayload = {
     updated_at: now.toISOString(),
     formatted_date: now.toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
     next_update: "Diariamente às 08:00 (Horário de Brasília)",
-    total_jobs: uniqueJobs.length,
-    jobs: uniqueJobs
+    max_age_days: MAX_AGE_DAYS,
+    total_jobs: jobs.length,
+    by_source_type: bySource,
+    quality_report: report,
+    jobs
   };
 
-  const cachePath = path.join(dataDir, "jobs-cache.json");
-  fs.writeFileSync(cachePath, JSON.stringify(cachePayload, null, 2), "utf8");
+  if (persist) {
+    fs.mkdirSync(dataDir, { recursive: true });
+    fs.writeFileSync(path.join(dataDir, "jobs-cache.json"), JSON.stringify(cachePayload, null, 2), "utf8");
+  }
 
-  console.log(`Sucesso: ${uniqueJobs.length} vagas 100% verificadas salvas em data/jobs-cache.json`);
+  const discardedTotal = Object.values(report.discarded).reduce((a, b) => a + b, 0);
+  console.log(
+    `✅ ${jobs.length} vagas ativas (${bySource.empresa || 0} de sites de empresas, ${bySource.agregador || 0} de agregadores, ${bySource.comunidade || 0} de comunidades).`
+  );
+  console.log(`🧹 ${discardedTotal} descartadas:`, report.discarded);
+  const failed = report.sources.filter((s) => !s.ok);
+  if (failed.length) console.log(`⚠️ ${failed.length} fontes falharam:`, failed.map((s) => s.source).join(", "));
   return cachePayload;
 }
 
-// Execute directly if run as a script
 if (process.argv[1] && process.argv[1].endsWith("fetch-jobs.mjs")) {
   runJobSync()
     .then(() => process.exit(0))
-    .catch(err => {
+    .catch((err) => {
       console.error("Falha ao coletar vagas:", err);
       process.exit(1);
     });

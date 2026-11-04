@@ -2,16 +2,24 @@
   "name": "cv-ats-html",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "build": "node scripts/render.mjs",
     "pdf": "node scripts/export-pdf.mjs",
     "optimize": "node scripts/optimize.mjs",
-    "server": "node scripts/server.mjs"
+    "server": "node scripts/server.mjs",
+    "jobs": "node scripts/fetch-jobs.mjs",
+    "sync": "node scripts/sync-portfolio.mjs",
+    "test": "node --test"
   },
   "dependencies": {
-    "@google/genai": "*",
+    "@google/genai": "^2.11.0",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
     "playwright": "^1.50.0"
   }
 }

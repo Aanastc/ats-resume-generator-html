@@ -1,10 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
-import { execSync } from "node:child_process";
+import { renderToDist } from "../lib/render-files.mjs";
 
 const root = process.cwd();
-const PORTFOLIO_PT_URL = "https://raw.githubusercontent.com/Aanastc/ana_leticia.ac__portifolio/main/src/locales/pt.json";
-const PORTFOLIO_EN_URL = "https://raw.githubusercontent.com/Aanastc/ana_leticia.ac__portifolio/main/src/locales/en.json";
+export const PORTFOLIO_REPO = "Aanastc/ana_leticia.ac__portifolio";
+const PORTFOLIO_PT_URL = `https://raw.githubusercontent.com/${PORTFOLIO_REPO}/main/src/locales/pt.json`;
+const PORTFOLIO_EN_URL = `https://raw.githubusercontent.com/${PORTFOLIO_REPO}/main/src/locales/en.json`;
 
 export async function fetchPortfolioData() {
   console.log("Baixando dados atualizados do repositório do portfólio (Aanastc/ana_leticia.ac__portifolio)...");
@@ -205,11 +206,11 @@ export function buildResumeFromPortfolio(ptData, enData, lang = "pt") {
 
   const languages = isEn
     ? [
-        { name: "English", level: "Fluent / Advanced (C1+)", note: "Full professional proficiency" },
+        { name: "English", level: "Advanced / Professional (B2 - C1)", note: "Full professional working proficiency for global distributed engineering teams (Remote from Brazil, no visa sponsorship required)" },
         { name: "Portuguese", level: "Native", note: "Native speaker" }
       ]
     : [
-        { name: "Inglês", level: "Avançado / Fluente (C1+)", note: "Proficiência profissional completa" },
+        { name: "Inglês", level: "Avançado / Profissional (B2 - C1)", note: "Proficiência profissional completa para atuação em times globais remotos do Brasil (sem necessidade de visto)" },
         { name: "Português", level: "Nativo", note: "Língua materna" }
       ];
 
@@ -222,7 +223,7 @@ export function buildResumeFromPortfolio(ptData, enData, lang = "pt") {
     location,
     modalities: "PJ, CLT e Freelance",
     work_preference: {
-      remote: "Remoto (Brasil ou Global)",
+      remote: "Remoto (Brasil ou Global — Contractor / PJ Internacional sem necessidade de visto)",
       onsite_hybrid: "Presencial/Híbrido estritamente em Belo Horizonte/MG (ou Região Metropolitana)",
       contracts: ["PJ", "CLT", "Freelance"],
       target_sectors: ["Hospitais & Clínicas (HealthTech)", "EdTechs & Educação", "Empresas Convencionais & Tech"]
@@ -243,30 +244,42 @@ export function buildResumeFromPortfolio(ptData, enData, lang = "pt") {
   };
 }
 
-export async function runPortfolioSync() {
+// persist=false (ex.: Vercel, disco somente leitura) apenas monta e devolve o currículo.
+export async function runPortfolioSync({ persist = true } = {}) {
   const { ptData, enData } = await fetchPortfolioData();
 
   const resumePt = buildResumeFromPortfolio(ptData, enData, "pt");
-  const resumeEn = buildResumeFromPortfolio(ptData, enData, "en");
 
-  const dataDir = path.join(root, "data");
-  fs.mkdirSync(dataDir, { recursive: true });
+  if (persist) {
+    const dataDir = path.join(root, "data");
+    fs.mkdirSync(dataDir, { recursive: true });
 
-  const resumeJsonPath = path.join(dataDir, "resume.json");
-  const resumePtJsonPath = path.join(dataDir, "resume-pt.json");
+    const resumeJsonPath = path.join(dataDir, "resume.json");
+    const resumePtJsonPath = path.join(dataDir, "resume-pt.json");
 
-  // Save updated base resumes
-  fs.writeFileSync(resumeJsonPath, JSON.stringify(resumePt, null, 2), "utf8");
-  fs.writeFileSync(resumePtJsonPath, JSON.stringify(resumePt, null, 2), "utf8");
+    // Só regrava se o conteúdo mudou (ignorando synced_at), evitando commits diários sem mudança real.
+    const withoutStamp = (o) => JSON.stringify({ ...o, synced_at: undefined });
+    let previous = null;
+    try {
+      previous = JSON.parse(fs.readFileSync(resumeJsonPath, "utf8"));
+    } catch {
+      /* primeiro sync */
+    }
+    if (previous && withoutStamp(previous) === withoutStamp(resumePt)) {
+      resumePt.synced_at = previous.synced_at;
+      console.log("✅ Portfólio sem mudanças desde o último sync; currículo base mantido.");
+    } else {
+      fs.writeFileSync(resumeJsonPath, JSON.stringify(resumePt, null, 2), "utf8");
+      fs.writeFileSync(resumePtJsonPath, JSON.stringify(resumePt, null, 2), "utf8");
+      console.log(`✅ Currículo base atualizado com sucesso a partir do portfólio em: ${resumeJsonPath}`);
+    }
 
-  console.log(`✅ Currículo base atualizado com sucesso a partir do portfólio em: ${resumeJsonPath}`);
-
-  // Re-render HTML CV
-  try {
-    execSync("node scripts/render.mjs", { stdio: "inherit" });
-    console.log("✅ HTML do currículo re-renderizado com sucesso.");
-  } catch (err) {
-    console.warn("⚠️ Aviso ao renderizar HTML após sync:", err.message);
+    try {
+      renderToDist(resumePt, root);
+      console.log("✅ HTML do currículo re-renderizado com sucesso.");
+    } catch (err) {
+      console.warn("⚠️ Aviso ao renderizar HTML após sync:", err.message);
+    }
   }
 
   return {
@@ -292,3 +305,4 @@ if (process.argv[1] && process.argv[1].endsWith("sync-portfolio.mjs")) {
       process.exit(1);
     });
 }
+
