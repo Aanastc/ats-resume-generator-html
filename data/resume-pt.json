@@ -7,7 +7,7 @@
   "location": "Belo Horizonte, MG (Presencial/Híbrido) | Remoto (Brasil e Global)",
   "modalities": "PJ, CLT e Freelance",
   "work_preference": {
-    "remote": "Remoto (Brasil ou Global)",
+    "remote": "Remoto (Brasil ou Global — Contractor / PJ Internacional sem necessidade de visto)",
     "onsite_hybrid": "Presencial/Híbrido estritamente em Belo Horizonte/MG (ou Região Metropolitana)",
     "contracts": [
       "PJ",
@@ -312,8 +312,8 @@
   "languages": [
     {
       "name": "Inglês",
-      "level": "Avançado / Fluente (C1+)",
-      "note": "Proficiência profissional completa"
+      "level": "Avançado / Profissional (B2 - C1)",
+      "note": "Proficiência profissional completa para atuação em times globais remotos do Brasil (sem necessidade de visto)"
     },
     {
       "name": "Português",
@@ -321,5 +321,5 @@
       "note": "Língua materna"
     }
   ],
-  "synced_at": "2026-10-17T16:43:48.573Z"
+  "synced_at": "2026-11-04T18:20:11.298Z"
 }
