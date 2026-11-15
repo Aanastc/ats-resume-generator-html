@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-11-14T16:46:59.563Z",
-  "formatted_date": "14/11/2026, 13:46:59",
+  "updated_at": "2026-11-15T17:29:22.903Z",
+  "formatted_date": "15/11/2026, 14:29:22",
   "next_update": "Diariamente às 08:00 (Horário de Brasília)",
   "max_age_days": 30,
-  "total_jobs": 182,
+  "total_jobs": 171,
   "by_source_type": {
-    "empresa": 109,
-    "agregador": 68,
+    "agregador": 61,
+    "empresa": 105,
     "comunidade": 5
   },
   "quality_report": {
@@ -15,115 +15,121 @@
         "source": "Greenhouse/Blip",
         "ok": true,
         "found": 0,
-        "ms": 101
-      },
-      {
-        "source": "Greenhouse/VTEX",
-        "ok": true,
-        "found": 0,
-        "ms": 113
-      },
-      {
-        "source": "Greenhouse/RD Station",
-        "ok": true,
-        "found": 2,
-        "ms": 50
-      },
-      {
-        "source": "Greenhouse/Banco Inter",
-        "ok": true,
-        "found": 24,
-        "ms": 249
-      },
-      {
-        "source": "Greenhouse/C6 Bank",
-        "ok": true,
-        "found": 0,
-        "ms": 217
-      },
-      {
-        "source": "Greenhouse/Jusbrasil",
-        "ok": true,
-        "found": 7,
-        "ms": 62
+        "ms": 157
       },
       {
         "source": "Greenhouse/EBANX",
         "ok": true,
         "found": 0,
-        "ms": 134
+        "ms": 65
       },
       {
-        "source": "Greenhouse/QuintoAndar",
+        "source": "Greenhouse/Banco Inter",
+        "ok": true,
+        "found": 24,
+        "ms": 291
+      },
+      {
+        "source": "Greenhouse/RD Station",
+        "ok": true,
+        "found": 2,
+        "ms": 34
+      },
+      {
+        "source": "Greenhouse/VTEX",
         "ok": true,
         "found": 0,
-        "ms": 253
+        "ms": 265
+      },
+      {
+        "source": "Greenhouse/Jusbrasil",
+        "ok": true,
+        "found": 7,
+        "ms": 42
       },
       {
         "source": "Greenhouse/Wildlife Studios",
         "ok": true,
         "found": 0,
-        "ms": 66
+        "ms": 37
       },
       {
-        "source": "Greenhouse/Stone",
+        "source": "Greenhouse/C6 Bank",
         "ok": true,
-        "found": 14,
-        "ms": 291
+        "found": 0,
+        "ms": 309
+      },
+      {
+        "source": "Greenhouse/QuintoAndar",
+        "ok": true,
+        "found": 0,
+        "ms": 324
       },
       {
         "source": "Greenhouse/Vercel",
         "ok": true,
         "found": 0,
-        "ms": 84
+        "ms": 56
+      },
+      {
+        "source": "Greenhouse/Stone",
+        "ok": true,
+        "found": 14,
+        "ms": 367
       },
       {
         "source": "Greenhouse/Arco Educação",
         "ok": true,
         "found": 2,
-        "ms": 65
+        "ms": 66
       },
       {
         "source": "Greenhouse/Coursera",
         "ok": true,
         "found": 0,
-        "ms": 65
+        "ms": 53
       },
       {
         "source": "Greenhouse/Wellhub",
         "ok": true,
         "found": 6,
-        "ms": 122
+        "ms": 125
       },
       {
         "source": "Greenhouse/Duolingo",
         "ok": true,
         "found": 0,
-        "ms": 87
+        "ms": 58
       },
       {
         "source": "Greenhouse/DataCamp",
         "ok": true,
         "found": 0,
-        "ms": 73
+        "ms": 43
       },
       {
         "source": "Greenhouse/D2L (Brightspace)",
         "ok": true,
         "found": 0,
-        "ms": 83
+        "ms": 54
       },
       {
         "source": "Greenhouse/GitLab",
         "ok": true,
         "found": 1,
-        "ms": 227
+        "ms": 194
+      },
+      {
+        "source": "Ashby/Docplanner / Feegow",
+        "ok": true,
+        "found": 1,
+        "ms": 69
       },
       {
         "source": "Ashby/Nubank",
         "ok": true,
         "found": 11,
-        "ms": 99
+        "ms": 104
       },
       {
         "source": "Ashby/Supabase",
@@ -132,259 +138,593 @@
         "ms": 60
       },
       {
-        "source": "Ashby/Docplanner / Feegow",
-        "ok": true,
-        "found": 1,
-        "ms": 125
-      },
-      {
         "source": "Ashby/Instructure (Canvas LMS)",
-        "ok": true,
-        "found": 0,
-        "ms": 30
-      },
-      {
-        "source": "Ashby/Docebo (LMS)",
         "ok": true,
         "found": 0,
         "ms": 35
       },
       {
+        "source": "Ashby/Preply",
+        "ok": true,
+        "found": 0,
+        "ms": 68
+      },
+      {
         "source": "Ashby/Babbel",
         "ok": true,
         "found": 0,
-        "ms": 16
+        "ms": 18
+      },
+      {
+        "source": "Ashby/Docebo (LMS)",
+        "ok": true,
+        "found": 0,
+        "ms": 29
       },
       {
         "source": "Ashby/Cambly",
         "ok": true,
         "found": 0,
-        "ms": 14
-      },
-      {
-        "source": "Lever/CI&T",
-        "ok": true,
-        "found": 69,
-        "ms": 301
-      },
-      {
-        "source": "Ashby/Preply",
-        "ok": true,
-        "found": 0,
-        "ms": 157
+        "ms": 15
       },
       {
         "source": "Gupy/Rede Mater Dei de Saúde",
         "ok": true,
         "found": 0,
-        "ms": 472
-      },
-      {
-        "source": "Gupy/Localiza&Co",
-        "ok": true,
-        "found": 3,
-        "ms": 902
-      },
-      {
-        "source": "Gupy/Usiminas",
-        "ok": true,
-        "found": 0,
-        "ms": 424
-      },
-      {
-        "source": "Lever/Toptal",
-        "ok": true,
-        "found": 1,
-        "ms": 1124
-      },
-      {
-        "source": "Gupy/Algar",
-        "ok": true,
-        "found": 1,
-        "ms": 909
+        "ms": 179
       },
       {
         "source": "Gupy/Méliuz",
         "ok": true,
         "found": 1,
-        "ms": 937
+        "ms": 297
       },
       {
-        "source": "Gupy/Hospital Moinhos de Vento",
+        "source": "Gupy/Localiza&Co",
         "ok": true,
-        "found": 0,
-        "ms": 470
-      },
-      {
-        "source": "Gupy/Vidalink",
-        "ok": true,
-        "found": 0,
-        "ms": 439
-      },
-      {
-        "source": "Gupy/Memed",
-        "ok": true,
-        "found": 0,
-        "ms": 439
-      },
-      {
-        "source": "Gupy/Rede D'Or",
-        "ok": true,
-        "found": 0,
-        "ms": 739
-      },
-      {
-        "source": "Gupy/Afya",
-        "ok": true,
-        "found": 0,
-        "ms": 467
-      },
-      {
-        "source": "Gupy/YDUQS (Estácio)",
-        "ok": true,
-        "found": 0,
-        "ms": 459
-      },
-      {
-        "source": "Gupy/Cogna Educação",
-        "ok": true,
-        "found": 0,
-        "ms": 513
-      },
-      {
-        "source": "Gupy/Hapvida NotreDame Intermédica",
-        "ok": true,
-        "found": 0,
-        "ms": 1076
-      },
-      {
-        "source": "Gupy/Somos Educação",
-        "ok": true,
-        "found": 0,
-        "ms": 381
-      },
-      {
-        "source": "Gupy/Cruzeiro do Sul Educacional",
-        "ok": true,
-        "found": 0,
-        "ms": 450
-      },
-      {
-        "source": "Gupy/Bemobi",
-        "ok": true,
-        "found": 1,
-        "ms": 797
-      },
-      {
-        "source": "Gupy/Inatel",
-        "ok": true,
-        "found": 5,
-        "ms": 1216
-      },
-      {
-        "source": "Gupy/Zenvia",
-        "ok": true,
-        "found": 1,
-        "ms": 832
-      },
-      {
-        "source": "Gupy/PagBank",
-        "ok": true,
-        "found": 10,
-        "ms": 1182
-      },
-      {
-        "source": "Remotive",
-        "ok": true,
-        "found": 4,
-        "ms": 91
-      },
-      {
-        "source": "Gupy/Creditas",
-        "ok": true,
-        "found": 0,
-        "ms": 458
-      },
-      {
-        "source": "Remote OK",
-        "ok": true,
-        "found": 29,
-        "ms": 702
-      },
-      {
-        "source": "Himalayas",
-        "ok": true,
-        "found": 48,
-        "ms": 897
-      },
-      {
-        "source": "Gupy/Sicredi",
-        "ok": true,
-        "found": 6,
-        "ms": 1194
-      },
-      {
-        "source": "Gupy/Stefanini",
-        "ok": true,
-        "found": 30,
-        "ms": 2540
-      },
-      {
-        "source": "Comunidades GitHub",
-        "ok": true,
-        "found": 35,
-        "ms": 1219
-      },
-      {
-        "source": "Jobicy",
-        "ok": true,
-        "found": 20,
-        "ms": 2183
+        "found": 3,
+        "ms": 356
       },
       {
         "source": "Lever/Neon",
         "ok": true,
         "found": 1,
-        "ms": 21389
+        "ms": 580
+      },
+      {
+        "source": "Gupy/Hapvida NotreDame Intermédica",
+        "ok": true,
+        "found": 0,
+        "ms": 94
+      },
+      {
+        "source": "Gupy/Usiminas",
+        "ok": true,
+        "found": 0,
+        "ms": 192
+      },
+      {
+        "source": "Gupy/Algar",
+        "ok": true,
+        "found": 1,
+        "ms": 320
+      },
+      {
+        "source": "Gupy/Hospital Moinhos de Vento",
+        "ok": true,
+        "found": 0,
+        "ms": 146
+      },
+      {
+        "source": "Lever/Toptal",
+        "ok": true,
+        "found": 1,
+        "ms": 843
+      },
+      {
+        "source": "Gupy/Memed",
+        "ok": true,
+        "found": 0,
+        "ms": 179
+      },
+      {
+        "source": "Gupy/Afya",
+        "ok": true,
+        "found": 0,
+        "ms": 70
+      },
+      {
+        "source": "Gupy/Vidalink",
+        "ok": true,
+        "found": 0,
+        "ms": 245
+      },
+      {
+        "source": "Gupy/Rede D'Or",
+        "ok": true,
+        "found": 0,
+        "ms": 413
+      },
+      {
+        "source": "Gupy/Somos Educação",
+        "ok": true,
+        "found": 0,
+        "ms": 143
+      },
+      {
+        "source": "Gupy/Cruzeiro do Sul Educacional",
+        "ok": true,
+        "found": 0,
+        "ms": 137
+      },
+      {
+        "source": "Gupy/Cogna Educação",
+        "ok": true,
+        "found": 0,
+        "ms": 282
+      },
+      {
+        "source": "Gupy/YDUQS (Estácio)",
+        "ok": true,
+        "found": 0,
+        "ms": 297
+      },
+      {
+        "source": "Gupy/Inatel",
+        "ok": true,
+        "found": 5,
+        "ms": 218
+      },
+      {
+        "source": "Lever/CI&T",
+        "ok": true,
+        "found": 69,
+        "ms": 1215
+      },
+      {
+        "source": "Gupy/Zenvia",
+        "ok": true,
+        "found": 1,
+        "ms": 113
+      },
+      {
+        "source": "Gupy/Creditas",
+        "ok": true,
+        "found": 0,
+        "ms": 255
+      },
+      {
+        "source": "Gupy/Bemobi",
+        "ok": true,
+        "found": 1,
+        "ms": 346
+      },
+      {
+        "source": "Remotive",
+        "ok": true,
+        "found": 4,
+        "ms": 110
+      },
+      {
+        "source": "Gupy/PagBank",
+        "ok": true,
+        "found": 10,
+        "ms": 619
+      },
+      {
+        "source": "Gupy/Sicredi",
+        "ok": true,
+        "found": 6,
+        "ms": 646
+      },
+      {
+        "source": "Remote OK",
+        "ok": true,
+        "found": 28,
+        "ms": 401
+      },
+      {
+        "source": "Gupy/Stefanini",
+        "ok": true,
+        "found": 30,
+        "ms": 915
+      },
+      {
+        "source": "Himalayas",
+        "ok": true,
+        "found": 44,
+        "ms": 1160
+      },
+      {
+        "source": "Comunidades GitHub",
+        "ok": true,
+        "found": 35,
+        "ms": 1172
+      },
+      {
+        "source": "Jobicy",
+        "ok": true,
+        "found": 23,
+        "ms": 1962
       }
     ],
     "discarded": {
-      "publicada há mais de 30 dias": 140,
+      "publicada há mais de 30 dias": 145,
       "banco de talentos / candidatura genérica": 3,
       "prazo de inscrição encerrado": 1,
-      "duplicada em outra fonte": 30
+      "duplicada em outra fonte": 34
     },
-    "checked_links": 73,
-    "raw": 356,
-    "kept": 182
+    "checked_links": 66,
+    "raw": 354,
+    "kept": 171
   },
   "jobs": [
     {
       "tags": [
-        "Prod_GU2",
-        "Homeoffice"
+        "Flutter Developer",
+        "Mobile Application Developer",
+        "Software Developer",
+        "Cross Platform Mobile Developer"
       ],
-      "salary": "PJ ou CLT",
-      "expires_at": null,
-      "id": "lever-ciandt-36621179-315d-4e7a-84c2-d9d32cbb4200",
-      "title": "Senior Fullstack Developer ( Java + Angular ), Brazil",
-      "company": "CI&T",
+      "salary": "PJ Internacional / Contractor",
+      "expires_at": "2027-01-14T17:12:29.000Z",
+      "id": "himalayas-https://himalayas.app/companies/dacodes/jobs/flutter-developer-latam",
+      "title": "Flutter Developer - LATAM",
+      "company": "DaCodes",
+      "location": "🌐 Remoto — aceita Brasil (45 países, inclui Brasil)",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ Internacional / Contractor"
+      ],
+      "url": "https://himalayas.app/companies/dacodes/jobs/flutter-developer-latam?utm_source=api",
+      "publication_date": "2026-11-15T17:12:29.000Z",
+      "description": "¡Trabaja en DaCodes ! Somos una firma de expertos en software y transformación digital de alto impacto. Durante 10 años hemos creado soluciones enfocadas en la tecnología e innovación gracias a nuestro equipo de casi 300 talentosos #DaCoders, incluyendo desarrolladores, arquitectos, diseñadores UX/UI, PMs, QA testers y más. Nuestro equipo colabora en proyectos con clientes en LATAM y Estados Unidos, logrando resultados sobresalientes. En DaCodes , tendrás la oportunidad de impulsar tu desarrollo profesional, trabajar en diversos proyectos dentro de distintas industrias, y contribuir al diseño, implementación y optimización de infraestructuras en la nube. Nuestros DaCoders tienen un gran impacto en el éxito de nuestro negocio y el de nuestros clientes. Serás el experto que participará en nuestros proyectos y tendrás acceso a startups disruptivas y marcas globales. ¿Te interesa? Estamos en búsqueda de un(a) Mid-Level Flutter Developer para integrarse a nuestro equipo de desarrollo de software y participar en la creación, evolución y mantenimiento de aplicaciones móviles multiplataforma. Buscamos a una persona con experiencia sólida en Flutter y Dart , capaz de desarrollar aplicacione",
+      "source": "Himalayas",
+      "source_type": "agregador",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
+      "source_key": "Himalayas",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 0
+    },
+    {
+      "tags": [
+        "Business Analyst",
+        "Power BI Developer",
+        "Business Intelligence Developer",
+        "Reporting Analyst"
+      ],
+      "salary": "PJ Internacional / Contractor",
+      "expires_at": "2027-01-14T12:12:38.000Z",
+      "id": "himalayas-https://himalayas.app/companies/sigma-software-e561c036-16e4-4b2c-aa28-a33af9f3750b/jobs/business-analyst-power-bi-developer",
+      "title": "Business Analyst / Power BI Developer",
+      "company": "Sigma Software",
       "location": "🇧🇷 Remoto (Brasil)",
       "location_type": "remote",
       "is_compatible_location": true,
       "modalities": [
-        "PJ ou CLT"
+        "PJ Internacional / Contractor"
       ],
-      "url": "https://jobs.lever.co/ciandt/36621179-315d-4e7a-84c2-d9d32cbb4200",
-      "publication_date": "2026-11-13T17:06:35.307Z",
-      "description": "Na CI&T , ajudamos grandes empresas a transformar o potencial da AI em impacto real nos negócios com AI Deployment, execução AI-native e tech-integrated business solutions.\nCom 30 anos de experiência em transformação tecnológica, aceleramos inovação com expertise em agentic SDLC, application modernization, Data & AI, martech e business strategy. \nSomos 8.000 CI&Ters em mais de 25 países, colaborando para construir soluções com impacto real. AI já faz parte da forma como trabalhamos, evoluímos e inovamos todos os dias.\nImportante: se você reside na Região Metropolitana de Campinas, sua presença nos escritórios da cidade será obrigatória, conforme a política de frequencia vigente.\n\n\nSua missão\nAtuar no desenvolvimento e na evolução de soluções Full Stack, contribuindo para entregas de alta qualidade, alinhadas às necessidades do negócio e às expectativas do cliente. Promover boas práticas de engenharia de software, resolução assertiva de problemas e uso de ferramentas de Inteligência Artificial ao longo do ciclo de desenvolvimento, visando aumentar a produtividade e garantir a qualidade das soluções.\nPrincipais responsabilidades\nDesenvolver e manter aplicações Full Stack utilizando J",
-      "source": "Site da empresa (CI&T)",
-      "source_type": "empresa",
+      "url": "https://himalayas.app/companies/sigma-software-e561c036-16e4-4b2c-aa28-a33af9f3750b/jobs/business-analyst-power-bi-developer?utm_source=api",
+      "publication_date": "2026-11-15T12:12:38.000Z",
+      "description": "Gather, analyze, and clarify business requirements with stakeholders Design, develop, and maintain Power BI dashboards and reports Build visualizations to support operational and strategic decision-making Support User Acceptance Testing (UAT) activities Validate reporting outputs together with business users Manage and support Power BI access and administration activities Work with data sources including Snowflake Explore and leverage AI-powered tools such as Microsoft Copilot to improve analytics workflows Collaborate effectively within an Agile delivery environment Strong experience as a Business Analyst and/or Power BI Developer Hands-on expertise with Power BI dashboard and report development Experience gathering and documenting business requirements Understanding of UAT processes and stakeholder collaboration Experience working with Snowflake or similar cloud data platforms Knowledge of Power BI administration and access management Strong communication and analytical skills Ability to work independently with minimal supervision NICE TO HAVE: Experience with AI-driven analytics tools Previous experience working in Agile teams Familiarity with Jira We are looking for a proactive",
+      "source": "Himalayas",
+      "source_type": "agregador",
       "sector": "tech",
       "category": "Empresas Tech / Full Stack",
-      "source_key": "Lever/CI&T",
+      "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 0
+    },
+    {
+      "tags": [
+        "Scientific Python Developer",
+        "Life Sciences Specialist",
+        "Life Sciences Software Engineer",
+        "Bioinformatics Research Scientist"
+      ],
+      "salary": "PJ / Contractor",
+      "expires_at": "2026-12-21T19:26:50.000Z",
+      "id": "himalayas-https://himalayas.app/companies/micro1/jobs/life-sciences-research-expert-python",
+      "title": "Life Sciences Research Expert (Python)",
+      "company": "micro1",
+      "location": "🌐 Remoto — aceita Brasil (Global)",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ / Contractor"
+      ],
+      "url": "https://himalayas.app/companies/micro1/jobs/life-sciences-research-expert-python?utm_source=api",
+      "publication_date": "2026-11-15T13:00:11.000Z",
+      "description": "Role Title: Life Sciences Research Expert (Python) Pay: $60–$120/hour Location: Global, fully remote Job Type: Contractor (~15 hours per week) Schedule: Flexible—you choose the hours and days you work, including weekends if desired micro1 is seeking experienced life sciences researchers with strong, hands-on Python skills to contribute to projects focused on evaluating and improving advanced AI systems. In this role, you will apply your scientific expertise to create, solve, and review challenging research problems within biology and related fields. You will use Python to analyze scientific data, develop reproducible solutions, validate computational results, and identify errors in technical reasoning or code. Areas of Expertise We are particularly interested in candidates with expertise in one or more of the following: Medicine and biomedical science Computational biology Neuroscience Molecular and cellular biology Biotechnology and bioinformatics Genetics and genomics Ecology and evolutionary biology Biostatistics or biological data science Etc. Scope of Work Create and solve technically rigorous scientific problems within your area of expertise. Develop reproducible Python-based",
+      "source": "Himalayas",
+      "source_type": "agregador",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
+      "source_key": "Himalayas",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 0
+    },
+    {
+      "tags": [
+        "AI Application Security Engineer",
+        "AI Security Engineer",
+        "Senior Application Security Engineer",
+        "Security Engineer"
+      ],
+      "salary": "USD 15–15 / hourly",
+      "expires_at": "2026-12-13T05:58:26.000Z",
+      "id": "himalayas-https://himalayas.app/companies/rustlabs/jobs/senior-software-security-engineer-ai-training-remote-3-months",
+      "title": "Senior Software Security Engineer, AI Training (Remote, 3 months)",
+      "company": "RustLabs",
+      "location": "🌐 Remoto — aceita Brasil (12 países, inclui Brasil)",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ / Contractor"
+      ],
+      "url": "https://himalayas.app/companies/rustlabs/jobs/senior-software-security-engineer-ai-training-remote-3-months?utm_source=api",
+      "publication_date": "2026-11-15T01:19:01.000Z",
+      "description": "We're hiring senior software security engineers for a 3-month remote contract building security tasks that train and test frontier AI coding models. What you'll do Take real vulnerabilities (CVEs, security advisories, bug reports) from open-source projects and reproduce them Classify each one (CWE, OWASP Top 10) and write proof-of-vulnerability tests Build Docker-based audit-and-patch tasks in Python, JS/TS, Java, C/C++, C#, Go, Rust, Ruby, PHP, Kotlin or Swift Harden the tests so AI models can't game them, and score AI-written patches You need 5+ years of professional software engineering Expert in at least one of the languages above A strong grasp of CWE, CVE and the OWASP Top 10 Hands-on work with sanitizers, fuzzers or static analysis (CodeQL, Semgrep) Git, Linux, Bash and Docker Clear technical writing in English 40 hours a week, with 4 hours overlapping US Pacific time Pay and length $15 per hour Fully remote contract, 3 months, starts next week How to apply Click Apply and fill in our 2-minute form. A short interest form, an AI interview, then a technical interview. Experienced leads (6+ years, has run a small team) can apply through the same link and say so. Originally post",
+      "source": "Himalayas",
+      "source_type": "agregador",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
+      "source_key": "Himalayas",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 0
+    },
+    {
+      "tags": [
+        "LATAM Software Engineer",
+        "Remote Mid Level Software Engineer",
+        "Software Engineer"
+      ],
+      "salary": "PJ / Contractor",
+      "expires_at": "2026-12-13T05:57:46.000Z",
+      "id": "himalayas-https://himalayas.app/companies/rustlabs/jobs/remote-software-engineer-ai-code-review-latam-contract",
+      "title": "Remote Software Engineer, AI Code Review (LATAM, contract)",
+      "company": "RustLabs",
+      "location": "🌐 Remoto — aceita Brasil (5 países, inclui Brasil)",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ / Contractor"
+      ],
+      "url": "https://himalayas.app/companies/rustlabs/jobs/remote-software-engineer-ai-code-review-latam-contract?utm_source=api",
+      "publication_date": "2026-11-15T01:19:00.000Z",
+      "description": "We're hiring experienced software engineers in Argentina, Brazil, Chile, Colombia and Peru for a remote contract evaluating AI coding models for frontier AI labs. What you'll do Set up real open-source repositories (Git, Docker) and get them running Triage real GitHub issues and check test coverage and quality Run and modify code to see how well AI models fix bugs Help pick repositories and issues that are hard for AI You need 3+ years of professional software engineering Strong Python, JavaScript/TypeScript, Java, Go, Rust, C# or C++ Comfort with Git, Docker and running real projects locally Good written English Full time (40 hours a week), with 4 hours overlapping US Pacific time To live in Argentina, Brazil, Chile, Colombia or Peru Pay and length USD 25 per approved task (a task takes about 45 to 60 minutes) Fully remote contract, starts next week, 2 to 4 weeks with more likely How to apply Click Apply and fill in our 2-minute form. Then a short interest form and an assessment of about 75 minutes. Originally posted on Himalayas",
+      "source": "Himalayas",
+      "source_type": "agregador",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
+      "source_key": "Himalayas",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 0
+    },
+    {
+      "tags": [
+        "DevOps Engineer",
+        "Cloud Engineer",
+        "Site Reliability Engineer",
+        "Infrastructure Engineer"
+      ],
+      "salary": "PJ Internacional / Contractor",
+      "expires_at": "2027-01-14T16:57:27.000Z",
+      "id": "himalayas-https://himalayas.app/companies/dacodes/jobs/devops-engineer-aws-latam",
+      "title": "DevOps Engineer (AWS) - LATAM",
+      "company": "DaCodes",
+      "location": "🌐 Remoto — aceita Brasil (45 países, inclui Brasil)",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ Internacional / Contractor"
+      ],
+      "url": "https://himalayas.app/companies/dacodes/jobs/devops-engineer-aws-latam?utm_source=api",
+      "publication_date": "2026-11-15T16:57:27.000Z",
+      "description": "Mid-Level DevOps Engineer (AWS) – LATAM Descripción ¡Trabaja en DaCodes ! Somos una firma de expertos en software y transformación digital de alto impacto. Durante 10 años hemos creado soluciones enfocadas en la tecnología e innovación gracias a nuestro equipo de casi 300 talentosos #DaCoders, incluyendo desarrolladores, arquitectos, diseñadores UX/UI, PMs, QA testers y más. Nuestro equipo colabora en proyectos con clientes en LATAM y Estados Unidos, logrando resultados sobresalientes. En DaCodes , tendrás la oportunidad de impulsar tu desarrollo profesional, trabajar en diversos proyectos dentro de distintas industrias, y contribuir al diseño, implementación y optimización de infraestructuras en la nube. Nuestros DaCoders tienen un gran impacto en el éxito de nuestro negocio y el de nuestros clientes. Serás el experto que participará en nuestros proyectos y tendrás acceso a startups disruptivas y marcas globales. ¿Te interesa? Estamos en búsqueda de un(a) Mid-Level DevOps Engineer con experiencia en AWS para integrarse a nuestro equipo de tecnología y participar en la administración, automatización, despliegue y optimización de infraestructura cloud. Buscamos a una persona con exp",
+      "source": "Himalayas",
+      "source_type": "agregador",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
+      "source_key": "Himalayas",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 0
+    },
+    {
+      "tags": [
+        "Software Engineering"
+      ],
+      "salary": "PJ Internacional / Contractor",
+      "expires_at": null,
+      "id": "jobicy-162438",
+      "title": "Senior Backend Engineer (f/m/x)",
+      "company": "CarOnSale",
+      "location": "🇧🇷 Remoto (Brasil)",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ Internacional / Contractor"
+      ],
+      "url": "https://jobicy.com/jobs/162438-senior-backend-engineer-f-m-x",
+      "publication_date": "2026-11-15T13:19:35+00:00",
+      "description": "You don't want another agency contract where someone else owns the architecture and you own the tickets. Here you pick the technology, design the architecture, and set the standards the backend runs on. 40,000 buyers. 20+ countries. 130,000 vehicles sold a year through one auction backend, and you decide how it scales. Location: Remote from anywhere in Brazil, freelance contract. Your day starts at 7:00 local time to overlap with the European engineering team. About us CarOnSale is the AI-powered platform for B2B used car trading in Europe. Over 40,000 buyers from more than 20 countries trade on our platform, and 85% of inventory is exclusive to us. We connect software, pricing intelligence, logistics and financing in one layer, as the operating system for an entire industry. One Platform. One Profit Engine. What you own You own backend development end to end: technology selection, architecture design, and implementation of the features that carry platform performance and scale You build AI-first. Coding agents, LLMs and AI-assisted development are part of the daily workflow here, not a pilot project You set the standards: code quality benchmarks, development practices, and CI/CD p",
+      "source": "Jobicy",
+      "source_type": "agregador",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
+      "source_key": "Jobicy",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 0
+    },
+    {
+      "tags": [
+        "Software Engineering"
+      ],
+      "salary": "PJ Internacional / Contractor",
+      "expires_at": null,
+      "id": "jobicy-162432",
+      "title": "Sr. Software Engineer - PAT Assist",
+      "company": "Qventus",
+      "location": "🌐 Remoto internacional (LATAM) — sem visto",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ Internacional / Contractor"
+      ],
+      "url": "https://jobicy.com/jobs/162432-sr-software-engineer-pat-assist",
+      "publication_date": "2026-11-15T13:19:14+00:00",
+      "description": "On this journey for over 12 years, Qventus is leading the transformation of healthcare. We enable hospitals to focus on what matters most: patient care. Our innovative solutions harness the power of machine learning, generative AI, and behavioral science to deliver exceptional outcomes and empower care teams to anticipate and resolve issues before they arise. Our success in rapid scale across the globe is backed by some of the world's leading investors. At Qventus, you will have the opportunity to work with an exceptional, mission-driven team across the globe, and the ability to directly impact the lives of patients. We’re inspired to work with healthcare leaders on our founding vision and unlock world-class medicine through world-class operations. #LI-MB1 About the Role We’re looking for an experienced Senior Software Engineer to join our PAT Assist team. Help shape our Perioperative Care Coordination solution that uses assistants to automate and streamline pre-admission testing workflows (PAT) for hospital staff. It's designed to reduce the administrative burden on nurses and other healthcare workers so they can focus on patient care. Build scalable, intelligent systems that enha",
+      "source": "Jobicy",
+      "source_type": "agregador",
+      "sector": "saude",
+      "category": "Hospitais & Clínicas (Saúde)",
+      "source_key": "Jobicy",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 0
+    },
+    {
+      "tags": [
+        "Software Engineering"
+      ],
+      "salary": "PJ Internacional / Contractor",
+      "expires_at": null,
+      "id": "jobicy-162431",
+      "title": "Senior Software Engineer (Full Stack | Node.js & React | AI Focus)",
+      "company": "Oowlish Technology",
+      "location": "🇧🇷 Remoto (Brasil)",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ Internacional / Contractor"
+      ],
+      "url": "https://jobicy.com/jobs/162431-senior-software-engineer-full-stack-node-js-react-ai-focus-2",
+      "publication_date": "2026-11-15T13:19:13+00:00",
+      "description": "Join Our Team Oowlish, one of Latin America's rapidly expanding software development companies, is seeking experienced technology professionals to enhance our diverse and vibrant team. As a valued member of Oowlish, you will collaborate with premier clients from the United States and Europe, contributing to pioneering digital solutions. Our commitment to creating a nurturing work environment is recognized by our certification as a Great Place to Work, where you will have opportunities for professional development, growth, and a chance to make a significant international impact. We offer the convenience of remote work, allowing you to craft a work-life balance that suits your personal and professional needs. We're looking for candidates who are passionate about technology, proficient in English, and excited to engage in remote collaboration for a worldwide presence. About the Role We are looking for a Senior Software Engineer to join a product-focused engineering team building impactful solutions in the mental healthcare space. This is a hands-on role where you will contribute directly to the development of a modern platform, working across the full stack and collaborating closely w",
+      "source": "Jobicy",
+      "source_type": "agregador",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
+      "source_key": "Jobicy",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 0
+    },
+    {
+      "tags": [
+        "Software Engineering"
+      ],
+      "salary": "PJ Internacional / Contractor",
+      "expires_at": null,
+      "id": "jobicy-162430",
+      "title": "Salesforce Developer (f/m/x)",
+      "company": "CarOnSale",
+      "location": "🇧🇷 Remoto (Brasil)",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ Internacional / Contractor"
+      ],
+      "url": "https://jobicy.com/jobs/162430-salesforce-developer-f-m-x",
+      "publication_date": "2026-11-15T13:19:11+00:00",
+      "description": "40,000 buyers. 20+ countries. One Salesforce org carrying all of it. You own the two-way sync between Salesforce and our core platform, plus the migration off Aura and Visualforce that has been waiting for someone senior enough to do it properly. Location: Remote from anywhere in Brazil, on a freelance contract. Your day starts at 7:00 AM Brazil time (12:00 CET) for overlap with the European team. About us CarOnSale is the AI-powered platform for B2B used car trading in Europe. Over 40,000 buyers from more than 20 countries trade on our platform — and 85% of inventory is exclusive to us. We connect software, pricing intelligence, logistics and financing in one layer — as the operating system for an entire industry. One Platform. One Profit Engine. Your responsibilities You own the two-way synchronisation service between Salesforce and our core platform You build new features from scratch and continuously improve the existing codebase, hands-on coding rather than configuration You translate business and user requirements into scalable Salesforce solutions, working with a distributed engineering team You take on underutilised platform features and cut technical debt You identify and ",
+      "source": "Jobicy",
+      "source_type": "agregador",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
+      "source_key": "Jobicy",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 0
+    },
+    {
+      "tags": [
+        "Software Engineering"
+      ],
+      "salary": "PJ Internacional / Contractor",
+      "expires_at": null,
+      "id": "jobicy-155385",
+      "title": "AI Platform Engineer",
+      "company": "Supabase",
+      "location": "🌐 Remoto internacional (Anywhere) — sem visto",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ Internacional / Contractor"
+      ],
+      "url": "https://jobicy.com/jobs/155385-ai-platform-engineer",
+      "publication_date": "2026-11-15T03:45:11+00:00",
+      "description": "About Supabase Supabase is the Postgres development platform, built by developers for developers. We provide a complete backend solution including Database, Auth, Storage, Edge Functions, Realtime, and Vector Search. All services are deeply integrated and designed for growth. About the Role We are hiring a AI Platform Engineer to build the execution layer for Supabase's internal AI systems. Supabase is building an AI-native internal operating system: a common way of working across the company where AI carries a meaningful share of the operational load rather than sitting alongside it as an assistant. We are standing up a new central team to build those systems, enable the teams, and embed AI operations throughout the organization. You are the engineer on that team. The execution layer is yours. You will build the platform that actually runs agents: an event-triggered queue, a headless model-agnostic runtime, durable state so work survives a restart, a human review gate, atomic rollback, and full logging of every prompt, tool call and decision so any run can be reconstructed. You will build the evaluation layer that makes any of it trustworthy, because an agent that cannot be measur",
+      "source": "Jobicy",
+      "source_type": "agregador",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
+      "source_key": "Jobicy",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 0
+    },
+    {
+      "tags": [
+        "DevOps & Infrastructure"
+      ],
+      "salary": "PJ Internacional / Contractor",
+      "expires_at": null,
+      "id": "jobicy-155391",
+      "title": "Site Reliability Engineer",
+      "company": "Supabase",
+      "location": "🌐 Remoto internacional (Anywhere) — sem visto",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ Internacional / Contractor"
+      ],
+      "url": "https://jobicy.com/jobs/155391-site-reliability-engineer-4",
+      "publication_date": "2026-11-15T03:45:14+00:00",
+      "description": "About Supabase Supabase is the Postgres development platform, built by developers for developers. We provide a complete backend solution including Database, Auth, Storage, Edge Functions, Realtime, and Vector Search. All services are deeply integrated and designed for growth. About the Role Supabase manages millions of Postgres instances and is growing. We have strong teams across observability, release engineering, and incident management — and we're concentrating our reliability efforts into a dedicated SRE practice that ties the discipline together across the platform. You'll be embedded within Service Operations, and your primary job is to make every engineering team more reliable — not by owning their infrastructure, but by establishing the practices, frameworks, and feedback loops that let them own reliability themselves. You'll work across the org: sometimes setting the standard, sometimes pair-programming a fix, sometimes helping a team define their error budget, sometimes telling them it's exhausted. This role is ideal for someone who has a strong vision for how SRE should work and thrives in async, fast-paced environments where influence matters more than authority. What ",
+      "source": "Jobicy",
+      "source_type": "agregador",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
+      "source_key": "Jobicy",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 0
+    },
+    {
+      "tags": [
+        "DevOps & Infrastructure"
+      ],
+      "salary": "PJ Internacional / Contractor",
+      "expires_at": null,
+      "id": "jobicy-155389",
+      "title": "Platform Engineer, Managed Postgres",
+      "company": "Supabase",
+      "location": "🌐 Remoto internacional (Anywhere) — sem visto",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ Internacional / Contractor"
+      ],
+      "url": "https://jobicy.com/jobs/155389-platform-engineer-managed-postgres",
+      "publication_date": "2026-11-15T03:45:12+00:00",
+      "description": "About Supabase Supabase is the Postgres development platform, built by developers for developers. We provide a complete backend solution including Database, Auth, Storage, Edge Functions, Realtime, and Vector Search. All services are deeply integrated and designed for growth. About the Role We are seeking a Platform Software Engineer with deep experience in distributed systems to help design, build, and maintain core platform services. You will work primarily in TypeScript and Go to deliver reliable, scalable, and secure systems that power Supabase at massive scale. What you'll be doing: Design and implement distributed services and APIs that power the Supabase Platform. Lead projects that improve scalability, reliability, and cost efficiency across existing systems. Build data-intensive workflows, background jobs, and event-driven pipelines. Own service SLIs/SLOs and collaborate on incident response and post-incident reviews. Improve system observability with metrics, logging, tracing, and profiling. Contribute to our CI/CD and release processes to ship safely and quickly. Partner with product teams to deliver features end-to-end, from design docs to production. Write clear design",
+      "source": "Jobicy",
+      "source_type": "agregador",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
+      "source_key": "Jobicy",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
       "days_ago": 0
     },
     {
@@ -412,8 +752,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -440,8 +780,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -468,8 +808,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -496,8 +836,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -524,8 +864,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -552,8 +892,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -580,8 +920,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -608,8 +948,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -637,8 +977,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Ashby/Nubank",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -664,8 +1004,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Localiza&Co",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -694,8 +1034,8 @@
       "category": "EdTechs & Educação",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -723,8 +1063,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -753,8 +1093,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -783,8 +1123,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -813,8 +1153,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -823,7 +1163,7 @@
         "Backend Engineer",
         "Frontend Engineer"
       ],
-      "salary": "USD 50–100 / hourly",
+      "salary": "PJ / Contractor",
       "expires_at": "2027-01-13T03:29:24.000Z",
       "id": "himalayas-https://himalayas.app/companies/xperteez-technology/jobs/sr-full-stack-software-engineer-remote-6677362412",
       "title": "Sr. Full-Stack Software Engineer, Remote",
@@ -843,8 +1183,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -873,98 +1213,38 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
-        "Java Developer",
-        "Java Software Engineer",
+        "Software Engineer",
+        "Full Stack Engineer",
         "Backend Engineer",
-        "Full Stack Developer"
-      ],
-      "salary": "PJ / Contractor",
-      "expires_at": "2027-01-13T03:18:15.000Z",
-      "id": "himalayas-https://himalayas.app/companies/seja-globalweb/jobs/desenvolvedor-java-sr",
-      "title": "DESENVOLVEDOR JAVA SR",
-      "company": "Seja Globalweb",
-      "location": "🇧🇷 Remoto (Brasil)",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ / Contractor"
-      ],
-      "url": "https://himalayas.app/companies/seja-globalweb/jobs/desenvolvedor-java-sr?utm_source=api",
-      "publication_date": "2026-11-14T03:18:15.000Z",
-      "description": "Nosso time é formado por excelentes profissionais da área da tecnologia. Colaboração e comprometimento fazem parte do nosso dia a dia, quando desenvolvemos novas funcionalidades, construindo um produto robusto e escalável. Fazendo parte de nossa equipe, seu trabalho irá impactar em milhares de usuários que utilizam nossa solução diariamente. Participar das cerimônias do SCRUM entre outras agendas solicitadas pelo cliente ou pelo Scrum Master;Codificar, elaborar design de componentes, realizar testes unitários, construir aplicações, implementar e manter software de alta qualidade por meio da aplicação de técnicas, normas e procedimentos atualizados de codificação e construção de software.Escrever códigos de alta qualidade que implementem as funcionalidades de uma solução digital que atendem as necessidades das partes interessadas, assegurando otimização de recursos computacionais, segurança e desempenho. Elaborar e manter o modelo e o projeto de dados. Conhecimentos técnicos Desenvolvimento confiável - desenvolvimento que segue as definições e boas práticas de segurança e as premissas de privacidade e proteção de dados UML – Unified Model Language Elaborar modelo lógico e físico de ",
-      "source": "Himalayas",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Himalayas",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
-    },
-    {
-      "tags": [
-        "Senior Salesforce Engineer",
-        "Salesforce Engineer",
-        "Salesforce Developer",
-        "Software Engineer"
+        "Frontend Engineer"
       ],
       "salary": "PJ Internacional / Contractor",
-      "expires_at": "2027-01-13T00:23:31.000Z",
-      "id": "himalayas-https://himalayas.app/companies/wellhub/jobs/senior-salesforce-engineer-resellers-team",
-      "title": "Senior Salesforce Engineer | Resellers Team",
-      "company": "Wellhub",
-      "location": "🇧🇷 Remoto (Brasil)",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://himalayas.app/companies/wellhub/jobs/senior-salesforce-engineer-resellers-team?utm_source=api",
-      "publication_date": "2026-11-14T00:23:31.000Z",
-      "description": "Your wellbeing, our mission. Join a company shaping a healthier world. GET TO KNOW US At Wellhub we're revolutionizing workplace wellness. Our platform connects employees worldwide to the best partners for fitness, mindfulness, therapy, nutrition, and sleep—all in one simple subscription. Headquartered in NYC with team members in Europe, North America and South America, we’re on a mission to make every company a wellness company. We believe work should be fulfilling, inspiring, and balanced. Here, you’ll find a team that values wellbeing, collaboration, and different perspectives, where passion and creativity push boundaries to create real impact. Your contributions will help shape a healthier, more balanced world for you and millions of people globally. Join us in redefining the future of wellbeing! THE OPPORTUNITY We are hiring a Senior Salesforce Engineerin our Resellers Team in Brazil! This is a Remote – Brazil position, meaning you can work from anywhere within the country. Please note that this role is only open to candidates in Brazil. As a Senior Salesforce Software Engineer, you will be responsible for analyzing and developing high-quality, scalable solutions tailored to o",
-      "source": "Himalayas",
-      "source_type": "agregador",
-      "sector": "saude",
-      "category": "Hospitais & Clínicas (Saúde)",
-      "source_key": "Himalayas",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
-    },
-    {
-      "tags": [
-        "BPM Developer",
-        "Business Process Management Developer",
-        "Workflow Developer",
-        "Enterprise Application Developer"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": "2027-01-12T23:35:42.000Z",
-      "id": "himalayas-https://himalayas.app/companies/oowlish-technology/jobs/senior-ibm-bpm-developer",
-      "title": "Senior IBM BPM Developer",
-      "company": "Oowlish Technology",
+      "expires_at": "2027-01-13T16:53:34.000Z",
+      "id": "himalayas-https://himalayas.app/companies/motorola-solutions/jobs/sr-staff-full-stack-software-engineer-go-javascript-postgresql-docker",
+      "title": "Sr. Staff Full-Stack Software Engineer – Go | JavaScript | PostgreSQL | Docker",
+      "company": "Motorola Solutions",
       "location": "🌐 Remoto — aceita Brasil (Argentina, Brazil)",
       "location_type": "remote",
       "is_compatible_location": true,
       "modalities": [
         "PJ Internacional / Contractor"
       ],
-      "url": "https://himalayas.app/companies/oowlish-technology/jobs/senior-ibm-bpm-developer?utm_source=api",
-      "publication_date": "2026-11-13T23:35:42.000Z",
-      "description": "Join Our Team Oowlish, one of Latin America's rapidly expanding software development companies, is seeking experienced technology professionals to enhance our diverse and vibrant team. As a valued member of Oowlish, you will collaborate with premier clients from the United States and Europe, contributing to pioneering digital solutions. Our commitment to creating a nurturing work environment is recognized by our certification as a Great Place to Work, where you will have opportunities for professional development, growth, and a chance to make a significant international impact. We offer the convenience of remote work, allowing you to craft a work-life balance that suits your personal and professional needs. We're looking for candidates who are passionate about technology, proficient in English, and excited to engage in remote collaboration for a worldwide presence. About the Role: We are looking for an experienced Senior IBM BPM Developer to design, develop, enhance, and maintain enterprise business process management applications. This position focuses on building reliable and scalable workflow solutions using IBM Business Process Manager (IBM BPM), integrating business processes ",
+      "url": "https://himalayas.app/companies/motorola-solutions/jobs/sr-staff-full-stack-software-engineer-go-javascript-postgresql-docker?utm_source=api",
+      "publication_date": "2026-11-14T16:53:35.000Z",
+      "description": "Company Overview At Motorola Solutions , we believe that everything starts with our people. We’re a global close-knit community, united by the relentless pursuit to help keep people safer everywhere. We build and connect technologies to help protect people, property and places. Our solutions foster the collaboration that’s critical for safer communities, safer schools, safer hospitals, safer businesses, and ultimately, safer nations. Connect with a career that matters, and help us build a safer future. Department Overview The International Services Solutions Enablement Team (ISSET) at Motorola Solutions creates software applications that delight our customers by enabling improved system integration and facilitating the analysis, reporting, and management of mission-critical Land Mobile Radio (LMR) and PCR communications networks. When seconds count, our software enables mission-critical organizations—such as Public Safety entities—to manage and optimize their processes and network information, contributing to operational excellence and efficiency in their 24/7 network operations centers. Job Description ISSET is seeking a Senior Staff Software Engineer to join our team in a Full-St",
       "source": "Himalayas",
       "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
+      "sector": "saude",
+      "category": "Hospitais & Clínicas (Saúde)",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -992,8 +1272,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -1021,8 +1301,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -1049,8 +1329,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -1079,8 +1359,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -1109,37 +1389,38 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
-        "Software Development Manager",
-        "Software Engineering Manager",
-        "Engineering Manager"
+        "Principal Platform Engineer",
+        "Platform Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer"
       ],
       "salary": "PJ Internacional / Contractor",
-      "expires_at": "2027-01-13T04:18:08.000Z",
-      "id": "himalayas-https://himalayas.app/companies/wex/jobs/manager-software-engineer",
-      "title": "Manager, Software Engineer",
-      "company": "wex",
+      "expires_at": "2027-01-13T17:00:03.000Z",
+      "id": "himalayas-https://himalayas.app/companies/description-ciklum/jobs/principal-platform-engineer",
+      "title": "Principal Platform Engineer",
+      "company": "Description Ciklum",
       "location": "🇧🇷 Remoto (Brasil)",
       "location_type": "remote",
       "is_compatible_location": true,
       "modalities": [
         "PJ Internacional / Contractor"
       ],
-      "url": "https://himalayas.app/companies/wex/jobs/manager-software-engineer?utm_source=api",
-      "publication_date": "2026-11-14T04:18:08.000Z",
-      "description": "Software Development Manager III, Benefits Engineering At WEX, we simplify the business of running a business. Our WEX Health & Benefits solutions reduce complexity and help manage costs of benefits administration for our clients and partners. We are looking for passionate technologists, collaborators, and problem solvers to join our Health & Benefits Technology team as we build the next generation of employer benefits solutions and services. As a Software Engineering Manager on the WEX Health & Benefits Technology team, you will lead a team that partners closely with Product Managers and customers to learn about the challenges employers face while navigating the competitive employee benefits landscape. You will become a domain expert, designing solutions that solve problems in ways our customers love and work for our business. You will lead teams who build the highest quality software in the latest technologies and test driven development practices. Responsibilities: Lead, mentor, and manage your team through the successful delivery of valuable customer software. Stay current with emerging technologies and industry trends to drive innovation and strengthen TDD and BDD processes. C",
+      "url": "https://himalayas.app/companies/description-ciklum/jobs/principal-platform-engineer?utm_source=api",
+      "publication_date": "2026-11-14T17:00:04.000Z",
+      "description": "Ciklum is looking for a Principal Platform Engineer to join our team in Brazil. We are a custom product engineering company that supports both multinational organizations and scaling startups to solve their most complex business challenges. With a global team of over 4,000 highly skilled developers, consultants, analysts and product owners, we engineer technology that redefines industries and shapes the way people live. About the role: As a Principal Platform Engineer, you'll become a part of a cross-functional development team engineering experience of tomorrow. The company builds software for commercial real estate. This isn't general cloud engineering, you will actually built agentic-platform infrastructure before, not just traditional cloud architecture. Responsibilities: Own platform and cloud architecture Define and evolve platform architecture across AWS, including networking, compute, storage, and environment strategy Drive cloud modernization initiatives (migration, re-platforming, standardization of deployment patterns, scalability and resilience improvements) Create reference architectures and guardrails that enable autonomy while improving consistency and operational qu",
       "source": "Himalayas",
       "source_type": "agregador",
-      "sector": "saude",
-      "category": "Hospitais & Clínicas (Saúde)",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -1168,8 +1449,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -1195,8 +1476,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Jobicy",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
     },
     {
       "tags": [
@@ -1222,8 +1503,36 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Jobicy",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 0
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 1
+    },
+    {
+      "tags": [
+        "Prod_GU2",
+        "Homeoffice"
+      ],
+      "salary": "PJ ou CLT",
+      "expires_at": null,
+      "id": "lever-ciandt-36621179-315d-4e7a-84c2-d9d32cbb4200",
+      "title": "Senior Fullstack Developer ( Java + Angular ), Brazil",
+      "company": "CI&T",
+      "location": "🇧🇷 Remoto (Brasil)",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ ou CLT"
+      ],
+      "url": "https://jobs.lever.co/ciandt/36621179-315d-4e7a-84c2-d9d32cbb4200",
+      "publication_date": "2026-11-13T17:06:35.307Z",
+      "description": "Na CI&T , ajudamos grandes empresas a transformar o potencial da AI em impacto real nos negócios com AI Deployment, execução AI-native e tech-integrated business solutions.\nCom 30 anos de experiência em transformação tecnológica, aceleramos inovação com expertise em agentic SDLC, application modernization, Data & AI, martech e business strategy. \nSomos 8.000 CI&Ters em mais de 25 países, colaborando para construir soluções com impacto real. AI já faz parte da forma como trabalhamos, evoluímos e inovamos todos os dias.\nImportante: se você reside na Região Metropolitana de Campinas, sua presença nos escritórios da cidade será obrigatória, conforme a política de frequencia vigente.\n\n\nSua missão\nAtuar no desenvolvimento e na evolução de soluções Full Stack, contribuindo para entregas de alta qualidade, alinhadas às necessidades do negócio e às expectativas do cliente. Promover boas práticas de engenharia de software, resolução assertiva de problemas e uso de ferramentas de Inteligência Artificial ao longo do ciclo de desenvolvimento, visando aumentar a produtividade e garantir a qualidade das soluções.\nPrincipais responsabilidades\nDesenvolver e manter aplicações Full Stack utilizando J",
+      "source": "Site da empresa (CI&T)",
+      "source_type": "empresa",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
+      "source_key": "Lever/CI&T",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 2
     },
     {
       "tags": [
@@ -1250,8 +1559,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 2
     },
     {
       "tags": [
@@ -1278,8 +1587,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 2
     },
     {
       "tags": [
@@ -1308,8 +1617,8 @@
       "category": "Hospitais & Clínicas (Saúde)",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 2
     },
     {
       "tags": [
@@ -1338,8 +1647,8 @@
       "category": "EdTechs & Educação",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 2
     },
     {
       "tags": [
@@ -1368,8 +1677,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 2
     },
     {
       "tags": [
@@ -1398,8 +1707,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 2
     },
     {
       "tags": [
@@ -1428,8 +1737,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 2
     },
     {
       "tags": [
@@ -1458,8 +1767,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 2
     },
     {
       "tags": [
@@ -1488,38 +1797,8 @@
       "category": "Hospitais & Clínicas (Saúde)",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
-    },
-    {
-      "tags": [
-        "Software Engineer",
-        "DevOps Engineer",
-        "Cloud Engineer",
-        "Infrastructure Engineer"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": "2027-01-11T17:13:22.000Z",
-      "id": "himalayas-https://himalayas.app/companies/jobsity/jobs/senior-software-engineer",
-      "title": "Senior Software Engineer",
-      "company": "Jobsity",
-      "location": "🌐 Remoto — aceita Brasil (Argentina, Brazil, Colombia, Mexico)",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://himalayas.app/companies/jobsity/jobs/senior-software-engineer?utm_source=api",
-      "publication_date": "2026-11-12T17:13:23.000Z",
-      "description": "Who We Are At Jobsity , we believe great talent should not be limited by geography. Jobsity is a nearshore staffing partner that connects leading U.S. companies with top talent in Latin America for software engineering, contact center operations, and BPO services. Our footprint spans over 20 countries across the Americas, and we deliver fully integrated, enterprise-ready teams. From scaling specialized tech infrastructure to delivering bilingual front-line customer service, Jobsity provides an all-in-one staffing solution including recruitment, onboarding, payroll, compliance, and more. Why Work With Jobsity We match standout professionals across Latin America with high-impact opportunities at leading U.S. companies. Joining Jobsity is about finding a rewarding remote role and working with innovative teams. It also means you get to become part of a community that values your experience, supports your ambition, and invests in your ongoing professional growth. Whether you are looking for your next challenge, seeking greater flexibility, or ready to elevate your career, Jobsity gives you the platform and partnership to thrive on your terms. Job Description We are looking for a Senior ",
-      "source": "Himalayas",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Himalayas",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 2
     },
     {
       "tags": [
@@ -1545,35 +1824,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Jobicy",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
-    },
-    {
-      "tags": [
-        "DevOps & Infrastructure"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": null,
-      "id": "jobicy-161770",
-      "title": "Senior Site Reliability Engineer (SRE) | Feeld",
-      "company": "GT",
-      "location": "🇧🇷 Remoto (Brasil)",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://jobicy.com/jobs/161770-senior-site-reliability-engineer-sre-feeld-2",
-      "publication_date": "2026-11-13T08:41:18+00:00",
-      "description": "GT was founded in 2019 by a former Apple, Nest, and Google executive. GT’s mission is to connect the world’s best talent with product careers offered by high-growth companies in the UK, USA, Canada, Germany, and the Netherlands. On behalf of Feeld , GT is looking for a Senior Site Reliability Engineer (SRE) to join a fast-growing consumer mobile product in the online dating space. About the Client Founded in 2014 as a dating app, Feeld gathered millions of users in one place to create a safer and more inclusive space online for everyone open to experiencing people and relationships in a new way. Their mission is to elevate the human experience of sexuality and relationships and create a world where everyone is more intimately connected to each other and themselves. About the Project You'll join a consumer mobile product with an engineering and product organization of around 50 people distributed across Europe, the US, and LATAM. The engineering organization works in small, autonomous product squads supported by a Platform Team responsible for the underlying infrastructure, reliability, and shared engineering capabilities. Because the team operates across multiple regions without a ",
-      "source": "Jobicy",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Jobicy",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 2
     },
     {
       "tags": [
@@ -1581,8 +1833,8 @@
       ],
       "salary": "PJ Internacional / Contractor",
       "expires_at": null,
-      "id": "jobicy-155233",
-      "title": "Senior Software Engineer (Full Stack | Node.js & React | AI Focus)",
+      "id": "jobicy-161937",
+      "title": "Senior IBM BPM Developer",
       "company": "Oowlish Technology",
       "location": "🇧🇷 Remoto (Brasil)",
       "location_type": "remote",
@@ -1590,287 +1842,17 @@
       "modalities": [
         "PJ Internacional / Contractor"
       ],
-      "url": "https://jobicy.com/jobs/155233-senior-software-engineer-full-stack-node-js-react-ai-focus",
-      "publication_date": "2026-11-13T03:20:29+00:00",
-      "description": "Join Our Team Oowlish, one of Latin America's rapidly expanding software development companies, is seeking experienced technology professionals to enhance our diverse and vibrant team. As a valued member of Oowlish, you will collaborate with premier clients from the United States and Europe, contributing to pioneering digital solutions. Our commitment to creating a nurturing work environment is recognized by our certification as a Great Place to Work, where you will have opportunities for professional development, growth, and a chance to make a significant international impact. We offer the convenience of remote work, allowing you to craft a work-life balance that suits your personal and professional needs. We're looking for candidates who are passionate about technology, proficient in English, and excited to engage in remote collaboration for a worldwide presence. About the Role We are looking for a Senior Software Engineer to join a product-focused engineering team building impactful solutions in the mental healthcare space. This is a hands-on role where you will contribute directly to the development of a modern platform, working across the full stack and collaborating closely w",
+      "url": "https://jobicy.com/jobs/161937-senior-ibm-bpm-developer",
+      "publication_date": "2026-11-13T14:55:31+00:00",
+      "description": "Join Our Team Oowlish, one of Latin America's rapidly expanding software development companies, is seeking experienced technology professionals to enhance our diverse and vibrant team. As a valued member of Oowlish, you will collaborate with premier clients from the United States and Europe, contributing to pioneering digital solutions. Our commitment to creating a nurturing work environment is recognized by our certification as a Great Place to Work, where you will have opportunities for professional development, growth, and a chance to make a significant international impact. We offer the convenience of remote work, allowing you to craft a work-life balance that suits your personal and professional needs. We're looking for candidates who are passionate about technology, proficient in English, and excited to engage in remote collaboration for a worldwide presence. About the Role: We are looking for an experienced Senior IBM BPM Developer to design, develop, enhance, and maintain enterprise business process management applications. This position focuses on building reliable and scalable workflow solutions using IBM Business Process Manager (IBM BPM), integrating business processes ",
       "source": "Jobicy",
       "source_type": "agregador",
       "sector": "tech",
       "category": "Empresas Tech / Full Stack",
       "source_key": "Jobicy",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
-    },
-    {
-      "tags": [
-        "Software Engineering"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": null,
-      "id": "jobicy-155231",
-      "title": "Full Stack Web Engineer",
-      "company": "Fueled",
-      "location": "🌐 Remoto internacional (LATAM) — sem visto",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://jobicy.com/jobs/155231-full-stack-web-engineer",
-      "publication_date": "2026-11-13T03:20:18+00:00",
-      "description": "Location: Remote – Latin America (Open to applicants located anywhere in the LATAM region) Fueled is a leading digital strategy, design, and engineering agency. We are a 300+ person team that has designed and built hundreds of digital products and experiences for brands like Google, Apple, The New York Times, ESPN, Victoria's Secret, MGM Resorts, Albertsons, and CLEAR. As a Full Stack Web Engineer at Fueled, your mission is to turn well-defined tickets and user stories into clean, production-ready code that powers large-scale digital experiences. Working within enterprise WordPress engagements, you'll build and deliver features end-to-end, from the frontend experience to modern PHP, JavaScript, and Gutenberg blocks in React.js. You'll bring designs and requirements to life within themes and plugins, moving quickly and confidently by pairing your own craft with AI-assisted workflows, thorough documentation, and the support of senior engineers who review and elevate your work. This is a role for engineers who love the craft: you write code you're proud of, you welcome sharp code review, and you treat AI tools as a force multiplier, not a substitute for understanding. You should be co",
-      "source": "Jobicy",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Jobicy",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
-    },
-    {
-      "tags": [
-        "Software Engineering"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": null,
-      "id": "jobicy-155186",
-      "title": "Senior Software Engineer (Full-Stack, JavaScript)",
-      "company": "Able",
-      "location": "🌐 Remoto internacional (LATAM) — sem visto",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://jobicy.com/jobs/155186-senior-software-engineer-full-stack-javascript",
-      "publication_date": "2026-11-13T03:15:22+00:00",
-      "description": "Back in 2012, we were a group of engineers and designers who decided we wanted to build things, so we did. Able started as an engineering and product hub building for a portfolio of early-stage startups. We built many relationships while developing products that were thoughtful, effective, and genuinely useful. But, since then, we’ve grown… and so has our ambition. Now, we’re entering our next chapter, defined by applied AI. AI is a powerful force in the end-to-end software development cycle, and we’re creating practices that allow us to deliver software fast and more effectively than traditional approaches, creating meaningful value for our partners. Today, our builder mindset is driving us to become an AI-native organization across every function. We’re still evolving, and that’s part of the opportunity. If you want to build, learn, and tackle challenges alongside an ambitious team, let’s build together. This position is 100% remote within LatAm. About the Role We’re looking for a Senior Software Engineer to design and build high-quality products using Next.js, Node.js, and TypeScript. You will operate across architecture and delivery, taking ownership of systems while also guidi",
-      "source": "Jobicy",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Jobicy",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
-    },
-    {
-      "tags": [
-        "Software Engineering"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": null,
-      "id": "jobicy-153037",
-      "title": "AI Senior Engineer (Graph)",
-      "company": "Able",
-      "location": "🌐 Remoto internacional (LATAM) — sem visto",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://jobicy.com/jobs/153037-ai-senior-engineer-graph",
-      "publication_date": "2026-11-13T03:10:08+00:00",
-      "description": "Back in 2012, we were a group of engineers and designers who decided we wanted to build things—so we did. Able started as an engineering and product hub building for a portfolio of early-stage startups. We built many relationships while developing products that were thoughtful, effective, and genuinely useful. But, since then, we’ve grown… and so has our ambition. Now, we’re entering our next chapter—defined by applied AI. AI is a powerful force in the end-to-end software development cycle, and we’re creating practices that allow us to deliver software fast and more effectively than traditional approaches, creating meaningful value for our partners. Today, our builder mindset is driving us to become an AI-native organization across every function. We’re still evolving, and that’s part of the opportunity. If you want to build, learn, and tackle challenges alongside an ambitious team, let’s build together. This position is 100% remote within LatAm. What you’ll be doing We are seeking someone who views the Knowledge Graph not just as a database, but as a living organism that requires constant care, feeding, and pruning. You understand that a RAG system is only as good as the data unde",
-      "source": "Jobicy",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Jobicy",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
-    },
-    {
-      "tags": [
-        "Data Science & Analytics"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": null,
-      "id": "jobicy-161693",
-      "title": "FinOps Data Engineer",
-      "company": "Supabase",
-      "location": "🌐 Remoto internacional (Anywhere) — sem visto",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://jobicy.com/jobs/161693-finops-data-engineer",
-      "publication_date": "2026-11-12T17:01:11+00:00",
-      "description": "About the Role We're looking for a FinOps Data Engineer to help drive cost optimization and cloud financial governance across our AWS infrastructure and GCP footprint. You'll work cross-functionally with Engineering, Finance, and Product to find and ship savings, build the tooling necessary to maximize efficiency of every dollar spent in the cloud, and cultivate a culture of cost awareness across engineering teams. This role owns the data side of that mission: the models, pipelines, and analysis that make cost, usage, and margin numbers trustworthy across the company. This is a hands-on engineering role, not an analyst seat. You'll do the schlep work other teams don't have time for, digging into a bucket's access pattern, writing the dbt model or Python pipeline that ships the fix, building the cost-vs-revenue mart that answers a margin question once instead of every time, and chasing a number until it reconciles. Strong communication matters as much as technical depth, you'll regularly explain a savings case or a data model's implications to an engineering team, a finance stakeholder, and a leadership audience in the same week. What You'll Be Responsible For In this role, you'll: ",
-      "source": "Jobicy",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Jobicy",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
-    },
-    {
-      "tags": [
-        "Software Engineering"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": null,
-      "id": "jobicy-161687",
-      "title": "Senior Engineering Manager, Consumer / New Verticals",
-      "company": "Flex",
-      "location": "🌐 Remoto internacional (Anywhere) — sem visto",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://jobicy.com/jobs/161687-senior-engineering-manager-consumer-new-verticals",
-      "publication_date": "2026-11-12T17:00:35+00:00",
-      "description": "Flex is a growth-stage, NYC headquartered FinTech company that is building the payment layer for life's financial obligations, giving households one place to see, split, and pay their bills around how they live and get paid. By offering greater choice over how and when payments are made and allowing eligible on time payments to help build a positive credit history, Flex puts households back in control of their cash flow. That work brings together people with different perspectives who challenge the status quo and take ownership of solving difficult problems. For you, that means doing the best work of your career next to people who make you better, and together bringing ideas to life that make a real impact for the people we serve. About the Job Flex is a growth-stage, NYC-headquartered FinTech company building the payment layer for life’s financial obligations—giving households one place to see, split, and pay their bills around how they live and get paid. By giving people greater choice over how and when they pay, and helping eligible on-time payments build a positive credit history, Flex puts households back in control of their cash flow. Building on our roots in rent, we’re expa",
-      "source": "Jobicy",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Jobicy",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
-    },
-    {
-      "tags": [
-        "Software Engineering"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": null,
-      "id": "jobicy-161675",
-      "title": "Junior Ubuntu Software Engineer",
-      "company": "Canonical",
-      "location": "🌐 Remoto internacional (EMEA,  LATAM,  Canada,  USA) — sem visto",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://jobicy.com/jobs/161675-junior-ubuntu-software-engineer",
-      "publication_date": "2026-11-12T16:51:38+00:00",
-      "description": "Canonical is a leading provider of open source software and operating systems to the global enterprise and technology markets. Our platform, Ubuntu, is very widely used in breakthrough enterprise initiatives such as public cloud, data science, AI, engineering innovation and IoT. Our customers include the world's leading public cloud and silicon providers, and industry leaders in many sectors. The company is a pioneer of global distributed collaboration, with 1200+ colleagues in 75+ countries and very few office based roles. Teams meet two to four times yearly in person, in interesting locations around the world, to align on strategy and execution. The company is founder led, profitable and growing. We are hiring junior engineers to work across the breadth of our Ubuntu Engineering organisation - engineers who care deeply for quality, performance and resilience in software, engineers who are just as comfortable designing and engineering new software as they are packaging, integrating, testing and shipping the incredible catalog of open source software provided by the Ubuntu repositories. Our engineers integrate the freshest open source software, provide robust upgrade paths and engi",
-      "source": "Jobicy",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Jobicy",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
-    },
-    {
-      "tags": [
-        "Software Engineering"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": null,
-      "id": "jobicy-161672",
-      "title": "Graduate Software Engineer, Open Source and Linux, Canonical Ubuntu",
-      "company": "Canonical",
-      "location": "🌐 Remoto internacional (EMEA,  LATAM,  Canada,  USA) — sem visto",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://jobicy.com/jobs/161672-graduate-software-engineer-open-source-and-linux-canonical-ubuntu-2",
-      "publication_date": "2026-11-12T16:51:33+00:00",
-      "description": "Canonical is a leading provider of open source software and operating systems to the global enterprise and technology markets. Our platform, Ubuntu, is very widely used in breakthrough enterprise initiatives such as public cloud, data science, AI, engineering innovation, and IoT. Our customers include the world's leading public cloud and silicon providers, and industry leaders in many sectors. The company is a pioneer of global distributed collaboration, with 1200+ colleagues in 75+ countries and very few office-based roles. Teams meet two to four times yearly in person, in interesting locations around the world, to align on strategy and execution. The company is founder led, profitable and growing. We are hiring 2025 and 2026 Graduate Software Engineers into engineering teams around the world. As a global platform company we offer a wide range of software engineering challenges, in both open source products and commercial business systems. We have teams that work in a variety of languages, typically Python, Golang, Rust, C/C++, JavaScript and of course... Bash. We work from the very lowest levels of the Linux system - BIOS and boot loaders, firmware, kernel and drivers, all the wa",
-      "source": "Jobicy",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Jobicy",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
-    },
-    {
-      "tags": [
-        "Software Engineering"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": null,
-      "id": "jobicy-161669",
-      "title": "Engineering Manager - MLOps & Analytics",
-      "company": "Canonical",
-      "location": "🌐 Remoto internacional (Anywhere) — sem visto",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://jobicy.com/jobs/161669-engineering-manager-mlops-analytics-2",
-      "publication_date": "2026-11-12T16:51:28+00:00",
-      "description": "The role of an Engineering Manager at Canonical As an Engineering Manager at Canonical, you must be technically strong, but your main responsibility is to run an effective team and develop the colleagues you manage. You will develop and review code as a leader, while at the same time staying aware of that the best way to improve the product is to ensure that the whole team is focused, productive and unblocked. You are expected to help them grow as engineers, do meaningful work, do it outstandingly well, find professional and personal satisfaction, and work well with colleagues and the community. You will also be expected to be a positive influence on culture, facilitate technical delivery, and regularly reflect with your team on strategy and execution. You will collaborate closely with other Engineering Managers, product managers, and architects, producing an engineering roadmap with ambitious and achievable goals. We expect Engineering Managers to be fluent in the programming language, architecture, and components that their team uses, in this case popular open-source machine learning tools like Kubeflow, MLFlow, and Feast. Code reviews and architectural leadership are part of the",
-      "source": "Jobicy",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Jobicy",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
-    },
-    {
-      "tags": [
-        "Software Engineering"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": null,
-      "id": "jobicy-161665",
-      "title": "Engineering Manager - App Stores",
-      "company": "Canonical",
-      "location": "🌐 Remoto internacional (EMEA,  LATAM,  Canada,  USA) — sem visto",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://jobicy.com/jobs/161665-engineering-manager-app-stores",
-      "publication_date": "2026-11-12T16:50:46+00:00",
-      "description": "Canonical is a leading provider of open source software and operating systems to the global enterprise and technology markets. Our platform, Ubuntu, is very widely used in breakthrough enterprise initiatives such as public cloud, data science, AI, engineering innovation, and IoT. Our customers include the world's leading public cloud and silicon providers, and industry leaders in many sectors. The company is a pioneer of global distributed collaboration, with 1200+ colleagues in 75+ countries and very few office-based roles. Teams meet two to four times yearly in person, in interesting locations around the world, to align on strategy and execution. The company is founder-led, profitable, and growing. This is a technical management role to lead a team that develops Python and Golang micro-services that power our global software distribution engine. The world sees it as the Snap Store and Charmhub.io marketplaces, behind the scenes it is a unified system that understands key concepts in software distribution - architectures, releases, betas, release candidates, stable releases, branches and more. We are on a journey to transform the experience that people all over the world have with",
-      "source": "Jobicy",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Jobicy",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
-    },
-    {
-      "tags": [
-        "Software Engineering"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": null,
-      "id": "jobicy-161660",
-      "title": "Embedded & Desktop Linux Systems Engineer - Optimisation",
-      "company": "Canonical",
-      "location": "🌐 Remoto internacional (EMEA,  LATAM,  Canada,  USA) — sem visto",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://jobicy.com/jobs/161660-embedded-desktop-linux-systems-engineer-optimisation-2",
-      "publication_date": "2026-11-12T16:50:40+00:00",
-      "description": "Work across the full Linux stack from kernel through GUI to optimise Ubuntu, the world’s most widely used Linux desktop and server, for the latest silicon. The role is a fast-paced, problem-solving role that’s challenging yet very exciting. The right candidate must be resourceful, articulate, and able to deliver on a wide variety of solutions across PC and IoT technologies. Our teams partner with specialist engineers from major silicon companies to integrate next-generation features and performance enhancements for upcoming hardware. Location: This is a Globally remote role What your day will look like Design and implement the best Ubuntu integration for the latest IoT and server-class hardware platforms and software stacks Work with partners to deliver a delightful, optimised, first class Ubuntu experience on their platforms Take a holistic approach to the Ubuntu experience on partner platforms with inputs on technical plans, testing strategy, quality metrics Participate as technical lead on complex customer engagements involving complete system architectures from cloud to edge Help our customers integrate their apps, SDKs, build device OS images, optimize applications with Ubuntu",
-      "source": "Jobicy",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Jobicy",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 1
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 2
     },
     {
       "tags": [
@@ -1896,8 +1878,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Banco Inter",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -1924,8 +1906,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -1952,8 +1934,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -1979,8 +1961,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -2007,8 +1989,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -2035,8 +2017,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -2063,8 +2045,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -2090,8 +2072,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -2118,8 +2100,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -2146,8 +2128,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -2175,8 +2157,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Ashby/Nubank",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -2204,8 +2186,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Ashby/Supabase",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -2233,8 +2215,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Ashby/Supabase",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -2262,8 +2244,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Ashby/Supabase",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -2289,8 +2271,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Stefanini",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -2316,97 +2298,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Zenvia",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
-    },
-    {
-      "tags": [
-        "Solutions Architect",
-        "Enterprise Architect",
-        "Cloud Architect",
-        "Backend Architect"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": "2027-01-11T16:29:52.000Z",
-      "id": "himalayas-https://himalayas.app/companies/grupo-sysmap/jobs/arquiteto-de-solucoes",
-      "title": "Arquiteto de Soluções",
-      "company": "Grupo SysMap",
-      "location": "🇧🇷 Remoto (Brasil)",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://himalayas.app/companies/grupo-sysmap/jobs/arquiteto-de-solucoes?utm_source=api",
-      "publication_date": "2026-11-12T16:29:52.000Z",
-      "description": "Você é apaixonado(a) por tecnologia e inovação? 💡 No Grupo SysMap – que reúne SysMap Solutions, TriggoLabs e – acreditamos que grandes resultados nascem de pessoas incríveis. Somos uma empresa brasileira de tecnologia que, desde 1999, ajuda organizações a superar desafios complexos e acelerar sua transformação digital. Nossa atuação abrange diversos segmentos, como Telecom, Varejo, Educação, Financeiro, Indústria/Cosméticos e Energia, sempre com foco em soluções inovadoras e de alto impacto. 👉 Candidate-se agora e construa o futuro da tecnologia conosco! Experiência em arquitetura de solução e integração entre sistemas; Conhecimento em padrões arquiteturais como Hexagonal Architecture (Ports and Adapters), DDD, Clean Architecture, etc; Experiência em linguagens orientadas a objeto, preferencialmente Java e seus principais frameworks (Spring Boot, Maven, JUnit); Familiaridade com conceitos de: microsserviços; API REST, SOAP; Mensageria e event streaming; Autenticação e segurança (OAuth2.0, OpenID Connect, JWT); Experiência com containers e orquestradores (Docker, Helm, Kubernetes, Openshift); Conhecimento conceitual e de ferramentas DevOps (CI/CD, Jenkins, Git, Nexus, Azure); Expe",
-      "source": "Himalayas",
-      "source_type": "agregador",
-      "sector": "edtech",
-      "category": "EdTechs & Educação",
-      "source_key": "Himalayas",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
-    },
-    {
-      "tags": [
-        "DevOps Engineer",
-        "Site Reliability Engineer",
-        "Cloud Infrastructure Engineer",
-        "Platform Engineer"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": "2027-01-11T15:39:48.000Z",
-      "id": "himalayas-https://himalayas.app/companies/dev-pro/jobs/senior-devops-engineer-op02309-os",
-      "title": "Senior DevOps Engineer - OP02309-OS",
-      "company": "Dev.Pro",
-      "location": "🌐 Remoto — aceita Brasil (45 países, inclui Brasil)",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://himalayas.app/companies/dev-pro/jobs/senior-devops-engineer-op02309-os?utm_source=api",
-      "publication_date": "2026-11-12T15:39:49.000Z",
-      "description": "New opportunities in Latin America! 🟢 Dev.Pro is a US-based software development company helping tech companies build their products and grow their business. We’re remote-first, and we work with independent contractors in over 55 countries, so you’d be collaborating in a multicultural environment on some really interesting projects. We invite a DevOps Engineer to join our team and help build scalable, secure infrastructure for a global provider of technology and digital merchandising solutions. In this role, you’ll work across cloud and distributed Linux environments, manage CI/CD pipelines using GitLab, and develop robust monitoring capabilities for cloud systems and IoT devices. You’ll apply DevOps best practices, drive infrastructure automation, and collaborate with engineering teams to support reliable, efficient software delivery. 🟩 What's in it for you: Join a global technology company delivering digital merchandising solutions across 50+ markets Work on complex infrastructure spanning cloud services, distributed Linux systems, and IoT devices Tackle hands-on challenges in CI/CD, infrastructure automation, and observability using modern DevOps tools ✅ Is that you? 3+ years ",
-      "source": "Himalayas",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Himalayas",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
-    },
-    {
-      "tags": [
-        "Full Stack Developer",
-        "Software Engineer",
-        "Java Developer"
-      ],
-      "salary": "PJ / Contractor",
-      "expires_at": "2027-01-11T14:54:54.000Z",
-      "id": "himalayas-https://himalayas.app/companies/seja-globalweb/jobs/desenvolvedor-full-stack-sr",
-      "title": "DESENVOLVEDOR FULL STACK SR",
-      "company": "Seja Globalweb",
-      "location": "🇧🇷 Remoto (Brasil)",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ / Contractor"
-      ],
-      "url": "https://himalayas.app/companies/seja-globalweb/jobs/desenvolvedor-full-stack-sr?utm_source=api",
-      "publication_date": "2026-11-12T14:54:55.000Z",
-      "description": "Nosso time é formado por excelentes profissionais da área da tecnologia. Colaboração e comprometimento fazem parte do nosso dia a dia, quando desenvolvemos novas funcionalidades, construindo um produto robusto e escalável. Fazendo parte de nossa equipe, seu trabalho irá impactar em milhares de usuários que utilizam nossa solução diariamente. Responsabilidades: Participar das cerimônias do SCRUM entre outras agendas solicitadas pelo cliente ou pelo Scrum Master;Codificar, elaborar design de componentes, realizar testes unitários, construir aplicações, implementar e manter software de alta qualidade por meio da aplicação de técnicas, normas e procedimentos atualizados de codificação e construção de software.Escrever códigos de alta qualidade que implementem as funcionalidades de uma solução digital que atendem as necessidades das partes interessadas, assegurando otimização de recursos computacionais, segurança e desempenho. Elaborar e manter o modelo e o projeto de dados. Requisitos e Qualificações: Conhecimentos técnicos · Desenvolvimento confiável - desenvolvimento que segue as definições e boas práticas de segurança e as premissas de privacidade e proteção de dados · UML – Unified",
-      "source": "Himalayas",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Himalayas",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -2436,8 +2329,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Remotive",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -2467,8 +2360,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 2
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 3
     },
     {
       "tags": [
@@ -2494,8 +2387,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Jusbrasil",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 3
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 4
     },
     {
       "tags": [
@@ -2522,8 +2415,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 3
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 4
     },
     {
       "tags": [
@@ -2551,8 +2444,8 @@
       "category": "EdTechs & Educação",
       "source_key": "Ashby/Nubank",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 3
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 4
     },
     {
       "tags": [
@@ -2580,8 +2473,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Ashby/Supabase",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 3
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 4
     },
     {
       "tags": [
@@ -2607,8 +2500,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Bemobi",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 3
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 4
     },
     {
       "tags": [
@@ -2634,8 +2527,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Banco Inter",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 4
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 5
     },
     {
       "tags": [
@@ -2662,8 +2555,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 4
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 5
     },
     {
       "tags": [
@@ -2690,8 +2583,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 4
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 5
     },
     {
       "tags": [
@@ -2718,8 +2611,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 4
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 5
     },
     {
       "tags": [
@@ -2746,8 +2639,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 4
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 5
     },
     {
       "tags": [
@@ -2776,8 +2669,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 4
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 5
     },
     {
       "tags": [
@@ -2807,8 +2700,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 4
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 5
     },
     {
       "tags": [
@@ -2831,15 +2724,15 @@
       ],
       "url": "https://remoteOK.com/remote-jobs/remote-senior-software-engineer-kubernetes-control-plane-buoyant-1137713",
       "publication_date": "2026-11-09T22:00:02+00:00",
-      "description": "San Francisco, United States - Senior Software Engineer — Kubernetes Control Plane (Go / Golang)REMOTE: United States, Canada, or South America ONLYExperience: 7+ yearsIMPORTANT — PLEASE READ BEFORE APPLYINGBuoyant is seeking experienced software engineers who have personally designed ... Please mention the word **FECILITOUS** and tag RNTcuMTU0LjE2Ny4xNDc= when applying to show you read the job post completely (#RNTcuMTU0LjE2Ny4xNDc=). This is a beta feature to avoid spam applicants. Companies can search these words to find applicants that read this and see they're human.",
+      "description": "San Francisco, United States - Senior Software Engineer — Kubernetes Control Plane (Go / Golang)REMOTE: United States, Canada, or South America ONLYExperience: 7+ yearsIMPORTANT — PLEASE READ BEFORE APPLYINGBuoyant is seeking experienced software engineers who have personally designed ... Please mention the word **FECILITOUS** and tag RMjAuNDkuMTUuMTU= when applying to show you read the job post completely (#RMjAuNDkuMTUuMTU=). This is a beta feature to avoid spam applicants. Companies can search these words to find applicants that read this and see they're human.",
       "source": "Remote OK",
       "source_type": "agregador",
       "sector": "tech",
       "category": "Empresas Tech / Full Stack",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 4
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 5
     },
     {
       "tags": [
@@ -2865,8 +2758,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Stefanini",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 5
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 6
     },
     {
       "tags": [
@@ -2895,8 +2788,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Comunidades GitHub",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 5
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 6
     },
     {
       "tags": [
@@ -2927,34 +2820,7 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Comunidades GitHub",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 6
-    },
-    {
-      "tags": [
-        "Engenharia"
-      ],
-      "salary": "PJ ou CLT",
-      "expires_at": null,
-      "id": "gh-jusbrasil-6002659004",
-      "title": "SRE Senior - Plataforma",
-      "company": "Jusbrasil",
-      "location": "🇧🇷 Remoto (Brasil)",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ ou CLT"
-      ],
-      "url": "https://job-boards.greenhouse.io/jusbrasil/jobs/6002659004",
-      "publication_date": "2026-11-06T12:25:44-05:00",
-      "description": "Você deveria fazer parte do Jusbrasil Transformar o sistema de Justiça com tecnologia não é trivial. Estamos construindo uma inteligência artificial dentro de casa: o Jus IA tem 43% menos alucinações que IAs generalistas. Essa é a prova concreta de que aqui tecnologia não é discurso, e sustenta a nossa missão: elevar a justiça. Lidamos com mais de 7 bilhões de documentos jurídicos e mais de 1.400 fontes de dados oficiais. É desafio de escala e precisão que poucas empresas no país enfrentam. Somos 670 pessoas jusbrasileiras, quase metade em engenharia e produto, espalhadas por mais de 125 cidades no Brasil e fora. O modelo é remoto: você escolhe onde viver, a vaga não muda. Aqui, quem chama pra si o problema sem dono e entrega algo acima do esperado cresce rápido. Quem prefere o caminho óbvio, não. Conheça nosso impacto site jurídico nº1 do mundo em número de acessos mais de 20 milhões de usuários por mês mais de 7 bilhões de documentos jurídicos de interesse público mais de 80% dos advogados brasileiros cadastrados 670 pessoas jusbrasileiras, quase metade em tecnologia e produto presença em mais de 125 cidades no Brasil e fora modelo remoto: liberdade de escolher onde viver, sem pe",
-      "source": "Site da empresa (Jusbrasil)",
-      "source_type": "empresa",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Greenhouse/Jusbrasil",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
+      "verified_at": "2026-11-15T17:29:22.903Z",
       "days_ago": 7
     },
     {
@@ -2982,35 +2848,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 7
-    },
-    {
-      "tags": [
-        "Prod_Nova"
-      ],
-      "salary": "PJ ou CLT",
-      "expires_at": null,
-      "id": "lever-ciandt-7a4966e3-219a-495d-b314-21be6d48f087",
-      "title": "Senior Software Engineer",
-      "company": "CI&T",
-      "location": "🇧🇷 Remoto (Brasil)",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ ou CLT"
-      ],
-      "url": "https://jobs.lever.co/ciandt/7a4966e3-219a-495d-b314-21be6d48f087",
-      "publication_date": "2026-11-06T16:48:07.320Z",
-      "description": "At CI&T, we help large enterprises transform the potential of AI into real business impact with AI Deployment, AI-native execution, and tech-integrated business solutions.\nWith 30 years of experience in technological transformation, we accelerate innovation with expertise in Agentic SDLC, Application modernization, Data & AI, Martech and Business strategy.\nWe are 8,000 CI&Ters across more than 25 countries, collaborating to build solutions with real impact. AI is already part of how we work, evolve, and innovate every day.\n\n\n We are seeking a highly skilled Principal Software Engineer who will serve as a key developer within our teams. This role demands a dynamic individual who is adept at navigating and integrating various technologies and tech stacks to drive innovation and efficiency in our software development efforts.\n\nResponsibilities:\nTechnical Leadership: Provide guidance and mentorship to junior developers and collaborate with cross-functional teams to enhance product quality and delivery.\nTechnology Evaluation: Stay abreast of emerging technologies and evaluate their potential impact on the organization's technology roadmap.\nCode Quality & Performance: Conduct code review",
-      "source": "Site da empresa (CI&T)",
-      "source_type": "empresa",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Lever/CI&T",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 7
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 8
     },
     {
       "tags": [
@@ -3038,8 +2877,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Ashby/Nubank",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 7
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 8
     },
     {
       "tags": [
@@ -3065,8 +2904,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Stefanini",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 7
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 8
     },
     {
       "tags": [
@@ -3092,39 +2931,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Stefanini",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 7
-    },
-    {
-      "tags": [
-        "dev",
-        "grafana",
-        "infosec",
-        "python",
-        "docker"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": null,
-      "id": "remoteok-1137701",
-      "title": "AI Developer",
-      "company": "Salvo Software",
-      "location": "🌐 Remoto internacional (Worldwide) — sem visto",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://remoteOK.com/remote-jobs/remote-ai-developer-salvo-software-1137701",
-      "publication_date": "2026-11-07T00:00:02+00:00",
-      "description": "Salvo Software is a global technology company specializing in custom software development and advanced engineering solutions. With distributed teams across the US, LATAM, and India, we partner with clients to build high-performance, scalable systems that solve complex technical challenges. Our culture values innovation, ownership, and engineering excellence. We're growing our AI department and are looking for a hands-on AI Developer to help build it. Role Overview We are looking for an AI Developer to join and strengthen our AI department. Your core work will be building and operating LLM-powered systems: serving open-source models with Ollama and llama.cpp, building RAG pipelines, and developing MCP integrations that connect large language models to real tools and data. Solid DevOps fundamentals - Docker, CI/CD, Azure - support this work, but AI engineering is the heart of the role. You don't need to be a deep ML researcher. What matters is production-grade Python, strong fundamentals, and the aptitude to learn fast. You'll work closely with our engineering and product teams to take LLM-powered features from prototype to reliably deployed systems, with mentorship available as you ",
-      "source": "Remote OK",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Remote OK",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 7
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 8
     },
     {
       "tags": [
@@ -3150,8 +2958,62 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Banco Inter",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 8
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 9
+    },
+    {
+      "tags": [
+        "Engenharia"
+      ],
+      "salary": "PJ ou CLT",
+      "expires_at": null,
+      "id": "gh-jusbrasil-6002659004",
+      "title": "SRE Senior - Plataforma",
+      "company": "Jusbrasil",
+      "location": "🇧🇷 Remoto (Brasil)",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ ou CLT"
+      ],
+      "url": "https://job-boards.greenhouse.io/jusbrasil/jobs/6002659004",
+      "publication_date": "2026-11-06T12:25:44-05:00",
+      "description": "Você deveria fazer parte do Jusbrasil Transformar o sistema de Justiça com tecnologia não é trivial. Estamos construindo uma inteligência artificial dentro de casa: o Jus IA tem 43% menos alucinações que IAs generalistas. Essa é a prova concreta de que aqui tecnologia não é discurso, e sustenta a nossa missão: elevar a justiça. Lidamos com mais de 7 bilhões de documentos jurídicos e mais de 1.400 fontes de dados oficiais. É desafio de escala e precisão que poucas empresas no país enfrentam. Somos 670 pessoas jusbrasileiras, quase metade em engenharia e produto, espalhadas por mais de 125 cidades no Brasil e fora. O modelo é remoto: você escolhe onde viver, a vaga não muda. Aqui, quem chama pra si o problema sem dono e entrega algo acima do esperado cresce rápido. Quem prefere o caminho óbvio, não. Conheça nosso impacto site jurídico nº1 do mundo em número de acessos mais de 20 milhões de usuários por mês mais de 7 bilhões de documentos jurídicos de interesse público mais de 80% dos advogados brasileiros cadastrados 670 pessoas jusbrasileiras, quase metade em tecnologia e produto presença em mais de 125 cidades no Brasil e fora modelo remoto: liberdade de escolher onde viver, sem pe",
+      "source": "Site da empresa (Jusbrasil)",
+      "source_type": "empresa",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
+      "source_key": "Greenhouse/Jusbrasil",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 9
+    },
+    {
+      "tags": [
+        "Prod_Nova"
+      ],
+      "salary": "PJ ou CLT",
+      "expires_at": null,
+      "id": "lever-ciandt-7a4966e3-219a-495d-b314-21be6d48f087",
+      "title": "Senior Software Engineer",
+      "company": "CI&T",
+      "location": "🇧🇷 Remoto (Brasil)",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ ou CLT"
+      ],
+      "url": "https://jobs.lever.co/ciandt/7a4966e3-219a-495d-b314-21be6d48f087",
+      "publication_date": "2026-11-06T16:48:07.320Z",
+      "description": "At CI&T, we help large enterprises transform the potential of AI into real business impact with AI Deployment, AI-native execution, and tech-integrated business solutions.\nWith 30 years of experience in technological transformation, we accelerate innovation with expertise in Agentic SDLC, Application modernization, Data & AI, Martech and Business strategy.\nWe are 8,000 CI&Ters across more than 25 countries, collaborating to build solutions with real impact. AI is already part of how we work, evolve, and innovate every day.\n\n\n We are seeking a highly skilled Principal Software Engineer who will serve as a key developer within our teams. This role demands a dynamic individual who is adept at navigating and integrating various technologies and tech stacks to drive innovation and efficiency in our software development efforts.\n\nResponsibilities:\nTechnical Leadership: Provide guidance and mentorship to junior developers and collaborate with cross-functional teams to enhance product quality and delivery.\nTechnology Evaluation: Stay abreast of emerging technologies and evaluate their potential impact on the organization's technology roadmap.\nCode Quality & Performance: Conduct code review",
+      "source": "Site da empresa (CI&T)",
+      "source_type": "empresa",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
+      "source_key": "Lever/CI&T",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 9
     },
     {
       "tags": [
@@ -3178,8 +3040,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 9
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 10
     },
     {
       "tags": [
@@ -3206,8 +3068,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 9
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 10
     },
     {
       "tags": [
@@ -3234,8 +3096,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 9
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 10
     },
     {
       "tags": [
@@ -3262,8 +3124,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 9
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 10
     },
     {
       "tags": [
@@ -3289,8 +3151,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Stefanini",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 9
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 10
     },
     {
       "tags": [
@@ -3320,8 +3182,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 9
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 10
     },
     {
       "tags": [
@@ -3351,8 +3213,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 9
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 10
     },
     {
       "tags": [
@@ -3382,8 +3244,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 9
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 10
     },
     {
       "tags": [
@@ -3409,8 +3271,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 10
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 11
     },
     {
       "tags": [
@@ -3437,36 +3299,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 10
-    },
-    {
-      "tags": [
-        "Prod_GU4",
-        "Homeoffice"
-      ],
-      "salary": "PJ ou CLT",
-      "expires_at": null,
-      "id": "lever-ciandt-1660792c-eb35-4258-b544-61a96b8a0cef",
-      "title": "Senior/Pleno Data Developer (Databricks/Data Lakehouse ), Brazil",
-      "company": "CI&T",
-      "location": "🇧🇷 Remoto (Brasil)",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ ou CLT"
-      ],
-      "url": "https://jobs.lever.co/ciandt/1660792c-eb35-4258-b544-61a96b8a0cef",
-      "publication_date": "2026-11-03T17:19:09.133Z",
-      "description": "Na CI&T , ajudamos grandes empresas a transformar o potencial da AI em impacto real nos negócios com AI Deployment, execução AI-native e tech-integrated business solutions.\nCom 30 anos de experiência em transformação tecnológica, aceleramos inovação com expertise em agentic SDLC, application modernization, Data & AI, martech e business strategy. \nSomos 8.000 CI&Ters em mais de 25 países, colaborando para construir soluções com impacto real. AI já faz parte da forma como trabalhamos, evoluímos e inovamos todos os dias.\nImportante: se você reside na Região Metropolitana de Campinas, sua presença nos escritórios da cidade será obrigatória, conforme a política de frequencia vigente.\n\n\nCI&T está fortalecendo a infraestrutura de dados digitais de um cliente de destaque nos setores de Serviços Financeiros e Seguros, como parte de uma iniciativa estratégica de redesenho dos canais digitais do cliente — incluindo aplicativo, web e plataformas de atendimento direto ao cliente. A posição integrará squads que atuam com práticas orientadas a inteligência artificial desde a concepção dos produtos, reforçando a camada de dados que sustenta essas iniciativas.\nA pessoa profissional será responsável",
-      "source": "Site da empresa (CI&T)",
-      "source_type": "empresa",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Lever/CI&T",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 10
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 11
     },
     {
       "tags": [
@@ -3494,8 +3328,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Ashby/Supabase",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 10
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 11
     },
     {
       "tags": [
@@ -3521,8 +3355,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Stefanini",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 10
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 11
     },
     {
       "tags": [
@@ -3550,8 +3384,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 10
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 11
     },
     {
       "tags": [
@@ -3578,8 +3412,36 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 11
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 12
+    },
+    {
+      "tags": [
+        "Prod_GU4",
+        "Homeoffice"
+      ],
+      "salary": "PJ ou CLT",
+      "expires_at": null,
+      "id": "lever-ciandt-1660792c-eb35-4258-b544-61a96b8a0cef",
+      "title": "Senior/Pleno Data Developer (Databricks/Data Lakehouse ), Brazil",
+      "company": "CI&T",
+      "location": "🇧🇷 Remoto (Brasil)",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ ou CLT"
+      ],
+      "url": "https://jobs.lever.co/ciandt/1660792c-eb35-4258-b544-61a96b8a0cef",
+      "publication_date": "2026-11-03T17:19:09.133Z",
+      "description": "Na CI&T , ajudamos grandes empresas a transformar o potencial da AI em impacto real nos negócios com AI Deployment, execução AI-native e tech-integrated business solutions.\nCom 30 anos de experiência em transformação tecnológica, aceleramos inovação com expertise em agentic SDLC, application modernization, Data & AI, martech e business strategy. \nSomos 8.000 CI&Ters em mais de 25 países, colaborando para construir soluções com impacto real. AI já faz parte da forma como trabalhamos, evoluímos e inovamos todos os dias.\nImportante: se você reside na Região Metropolitana de Campinas, sua presença nos escritórios da cidade será obrigatória, conforme a política de frequencia vigente.\n\n\nCI&T está fortalecendo a infraestrutura de dados digitais de um cliente de destaque nos setores de Serviços Financeiros e Seguros, como parte de uma iniciativa estratégica de redesenho dos canais digitais do cliente — incluindo aplicativo, web e plataformas de atendimento direto ao cliente. A posição integrará squads que atuam com práticas orientadas a inteligência artificial desde a concepção dos produtos, reforçando a camada de dados que sustenta essas iniciativas.\nA pessoa profissional será responsável",
+      "source": "Site da empresa (CI&T)",
+      "source_type": "empresa",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
+      "source_key": "Lever/CI&T",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 12
     },
     {
       "tags": [
@@ -3606,8 +3468,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/Toptal",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 11
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 12
     },
     {
       "tags": [
@@ -3633,8 +3495,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Stefanini",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 11
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 12
     },
     {
       "tags": [
@@ -3660,8 +3522,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Stefanini",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 11
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 12
     },
     {
       "tags": [
@@ -3687,8 +3549,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/PagBank",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 11
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 12
     },
     {
       "tags": [
@@ -3717,8 +3579,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 11
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 12
     },
     {
       "tags": [
@@ -3748,8 +3610,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 12
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 13
     },
     {
       "tags": [
@@ -3777,8 +3639,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Ashby/Supabase",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 14
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 15
     },
     {
       "tags": [
@@ -3804,8 +3666,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Stefanini",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 14
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 15
     },
     {
       "tags": [
@@ -3831,8 +3693,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Stefanini",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 14
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 15
     },
     {
       "tags": [
@@ -3864,8 +3726,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Comunidades GitHub",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 14
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 15
     },
     {
       "tags": [
@@ -3892,8 +3754,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 15
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 16
     },
     {
       "tags": [
@@ -3920,8 +3782,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 15
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 16
     },
     {
       "tags": [
@@ -3949,8 +3811,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Comunidades GitHub",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 15
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 16
     },
     {
       "tags": [
@@ -3980,8 +3842,8 @@
       "category": "Hospitais & Clínicas (Saúde)",
       "source_key": "Remotive",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 15
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 16
     },
     {
       "tags": [
@@ -4011,8 +3873,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 15
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 16
     },
     {
       "tags": [
@@ -4038,8 +3900,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Stone",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 16
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 17
     },
     {
       "tags": [
@@ -4065,8 +3927,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/RD Station",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 16
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 17
     },
     {
       "tags": [
@@ -4093,8 +3955,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 16
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 17
     },
     {
       "tags": [
@@ -4120,8 +3982,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/PagBank",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 16
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 17
     },
     {
       "tags": [
@@ -4147,8 +4009,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Sicredi",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 16
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 17
     },
     {
       "tags": [
@@ -4174,8 +4036,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Sicredi",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 16
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 17
     },
     {
       "tags": [
@@ -4204,8 +4066,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 16
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 17
     },
     {
       "tags": [
@@ -4232,34 +4094,7 @@
       "category": "EdTechs & Educação",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 16
-    },
-    {
-      "tags": [
-        "Engenharia & Tecnologia"
-      ],
-      "salary": "PJ ou CLT",
-      "expires_at": null,
-      "id": "gh-stone-8037007003",
-      "title": "[Bankinkg/Investimentos] Software Engineer Pleno - Golang",
-      "company": "Stone",
-      "location": "🇧🇷 Remoto (Brasil)",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ ou CLT"
-      ],
-      "url": "https://job-boards.greenhouse.io/stone/jobs/8037007003",
-      "publication_date": "2026-10-27T13:20:24-04:00",
-      "description": "Sobre a Stone: Somos muito mais do que uma empresa de maquininhas! A Stone é uma empresa de tecnologia e serviços financeiros focada no(a) cliente. Nascemos com o propósito de ser protagonistas na transformação da indústria de pagamentos, servindo o(a) empreendedor(a) brasileiro(a) e transformando seus sonhos em resultados. Somos a maior empresa independente de meios de pagamentos do Brasil, com mais de quinze mil pessoas espalhadas pelas cinco regiões do país, em um cenário repleto de desafios e oportunidades. Valorizamos o trabalho em equipe, a flexibilidade, o desenvolvimento contínuo e os pensamentos disruptivos e incansáveis na busca de soluções para a nossa RAZÃO. Nossa Cultura: Por aqui, vivemos nossa cultura no dia a dia, guiados por esses 5 valores: 💚 O cliente é a razão O cliente é o motivo pelo qual existimos e só temos sucesso se ele tiver sucesso. ⚡ Cabeça de dono Fazemos o que é certo, do jeito certo, com responsabilidade e tecnologia para decidir melhor. 🎯 Direto ao ponto Profundidade para entender e simplicidade para resolver. 🤝 Excelência é um jogo de equipe Construímos um negócio de longo prazo, em time e com colaboração. ✨ Paixão em cada detalhe Fazemos com pa",
-      "source": "Site da empresa (Stone)",
-      "source_type": "empresa",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Greenhouse/Stone",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
+      "verified_at": "2026-11-15T17:29:22.903Z",
       "days_ago": 17
     },
     {
@@ -4287,8 +4122,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 17
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 18
     },
     {
       "tags": [
@@ -4315,8 +4150,35 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 17
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 18
+    },
+    {
+      "tags": [
+        "Engenharia & Tecnologia"
+      ],
+      "salary": "PJ ou CLT",
+      "expires_at": null,
+      "id": "gh-stone-8037007003",
+      "title": "[Bankinkg/Investimentos] Software Engineer Pleno - Golang",
+      "company": "Stone",
+      "location": "🇧🇷 Remoto (Brasil)",
+      "location_type": "remote",
+      "is_compatible_location": true,
+      "modalities": [
+        "PJ ou CLT"
+      ],
+      "url": "https://job-boards.greenhouse.io/stone/jobs/8037007003",
+      "publication_date": "2026-10-27T13:20:24-04:00",
+      "description": "Sobre a Stone: Somos muito mais do que uma empresa de maquininhas! A Stone é uma empresa de tecnologia e serviços financeiros focada no(a) cliente. Nascemos com o propósito de ser protagonistas na transformação da indústria de pagamentos, servindo o(a) empreendedor(a) brasileiro(a) e transformando seus sonhos em resultados. Somos a maior empresa independente de meios de pagamentos do Brasil, com mais de quinze mil pessoas espalhadas pelas cinco regiões do país, em um cenário repleto de desafios e oportunidades. Valorizamos o trabalho em equipe, a flexibilidade, o desenvolvimento contínuo e os pensamentos disruptivos e incansáveis na busca de soluções para a nossa RAZÃO. Nossa Cultura: Por aqui, vivemos nossa cultura no dia a dia, guiados por esses 5 valores: 💚 O cliente é a razão O cliente é o motivo pelo qual existimos e só temos sucesso se ele tiver sucesso. ⚡ Cabeça de dono Fazemos o que é certo, do jeito certo, com responsabilidade e tecnologia para decidir melhor. 🎯 Direto ao ponto Profundidade para entender e simplicidade para resolver. 🤝 Excelência é um jogo de equipe Construímos um negócio de longo prazo, em time e com colaboração. ✨ Paixão em cada detalhe Fazemos com pa",
+      "source": "Site da empresa (Stone)",
+      "source_type": "empresa",
+      "sector": "tech",
+      "category": "Empresas Tech / Full Stack",
+      "source_key": "Greenhouse/Stone",
+      "verified": true,
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 19
     },
     {
       "tags": [
@@ -4342,8 +4204,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Stefanini",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 18
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 19
     },
     {
       "tags": [
@@ -4373,8 +4235,8 @@
       "category": "Hospitais & Clínicas (Saúde)",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 19
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 20
     },
     {
       "tags": [
@@ -4400,8 +4262,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Stone",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 20
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 21
     },
     {
       "tags": [
@@ -4427,8 +4289,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Stone",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 20
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 21
     },
     {
       "tags": [
@@ -4454,8 +4316,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Stone",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 20
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 21
     },
     {
       "tags": [
@@ -4485,8 +4347,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 20
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 21
     },
     {
       "tags": [
@@ -4512,8 +4374,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Banco Inter",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 21
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 22
     },
     {
       "tags": [
@@ -4539,8 +4401,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Banco Inter",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 21
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 22
     },
     {
       "tags": [
@@ -4568,8 +4430,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Ashby/Supabase",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 21
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 22
     },
     {
       "tags": [
@@ -4595,8 +4457,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Stefanini",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 21
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 22
     },
     {
       "tags": [
@@ -4626,8 +4488,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 21
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 22
     },
     {
       "tags": [
@@ -4653,8 +4515,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Banco Inter",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 22
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 23
     },
     {
       "tags": [
@@ -4680,8 +4542,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Banco Inter",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 22
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 23
     },
     {
       "tags": [
@@ -4707,8 +4569,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Banco Inter",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 22
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 23
     },
     {
       "tags": [
@@ -4734,8 +4596,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Stone",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 22
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 23
     },
     {
       "tags": [
@@ -4761,8 +4623,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Stone",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 22
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 23
     },
     {
       "tags": [
@@ -4789,8 +4651,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 22
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 23
     },
     {
       "tags": [
@@ -4818,8 +4680,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Ashby/Nubank",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 22
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 23
     },
     {
       "tags": [
@@ -4845,8 +4707,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Stone",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 23
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 24
     },
     {
       "tags": [
@@ -4873,8 +4735,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 23
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 24
     },
     {
       "tags": [
@@ -4901,8 +4763,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 23
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 24
     },
     {
       "tags": [
@@ -4930,8 +4792,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Ashby/Supabase",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 23
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 24
     },
     {
       "tags": [
@@ -4961,8 +4823,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 23
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 24
     },
     {
       "tags": [
@@ -4988,8 +4850,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Greenhouse/Banco Inter",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 24
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 25
     },
     {
       "tags": [
@@ -5016,8 +4878,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 24
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 25
     },
     {
       "tags": [
@@ -5044,8 +4906,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 24
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 25
     },
     {
       "tags": [
@@ -5072,8 +4934,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Lever/CI&T",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 24
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 25
     },
     {
       "tags": [
@@ -5101,8 +4963,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Ashby/Supabase",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 24
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 25
     },
     {
       "tags": [
@@ -5133,8 +4995,8 @@
       "category": "Hospitais & Clínicas (Saúde)",
       "source_key": "Comunidades GitHub",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 25
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 26
     },
     {
       "tags": [
@@ -5160,8 +5022,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Stefanini",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 26
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 27
     },
     {
       "tags": [
@@ -5184,15 +5046,15 @@
       ],
       "url": "https://remoteOK.com/remote-jobs/remote-senior-software-engineer-sothebys-1137545",
       "publication_date": "2026-10-18T19:00:02+00:00",
-      "description": "Remote - Established in 1744, Sotheby’s promotes access and ownership of exceptional art and luxury objects through auctions, private sales and retail. Our deep expertise across 70 selling categories is supported by a leading technology platform and a global network of special... Please mention the word **EVALUATIVE** and tag RNTcuMTU0LjE2Ny4xNDc= when applying to show you read the job post completely (#RNTcuMTU0LjE2Ny4xNDc=). This is a beta feature to avoid spam applicants. Companies can search these words to find applicants that read this and see they're human.",
+      "description": "Remote - Established in 1744, Sotheby’s promotes access and ownership of exceptional art and luxury objects through auctions, private sales and retail. Our deep expertise across 70 selling categories is supported by a leading technology platform and a global network of special... Please mention the word **EVALUATIVE** and tag RMjAuNDkuMTUuMTU= when applying to show you read the job post completely (#RMjAuNDkuMTUuMTU=). This is a beta feature to avoid spam applicants. Companies can search these words to find applicants that read this and see they're human.",
       "source": "Remote OK",
       "source_type": "agregador",
       "sector": "tech",
       "category": "Empresas Tech / Full Stack",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 26
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 27
     },
     {
       "tags": [
@@ -5215,15 +5077,15 @@
       ],
       "url": "https://remoteOK.com/remote-jobs/remote-senior-backend-engineer-rain-1137544",
       "publication_date": "2026-10-18T18:00:01+00:00",
-      "description": "Remote - Rain is the world's first AI Financial Health Platform, serving 3.5 million employees at leading organizations like McDonald's, Marriott, and T-Mobile. Rain works in the background to optimize every employee's financial life to prevent shortfalls and build long-term sta... Please mention the word **COVENANT** and tag RNTcuMTU0LjE2Ny4xNDc= when applying to show you read the job post completely (#RNTcuMTU0LjE2Ny4xNDc=). This is a beta feature to avoid spam applicants. Companies can search these words to find applicants that read this and see they're human.",
+      "description": "Remote - Rain is the world's first AI Financial Health Platform, serving 3.5 million employees at leading organizations like McDonald's, Marriott, and T-Mobile. Rain works in the background to optimize every employee's financial life to prevent shortfalls and build long-term sta... Please mention the word **COVENANT** and tag RMjAuNDkuMTUuMTU= when applying to show you read the job post completely (#RMjAuNDkuMTUuMTU=). This is a beta feature to avoid spam applicants. Companies can search these words to find applicants that read this and see they're human.",
       "source": "Remote OK",
       "source_type": "agregador",
       "sector": "saude",
       "category": "Hospitais & Clínicas (Saúde)",
       "source_key": "Remote OK",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 26
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 27
     },
     {
       "tags": [
@@ -5251,8 +5113,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Ashby/Nubank",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 28
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 29
     },
     {
       "tags": [
@@ -5278,8 +5140,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Stefanini",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 28
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 29
     },
     {
       "tags": [
@@ -5305,8 +5167,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Stefanini",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 28
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 29
     },
     {
       "tags": [
@@ -5332,8 +5194,8 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Gupy/Stefanini",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 28
+      "verified_at": "2026-11-15T17:29:22.903Z",
+      "days_ago": 29
     },
     {
       "tags": [
@@ -5362,178 +5224,7 @@
       "category": "Empresas Tech / Full Stack",
       "source_key": "Himalayas",
       "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 28
-    },
-    {
-      "tags": [
-        "Engenharia & Tecnologia"
-      ],
-      "salary": "PJ ou CLT",
-      "expires_at": null,
-      "id": "gh-stone-8007017003",
-      "title": "[ENGENHARIA] SENIOR SOFTWARE ENGINEER .NET",
-      "company": "Stone",
-      "location": "🇧🇷 Remoto (Brasil)",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ ou CLT"
-      ],
-      "url": "https://job-boards.greenhouse.io/stone/jobs/8007017003",
-      "publication_date": "2026-10-15T15:18:23-04:00",
-      "description": "Sobre a Stone: Somos muito mais do que uma empresa de maquininhas! A Stone é uma empresa de tecnologia e serviços financeiros focada no(a) cliente. Nascemos com o propósito de ser protagonistas na transformação da indústria de pagamentos, servindo o(a) empreendedor(a) brasileiro(a) e transformando seus sonhos em resultados. Somos a maior empresa independente de meios de pagamentos do Brasil, com mais de quinze mil pessoas espalhadas pelas cinco regiões do país, em um cenário repleto de desafios e oportunidades. Valorizamos o trabalho em equipe, a flexibilidade, o desenvolvimento contínuo e os pensamentos disruptivos e incansáveis na busca de soluções para a nossa RAZÃO. Nossa Cultura: Por aqui, vivemos nossa cultura no dia a dia, guiados por esses 5 valores: 💚 O cliente é a razão O cliente é o motivo pelo qual existimos e só temos sucesso se ele tiver sucesso. ⚡ Cabeça de dono Fazemos o que é certo, do jeito certo, com responsabilidade e tecnologia para decidir melhor. 🎯 Direto ao ponto Profundidade para entender e simplicidade para resolver. 🤝 Excelência é um jogo de equipe Construímos um negócio de longo prazo, em time e com colaboração. ✨ Paixão em cada detalhe Fazemos com pa",
-      "source": "Site da empresa (Stone)",
-      "source_type": "empresa",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Greenhouse/Stone",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 29
-    },
-    {
-      "tags": [
-        "Prod_GU7",
-        "Homeoffice"
-      ],
-      "salary": "PJ ou CLT",
-      "expires_at": null,
-      "id": "lever-ciandt-4a072a28-9261-483c-912e-1ca53fdee0f0",
-      "title": "Senior IOS Developer, Brasil",
-      "company": "CI&T",
-      "location": "🇧🇷 Remoto (Brasil)",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ ou CLT"
-      ],
-      "url": "https://jobs.lever.co/ciandt/4a072a28-9261-483c-912e-1ca53fdee0f0",
-      "publication_date": "2026-10-16T13:17:13.247Z",
-      "description": "Na CI&T , ajudamos grandes empresas a transformar o potencial da AI em impacto real nos negócios com AI Deployment, execução AI-native e tech-integrated business solutions.\nCom 30 anos de experiência em transformação tecnológica, aceleramos inovação com expertise em agentic SDLC, application modernization, Data & AI, martech e business strategy. \nSomos 8.000 CI&Ters em mais de 25 países, colaborando para construir soluções com impacto real. AI já faz parte da forma como trabalhamos, evoluímos e inovamos todos os dias.\nImportante: se você reside na Região Metropolitana de Campinas, sua presença nos escritórios da cidade será obrigatória, conforme a política de frequencia vigente.\n\n\nBuscamos uma pessoa desenvolvedora Mobile para atuar num time multidisciplinar, preferencialmente com experiências anteriores mais focadas na construção de aplicativos iOS e Android. E claro, que goste de desafios!\nO time que você fará parte conta com pessoas desenvolvedoras Android Kotlin, desenvolvedoras iOS Swift, desenvolvedoras backend, garantidoras de qualidade, designer e analista de dados.\n\nResponsabilidades: \n \nDesenvolver funcionalidades e mecanismos complexos sempre que necessário.\nGarantir a q",
-      "source": "Site da empresa (CI&T)",
-      "source_type": "empresa",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Lever/CI&T",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 29
-    },
-    {
-      "tags": [
-        "Engineering",
-        "Engineering",
-        "FullTime"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": null,
-      "id": "ashby-supabase-b65287c7-2071-4bc6-8717-58c090e2a372",
-      "title": "SDK Engineer - Python",
-      "company": "Supabase",
-      "location": "🌐 Remoto internacional (Remote, Global) — sem visto",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://jobs.ashbyhq.com/supabase/b65287c7-2071-4bc6-8717-58c090e2a372",
-      "publication_date": "2026-10-16T15:41:37.459+00:00",
-      "description": "ABOUT SUPABASE\n\nSupabase is the Postgres development platform, built by developers for developers. We provide a complete backend solution including Database, Auth, Storage, Edge Functions, Realtime, and Vector Search. All services are deeply integrated and designed for growth.\n\n\n\n\nABOUT THE ROLE\n\nWe're looking for a SDK Engineer - Python to join our SDK team and own how developers talk to Supabase from Python. You'll work closely with the rest of the SDK team, our Auth, Realtime, Storage, PostgREST, Functions, CLI and Docs teams, and the open-source community, helping us make the Python SDK a library Python developers genuinely enjoy using.\n\nPython developers reach Supabase from backend services, data pipelines, notebooks, and a growing number of AI agents and agent frameworks. The Python SDK is how all of them talk to the platform: database queries, auth, storage, realtime and edge functions, in both sync and async flavors.\n\nThis is a library-authoring role, and the work happens in the open: public repos, public issue trackers, and API decisions whose consequences last for years. If you get satisfaction from a type checker that catches the bug before your users do, from an async c",
-      "source": "Site da empresa (Supabase)",
-      "source_type": "empresa",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Ashby/Supabase",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 29
-    },
-    {
-      "tags": [
-        "TECNOLOGIA DA INFORMAÇÃO*"
-      ],
-      "salary": "CLT",
-      "expires_at": "2026-12-31",
-      "id": "gupy-pagseguro-12683120",
-      "title": "Engenheiro Software Sr. (Sistema Função)",
-      "company": "PagBank",
-      "location": "🇧🇷 Remoto (Brasil)",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "CLT"
-      ],
-      "url": "https://pagseguro.gupy.io/jobs/12683120",
-      "publication_date": "2026-10-15T19:51:40.926Z",
-      "description": "Quando você pensa em carreira, o que vem à sua mente? Propósito? Colaboração? Ser protagonista para fazer a diferença? No PagBank temos tudo isso e muito mais. 💛 Estamos em busca de pessoas que vistam a camisa com orgulho. Gente com vontade de facilitar a vida financeira das pessoas e impulsionar negócios! Tá a fim de uma carreira que rende mais? Confira essa oportunidade e #VemProPags! Supervisionar e acompanhar performance do sistema. Analisar soluções. Dar suporte a equipe de engenharia e área usuária. Compreender os objetivos dos negócios e suas necessidades, contribuindo na fase de descoberta de projetos junto a área de negócios, visando identificar riscos e oportunidades de negócios. Avaliar soluções propostas pelo fornecedor para os projetos demandados. Contribuir com a equipe e demais áreas internas na execução de demandas, sanando possíveis dúvidas. Avaliar processos, apresentando melhorias contínuas em rotinas e fluxos. Acompanhar homologação de projetos junto aos usuários até a implantação no ambiente produtivo, sanando dúvidas, realizando análise de problemas e quando necessário direcioná-lo ao fornecedor através de chamados. Acompanhar e desenvolver indicadores para m",
-      "source": "Site da empresa (PagBank via Gupy)",
-      "source_type": "empresa",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Gupy/PagBank",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 29
-    },
-    {
-      "tags": [
-        "React Native Developer",
-        "Senior React Native Mobile Developer",
-        "Senior React Native Engineer"
-      ],
-      "salary": "PJ / Contractor",
-      "expires_at": "2026-11-14T18:09:28.000Z",
-      "id": "himalayas-https://himalayas.app/companies/lemon-io/jobs/senior-react-native-developer-5321943776",
-      "title": "Senior React Native Developer",
-      "company": "lemon.io",
-      "location": "🌐 Remoto — aceita Brasil (73 países, inclui Brasil)",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ / Contractor"
-      ],
-      "url": "https://himalayas.app/companies/lemon-io/jobs/senior-react-native-developer-5321943776?utm_source=api",
-      "publication_date": "2026-10-15T18:09:30.000Z",
-      "description": "Lemon.io helps companies in the US and Europe hire experienced engineers, from funded startups to teams like Klarna, Retool, and Pinterest. We’ve been doing this since 2015, and more than 1,500 companies have hired engineers through us. New roles for senior React Native engineers come in all the time, and several are open right now. Two ways to work with clients Contract: most roles are contract-based. You join the client’s team and work as part of it. Direct hire: some clients hire engineers full-time, and we support you through the process. Because companies trust our vetting, applying through Lemon.io is often a shortcut. You get to the client faster than going through their full hiring process on your own. What you get Competitive rate, based on your seniority and skills We find the projects. No client hunting or rate negotiations. We match you manually based on your skills and preferences. Flexible schedule. Work async or with a small overlap with the team’s hours. No micromanagement, no screen trackers Direct work with clients, most of them with technical backgrounds Ongoing support from your application through every project, plus a community of engineers from [75+] countrie",
-      "source": "Himalayas",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Himalayas",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
-      "days_ago": 29
-    },
-    {
-      "tags": [
-        "python",
-        "teaching",
-        "education",
-        "customer support",
-        "dev"
-      ],
-      "salary": "PJ Internacional / Contractor",
-      "expires_at": null,
-      "id": "remoteok-1137534",
-      "title": "APAC Python",
-      "company": "Kodland",
-      "location": "🌐 Remoto internacional (Worldwide) — sem visto",
-      "location_type": "remote",
-      "is_compatible_location": true,
-      "modalities": [
-        "PJ Internacional / Contractor"
-      ],
-      "url": "https://remoteOK.com/remote-jobs/remote-apac-python-kodland-1137534",
-      "publication_date": "2026-10-16T16:00:26+00:00",
-      "description": "AboutÂ theÂ Company: KodlandÂ isÂ anÂ internationalÂ onlineÂ codingÂ andÂ digitalÂ skillsÂ schoolÂ thatÂ helpsÂ childrenÂ agedÂ 5Â toÂ 17Â takeÂ theirÂ firstÂ stepsÂ intoÂ theÂ worldÂ ofÂ programmingÂ andÂ technology. AboutÂ theÂ Role: AreÂ youÂ aÂ passionateÂ programmerÂ whoÂ lovesÂ codingÂ andÂ computerÂ games?Â WouldÂ youÂ likeÂ toÂ helpÂ childrenÂ createÂ theirÂ firstÂ projectsÂ andÂ takeÂ theirÂ firstÂ stepsÂ intoÂ theÂ programmingÂ worldÂ byÂ teachingÂ themÂ Python?Â IfÂ so,Â thisÂ opportunityÂ isÂ perfectÂ forÂ you! Responsibilities: DeliverÂ funÂ andÂ interactiveÂ PythonÂ ProgrammingÂ lessonsÂ usingÂ providedÂ materials. DevelopÂ yourÂ ownÂ skillsÂ underÂ theÂ guidanceÂ ofÂ experiencedÂ KodlandÂ teachers. ShareÂ feedbackÂ aboutÂ lessonsÂ withÂ theÂ KodlandÂ team. RegularlyÂ reportÂ onÂ studentÂ progressÂ andÂ helpÂ improveÂ theÂ learningÂ experience. BeÂ aÂ positiveÂ representativeÂ ofÂ KodlandÂ andÂ contributeÂ creativeÂ ideasÂ toÂ supportÂ students. AttendÂ allÂ trainingÂ andÂ supportÂ sessionsÂ providedÂ throughoutÂ theÂ hiringÂ process. JoinÂ ourÂ teamÂ todayÂ andÂ experienceÂ theÂ joyÂ ofÂ teachingÂ withÂ Kodland!Â ð PleaseÂ note:Â ThisÂ isÂ aÂ part-timeÂ freelanceÂ",
-      "source": "Remote OK",
-      "source_type": "agregador",
-      "sector": "tech",
-      "category": "Empresas Tech / Full Stack",
-      "source_key": "Remote OK",
-      "verified": true,
-      "verified_at": "2026-11-14T16:46:59.563Z",
+      "verified_at": "2026-11-15T17:29:22.903Z",
       "days_ago": 29
     }
   ]
