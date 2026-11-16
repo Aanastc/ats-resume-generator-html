@@ -13,7 +13,10 @@ import {
   fetchHimalayas,
   fetchJobicy,
   fetchLever,
+  fetchMoodleOrg,
+  fetchProgramaThor,
   fetchRemoteOK,
+  fetchWorkable,
   fetchRemotive,
   fetchWithTimeout,
   mapLimit
@@ -89,9 +92,12 @@ export async function collectJobs({ verifyLinks = true, now = new Date() } = {})
     ...(companies.greenhouse || []).map((c) => [`Greenhouse/${c.name}`, () => fetchGreenhouse(c)]),
     ...(companies.lever || []).map((c) => [`Lever/${c.name}`, () => fetchLever(c)]),
     ...(companies.ashby || []).map((c) => [`Ashby/${c.name}`, () => fetchAshby(c)]),
-    ...(companies.gupy || []).map((c) => [`Gupy/${c.name}`, () => fetchGupy(c)])
+    ...(companies.gupy || []).map((c) => [`Gupy/${c.name}`, () => fetchGupy(c)]),
+    ...(companies.workable || []).map((c) => [`Workable/${c.name}`, () => fetchWorkable(c)])
   ];
   const otherTasks = [
+    ["Moodle.org Jobs", fetchMoodleOrg],
+    ["ProgramaThor (PHP/Laravel)", fetchProgramaThor],
     ["Himalayas", fetchHimalayas],
     ["Remotive", fetchRemotive],
     ["Jobicy", fetchJobicy],
@@ -172,7 +178,7 @@ export async function runJobSync({ persist = !IS_SERVERLESS, verifyLinks = true 
   const cachePayload = {
     updated_at: now.toISOString(),
     formatted_date: now.toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
-    next_update: "Diariamente às 08:00 (Horário de Brasília)",
+    next_update: "Diariamente às 07:00 (horário de Brasília)",
     max_age_days: MAX_AGE_DAYS,
     total_jobs: jobs.length,
     by_source_type: bySource,

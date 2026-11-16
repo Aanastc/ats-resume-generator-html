@@ -20,6 +20,9 @@
     "api/project-ideas.js": {
       "includeFiles": "data/{jobs-cache,resume}.json",
       "maxDuration": 60
+    },
+    "api/ats-score.js": {
+      "includeFiles": "data/jobs-cache.json"
     }
   },
   "rewrites": [

@@ -1,5 +1,5 @@
 {
-  "_info": "Páginas de carreira de empresas lidas direto da fonte (ATS oficial da empresa). Para adicionar uma empresa, descubra o identificador na URL da página de vagas: boards.greenhouse.io/<token>, jobs.lever.co/<token>, jobs.ashbyhq.com/<token> ou <token>.gupy.io. sector: saude | edtech | tech. Todas as entradas abaixo foram verificadas em nov/2026. br: true = empresa brasileira (\"Remote\" sem país é tratado como remoto no Brasil).",
+  "_info": "Páginas de carreira de empresas lidas direto da fonte (ATS oficial da empresa). Para adicionar uma empresa, descubra o identificador na URL da página de vagas: boards.greenhouse.io/<token>, jobs.lever.co/<token>, jobs.ashbyhq.com/<token> <token>.gupy.io ou apply.workable.com/<token>. sector: saude | edtech | tech. Todas as entradas abaixo foram verificadas em nov/2026. br: true = empresa brasileira (\"Remote\" sem país é tratado como remoto no Brasil).",
   "greenhouse": [
     {
       "token": "inter",
@@ -123,6 +123,11 @@
       "token": "toptal",
       "name": "Toptal",
       "sector": "tech"
+    },
+    {
+      "token": "360learning",
+      "name": "360Learning (LMS)",
+      "sector": "edtech"
     }
   ],
   "ashby": [
@@ -164,6 +169,11 @@
     {
       "token": "cambly",
       "name": "Cambly",
+      "sector": "edtech"
+    },
+    {
+      "token": "absorblms",
+      "name": "Absorb LMS",
       "sector": "edtech"
     }
   ],
@@ -280,6 +290,13 @@
       "token": "sicredi",
       "name": "Sicredi",
       "sector": "tech"
+    }
+  ],
+  "workable": [
+    {
+      "token": "epignosis",
+      "name": "Epignosis (TalentLMS)",
+      "sector": "edtech"
     }
   ]
 }

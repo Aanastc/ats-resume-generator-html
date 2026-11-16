@@ -57,6 +57,15 @@ test("companyFromIssueTitle extrai a empresa do título da issue", () => {
   assert.equal(companyFromIssueTitle("Senior Front-end / Product Engineer na WeatherWise — 4 dias presenciais"), "WeatherWise");
 });
 
+test("detectSector: EdTech só por termos do domínio (não por 'Education: Bachelor')", async () => {
+  const { detectSector } = await import("../lib/job-quality.mjs");
+  assert.equal(detectSector("PHP Developer. Education: Bachelor Degree in Computer Science"), "tech");
+  assert.equal(detectSector("Tech Lead backend, read the docs"), "tech"); // 'ead' dentro de palavras não conta
+  assert.equal(detectSector("Desenvolvedor Moodle para EAD"), "edtech");
+  assert.equal(detectSector("Plataforma para alunos de graduação"), "edtech");
+  assert.equal(detectSector("Sistema hospitalar de prontuário"), "saude");
+});
+
 test("fixMojibake corrige texto com codificação quebrada", () => {
   assert.equal(fixMojibake("SÃ£o Paulo"), "São Paulo");
   assert.equal(fixMojibake("São Paulo"), "São Paulo");

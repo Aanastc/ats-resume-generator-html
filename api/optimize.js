@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
-  const { resume, jobDescription, customApiKey } = req.body || {};
+  const { resume, jobDescription, customApiKey, language } = req.body || {};
   const apiKey = customApiKey || process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
 
   try {
     // Margem abaixo do maxDuration configurado no vercel.json (60s).
-    const tailored = await optimizeResume({ resume, jobDescription, apiKey, deadlineMs: 45000 });
+    const tailored = await optimizeResume({ resume, jobDescription, apiKey, language, deadlineMs: 45000 });
     return res.status(200).json(tailored);
   } catch (err) {
     return res.status(err.status || 500).json({ error: `Erro na otimização da IA: ${err.message}` });

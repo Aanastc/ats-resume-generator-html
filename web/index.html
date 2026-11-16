@@ -3,314 +3,430 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ATS Resume Tailor AI - Otimizador de Currículo</title>
+  <title>Career Studio — Currículo ATS, Vagas e Carreira</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="app.css">
 </head>
 <body>
-  <div class="app-container">
-    <!-- Header -->
-    <header class="app-header">
-      <div class="logo">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
-        <span>ATS Resume Tailor <strong>AI</strong></span>
-      </div>
-      <div class="header-actions">
-        <div class="api-key-wrapper">
-          <input type="password" id="customApiKey" placeholder="Chave de API do Gemini (opcional)..." title="Se deixado em branco, utilizará a chave configurada no .env do servidor.">
-        </div>
-        <button id="btnSyncPortfolio" class="btn btn-secondary" title="Sincroniza automaticamente com seu Portfólio (Aanastc/ana_leticia.ac__portifolio)">
-          🔄 Sincronizar Portfólio
-        </button>
-        <button id="saveBaseCv" class="btn btn-secondary" title="Salva o JSON atual como o currículo base oficial (resume.json)">
-          Salvar Base
-        </button>
-      </div>
-    </header>
+  <!-- Ícones (sprite SVG reutilizado em toda a interface) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 3v4M21 5h-4M5 17v4M7 19H3"/></symbol>
+      <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+      <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+      <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></symbol>
+      <symbol id="i-check-square" viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.5 9a9 9 0 0 1 14.9-3.4L23 10M1 14l4.6 4.4A9 9 0 0 0 20.5 15"/></symbol>
+      <symbol id="i-save" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></symbol>
+      <symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3L21 2M16 7l3 3M19 4l2 2"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+      <symbol id="i-printer" viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></symbol>
+      <symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="1"/><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+      <symbol id="i-external" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+      <symbol id="i-panel" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="15" y1="3" x2="15" y2="21"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
+      <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M18 10h-1.3A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></symbol>
+      <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></symbol>
+      <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></symbol>
+      <symbol id="i-table" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="9" x2="9" y2="21"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></symbol>
+      <symbol id="i-send" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
+      <symbol id="i-google" viewBox="0 0 24 24"><path fill="#4285F4" stroke="none" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/><path fill="#34A853" stroke="none" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="#FBBC05" stroke="none" d="M6.4 14a6 6 0 0 1 0-3.9V7.5H3.1a10 10 0 0 0 0 9z"/><path fill="#EA4335" stroke="none" d="M12 6c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.5L6.4 10C7.2 7.8 9.4 6 12 6z"/></symbol>
+    </defs>
+  </svg>
 
-    <!-- Main Content -->
-    <main class="app-main">
-      <!-- Left Panel: Editors & Configuration -->
-      <section class="panel control-panel">
-        <div class="tab-header">
-          <button class="tab-btn active" data-tab="tab-optimize">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            Otimização por IA
-          </button>
-          <button class="tab-btn" data-tab="tab-form">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-            Editar Campos
-          </button>
-          <button class="tab-btn" data-tab="tab-json">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            Código JSON
-          </button>
-          <button class="tab-btn" data-tab="tab-jobs">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            Buscar Vagas
-          </button>
-          <button class="tab-btn" data-tab="tab-ideas">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>
-            Ideias de Projetos
-          </button>
-          <button class="tab-btn" data-tab="tab-talent">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-            Cadastros
-            <span id="talentOutdatedCount" class="tab-counter hidden" title="Cadastros desatualizados"></span>
-          </button>
+  <div class="app-shell">
+    <!-- ===================== Sidebar ===================== -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark"><svg><use href="#i-file"/></svg></div>
+        <div>
+          <div class="brand-name">Career Studio</div>
+          <div class="brand-sub">Currículo ATS &amp; vagas</div>
         </div>
+      </div>
 
-        <div class="tab-content">
-          <!-- Tab 1: AI Optimize -->
-          <div id="tab-optimize" class="tab-pane active">
-            <div class="form-group">
-              <label for="jobDescription">Descrição da Vaga de Emprego</label>
-              <div class="helper-text">Cole os requisitos, atribuições e tecnologias solicitadas para que a IA ajuste o currículo perfeitamente.</div>
-              <textarea id="jobDescription" placeholder="Cole a descrição da vaga aqui (em português ou inglês)..."></textarea>
+      <nav class="nav" aria-label="Navegação principal">
+        <div class="nav-group-label">Currículo</div>
+        <button class="nav-item tab-btn active" data-tab="tab-optimize"><svg><use href="#i-sparkles"/></svg><span>Adaptar com IA</span></button>
+        <button class="nav-item tab-btn" data-tab="tab-form"><svg><use href="#i-edit"/></svg><span>Editar currículo</span></button>
+        <button class="nav-item tab-btn" data-tab="tab-json"><svg><use href="#i-code"/></svg><span>JSON</span></button>
+
+        <div class="nav-group-label">Carreira</div>
+        <button class="nav-item tab-btn" data-tab="tab-jobs"><svg><use href="#i-briefcase"/></svg><span>Vagas</span><span id="jobsNavCount" class="nav-count"></span></button>
+        <button class="nav-item tab-btn" data-tab="tab-applications"><svg><use href="#i-table"/></svg><span>Candidaturas</span><span id="appsNavCount" class="nav-count"></span></button>
+        <button class="nav-item tab-btn" data-tab="tab-ideas"><svg><use href="#i-bulb"/></svg><span>Ideias de projetos</span></button>
+        <button class="nav-item tab-btn" data-tab="tab-talent"><svg><use href="#i-check-square"/></svg><span>Cadastros</span><span id="talentOutdatedCount" class="nav-count warn hidden" title="Cadastros desatualizados"></span></button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div id="accountBox" class="account hidden">
+          <button id="btnSignIn" class="btn btn-secondary btn-block" title="Sincroniza currículo, cadastros e vagas acompanhadas entre seus dispositivos">
+            <svg><use href="#i-cloud"/></svg><span>Entrar ou criar conta</span>
+          </button>
+          <div id="accountInfo" class="account-info hidden">
+            <div id="accountAvatar" class="avatar"></div>
+            <div class="account-text">
+              <div id="accountName" class="account-name"></div>
+              <div id="accountStatus" class="account-status"><svg><use href="#i-cloud"/></svg><span>Sincronizado</span></div>
             </div>
-            
-            <div class="settings-box">
-              <h3>Configurações de Ajuste</h3>
-              <div class="setting-row">
-                <span>Idioma Alvo</span>
+            <button id="btnSignOut" class="btn btn-icon-only" title="Sair da conta"><svg><use href="#i-logout"/></svg></button>
+          </div>
+        </div>
+        <button id="btnSyncPortfolio" class="btn btn-ghost btn-block" title="Busca os dados mais recentes do seu portfólio no GitHub">
+          <svg><use href="#i-refresh"/></svg><span>Sincronizar portfólio</span>
+        </button>
+        <button id="saveBaseCv" class="btn btn-ghost btn-block" title="Salva o currículo atual como base">
+          <svg><use href="#i-save"/></svg><span>Salvar como base</span>
+        </button>
+        <details class="api-key-box">
+          <summary><svg><use href="#i-key"/></svg><span>Chave do Gemini</span><svg class="chev"><use href="#i-chevron"/></svg></summary>
+          <input type="password" id="customApiKey" placeholder="Opcional — usa a do servidor" autocomplete="off">
+          <p class="hint">Fica salva só neste navegador.</p>
+        </details>
+      </div>
+    </aside>
+
+    <!-- ===================== Workspace ===================== -->
+    <div class="workspace" id="workspace">
+      <main class="content">
+
+        <!-- Adaptar com IA -->
+        <section id="tab-optimize" class="tab-pane active">
+          <header class="page-header">
+            <div>
+              <h1>Adaptar currículo com IA</h1>
+              <p>Cole a descrição da vaga. A IA reescreve o currículo com as palavras-chave da vaga, sem inventar experiências nem alterar seus contatos.</p>
+            </div>
+          </header>
+
+          <div class="card">
+            <label class="field-label" for="jobDescription">Descrição da vaga</label>
+            <textarea id="jobDescription" rows="12" placeholder="Cole aqui os requisitos, responsabilidades e tecnologias da vaga (português ou inglês)."></textarea>
+            <div class="field-row">
+              <div class="field-inline">
+                <label class="field-label" for="languageMode">Idioma do currículo</label>
                 <select id="languageMode">
-                  <option value="auto">Detectar automaticante (Recomendado)</option>
-                  <option value="pt">Forçar Português</option>
-                  <option value="en">Forçar Inglês</option>
+                  <option value="auto">Igual ao da vaga (recomendado)</option>
+                  <option value="pt">Português</option>
+                  <option value="en">Inglês</option>
                 </select>
               </div>
-              <div class="setting-row">
-                <span>Tradução dos Títulos de Seção</span>
-                <div class="toggle-switch">
-                  <input type="checkbox" id="translateHeaders" checked disabled>
-                  <label for="translateHeaders"></label>
-                  <span class="toggle-label">Ativo</span>
-                </div>
-              </div>
-            </div>
-
-            <button id="btnOptimize" class="btn btn-primary btn-large">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-              <span>Ajustar Currículo com IA</span>
-            </button>
-          </div>
-
-          <!-- Tab 2: Visual Form Form -->
-          <div id="tab-form" class="tab-pane">
-            <div class="scroll-wrapper">
-              <div class="form-section">
-                <h4>Informações Pessoais</h4>
-                <div class="grid-2">
-                  <div class="form-group">
-                    <label>Nome Completo</label>
-                    <input type="text" id="f-name">
-                  </div>
-                  <div class="form-group">
-                    <label>Cargo/Título</label>
-                    <input type="text" id="f-title">
-                  </div>
-                </div>
-                <div class="grid-2">
-                  <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="f-email">
-                  </div>
-                  <div class="form-group">
-                    <label>Telefone (Display)</label>
-                    <input type="text" id="f-phone-display">
-                  </div>
-                </div>
-                <div class="grid-2">
-                  <div class="form-group">
-                    <label>Telefone (E.164)</label>
-                    <input type="text" id="f-phone-e164">
-                  </div>
-                  <div class="form-group">
-                    <label>Localização</label>
-                    <input type="text" id="f-location">
-                  </div>
-                </div>
-                <div class="grid-3">
-                  <div class="form-group">
-                    <label>LinkedIn URL</label>
-                    <input type="text" id="f-linkedin">
-                  </div>
-                  <div class="form-group">
-                    <label>GitHub URL</label>
-                    <input type="text" id="f-github">
-                  </div>
-                  <div class="form-group">
-                    <label>Portfólio/Website</label>
-                    <input type="text" id="f-website">
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-section">
-                <h4>Resumo Profissional</h4>
-                <div class="form-group">
-                  <textarea id="f-summary" class="short-textarea"></textarea>
-                </div>
-              </div>
-
-              <div class="form-section">
-                <div class="section-header-btn">
-                  <h4>Habilidades</h4>
-                  <button type="button" class="btn-icon" id="add-skill-group">+</button>
-                </div>
-                <div id="skills-list" class="nested-list"></div>
-              </div>
-
-              <div class="form-section">
-                <div class="section-header-btn">
-                  <h4>Experiência Profissional</h4>
-                  <button type="button" class="btn-icon" id="add-experience">+</button>
-                </div>
-                <div id="experience-list" class="nested-list"></div>
-              </div>
-
-              <div class="form-section">
-                <div class="section-header-btn">
-                  <h4>Projetos</h4>
-                  <button type="button" class="btn-icon" id="add-project">+</button>
-                </div>
-                <div id="projects-list" class="nested-list"></div>
-              </div>
-
-              <div class="form-section">
-                <div class="section-header-btn">
-                  <h4>Formação Acadêmica</h4>
-                  <button type="button" class="btn-icon" id="add-education">+</button>
-                </div>
-                <div id="education-list" class="nested-list"></div>
-              </div>
-
-              <div class="form-section">
-                <div class="section-header-btn">
-                  <h4>Idiomas</h4>
-                  <button type="button" class="btn-icon" id="add-language">+</button>
-                </div>
-                <div id="languages-list" class="nested-list"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tab 3: Raw JSON Code -->
-          <div id="tab-json" class="tab-pane">
-            <div class="form-group json-editor-group">
-              <label for="jsonEditor">Editor de JSON Estruturado</label>
-              <div class="helper-text">Edite o JSON diretamente. Alterações serão renderizadas ao clicar fora ou mudar de aba.</div>
-              <textarea id="jsonEditor" class="code-font"></textarea>
-            </div>
-          </div>
-
-          <!-- Tab 4: Job Matcher -->
-          <div id="tab-jobs" class="tab-pane">
-            <div class="jobs-search-bar">
-              <div class="search-input-wrapper">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <input type="text" id="jobSearchQuery" placeholder="Buscar por cargo ou tecnologia (ex: Full Stack, DevOps, Python)..." value="Full Stack">
-              </div>
-              <button id="btnSearchJobs" class="btn btn-primary">
-                Buscar
+              <button id="btnOptimize" class="btn btn-primary btn-lg">
+                <svg><use href="#i-sparkles"/></svg><span>Adaptar currículo</span>
               </button>
             </div>
+          </div>
 
-            <div class="quick-filters">
-              <span>Filtros direcionados:</span>
-              <button type="button" class="filter-pill" data-query="Site da empresa">✅ Direto do site da empresa</button>
-              <button type="button" class="filter-pill active" data-query="Hospitalar">🏥 Hospitais & Clínicas</button>
-              <button type="button" class="filter-pill" data-query="EdTech">🎓 EdTechs & Educação</button>
-              <button type="button" class="filter-pill" data-query="Full Stack">🏢 Empresas Tech / Full Stack</button>
-              <button type="button" class="filter-pill" data-query="Internacional">🌐 Internacional (Sem Visto / USD)</button>
-              <button type="button" class="filter-pill" data-query="Belo Horizonte">📍 Presencial / Híbrido BH</button>
-              <button type="button" class="filter-pill" data-query="Remoto">🇧🇷 Remoto Brasil (PJ ou CLT)</button>
-              <button type="button" class="filter-pill" data-query="DevOps">☁️ DevOps & Cloud</button>
+          <div class="tip-list">
+            <div class="tip"><svg><use href="#i-shield"/></svg><span>Nome, e-mail, telefone e links são sempre preservados do original.</span></div>
+            <div class="tip"><svg><use href="#i-briefcase"/></svg><span>Em <strong>Vagas</strong>, o botão “Adaptar currículo” preenche esta descrição automaticamente.</span></div>
+          </div>
+        </section>
+
+        <!-- Editar currículo -->
+        <section id="tab-form" class="tab-pane">
+          <header class="page-header">
+            <div>
+              <h1>Editar currículo</h1>
+              <p>As alterações aparecem na prévia em tempo real. Use “Salvar como base” para guardar.</p>
             </div>
+          </header>
 
-            <div class="jobs-sync-banner">
-              <span id="jobsLastUpdated">🕒 Sincronizado diariamente às 08:00 (Brasília)</span>
-              <button type="button" id="btnRefreshJobs" class="btn-text-action" title="Forçar atualização das vagas agora">🔄 Sincronizar Agora</button>
+          <div class="card form-section">
+            <h2 class="card-title">Informações pessoais</h2>
+            <div class="grid-2">
+              <div class="form-group"><label>Nome completo</label><input type="text" id="f-name"></div>
+              <div class="form-group"><label>Cargo / título</label><input type="text" id="f-title"></div>
+              <div class="form-group"><label>E-mail</label><input type="email" id="f-email"></div>
+              <div class="form-group"><label>Telefone (exibição)</label><input type="text" id="f-phone-display"></div>
+              <div class="form-group"><label>Telefone (formato E.164)</label><input type="text" id="f-phone-e164"></div>
+              <div class="form-group"><label>Localização</label><input type="text" id="f-location"></div>
             </div>
-
-            <div class="jobs-status-bar">
-              <span id="jobsCount">Buscando oportunidades reais em tempo real...</span>
-              <span class="match-info-badge">🎯 Match baseado no seu perfil</span>
-            </div>
-
-            <div id="jobsList" class="jobs-list-container">
-              <!-- Injected dynamically via JS -->
+            <div class="grid-3">
+              <div class="form-group"><label>LinkedIn</label><input type="text" id="f-linkedin"></div>
+              <div class="form-group"><label>GitHub</label><input type="text" id="f-github"></div>
+              <div class="form-group"><label>Portfólio / site</label><input type="text" id="f-website"></div>
             </div>
           </div>
 
-          <!-- Tab: Project ideas from job market gaps -->
-          <div id="tab-ideas" class="tab-pane">
-            <div class="pane-intro">
-              <h3>Ideias de projetos para comprovar o que as vagas pedem</h3>
-              <p>O sistema lê as vagas ativas, conta as tecnologias mais pedidas e compara com o seu currículo:
-                o que <strong>falta</strong> e o que está nas skills, mas <strong>nenhum projeto comprova</strong>.
-                Depois sugere projetos pessoais que cobrem essas lacunas.</p>
+          <div class="card form-section">
+            <h2 class="card-title">Resumo profissional</h2>
+            <textarea id="f-summary" class="short-textarea" rows="5"></textarea>
+          </div>
+
+          <div class="card form-section">
+            <div class="section-header-btn"><h2 class="card-title">Habilidades</h2><button type="button" class="btn btn-ghost btn-sm" id="add-skill-group"><svg><use href="#i-plus"/></svg>Adicionar grupo</button></div>
+            <div id="skills-list" class="nested-list"></div>
+          </div>
+
+          <div class="card form-section">
+            <div class="section-header-btn"><h2 class="card-title">Experiência profissional</h2><button type="button" class="btn btn-ghost btn-sm" id="add-experience"><svg><use href="#i-plus"/></svg>Adicionar</button></div>
+            <div id="experience-list" class="nested-list"></div>
+          </div>
+
+          <div class="card form-section">
+            <div class="section-header-btn"><h2 class="card-title">Projetos</h2><button type="button" class="btn btn-ghost btn-sm" id="add-project"><svg><use href="#i-plus"/></svg>Adicionar</button></div>
+            <div id="projects-list" class="nested-list"></div>
+          </div>
+
+          <div class="card form-section">
+            <div class="section-header-btn"><h2 class="card-title">Formação acadêmica</h2><button type="button" class="btn btn-ghost btn-sm" id="add-education"><svg><use href="#i-plus"/></svg>Adicionar</button></div>
+            <div id="education-list" class="nested-list"></div>
+          </div>
+
+          <div class="card form-section">
+            <div class="section-header-btn"><h2 class="card-title">Idiomas</h2><button type="button" class="btn btn-ghost btn-sm" id="add-language"><svg><use href="#i-plus"/></svg>Adicionar</button></div>
+            <div id="languages-list" class="nested-list"></div>
+          </div>
+        </section>
+
+        <!-- JSON -->
+        <section id="tab-json" class="tab-pane">
+          <header class="page-header">
+            <div>
+              <h1>JSON do currículo</h1>
+              <p>Edição avançada da estrutura. As mudanças são aplicadas ao sair do campo.</p>
             </div>
-            <div class="ideas-actions">
-              <button id="btnGenerateIdeas" class="btn btn-primary">💡 Analisar vagas e gerar ideias</button>
-              <label class="checkbox-inline" title="Sem IA, as ideias vêm de um catálogo curado ranqueado pelas suas lacunas">
-                <input type="checkbox" id="ideasUseAi" checked> Usar IA (Gemini) para ideias sob medida
+          </header>
+          <div class="card card-flush">
+            <textarea id="jsonEditor" class="code-font" spellcheck="false"></textarea>
+          </div>
+        </section>
+
+        <!-- Vagas -->
+        <section id="tab-jobs" class="tab-pane">
+          <header class="page-header">
+            <div>
+              <h1>Vagas</h1>
+              <p id="jobsLastUpdated">Vagas reais e ativas, coletadas diariamente às 07:00.</p>
+            </div>
+            <div class="page-actions">
+              <button type="button" id="btnRefreshJobs" class="btn btn-secondary" title="Coleta as vagas novamente (pode levar alguns minutos)">
+                <svg><use href="#i-refresh"/></svg><span>Atualizar vagas</span>
+              </button>
+            </div>
+          </header>
+
+          <div class="jobs-toolbar">
+            <div class="search-field">
+              <svg><use href="#i-search"/></svg>
+              <input type="search" id="jobSearchQuery" placeholder="Buscar por cargo, empresa ou tecnologia" autocomplete="off">
+            </div>
+            <select id="jobSort" aria-label="Ordenar vagas">
+              <option value="match">Maior compatibilidade</option>
+              <option value="recent">Mais recentes</option>
+            </select>
+          </div>
+
+          <div id="jobFacets" class="facets"></div>
+
+          <div class="results-bar">
+            <span id="jobsCount">Carregando vagas…</span>
+            <button type="button" id="btnClearFilters" class="link-btn hidden">Limpar filtros</button>
+          </div>
+
+          <div id="jobsList" class="jobs-list"></div>
+        </section>
+
+        <!-- Candidaturas -->
+        <section id="tab-applications" class="tab-pane">
+          <header class="page-header">
+            <div>
+              <h1>Candidaturas</h1>
+              <p>Acompanhe cada processo seletivo do envio até a resposta. Vagas marcadas como “Apliquei” entram aqui automaticamente com a data da inscrição.</p>
+            </div>
+            <div class="page-actions">
+              <button type="button" id="btnExportApps" class="btn btn-secondary" title="Baixa a planilha em CSV (abre no Excel e no Google Sheets)"><svg><use href="#i-download"/></svg><span>Exportar planilha</span></button>
+              <button type="button" id="btnAddApp" class="btn btn-primary"><svg><use href="#i-plus"/></svg><span>Adicionar candidatura</span></button>
+            </div>
+          </header>
+
+          <div id="appsStats" class="stats-row"></div>
+
+          <div class="jobs-toolbar">
+            <div class="search-field">
+              <svg><use href="#i-search"/></svg>
+              <input type="search" id="appsSearch" placeholder="Buscar por empresa, vaga ou anotação" autocomplete="off">
+            </div>
+            <select id="appsSort" aria-label="Ordenar candidaturas">
+              <option value="recent">Atualizadas recentemente</option>
+              <option value="applied">Data da inscrição</option>
+              <option value="next">Próximo passo</option>
+              <option value="company">Empresa (A–Z)</option>
+            </select>
+          </div>
+          <div id="appsStageFilter" class="facet-chips stage-filter"></div>
+
+          <div id="appsTable" class="card card-flush apps-table-wrap"></div>
+          <p id="appsStorageNote" class="muted small-note"></p>
+        </section>
+
+        <!-- Ideias de projetos -->
+        <section id="tab-ideas" class="tab-pane">
+          <header class="page-header">
+            <div>
+              <h1>Ideias de projetos</h1>
+              <p>Compara as tecnologias mais pedidas nas vagas ativas com o seu currículo e sugere projetos pessoais que comprovam o que falta.</p>
+            </div>
+            <div class="page-actions">
+              <label class="switch" title="Sem IA, as ideias vêm de um catálogo curado, ranqueado pelas suas lacunas">
+                <input type="checkbox" id="ideasUseAi" checked><span class="switch-track"></span><span>Usar IA</span>
               </label>
+              <button id="btnGenerateIdeas" class="btn btn-primary"><svg><use href="#i-sparkles"/></svg><span>Analisar vagas</span></button>
             </div>
-            <div id="ideasResult" class="ideas-result">
-              <p class="muted-center">Clique em “Analisar vagas e gerar ideias” para começar.</p>
-            </div>
-          </div>
-
-          <!-- Tab: Talent platforms registration tracker -->
-          <div id="tab-talent" class="tab-pane">
-            <div class="pane-intro">
-              <h3>Onde se cadastrar para ser encontrada</h3>
-              <p>Sites onde empresas e recrutadores procuram profissionais. Marque quando se cadastrar.
-                Se o seu portfólio mudar depois da última atualização de um perfil, ele fica
-                <span class="legend-outdated">laranja (desatualizado)</span> até você clicar em “Atualizei”.</p>
-            </div>
-            <div id="talentSummary" class="talent-summary"></div>
-            <div id="talentList" class="talent-list">
-              <p class="muted-center">Carregando sites...</p>
+          </header>
+          <div id="ideasResult">
+            <div class="empty-state">
+              <svg><use href="#i-bulb"/></svg>
+              <h3>Descubra o que estudar e construir</h3>
+              <p>Clique em “Analisar vagas” para ver as tecnologias em alta e projetos que preenchem suas lacunas.</p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Right Panel: Live Preview -->
-      <section class="panel preview-panel">
+        <!-- Cadastros -->
+        <section id="tab-talent" class="tab-pane">
+          <header class="page-header">
+            <div>
+              <h1>Cadastros</h1>
+              <p>Sites onde empresas e recrutadores procuram profissionais. Quando seu portfólio muda, os perfis atualizados antes disso ficam marcados como <span class="text-warn">desatualizados</span>.</p>
+            </div>
+          </header>
+          <div id="talentSummary" class="stats-row"></div>
+          <div id="talentList" class="talent-list"><div class="empty-state small"><div class="spinner"></div></div></div>
+        </section>
+      </main>
+
+      <!-- ===================== Prévia do currículo ===================== -->
+      <aside class="preview-panel">
         <div class="preview-header">
-          <h3>Visualização do Currículo (ATS)</h3>
+          <div class="preview-title"><svg><use href="#i-eye"/></svg><span>Prévia</span></div>
+          <div class="preview-metrics">
+            <span id="pageCount" class="metric" title="Páginas no PDF A4 (estimativa pela prévia)"><svg><use href="#i-file"/></svg><span>— pág.</span></span>
+            <button type="button" id="atsScoreBtn" class="metric metric-btn" aria-expanded="false" aria-controls="atsPanel" title="Ver o detalhamento da nota ATS">
+              <svg><use href="#i-target"/></svg><span>ATS —</span><svg class="chev"><use href="#i-chevron"/></svg>
+            </button>
+          </div>
           <div class="preview-actions">
-            <button id="btnCopyHtml" class="btn btn-secondary flex-center">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              Copiar HTML
-            </button>
-            <button id="btnPrint" class="btn btn-secondary flex-center" title="Imprimir ou Salvar como PDF diretamente pelo navegador">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-              Imprimir / PDF
-            </button>
-            <button id="btnExportPdf" class="btn btn-primary flex-center">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Exportar Playwright
-            </button>
+            <button id="btnCopyHtml" class="btn btn-icon-only" title="Copiar HTML"><svg><use href="#i-copy"/></svg></button>
+            <button id="btnPrint" class="btn btn-icon-only" title="Imprimir ou salvar como PDF pelo navegador"><svg><use href="#i-printer"/></svg></button>
+            <button id="btnExportPdf" class="btn btn-primary btn-sm" title="Gera o PDF em formato A4"><svg><use href="#i-download"/></svg><span>Baixar PDF</span></button>
           </div>
         </div>
-
         <div class="iframe-container">
-          <div id="previewLoader" class="loader-overlay hidden">
-            <div class="spinner"></div>
-            <p id="loaderMessage">Processando com Inteligência Artificial...</p>
-          </div>
-          <iframe id="cvPreview" src="about:blank"></iframe>
+          <div id="atsPanel" class="ats-panel hidden" role="dialog" aria-label="Detalhamento da nota ATS"></div>
+          <iframe id="cvPreview" src="about:blank" title="Prévia do currículo"></iframe>
         </div>
-      </section>
-    </main>
+      </aside>
+    </div>
   </div>
 
+  <!-- Carregamento (operações longas) -->
+  <div id="previewLoader" class="loader-overlay hidden" role="status" aria-live="polite">
+    <div class="loader-card">
+      <div class="spinner"></div>
+      <p id="loaderMessage">Processando…</p>
+    </div>
+  </div>
+
+  <!-- Login / cadastro -->
+  <div id="authModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="modal-card">
+      <button type="button" class="modal-close" data-close-modal aria-label="Fechar"><svg><use href="#i-x"/></svg></button>
+      <div class="brand-mark modal-mark"><svg><use href="#i-file"/></svg></div>
+      <h2 id="authTitle">Entrar no Career Studio</h2>
+      <p class="muted modal-sub">Seu currículo, cadastros e vagas acompanhadas sincronizados em todos os dispositivos.</p>
+      <div class="segmented" role="tablist">
+        <button type="button" role="tab" data-auth-mode="signin" class="active" aria-selected="true">Entrar</button>
+        <button type="button" role="tab" data-auth-mode="signup" aria-selected="false">Criar conta</button>
+      </div>
+      <button type="button" id="btnGoogle" class="btn btn-secondary btn-lg btn-wide"><svg class="google"><use href="#i-google"/></svg><span>Continuar com Google</span></button>
+      <div class="divider"><span>ou com e-mail</span></div>
+      <form id="authForm" novalidate>
+        <div class="form-group" id="nameGroup" hidden><label for="authName">Nome</label><input id="authName" type="text" autocomplete="name" placeholder="Como quer ser chamada(o)"></div>
+        <div class="form-group"><label for="authEmail">E-mail</label><input id="authEmail" type="email" autocomplete="email" placeholder="voce@exemplo.com" required></div>
+        <div class="form-group" id="passwordGroup">
+          <label for="authPassword">Senha</label>
+          <input id="authPassword" type="password" autocomplete="current-password" minlength="6" required>
+          <p class="hint" id="passwordHint" hidden>Mínimo de 6 caracteres.</p>
+        </div>
+        <p id="authError" class="form-error" role="alert" hidden></p>
+        <button type="submit" id="authSubmit" class="btn btn-primary btn-lg btn-wide">Entrar</button>
+        <button type="button" id="btnForgot" class="link-btn forgot">Esqueci minha senha</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Candidatura: detalhes / nova -->
+  <div id="appModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="appModalTitle">
+    <div class="modal-card modal-wide">
+      <button type="button" class="modal-close" data-close-app aria-label="Fechar"><svg><use href="#i-x"/></svg></button>
+      <h2 id="appModalTitle">Candidatura</h2>
+      <p id="appModalSub" class="muted modal-sub"></p>
+      <form id="appForm" novalidate>
+        <div class="grid-2">
+          <div class="form-group"><label for="appTitle">Vaga</label><input id="appTitle" type="text" required></div>
+          <div class="form-group"><label for="appCompany">Empresa</label><input id="appCompany" type="text" required></div>
+          <div class="form-group"><label for="appUrl">Link da vaga</label><input id="appUrl" type="text" placeholder="https://"></div>
+          <div class="form-group"><label for="appAppliedAt">Data da inscrição</label><input id="appAppliedAt" type="date"></div>
+          <div class="form-group"><label for="appStage">Etapa atual</label><select id="appStage"></select></div>
+          <div class="form-group"><label for="appSalary">Pretensão / salário informado</label><input id="appSalary" type="text" placeholder="Ex.: R$ 12.000 PJ"></div>
+          <div class="form-group"><label for="appNextAt">Próximo passo (data)</label><input id="appNextAt" type="date"></div>
+          <div class="form-group"><label for="appNextNote">Próximo passo (o quê)</label><input id="appNextNote" type="text" placeholder="Ex.: entrevista técnica, enviar teste, follow-up"></div>
+          <div class="form-group"><label for="appContact">Contato (recrutador/a)</label><input id="appContact" type="text" placeholder="Nome, e-mail ou LinkedIn"></div>
+          <div class="form-group"><label for="appSource">Onde se candidatou</label><input id="appSource" type="text" placeholder="Ex.: Gupy, LinkedIn, site da empresa, indicação"></div>
+        </div>
+        <div class="form-group"><label for="appNotes">Anotações</label><textarea id="appNotes" rows="4" placeholder="Perguntas da entrevista, pontos fortes, feedback recebido…"></textarea></div>
+        <div id="appTimeline" class="timeline"></div>
+        <p id="appFormError" class="form-error" role="alert" hidden></p>
+        <div class="modal-actions">
+          <button type="button" id="btnDeleteApp" class="btn btn-danger-ghost"><svg><use href="#i-trash"/></svg><span>Excluir</span></button>
+          <span class="spacer"></span>
+          <button type="button" class="btn btn-secondary" data-close-app>Cancelar</button>
+          <button type="submit" class="btn btn-primary"><svg><use href="#i-check"/></svg><span>Salvar</span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Primeiro acesso: escolher o currículo inicial -->
+  <div id="choiceModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="choiceTitle">
+    <div class="modal-card">
+      <h2 id="choiceTitle">Bem-vinda(o)! Como quer começar?</h2>
+      <p class="muted modal-sub">Sua conta ainda não tem currículo salvo.</p>
+      <div class="choice-list">
+        <button type="button" class="choice" data-choice="current"><svg><use href="#i-file"/></svg><span><strong>Usar o currículo exibido</strong><small>Salva na sua conta o currículo que está na prévia agora.</small></span></button>
+        <button type="button" class="choice" data-choice="blank"><svg><use href="#i-plus"/></svg><span><strong>Começar com um modelo em branco</strong><small>Para montar o seu próprio currículo do zero.</small></span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notificações -->
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+
   <script src="app.js"></script>
+  <!-- Firebase (módulo): carrega depois do app; se falhar, o app segue só com armazenamento local -->
+  <script type="module" src="cloud.js"></script>
 </body>
 </html>

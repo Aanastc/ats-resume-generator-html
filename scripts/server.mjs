@@ -10,6 +10,7 @@ import { buildJobsResponse } from "../lib/jobs-filter.mjs";
 import { optimizeResume } from "../lib/gemini.mjs";
 import { talentHandler } from "../lib/talent.mjs";
 import { projectIdeasHandler } from "../lib/project-ideas.mjs";
+import { atsScoreHandler } from "../lib/ats-handler.mjs";
 
 dotenv.config();
 
@@ -102,9 +103,12 @@ app.all("/api/talent", (req, res) => talentHandler(req, res, { persist: true, ro
 // Ideias de projetos a partir das lacunas entre vagas e currículo
 app.post("/api/project-ideas", (req, res) => projectIdeasHandler(req, res, { root }));
 
+// Nota ATS (estimativa explicável)
+app.post("/api/ats-score", (req, res) => atsScoreHandler(req, res, { root }));
+
 // Otimização com Gemini
 app.post("/api/optimize", async (req, res) => {
-  const { resume, jobDescription, customApiKey } = req.body || {};
+  const { resume, jobDescription, customApiKey, language } = req.body || {};
   const apiKey = customApiKey || process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
@@ -114,7 +118,7 @@ app.post("/api/optimize", async (req, res) => {
   }
 
   try {
-    res.json(await optimizeResume({ resume, jobDescription, apiKey }));
+    res.json(await optimizeResume({ resume, jobDescription, apiKey, language }));
   } catch (err) {
     res.status(err.status || 500).json({ error: `Erro na otimização da IA: ${err.message}` });
   }

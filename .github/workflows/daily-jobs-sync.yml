@@ -1,42 +1,51 @@
-name: Atualização Diária de Vagas (08:00 BRT)
+name: Atualização Diária de Vagas (07:00 BRT)
 
 on:
   schedule:
-    # 11:00 UTC = 08:00 Horário de Brasília (BRT)
-    - cron: '0 11 * * *'
+    # 09:50 UTC = 06:50 em Brasília: a coleta leva ~4 min e fica pronta por volta das 07:00.
+    # Minuto "quebrado" de propósito: o GitHub atrasa muito os agendamentos em hora cheia (alta demanda).
+    - cron: '50 9 * * *'
   workflow_dispatch: # Permite disparar manualmente pelo painel do GitHub
+
+concurrency:
+  group: daily-jobs-sync
+  cancel-in-progress: false
 
 jobs:
   update-jobs:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     permissions:
       contents: write
 
     steps:
-      - name: Checkout do Repositório
-        uses: actions/checkout@v4
+      - name: Checkout do repositório
+        uses: actions/checkout@v5
 
       - name: Configurar Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
 
-      - name: Sincronizar Dados Atualizados do Portfólio (GitHub)
+      - name: Sincronizar dados do portfólio (GitHub)
         run: node scripts/sync-portfolio.mjs
 
-      - name: Coletar vagas reais (sites de empresas, agregadores e comunidades) e descartar fantasmas
+      - name: Coletar vagas reais (sites de empresas, nichos, agregadores e comunidades) e descartar fantasmas
         run: node scripts/fetch-jobs.mjs
         env:
           # Token automático do Actions: limite maior na API do GitHub (comunidades de vagas)
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Re-renderizar HTML do Currículo
-        run: node scripts/render.mjs
-
-      - name: Commitar e Publicar Atualizações
+      - name: Commitar e publicar atualizações
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          # Só arquivos versionados (dist/ é gerado e fica fora do git)
           git add data/jobs-cache.json data/resume.json data/resume-pt.json
-          git diff --staged --quiet || (git commit -m "chore(sync): sincronização diária de vagas e portfólio [08:00 BRT]" && git push)
-
+          if git diff --staged --quiet; then
+            echo "Nada mudou desde a última coleta."
+          else
+            git commit -m "chore(sync): coleta diária de vagas e portfólio [07:00 BRT]"
+            git pull --rebase --autostash origin main
+            git push
+          fi

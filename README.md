@@ -185,6 +185,22 @@ signing up. When the portfolio repository changes (last commit in `src/locales`)
 turns orange (**outdated**) until you click "Atualizei". No database needed: locally the state is saved in
 `data/talent-status.json` (versioned in git, so it follows you across machines); on Vercel it is kept in the browser.
 
+## Accounts and cloud sync (Firebase)
+
+Users can sign up with e-mail/password or Google. Signed-in users get their base resume, talent-platform
+checklist and tracked jobs (saved / applied / resume adapted) synced across devices in Firestore.
+Without signing in, everything still works with local storage.
+
+- Client code: `web/cloud.js` (Firebase JS SDK from the official CDN) and `web/firebase-config.js` (public web config)
+- Dedicated Firebase project `jobs-3a608`; data lives under `careerStudio/{uid}/…`
+- Security rules: `firestore.rules` — each user can only read/write their own space
+
+Firebase console setup:
+
+1. **Authentication → Sign-in method**: enable *Google* and *Email/Password*
+2. **Authentication → Settings → Authorized domains**: add the Vercel domain (e.g. `ats-resume-generator-html-virid.vercel.app`)
+3. **Firestore → Rules**: publish `firestore.rules` (`npx firebase-tools deploy --only firestore:rules`)
+
 ## Environment variables
 
 | Variable | Where | Purpose |
