@@ -1,0 +1,1306 @@
+{
+  "updated_at": "2026-11-18T12:21:25.768Z",
+  "formatted_date": "18/11/2026, 09:21:25",
+  "next_update": "Diariamente às 08:00 (Horário de Brasília)",
+  "total_articles": 60,
+  "counts": {
+    "pt": 6,
+    "en": 54
+  },
+  "articles": [
+    {
+      "id": "hn-50543343",
+      "title": "Talos Linux",
+      "url": "https://www.siderolabs.com/talos-linux",
+      "author": "SweetSoftPillow",
+      "source": "Hacker News",
+      "lang": "en",
+      "published_at": "2026-11-18T08:17:44Z",
+      "reading_time": null,
+      "description": "Em destaque no Hacker News (66 pontos · 32 comentários técnicos).",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "Engenharia",
+        "Trending"
+      ],
+      "relevance": 79
+    },
+    {
+      "id": "hn-50541790",
+      "title": "Why is Gemini 4 Carbon taking so long?",
+      "url": "https://kernel.dev/blog/why-is-gemini-4-carbon-taking-so-long/",
+      "author": "deenadz",
+      "source": "Hacker News",
+      "lang": "en",
+      "published_at": "2026-11-18T04:14:04Z",
+      "reading_time": null,
+      "description": "Em destaque no Hacker News (126 pontos · 62 comentários técnicos).",
+      "topics": [
+        "ia"
+      ],
+      "tags": [
+        "Engenharia",
+        "Trending"
+      ],
+      "relevance": 81
+    },
+    {
+      "id": "hn-50541619",
+      "title": "Claude was trained on protein sequences at scale",
+      "url": "http://xinmingtu.cn/blog/2026/claude-opus-5-5-protein-sequences/",
+      "author": "gmays",
+      "source": "Hacker News",
+      "lang": "en",
+      "published_at": "2026-11-18T03:47:43Z",
+      "reading_time": null,
+      "description": "Em destaque no Hacker News (72 pontos · 32 comentários técnicos).",
+      "topics": [
+        "ia"
+      ],
+      "tags": [
+        "Engenharia",
+        "Trending"
+      ],
+      "relevance": 79
+    },
+    {
+      "id": "hn-50538303",
+      "title": "Harvard researchers find AI coding agents shifted the bottleneck to code review",
+      "url": "https://complexdiscovery.com/harvard-researchers-find-ai-coding-agents-shifted-the-bottleneck-to-code-review/",
+      "author": "judahmeek",
+      "source": "Hacker News",
+      "lang": "en",
+      "published_at": "2026-11-17T21:16:12Z",
+      "reading_time": null,
+      "description": "Em destaque no Hacker News (207 pontos · 287 comentários técnicos).",
+      "topics": [
+        "ia",
+        "qualidade"
+      ],
+      "tags": [
+        "Engenharia",
+        "Trending"
+      ],
+      "relevance": 88
+    },
+    {
+      "id": "cloudflareblog-aHR0cHM6Ly9ibG",
+      "title": "Quad9’s withdrawal from France: A canary in the coal mine",
+      "url": "https://blog.cloudflare.com/quad9-withdrawal-from-france/",
+      "author": "Patrick Nemeroff",
+      "source": "Cloudflare Blog",
+      "lang": "en",
+      "published_at": "2026-11-17T20:24:27.000Z",
+      "reading_time": null,
+      "description": "Quad9's forced withdrawal from France highlights the dangers of mandating DNS-level blocking. We explore why forcing public resolvers to act as content filters is technically flawed and threatens the open Internet.",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "Cloud",
+        "Systems",
+        "1.1.1.1",
+        "DNS",
+        "Policy & Legal",
+        "Privacy"
+      ],
+      "relevance": 88
+    },
+    {
+      "id": "tabnews-f253db8b-54bc-4f60-8a02-f0c870fb1b84",
+      "title": "Recebi um golpe de recrutador falso. O teste técnico era um repositório com malware",
+      "url": "https://www.tabnews.com.br/guilhermemichels/recebi-um-golpe-de-recrutador-falso-o-teste-tecnico-era-um-repositorio-com-malware",
+      "author": "guilhermemichels",
+      "source": "TabNews",
+      "lang": "pt",
+      "published_at": "2026-11-17T19:45:42.269Z",
+      "reading_time": null,
+      "description": "Discussão técnica na comunidade TabNews (5 tabcoins).",
+      "topics": [
+        "qualidade"
+      ],
+      "tags": [
+        "Brasil",
+        "Comunidade"
+      ],
+      "relevance": 75
+    },
+    {
+      "id": "hn-50536387",
+      "title": "Solid 2.0",
+      "url": "https://www.solidjs.com/blog/solid-2-0-the-long-hold/",
+      "author": "pier25",
+      "source": "Hacker News",
+      "lang": "en",
+      "published_at": "2026-11-17T18:56:17Z",
+      "reading_time": null,
+      "description": "Em destaque no Hacker News (325 pontos · 101 comentários técnicos).",
+      "topics": [
+        "arquitetura"
+      ],
+      "tags": [
+        "Engenharia",
+        "Trending"
+      ],
+      "relevance": 82
+    },
+    {
+      "id": "devto-5041988",
+      "title": "Day 85: A Task That Always Changes and Two Halves",
+      "url": "https://dev.to/ndcodes/day-85-one-direction-and-two-halves-5cic",
+      "author": "Nnamdi Felix Ibe",
+      "source": "DEV.to",
+      "lang": "en",
+      "published_at": "2026-11-17T18:00:00Z",
+      "reading_time": 8,
+      "description": "Day 85 of DevOps, Day 35 of Azure. Both tasks today reported a state that is a word rather than a...",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "devops",
+        "ansible",
+        "azure",
+        "automation"
+      ],
+      "relevance": 76
+    },
+    {
+      "id": "tabnews-927165b3-ded6-4f21-9bc7-4236f747cdb7",
+      "title": "Seu LLM acerta? Meça por amostra, não pelo painel",
+      "url": "https://www.tabnews.com.br/RodrigoSyncDataStudioAi/seu-llm-acerta-meca-por-amostra-nao-pelo-painel",
+      "author": "RodrigoSyncDataStudioAi",
+      "source": "TabNews",
+      "lang": "pt",
+      "published_at": "2026-11-17T16:39:23.195Z",
+      "reading_time": null,
+      "description": "Discussão técnica na comunidade TabNews (3 tabcoins).",
+      "topics": [
+        "ia"
+      ],
+      "tags": [
+        "Brasil",
+        "Comunidade"
+      ],
+      "relevance": 77
+    },
+    {
+      "id": "awsarchitectureblog-aHR0cHM6Ly9hd3",
+      "title": "How Rakbank built centralized observability at scale with Amazon OpenSearch Service",
+      "url": "https://aws.amazon.com/blogs/architecture/how-rakbank-built-centralized-observability-at-scale-with-amazon-opensearch-service/",
+      "author": "Georges Hamieh",
+      "source": "AWS Architecture Blog",
+      "lang": "en",
+      "published_at": "2026-11-17T16:03:22.000Z",
+      "reading_time": null,
+      "description": "Rakbank re-platformed logging for its retail digital banking workloads on a cross-account, Multi-AZ Amazon OpenSearch Service design that ingests ~150 GB/day through Fluent Bit, using hot/UltraWarm/cold tiering and Amazon S3 archival for 7-year compliance retention and ~55% cost savings over an all-hot cluster.",
+      "topics": [
+        "arquitetura",
+        "cloud"
+      ],
+      "tags": [
+        "AWS",
+        "Architecture",
+        "Advanced (300)",
+        "Amazon OpenSearch Service",
+        "Customer Solutions"
+      ],
+      "relevance": 98
+    },
+    {
+      "id": "devto-5058432",
+      "title": "AI agents open 17 million pull requests a month. I built a gate that rejects the ones that lie.",
+      "url": "https://dev.to/aws-builders/ai-agents-open-17-million-pull-requests-a-month-i-built-a-gate-that-rejects-the-ones-that-lie-46n7",
+      "author": "Sarvar Nadaf",
+      "source": "DEV.to",
+      "lang": "en",
+      "published_at": "2026-11-17T15:45:44Z",
+      "reading_time": 6,
+      "description": "AI agents now open pull requests on their own. I gave Amazon Nova Pro a real GitHub bug, then built a deterministic Python gate that rejects it when it cannot prove the fix. No model grades the model.",
+      "topics": [
+        "ia",
+        "cloud",
+        "fullstack"
+      ],
+      "tags": [
+        "ai",
+        "aws",
+        "devops",
+        "discuss"
+      ],
+      "relevance": 93
+    },
+    {
+      "id": "hn-50532849",
+      "title": "Highly classified US national security communications network goes down",
+      "url": "https://www.cnn.com/2026/11/17/politics/highly-classified-national-security-communications-network-goes-down",
+      "author": "monkeydust",
+      "source": "Hacker News",
+      "lang": "en",
+      "published_at": "2026-11-17T15:38:28Z",
+      "reading_time": null,
+      "description": "Em destaque no Hacker News (602 pontos · 690 comentários técnicos).",
+      "topics": [
+        "qualidade"
+      ],
+      "tags": [
+        "Engenharia",
+        "Trending"
+      ],
+      "relevance": 78
+    },
+    {
+      "id": "martinfowler-aHR0cHM6Ly9tYX",
+      "title": "Deterministic Simulation Testing",
+      "url": "https://martinfowler.com/articles/deterministic-simulation-testing.html",
+      "author": "Martin Fowler martin@martinfowler.com https://martinfowler.c",
+      "source": "Martin Fowler",
+      "lang": "en",
+      "published_at": "2026-11-17T14:33:00.000Z",
+      "reading_time": null,
+      "description": "Distributed systems are hard to test because partial failures overlap with live traffic and the same fault can produce different execution traces on different runs. Unmesh Joshi describes how deterministic simulation testing addresses this by replacing real clocks, networks, and storage with simulated components driven",
+      "topics": [
+        "arquitetura",
+        "qualidade"
+      ],
+      "tags": [
+        "Architecture",
+        "Software Engineering"
+      ],
+      "relevance": 94
+    },
+    {
+      "id": "awsarchitectureblog-aHR0cHM6Ly9hd3",
+      "title": "Announcing updates to the AWS Well-Architected Framework",
+      "url": "https://aws.amazon.com/blogs/architecture/announcing-updates-to-the-aws-well-architected-framework-3/",
+      "author": "Haleh Najafzadeh",
+      "source": "AWS Architecture Blog",
+      "lang": "en",
+      "published_at": "2026-11-16T20:03:26.000Z",
+      "reading_time": null,
+      "description": "Updates to the AWS Well-Architected Framework reorganize it into Well-Architected Cloud Foundations and Well-Architected Cloud Workloads, add new best practices, and bring the general availability of the AWS Well-Architected Agent for analyzing workloads and guiding remediation.",
+      "topics": [
+        "arquitetura",
+        "cloud"
+      ],
+      "tags": [
+        "AWS",
+        "Architecture",
+        "Announcements",
+        "AWS Well-Architected Framework",
+        "Foundational (100)"
+      ],
+      "relevance": 98
+    },
+    {
+      "id": "devto-5049539",
+      "title": "PitchPulse — Rehearsing Recovery for High-Pressure Speaking (Powered by Presage SmartSpectra)",
+      "url": "https://dev.to/dj29/pitchpulse-rehearsing-recovery-for-high-pressure-speaking-powered-by-presage-smartspectra-3387",
+      "author": "Dhruv Jani",
+      "source": "DEV.to",
+      "lang": "en",
+      "published_at": "2026-11-16T17:08:47Z",
+      "reading_time": 5,
+      "description": "This is a submission for the Presage SmartSpectra SDK Challenge What I...",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "devchallenge",
+        "presagechallenge",
+        "electron",
+        "react"
+      ],
+      "relevance": 73
+    },
+    {
+      "id": "tabnews-7dada611-11d0-4169-8079-3ba3ce1b7201",
+      "title": "Pitch: Testei um agente de IA de segurança contra o OWASP NodeGoat — achou 4 de 5 falhas conhecidas (e mais 21)",
+      "url": "https://www.tabnews.com.br/CarlosLagos/pitch-testei-um-agente-de-ia-de-seguranca-contra-o-owasp-nodegoat-achou-4-de-5-falhas-conhecidas-e-mais-21",
+      "author": "CarlosLagos",
+      "source": "TabNews",
+      "lang": "pt",
+      "published_at": "2026-11-16T12:53:52.578Z",
+      "reading_time": null,
+      "description": "Artigo em destaque na comunidade TabNews (4 tabcoins).",
+      "topics": [
+        "ia",
+        "qualidade"
+      ],
+      "tags": [
+        "Brasil",
+        "Comunidade"
+      ],
+      "relevance": 84
+    },
+    {
+      "id": "devto-5031044",
+      "title": "When an import becomes a zip bomb: bundle regressions in Next.js",
+      "url": "https://dev.to/bra31k/the-import-was-7-kib-the-regression-was-153-kib-4jbj",
+      "author": "Sergey Patrakeev",
+      "source": "DEV.to",
+      "lang": "en",
+      "published_at": "2026-11-16T12:06:54Z",
+      "reading_time": 7,
+      "description": "Update: A reader pointed out that Next.js 16.4 shipped an official bundle analyzer with snapshot...",
+      "topics": [
+        "fullstack",
+        "qualidade"
+      ],
+      "tags": [
+        "nextjs",
+        "react",
+        "performance",
+        "tooling"
+      ],
+      "relevance": 78
+    },
+    {
+      "id": "devto-5045185",
+      "title": "PostgreSQL 19's pg_plan_advice turned a 28ms query into 264ms under load",
+      "url": "https://dev.to/alexgeorgiev17/postgresql-19s-pgplanadvice-turned-a-28ms-query-into-264ms-under-load-46o5",
+      "author": "Alex Georgiev",
+      "source": "DEV.to",
+      "lang": "en",
+      "published_at": "2026-11-16T11:00:00Z",
+      "reading_time": 7,
+      "description": "I tested PostgreSQL 19 RC2's new planner-hint extension, pg_plan_advice: forcing a plan made throughput 9x worse under ten clients, and in every scenario I could construct the planner's own choice already beat anything I forced.",
+      "topics": [
+        "arquitetura",
+        "cloud",
+        "qualidade"
+      ],
+      "tags": [
+        "postgres",
+        "database",
+        "performance",
+        "devops"
+      ],
+      "relevance": 93
+    },
+    {
+      "id": "devto-5031079",
+      "title": "Recover a WebMCP Update After Its Response Disappears",
+      "url": "https://dev.to/gde/recover-a-webmcp-update-after-its-response-disappears-2hp",
+      "author": "Raju Dandigam",
+      "source": "DEV.to",
+      "lang": "en",
+      "published_at": "2026-11-15T15:05:00Z",
+      "reading_time": 4,
+      "description": "The browser showed JFK. The database already contained BOS. That was the state of a synthetic trip...",
+      "topics": [
+        "arquitetura",
+        "fullstack",
+        "qualidade"
+      ],
+      "tags": [
+        "testing",
+        "typescript",
+        "webmcp",
+        "react"
+      ],
+      "relevance": 88
+    },
+    {
+      "id": "devto-5041802",
+      "title": "Day 83: Two Files and Four Parts",
+      "url": "https://dev.to/ndcodes/day-83-two-files-and-four-parts-40hc",
+      "author": "Nnamdi Felix Ibe",
+      "source": "DEV.to",
+      "lang": "en",
+      "published_at": "2026-11-15T13:47:01Z",
+      "reading_time": 7,
+      "description": "Day 83 of DevOps, Day 33 of Azure. Both tasks today were made of parts that are each correct on their...",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "devops",
+        "ansible",
+        "azure",
+        "automation"
+      ],
+      "relevance": 77
+    },
+    {
+      "id": "devto-5040912",
+      "title": "WYSIWYG or block editor? I built the one in between",
+      "url": "https://dev.to/sumankalia/wysiwyg-or-block-editor-i-built-the-one-in-between-2im5",
+      "author": "Suman Kumar",
+      "source": "DEV.to",
+      "lang": "en",
+      "published_at": "2026-11-15T10:30:14Z",
+      "reading_time": 4,
+      "description": "Rich text editors have been split into two camps for a long time. WYSIWYG editors work with HTML...",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "react",
+        "opensource",
+        "javascript",
+        "webdev"
+      ],
+      "relevance": 69
+    },
+    {
+      "id": "devto-5031092",
+      "title": "Prepare a WebMCP Review Without Submitting the Request",
+      "url": "https://dev.to/gde/prepare-a-webmcp-review-without-submitting-the-request-j4n",
+      "author": "Raju Dandigam",
+      "source": "DEV.to",
+      "lang": "en",
+      "published_at": "2026-11-14T16:18:00Z",
+      "reading_time": 3,
+      "description": "A business-class trip in my demo produced four facts at the same time: the saved fields were...",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "react",
+        "typescript",
+        "ai",
+        "webmcp"
+      ],
+      "relevance": 71
+    },
+    {
+      "id": "tabnews-20692a1b-2876-4f37-89de-f38e916b6e44",
+      "title": "Pitch: Tyrus - A programming language made for devs. TypeScript syntax. Rust semantics.",
+      "url": "https://www.tabnews.com.br/TitenQ/tyrus-typescript-syntax-rust-semantics",
+      "author": "TitenQ",
+      "source": "TabNews",
+      "lang": "pt",
+      "published_at": "2026-11-14T13:19:51.196Z",
+      "reading_time": null,
+      "description": "Discussão técnica na comunidade TabNews (6 tabcoins).",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "Brasil",
+        "Comunidade"
+      ],
+      "relevance": 74
+    },
+    {
+      "id": "awsarchitectureblog-aHR0cHM6Ly9hd3",
+      "title": "How Thermo Fisher Scientific built AI-powered patient matching on AWS",
+      "url": "https://aws.amazon.com/blogs/architecture/how-thermo-fisher-scientific-built-ai-powered-patient-matching-on-aws/",
+      "author": "Kaushal Patel",
+      "source": "AWS Architecture Blog",
+      "lang": "en",
+      "published_at": "2026-11-13T20:26:58.000Z",
+      "reading_time": null,
+      "description": "Learn how Thermo Fisher Scientific built an AI-powered patient-matching platform on AWS, modernizing its clinical trial recruitment data foundation and using AWS Countdown Premium to de-risk the production launch.",
+      "topics": [
+        "ia",
+        "arquitetura",
+        "cloud"
+      ],
+      "tags": [
+        "AWS",
+        "Architecture",
+        "AWS Support",
+        "Customer Solutions",
+        "Intermediate (200)"
+      ],
+      "relevance": 100
+    },
+    {
+      "id": "cloudflareblog-aHR0cHM6Ly9ibG",
+      "title": "Kitesurf is now open source",
+      "url": "https://blog.cloudflare.com/kitesurf-open-source/",
+      "author": "Celso Martinho",
+      "source": "Cloudflare Blog",
+      "lang": "en",
+      "published_at": "2026-11-13T20:20:21.000Z",
+      "reading_time": null,
+      "description": "Kitesurf, our experimental browser engine for AI agents, is now open source. Inspect the code, run it locally, or deploy your own instance on Cloudflare Workers.",
+      "topics": [
+        "ia",
+        "cloud",
+        "fullstack"
+      ],
+      "tags": [
+        "Cloud",
+        "Systems",
+        "Agents",
+        "AI",
+        "Browser Run",
+        "Open Source"
+      ],
+      "relevance": 100
+    },
+    {
+      "id": "cloudflareblog-aHR0cHM6Ly9ibG",
+      "title": "Adapting to AI penetration testing orchestrators: The Modern Security Model",
+      "url": "https://blog.cloudflare.com/adapting-to-ai-penetration-testing-orchestrators/",
+      "author": "Blake Darché",
+      "source": "Cloudflare Blog",
+      "lang": "en",
+      "published_at": "2026-11-13T19:26:07.000Z",
+      "reading_time": null,
+      "description": "AI-orchestrated penetration testing platforms like ARTEX have become increasingly powerful tools enabling effective attacks on exposed infrastructure. Here we share Cloudflare’s observations and recommended countermeasures.",
+      "topics": [
+        "ia",
+        "cloud",
+        "qualidade"
+      ],
+      "tags": [
+        "Cloud",
+        "Systems",
+        "Attacks",
+        "LLM",
+        "Penetration Testing",
+        "Security"
+      ],
+      "relevance": 100
+    },
+    {
+      "id": "devto-5031100",
+      "title": "Scope WebMCP Tools to the Open React Workflow",
+      "url": "https://dev.to/gde/scope-webmcp-tools-to-the-open-react-workflow-262o",
+      "author": "Raju Dandigam",
+      "source": "DEV.to",
+      "lang": "en",
+      "published_at": "2026-11-13T17:15:20Z",
+      "reading_time": 4,
+      "description": "On the Events list, the browser discovered zero WebMCP tools. Opening an event draft exposed four....",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "typescript",
+        "webmcp",
+        "webdev",
+        "react"
+      ],
+      "relevance": 72
+    },
+    {
+      "id": "cloudflareblog-aHR0cHM6Ly9ibG",
+      "title": "Introducing Spend Management: Spending limits and alerts for Cloudflare",
+      "url": "https://blog.cloudflare.com/spend-management/",
+      "author": "Celso Martinho",
+      "source": "Cloudflare Blog",
+      "lang": "en",
+      "published_at": "2026-11-13T14:00:00.000Z",
+      "reading_time": null,
+      "description": "Spend Management adds opt-in spending caps for Cloudflare Workers and Durable Objects, and more products soon. Here is how we built the metering pipeline that turns usage into runtime decisions.",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "Cloud",
+        "Systems",
+        "Billing",
+        "Developer Platform",
+        "Developers",
+        "Durable Objects"
+      ],
+      "relevance": 88
+    },
+    {
+      "id": "devto-5029108",
+      "title": "Git 2.56's history drop command replays commits 40 to 77 times faster than rebase",
+      "url": "https://dev.to/alexgeorgiev17/git-256s-history-drop-command-replays-commits-40-to-77-times-faster-than-rebase-45jm",
+      "author": "Alex Georgiev",
+      "source": "DEV.to",
+      "lang": "en",
+      "published_at": "2026-11-13T11:00:00Z",
+      "reading_time": 8,
+      "description": "I measured git history drop against the classic worktree-and-rebase way of removing a commit: 1.4s vs 0.03s at 20 descendants, 26.5s vs 0.36s at 400.",
+      "topics": [
+        "cloud",
+        "qualidade"
+      ],
+      "tags": [
+        "git",
+        "devops",
+        "performance",
+        "cli"
+      ],
+      "relevance": 83
+    },
+    {
+      "id": "awsarchitectureblog-aHR0cHM6Ly9hd3",
+      "title": "Modular regression testing framework built on AWS for large-scale systems",
+      "url": "https://aws.amazon.com/blogs/architecture/modular-regression-testing-framework-built-on-aws-for-large-scale-systems/",
+      "author": "Hannah Zhang",
+      "source": "AWS Architecture Blog",
+      "lang": "en",
+      "published_at": "2026-11-12T21:51:43.000Z",
+      "reading_time": null,
+      "description": "Regression testing must catch behavior changes before they reach production, yet synthetic tests miss real-world edge cases. This post walks through a modular framework, built on AWS, that replays a sample of production traffic against new code and automatically gates deployments on the fraction of results that match p",
+      "topics": [
+        "arquitetura",
+        "cloud",
+        "qualidade"
+      ],
+      "tags": [
+        "AWS",
+        "Architecture",
+        "Expert (400)",
+        "Technical How-to"
+      ],
+      "relevance": 100
+    },
+    {
+      "id": "awsarchitectureblog-aHR0cHM6Ly9hd3",
+      "title": "Scale distributed AI workloads with Ray and Anyscale on Amazon EC2",
+      "url": "https://aws.amazon.com/blogs/architecture/scale-distributed-ai-workloads-with-ray-and-anyscale-on-amazon-ec2/",
+      "author": "Sindhura Palakodety",
+      "source": "AWS Architecture Blog",
+      "lang": "en",
+      "published_at": "2026-11-12T20:51:20.000Z",
+      "reading_time": null,
+      "description": "Building multimodal AI/ML pipelines on Amazon EC2 means scaling distributed compute, controlling costs across stages, and keeping up with new models and hardware. This post shows how the Ray-powered Anyscale application on AWS helps you deploy Ray across three compute options and scale from prototype to production with",
+      "topics": [
+        "arquitetura",
+        "cloud"
+      ],
+      "tags": [
+        "AWS",
+        "Architecture",
+        "Amazon EC2",
+        "Intermediate (200)",
+        "Thought Leadership"
+      ],
+      "relevance": 98
+    },
+    {
+      "id": "devto-5025454",
+      "title": "I built a Theme Studio where you plug a theme into a display and watch it stream in ⚡",
+      "url": "https://dev.to/m_ahmad/i-built-a-theme-studio-where-you-plug-a-theme-into-a-display-and-watch-it-stream-in-3m9c",
+      "author": "Muhammad Ahmad",
+      "source": "DEV.to",
+      "lang": "en",
+      "published_at": "2026-11-12T20:04:45Z",
+      "reading_time": 2,
+      "description": "A node canvas for my portfolio. Wire a theme card into a display, light races up a bundle of glowing wires, and a pixel progress bar fills while the page loads.",
+      "topics": [
+        "fullstack",
+        "carreira"
+      ],
+      "tags": [
+        "react",
+        "javascript",
+        "webdev",
+        "showdev"
+      ],
+      "relevance": 71
+    },
+    {
+      "id": "awsarchitectureblog-aHR0cHM6Ly9hd3",
+      "title": "Inside an enterprise AI agent: A governed, observable loop architecture",
+      "url": "https://aws.amazon.com/blogs/architecture/inside-an-enterprise-ai-agent-a-governed-observable-loop-architecture/",
+      "author": "Rushabh Lokhande",
+      "source": "AWS Architecture Blog",
+      "lang": "en",
+      "published_at": "2026-11-12T19:31:28.000Z",
+      "reading_time": null,
+      "description": "This post lays out a five-layer reference architecture for governed, observable enterprise AI agents on AWS: an API gateway, a five-phase agent runtime, a knowledge and state tier, platform services, and a cross-cutting trust and control framework. Each layer maps to managed AWS services, with the design patterns worth",
+      "topics": [
+        "ia",
+        "arquitetura",
+        "cloud"
+      ],
+      "tags": [
+        "AWS",
+        "Architecture",
+        "Advanced (300)",
+        "Amazon Bedrock",
+        "Technical How-to"
+      ],
+      "relevance": 100
+    },
+    {
+      "id": "tabnews-beeace98-a335-4701-8286-daee70730c8f",
+      "title": "Vocês deixam agentes de IA rodarem comandos sozinhos no terminal?",
+      "url": "https://www.tabnews.com.br/melteam/voces-deixam-agentes-de-ia-rodarem-comandos-sozinhos-no-terminal",
+      "author": "melteam",
+      "source": "TabNews",
+      "lang": "pt",
+      "published_at": "2026-11-12T16:56:38.971Z",
+      "reading_time": null,
+      "description": "Discussão técnica na comunidade TabNews (7 tabcoins).",
+      "topics": [
+        "ia"
+      ],
+      "tags": [
+        "Brasil",
+        "Comunidade"
+      ],
+      "relevance": 79
+    },
+    {
+      "id": "devto-5020391",
+      "title": "What Changes With the A2UI 1.0 Release",
+      "url": "https://dev.to/gde/what-changes-with-the-a2ui-10-release-31eo",
+      "author": "xbill",
+      "source": "DEV.to",
+      "lang": "en",
+      "published_at": "2026-11-12T16:05:47Z",
+      "reading_time": 16,
+      "description": "The same currency agent built on A2UI 0.9 and on A2UI 1.0: what changed in the protocol, how an answer reaches the screen now, and why the model writes 21 tokens for a rate card that took 223 on 0.9.",
+      "topics": [
+        "ia",
+        "fullstack"
+      ],
+      "tags": [
+        "a2ui",
+        "agents",
+        "gemini",
+        "react"
+      ],
+      "relevance": 82
+    },
+    {
+      "id": "martinfowler-aHR0cHM6Ly9tYX",
+      "title": "Bliki: Generated Glossary",
+      "url": "https://martinfowler.com/bliki/GeneratedGlossary.html",
+      "author": "Martin Fowler /",
+      "source": "Martin Fowler",
+      "lang": "en",
+      "published_at": "2026-11-12T14:15:00.000Z",
+      "reading_time": null,
+      "description": "When we use LLMs in a specialized domain, such as the operations of any reasonably-large organization, there is a lot of specialized vocabulary. Such words and specialized meanings will be foreign to an LLM because they aren't in its training set, making it harder for the LLM to be effective when doing tasks in that do",
+      "topics": [
+        "ia",
+        "arquitetura"
+      ],
+      "tags": [
+        "Architecture",
+        "Software Engineering"
+      ],
+      "relevance": 98
+    },
+    {
+      "id": "tabnews-f0e9e517-80ea-4ebc-929f-dac9ce987c4f",
+      "title": "Fiz um negócio que obriga o Python a ter tipo em tudo",
+      "url": "https://www.tabnews.com.br/MarinhoD/fiz-um-negocio-que-obriga-o-python-a-ter-tipo-em-tudo",
+      "author": "MarinhoD",
+      "source": "TabNews",
+      "lang": "pt",
+      "published_at": "2026-11-12T14:01:43.116Z",
+      "reading_time": null,
+      "description": "Artigo em destaque na comunidade TabNews (5 tabcoins).",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "Brasil",
+        "Comunidade"
+      ],
+      "relevance": 74
+    },
+    {
+      "id": "devto-5020863",
+      "title": "ClickHouse 26.10's string filter during scan cuts a selective LIKE query's memory 25-fold",
+      "url": "https://dev.to/alexgeorgiev17/clickhouse-2610s-string-filter-during-scan-cuts-a-selective-like-querys-memory-25-fold-228j",
+      "author": "Alex Georgiev",
+      "source": "DEV.to",
+      "lang": "en",
+      "published_at": "2026-11-12T11:00:00Z",
+      "reading_time": 7,
+      "description": "I benchmarked ClickHouse 26.10's new apply_string_filters_during_scan setting against 26.9: a selective LIKE query's peak memory dropped from 37.6MB to 1.5MB, but a plain WHERE equality got none of it until I rewrote it as PREWHERE.",
+      "topics": [
+        "arquitetura",
+        "cloud",
+        "qualidade"
+      ],
+      "tags": [
+        "clickhouse",
+        "database",
+        "performance",
+        "devops"
+      ],
+      "relevance": 92
+    },
+    {
+      "id": "awsarchitectureblog-aHR0cHM6Ly9hd3",
+      "title": "How Zillow runs 100 million daily notifications on AWS Step Functions",
+      "url": "https://aws.amazon.com/blogs/architecture/how-zillow-runs-100-million-daily-notifications-on-aws-step-functions/",
+      "author": "Nishita Kheur",
+      "source": "AWS Architecture Blog",
+      "lang": "en",
+      "published_at": "2026-11-11T23:25:00.000Z",
+      "reading_time": null,
+      "description": "Zillow sends more than 100 million personalized notifications a day, each as a short-lived AWS Step Functions Express workflow. See how the Comms Experience team replaced more than 10 campaign generators with one configuration-driven orchestration platform and a library of reusable content modules.",
+      "topics": [
+        "arquitetura",
+        "cloud"
+      ],
+      "tags": [
+        "AWS",
+        "Architecture",
+        "AWS Step Functions",
+        "Customer Solutions"
+      ],
+      "relevance": 98
+    },
+    {
+      "id": "devto-5018163",
+      "title": "How To Review Pull Requests with Kiro CLI and GitHub Actions",
+      "url": "https://dev.to/erikch/how-to-review-pull-requests-with-kiro-cli-and-github-actions-1b9b",
+      "author": "Erik Hanchett",
+      "source": "DEV.to",
+      "lang": "en",
+      "published_at": "2026-11-11T20:26:46Z",
+      "reading_time": 6,
+      "description": "Review Pull Requests with Kiro CLI and GitHub Actions Kiro CLI has a headless mode. Give...",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "kiro",
+        "githubactions",
+        "ai",
+        "devops"
+      ],
+      "relevance": 78
+    },
+    {
+      "id": "devto-5017870",
+      "title": "How emulators might catch what you might miss",
+      "url": "https://dev.to/aws/how-emulators-might-catch-what-you-might-miss-34hd",
+      "author": "Salih Guler",
+      "source": "DEV.to",
+      "lang": "en",
+      "published_at": "2026-11-11T18:07:48Z",
+      "reading_time": 5,
+      "description": "I build plenty of apps due to the nature of my job. I use coding agents extensively. I decide what...",
+      "topics": [
+        "cloud",
+        "qualidade"
+      ],
+      "tags": [
+        "aws",
+        "testing",
+        "ai",
+        "devops"
+      ],
+      "relevance": 83
+    },
+    {
+      "id": "martinfowler-aHR0cHM6Ly9tYX",
+      "title": "Tests as data: ensuring AI-generated code does what we want",
+      "url": "https://martinfowler.com/articles/tests-as-data.html",
+      "author": "Martin Fowler martin@martinfowler.com https://martinfowler.c",
+      "source": "Martin Fowler",
+      "lang": "en",
+      "published_at": "2026-11-11T15:17:00.000Z",
+      "reading_time": null,
+      "description": "Automated testing in the age of AI coding assistants is problematic: when AI agents write both production and test code, developers risk losing the assurance that au",
+      "topics": [
+        "ia",
+        "arquitetura",
+        "qualidade"
+      ],
+      "tags": [
+        "Architecture",
+        "Software Engineering"
+      ],
+      "relevance": 100
+    },
+    {
+      "id": "cloudflareblog-aHR0cHM6Ly9ibG",
+      "title": "Choosing QuePaxa, an unusual consensus algorithm",
+      "url": "https://blog.cloudflare.com/choosing-quepaxa/",
+      "author": "João Pedro Leite",
+      "source": "Cloudflare Blog",
+      "lang": "en",
+      "published_at": "2026-11-11T14:24:46.000Z",
+      "reading_time": null,
+      "description": "Cloudflare is building an experimental consensus service using a never-before-deployed consensus algorithm, QuePaxa. In this post we explain how QuePaxa works and why we chose it.",
+      "topics": [
+        "arquitetura",
+        "cloud"
+      ],
+      "tags": [
+        "Cloud",
+        "Systems",
+        "Consensus",
+        "Distributed Systems",
+        "Meerkat",
+        "Research"
+      ],
+      "relevance": 98
+    },
+    {
+      "id": "awsarchitectureblog-aHR0cHM6Ly9hd3",
+      "title": "Self-service regional failover with Amazon Application Recovery Controller Region Switch and centralized ingress controls",
+      "url": "https://aws.amazon.com/blogs/architecture/self-service-regional-failover-with-amazon-application-recovery-controller-region-switch-and-centralized-ingress-controls/",
+      "author": "Greg Willson",
+      "source": "AWS Architecture Blog",
+      "lang": "en",
+      "published_at": "2026-11-10T16:48:09.000Z",
+      "reading_time": null,
+      "description": "Application teams in regulated enterprises can execute self-service regional failover with Amazon Application Recovery Controller (ARC) Region Switch, even behind centrally managed ingress proxy fleets. Learn how Transit Gateway peering, Route 53 Private Hosted Zones, and VPC Lattice preserve security controls while re",
+      "topics": [
+        "arquitetura",
+        "cloud",
+        "qualidade"
+      ],
+      "tags": [
+        "AWS",
+        "Architecture",
+        "Advanced (300)",
+        "Amazon Application Recovery Controller (ARC)",
+        "Technical How-to"
+      ],
+      "relevance": 100
+    },
+    {
+      "id": "martinfowler-aHR0cHM6Ly9tYX",
+      "title": "Fragments: November 10",
+      "url": "https://martinfowler.com/fragments/2026-11-10.html",
+      "author": "Martin Fowler martin@martinfowler.com https://martinfowler.c",
+      "source": "Martin Fowler",
+      "lang": "en",
+      "published_at": "2026-11-10T14:30:00.000Z",
+      "reading_time": null,
+      "description": "It’s that time of the year when the November Thoughtworks Technology Radar appears. Again my colleagues have taken a sweep of the technologies that our teams have used in the field, and pulled together a summary of what’s popped up in the last six months. It’s been a busy half-year, one that again has been",
+      "topics": [
+        "arquitetura"
+      ],
+      "tags": [
+        "Architecture",
+        "Software Engineering"
+      ],
+      "relevance": 88
+    },
+    {
+      "id": "martinfowler-aHR0cHM6Ly9tYX",
+      "title": "Long-horizon agents and durable execution",
+      "url": "https://martinfowler.com/articles/durable-execution-agents.html",
+      "author": "Martin Fowler martin@martinfowler.com https://martinfowler.c",
+      "source": "Martin Fowler",
+      "lang": "en",
+      "published_at": "2026-11-10T14:10:00.000Z",
+      "reading_time": null,
+      "description": "Long-horizon agents can automate complex tasks that take days or weeks to complete and involve multiple exchanges with people and external syst",
+      "topics": [
+        "arquitetura"
+      ],
+      "tags": [
+        "Architecture",
+        "Software Engineering"
+      ],
+      "relevance": 88
+    },
+    {
+      "id": "awsarchitectureblog-aHR0cHM6Ly9hd3",
+      "title": "Transforming fleet analytics for Novus Hi-Tech through agentic AI",
+      "url": "https://aws.amazon.com/blogs/architecture/transforming-fleet-analytics-for-novus-hi-tech-through-agentic-ai/",
+      "author": "Sameer Shrivastava",
+      "source": "AWS Architecture Blog",
+      "lang": "en",
+      "published_at": "2026-11-09T20:34:35.000Z",
+      "reading_time": null,
+      "description": "Learn how Novus Hi-Tech, with the AWS Prototyping and AI Customer Engineering (PACE) team, built FleetGPT, an agentic AI solution on Amazon Bedrock that turns fleet IoT data into real-time safety interventions through natural language querying, automated investigation, and AI-powered driver voice calls, cutting road-be",
+      "topics": [
+        "ia",
+        "arquitetura",
+        "cloud"
+      ],
+      "tags": [
+        "AWS",
+        "Architecture",
+        "Amazon Aurora",
+        "Amazon Bedrock",
+        "Customer Solutions"
+      ],
+      "relevance": 100
+    },
+    {
+      "id": "awsarchitectureblog-aHR0cHM6Ly9hd3",
+      "title": "How DeepL keeps closest-exit routing during maintenance with AWS Cloud WAN",
+      "url": "https://aws.amazon.com/blogs/architecture/how-deepl-keeps-closest-exit-routing-during-maintenance-with-aws-cloud-wan/",
+      "author": "Guzman Freigedo",
+      "source": "AWS Architecture Blog",
+      "lang": "en",
+      "published_at": "2026-11-09T20:15:09.000Z",
+      "reading_time": null,
+      "description": "DeepL runs a multi-Region hybrid network across multiple AWS Regions and AWS Direct Connect locations. See how DeepL drains a single Direct Connect link for planned maintenance without packet loss or cross-Region rerouting, using AWS Cloud WAN and an on-premises AS_PATH prepend so every other Region keeps its closest-e",
+      "topics": [
+        "arquitetura",
+        "cloud"
+      ],
+      "tags": [
+        "AWS",
+        "Architecture",
+        "Advanced (300)",
+        "AWS Cloud WAN",
+        "AWS Direct Connect",
+        "Customer Solutions"
+      ],
+      "relevance": 98
+    },
+    {
+      "id": "cloudflareblog-aHR0cHM6Ly9ibG",
+      "title": "Launching the Vite Ecosystem Fund",
+      "url": "https://blog.cloudflare.com/launching-vite-ecosystem-fund/",
+      "author": "Michael Dong",
+      "source": "Cloudflare Blog",
+      "lang": "en",
+      "published_at": "2026-11-09T13:00:00.000Z",
+      "reading_time": null,
+      "description": "Cloudflare is distributing the first $301,300 of the Vite Ecosystem Fund to open source projects and maintainers. The recipients were chosen by a panel of Vite stack core team members, including maintainers not employed by Cloudflare.",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "Cloud",
+        "Systems",
+        "Developers",
+        "Open Source",
+        "Vite"
+      ],
+      "relevance": 88
+    },
+    {
+      "id": "cloudflareblog-aHR0cHM6Ly9ibG",
+      "title": "The post-quantum future of web privacy",
+      "url": "https://blog.cloudflare.com/vole-mole/",
+      "author": "Christopher Patton",
+      "source": "Cloudflare Blog",
+      "lang": "en",
+      "published_at": "2026-11-06T14:00:00.000Z",
+      "reading_time": null,
+      "description": "Cryptographic protocols like Privacy Pass help keep web sites safe from abuse while keeping their users private. This post looks at the quantum threat to these protocols, and some new post-quantum cryptography that may help close the gap.",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "Cloud",
+        "Systems",
+        "Cryptography",
+        "Post-Quantum",
+        "Post-Quantum Cryptography",
+        "Privacy"
+      ],
+      "relevance": 88
+    },
+    {
+      "id": "awsarchitectureblog-aHR0cHM6Ly9hd3",
+      "title": "How OrderServ achieved up to 64% cost savings with multi-tenant ECS",
+      "url": "https://aws.amazon.com/blogs/architecture/how-orderserv-achieved-up-to-64-cost-savings-with-multi-tenant-ecs/",
+      "author": "Chetan Yewale",
+      "source": "AWS Architecture Blog",
+      "lang": "en",
+      "published_at": "2026-11-06T00:09:41.000Z",
+      "reading_time": null,
+      "description": "See how Cognizant and AWS Professional Services transformed the OrderServ food-ordering platform into a multi-tenant SaaS offering on shared Amazon ECS, cutting compute costs up to 64%, reducing scaling time from minutes to seconds, and lowering authentication costs by 80%.",
+      "topics": [
+        "arquitetura",
+        "cloud",
+        "fullstack"
+      ],
+      "tags": [
+        "AWS",
+        "Architecture",
+        "Advanced (300)",
+        "Amazon Elastic Container Service",
+        "Customer Solutions"
+      ],
+      "relevance": 100
+    },
+    {
+      "id": "awsarchitectureblog-aHR0cHM6Ly9hd3",
+      "title": "How TUI scales threat modeling for 100+ teams with Amazon Bedrock",
+      "url": "https://aws.amazon.com/blogs/architecture/how-tui-scales-threat-modeling-for-100-teams-with-amazon-bedrock/",
+      "author": "Vushesh Babu Adhikari",
+      "source": "AWS Architecture Blog",
+      "lang": "en",
+      "published_at": "2026-11-05T18:45:07.000Z",
+      "reading_time": null,
+      "description": "Learn how TUI, the world's leading tourism group, built an AI-powered threat modeling system on Amazon Bedrock and Amazon Bedrock AgentCore to scale security assessments across more than 100 product teams, cutting threat modeling time by up to 70% while applying security standards consistently.",
+      "topics": [
+        "ia",
+        "arquitetura",
+        "cloud",
+        "qualidade"
+      ],
+      "tags": [
+        "AWS",
+        "Architecture",
+        "Amazon Bedrock",
+        "Customer Solutions"
+      ],
+      "relevance": 100
+    },
+    {
+      "id": "cloudflareblog-aHR0cHM6Ly9ibG",
+      "title": "Agents aren’t humans (but they kinda are)",
+      "url": "https://blog.cloudflare.com/trusted-agent-delegation/",
+      "author": "Bryan Becker",
+      "source": "Cloudflare Blog",
+      "lang": "en",
+      "published_at": "2026-11-05T17:03:04.000Z",
+      "reading_time": null,
+      "description": "AI agents act for millions, but servers see intermediaries that strip user visibility. This post defines the problem space and introduces a collaborative approach to safely identifying, allowing, and managing this automated traffic.",
+      "topics": [
+        "ia",
+        "cloud"
+      ],
+      "tags": [
+        "Cloud",
+        "Systems",
+        "Agents",
+        "AI",
+        "Bots",
+        "Privacy"
+      ],
+      "relevance": 98
+    },
+    {
+      "id": "martinfowler-aHR0cHM6Ly9tYX",
+      "title": "The Data Product Platform Navigator",
+      "url": "https://martinfowler.com/articles/data-product-platform-nav.html",
+      "author": "Martin Fowler martin@martinfowler.com https://martinfowler.c",
+      "source": "Martin Fowler",
+      "lang": "en",
+      "published_at": "2026-11-05T14:11:00.000Z",
+      "reading_time": null,
+      "description": "Many organizations adopting data mesh and data products face a common challenge. They may be tasked with building a self-service platform for",
+      "topics": [
+        "arquitetura"
+      ],
+      "tags": [
+        "Architecture",
+        "Software Engineering"
+      ],
+      "relevance": 88
+    },
+    {
+      "id": "cloudflareblog-aHR0cHM6Ly9ibG",
+      "title": "See the agents, set the terms: New visibility and control for personal agents",
+      "url": "https://blog.cloudflare.com/personal-agents-visibility-control/",
+      "author": "Marina Elmore",
+      "source": "Cloudflare Blog",
+      "lang": "en",
+      "published_at": "2026-11-04T14:00:00.000Z",
+      "reading_time": null,
+      "description": "Personal AI agents have changed how users interact with the web, blurring the lines between automated and human traffic. Learn how Cloudflare gives site owners visibility and control to manage personal agent access.",
+      "topics": [
+        "ia",
+        "cloud"
+      ],
+      "tags": [
+        "Cloud",
+        "Systems",
+        "AI",
+        "Analytics",
+        "Bot Management",
+        "Product News"
+      ],
+      "relevance": 98
+    },
+    {
+      "id": "cloudflareblog-aHR0cHM6Ly9ibG",
+      "title": "Introducing Zero Wire, a hub for investigating critical Internet vulnerabilities",
+      "url": "https://blog.cloudflare.com/zero-wire/",
+      "author": "Daniele Molteni",
+      "source": "Cloudflare Blog",
+      "lang": "en",
+      "published_at": "2026-11-03T14:00:00.000Z",
+      "reading_time": null,
+      "description": "Zero Wire on Cloudflare Radar pairs plain-language briefings with global attack telemetry and remediation steps. Triage critical CVEs faster and decide how to protect your infrastructure.",
+      "topics": [
+        "cloud",
+        "qualidade"
+      ],
+      "tags": [
+        "Cloud",
+        "Systems",
+        "CVE",
+        "Product News",
+        "Radar",
+        "Security"
+      ],
+      "relevance": 94
+    },
+    {
+      "id": "martinfowler-aHR0cHM6Ly9tYX",
+      "title": "Bliki: LLM Voice",
+      "url": "https://martinfowler.com/bliki/LLM-Voice.html",
+      "author": "Martin Fowler /",
+      "source": "Martin Fowler",
+      "lang": "en",
+      "published_at": "2026-10-29T14:28:00.000Z",
+      "reading_time": null,
+      "description": "Sometimes when I read a post, I get the growing feeling that I'm reading the output of an LLM. I can't necessarily define why, although there are the common tells (it's not the em-dashes, it's the load-bearing tapestries). As I do this my desire to read on atrophies, sometimes to the point of revulsion There are tools ",
+      "topics": [
+        "ia",
+        "arquitetura"
+      ],
+      "tags": [
+        "Architecture",
+        "Software Engineering"
+      ],
+      "relevance": 98
+    },
+    {
+      "id": "martinfowler-aHR0cHM6Ly9tYX",
+      "title": "Why are good developers so wary of agentic development?",
+      "url": "https://martinfowler.com/rachels-ramblings/good-devs-wary.html",
+      "author": "Rachel Laycock rlaycock@thoughtworks.com https://www.linkedi",
+      "source": "Martin Fowler",
+      "lang": "en",
+      "published_at": "2026-10-29T13:50:00.000Z",
+      "reading_time": null,
+      "description": "TL;DR Good developers’ caution about agentic development comes from knowing that built isn’t the same as working in production. I’ve been surprised by how many excellent developers have been hesitant to go all in on coding agents. These are peo",
+      "topics": [
+        "arquitetura"
+      ],
+      "tags": [
+        "Architecture",
+        "Software Engineering"
+      ],
+      "relevance": 88
+    },
+    {
+      "id": "martinfowler-aHR0cHM6Ly9tYX",
+      "title": "Fragments: October 28",
+      "url": "https://martinfowler.com/fragments/2026-10-28.html",
+      "author": "Martin Fowler martin@martinfowler.com https://martinfowler.c",
+      "source": "Martin Fowler",
+      "lang": "en",
+      "published_at": "2026-10-28T12:55:00.000Z",
+      "reading_time": null,
+      "description": "Andrej Karpathy sees a widening gap in how people see LLM capabilities. The general public has mostly not interacted with these systems. When they have, it looks like a derpy chatbot. The majority of professionals still see only a modest uplift. And a small sliver of profe",
+      "topics": [
+        "ia",
+        "arquitetura"
+      ],
+      "tags": [
+        "Architecture",
+        "Software Engineering"
+      ],
+      "relevance": 98
+    },
+    {
+      "id": "martinfowler-aHR0cHM6Ly9tYX",
+      "title": "Fragments: October 21",
+      "url": "https://martinfowler.com/fragments/2026-10-21.html",
+      "author": "Martin Fowler martin@martinfowler.com https://martinfowler.c",
+      "source": "Martin Fowler",
+      "lang": "en",
+      "published_at": "2026-10-21T16:51:00.000Z",
+      "reading_time": null,
+      "description": "Gergely Orosz is frustrated at those that entered his explicitly “No AI” essay competition and used AI. He goes on to say: When I start to suspect some part is AI about someone I don’t know: how can I tell how much of it is? And how much time and effort do I want to in",
+      "topics": [
+        "arquitetura"
+      ],
+      "tags": [
+        "Architecture",
+        "Software Engineering"
+      ],
+      "relevance": 88
+    }
+  ]
+}

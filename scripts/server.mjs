@@ -5,20 +5,33 @@ import fs from "node:fs";
 import dotenv from "dotenv";
 import { runJobSync } from "./fetch-jobs.mjs";
 import { runEventsSync } from "./fetch-events.mjs";
+import { runArticlesSync } from "./fetch-articles.mjs";
 import { runPortfolioSync } from "./sync-portfolio.mjs";
 import { renderToHtml } from "../lib/render-files.mjs";
 import { buildJobsResponse } from "../lib/jobs-filter.mjs";
-import { filterEvents } from "../lib/events.mjs";
+import { buildEventsResponse } from "../lib/events.mjs";
+import { buildArticlesResponse } from "../lib/articles.mjs";
 import { optimizeResume } from "../lib/gemini.mjs";
 import { talentHandler } from "../lib/talent.mjs";
 import { projectIdeasHandler } from "../lib/project-ideas.mjs";
 import { atsScoreHandler } from "../lib/ats-handler.mjs";
+import { exportDocxHandler } from "../lib/docx.mjs";
+import { learningBudgetHandler, learningHandler, studyPlanHandler } from "../lib/learning.mjs";
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 const root = process.cwd();
+
+app.disable("x-powered-by");
+app.use((req, res, next) => {
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "SAMEORIGIN");
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  next();
+});
 
 app.use(express.json({ limit: "2mb" }));
 app.use(express.static(path.join(root, "web")));
@@ -99,24 +112,27 @@ app.get("/api/events", async (req, res) => {
       refresh !== "true" && fs.existsSync(cachePath)
         ? JSON.parse(fs.readFileSync(cachePath, "utf8"))
         : await runEventsSync({ writeDisk: true });
-    const allEvents = cacheData?.events || [];
-    const filtered = filterEvents(allEvents, { search, mode, topic, window, limit });
-    res.json({
-      success: true,
-      count: filtered.length,
-      total_in_cache: allEvents.length,
-      counts: cacheData?.counts || {
-        bh: allEvents.filter((e) => e.mode === "bh").length,
-        online_br: allEvents.filter((e) => e.mode === "online_br").length,
-        online_global: allEvents.filter((e) => e.mode === "online_global").length
-      },
-      last_updated: cacheData?.formatted_date || "Hoje às 08:00 (BRT)",
-      next_update: cacheData?.next_update || "Diariamente às 08:00 (Horário de Brasília)",
-      events: filtered
-    });
+    res.json(buildEventsResponse(cacheData, { search, mode, topic, window, limit }));
   } catch (err) {
     console.error("Erro ao carregar eventos:", err.message);
     res.status(500).json({ error: "Erro ao buscar eventos." });
+  }
+});
+
+// Artigos técnicos (PT-BR e EN — pilares 2027)
+app.get("/api/articles", async (req, res) => {
+  const { search = "", topic = "", lang = "", sort = "recent", limit = 80, refresh = "false" } = req.query || {};
+  const cachePath = path.join(dataDir, "articles-cache.json");
+
+  try {
+    const cacheData =
+      refresh !== "true" && fs.existsSync(cachePath)
+        ? JSON.parse(fs.readFileSync(cachePath, "utf8"))
+        : await runArticlesSync({ writeDisk: true });
+    res.json(buildArticlesResponse(cacheData, { search, topic, lang, sort, limit }));
+  } catch (err) {
+    console.error("Erro ao carregar artigos:", err.message);
+    res.status(500).json({ error: "Erro ao buscar artigos." });
   }
 });
 
@@ -133,8 +149,17 @@ app.all("/api/sync-portfolio", async (req, res) => {
 // Cadastros em sites de talentos (estado salvo em data/talent-status.json)
 app.all("/api/talent", (req, res) => talentHandler(req, res, { persist: true, root }));
 
-// Ideias de projetos a partir das lacunas entre vagas e currículo
-app.post("/api/project-ideas", (req, res) => projectIdeasHandler(req, res, { root }));
+// Ideias de projetos a partir das lacunas entre vagas e currículo (GET carrega automático, POST cria novas ou melhora existentes)
+app.all("/api/project-ideas", (req, res) => projectIdeasHandler(req, res, { root, persist: true }));
+
+// Learning Hub (cursos, certificações, skill gaps, recomendações, roadmap e exportação)
+app.all("/api/learning", (req, res) => learningHandler(req, res, { root, persist: true }));
+
+// Contrato de API para o StudyFlow consumir certificações + competências prioritárias + projetos
+app.all("/api/study-plan", (req, res) => studyPlanHandler(req, res, { root }));
+
+// Contrato de API para o Finance App criar caixinhas de reserva de certificações/cursos pagos
+app.all("/api/learning-budget", (req, res) => learningBudgetHandler(req, res, { root }));
 
 // Nota ATS (estimativa explicável)
 app.post("/api/ats-score", (req, res) => atsScoreHandler(req, res, { root }));
@@ -165,6 +190,9 @@ app.post("/api/render", (req, res) => {
     res.status(500).send(`Erro ao renderizar HTML: ${err.message}`);
   }
 });
+
+// Exporta em formato Word (.docx) otimizado para ATS (Gupy, Greenhouse, Workday, Lever)
+app.post("/api/export-docx", (req, res) => exportDocxHandler(req, res));
 
 // Exporta PDF com Playwright (carregado sob demanda: é dependência só de desenvolvimento)
 app.post("/api/export-pdf", async (req, res) => {

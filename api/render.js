@@ -17,6 +17,7 @@ export default function handler(req, res) {
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     return res.status(200).send(html);
   } catch (err) {
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
     return res.status(500).send(`Erro ao renderizar HTML: ${err.message}`);
   }
 }

@@ -1,0 +1,239 @@
+{
+  "updated_at": "2026-11-18T13:06:58.715Z",
+  "jobs_updated_at": "17/11/2026, 15:46:42",
+  "last_action": "bootstrap",
+  "generated_by": "catalogo",
+  "ideas": [
+    {
+      "id": "ai-knowledge-platform-saas-rag-ai-agents-multi-tenant",
+      "title": "AI Knowledge Platform (SaaS RAG, AI Agents & Multi-tenant)",
+      "sector": "Tech geral",
+      "problem": "Empresas precisam cadastrar documentos internos (PDF/DOCX) e fazer perguntas com IA de forma confiável, auditável e com controle de acesso — indo muito além de um chatbot simples.",
+      "stack": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "Python",
+        "PostgreSQL",
+        "Redis",
+        "AWS",
+        "Docker",
+        "LLMs / IA generativa",
+        "RAG / Vector DB",
+        "MCP / AI Agents",
+        "Segurança",
+        "Testes automatizados",
+        "System Design"
+      ],
+      "covers": [
+        "Node.js",
+        "LLMs / IA generativa",
+        "MCP / AI Agents",
+        "Testes automatizados",
+        "System Design"
+      ],
+      "features": [
+        "Upload e pipeline de extração, chunking e embeddings de PDF/DOCX com armazenamento no AWS S3 e pgvector",
+        "RAG com citação obrigatória das fontes utilizadas e prevenção de alucinações",
+        "Agentes (MCP/tool-calling) executando ferramentas autorizadas com controle de acesso por empresa e usuário (RBAC)",
+        "Histórico de conversas, suíte de avaliação de respostas (evals), controle de custos e testes automatizados"
+      ],
+      "resume_bullet": "Desenvolvi aI Knowledge Platform (SaaS RAG, AI Agents & Multi-tenant), utilizando React, TypeScript, Node.js, Python, PostgreSQL.",
+      "difficulty": "Avançado",
+      "weeks": 4,
+      "version": 1,
+      "origin": "catalogo",
+      "improved_note": "",
+      "created_at": "2026-11-18T13:06:58.712Z",
+      "updated_at": "2026-11-18T13:06:58.712Z"
+    },
+    {
+      "id": "ai-career-studio-evolucao-para-plataforma-saas-de-inteligencia-de-carrei",
+      "title": "AI Career Studio (Evolução para Plataforma SaaS de Inteligência de Carreira)",
+      "sector": "Tech geral",
+      "problem": "Evoluir o próprio gerador ATS para um produto real de engenharia de IA e dados, útil na busca por vagas e excelente para demonstrar produto e arquitetura em entrevistas.",
+      "stack": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "AWS",
+        "Docker",
+        "CI/CD",
+        "LLMs / IA generativa",
+        "REST APIs",
+        "Testes automatizados",
+        "Observabilidade",
+        "System Design"
+      ],
+      "covers": [
+        "Node.js",
+        "LLMs / IA generativa",
+        "Testes automatizados",
+        "System Design"
+      ],
+      "features": [
+        "Coleta/classificação automatizada de vagas + matching estruturado por requisitos, senioridade e localização",
+        "Extração estruturada de requisitos com LLM e adaptação de currículo com validação contra o histórico real",
+        "Histórico de versões de currículo por candidatura e analytics de conversão por versão e mercado",
+        "Preparação e simulador de entrevistas com IA avaliando clareza, profundidade técnica e inglês"
+      ],
+      "resume_bullet": "Desenvolvi aI Career Studio (Evolução para Plataforma SaaS de Inteligência de Carreira), utilizando React, TypeScript, Node.js, PostgreSQL, AWS.",
+      "difficulty": "Avançado",
+      "weeks": 4,
+      "version": 1,
+      "origin": "catalogo",
+      "improved_note": "",
+      "created_at": "2026-11-18T13:06:58.715Z",
+      "updated_at": "2026-11-18T13:06:58.715Z"
+    },
+    {
+      "id": "saas-de-integracao-e-automacao-empresarial-estilo-mini-n8n",
+      "title": "SaaS de Integração e Automação Empresarial (estilo mini-n8n)",
+      "sector": "Tech geral",
+      "problem": "Times operacionais conectam APIs e webhooks manualmente; demonstrar arquitetura backend distribuída com filas, retries e isolamento multi-tenant resolve uma dor real de mercado.",
+      "stack": [
+        "React",
+        "Node.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Redis",
+        "AWS",
+        "AWS SQS/SNS",
+        "Docker",
+        "REST APIs",
+        "Event-driven",
+        "Clean Architecture",
+        "System Design",
+        "Segurança",
+        "Testes automatizados"
+      ],
+      "covers": [
+        "Node.js",
+        "System Design",
+        "Testes automatizados"
+      ],
+      "features": [
+        "Conexão com APIs externas, recebimento de webhooks e fluxos condicionais por etapas",
+        "Filas assíncronas (Redis/BullMQ ou AWS SQS) com retry exponencial, idempotência e dead-letter queue",
+        "Logs estruturados, histórico de execução, alertas de falha e autenticação com isolamento multi-tenant",
+        "Clean Architecture, testes unitários/integração/E2E e deploy containerizado na AWS"
+      ],
+      "resume_bullet": "Desenvolvi saaS de Integração e Automação Empresarial (estilo mini-n8n), utilizando React, Node.js, TypeScript, PostgreSQL, Redis.",
+      "difficulty": "Avançado",
+      "weeks": 4,
+      "version": 1,
+      "origin": "catalogo",
+      "improved_note": "",
+      "created_at": "2026-11-18T13:06:58.715Z",
+      "updated_at": "2026-11-18T13:06:58.715Z"
+    },
+    {
+      "id": "agendamento-clinico-orientado-a-eventos-com-lembretes-e-fila-de-espera",
+      "title": "Agendamento clínico orientado a eventos com lembretes e fila de espera",
+      "sector": "Saúde / Hospitalar",
+      "problem": "Faltas em consultas custam caro; a clínica precisa reaproveitar horários vagos automaticamente.",
+      "stack": [
+        "Java",
+        "Spring Boot",
+        "Kafka",
+        "PostgreSQL",
+        "Redis",
+        "Event-driven",
+        "Docker",
+        "Testes automatizados",
+        "Observabilidade"
+      ],
+      "covers": [
+        "Java",
+        "Spring Boot",
+        "Testes automatizados"
+      ],
+      "features": [
+        "Reserva com lock otimista (sem overbooking)",
+        "Eventos de cancelamento disparam oferta para a fila",
+        "Lembretes via WhatsApp/e-mail (mock)",
+        "Dashboards Grafana de ocupação"
+      ],
+      "resume_bullet": "Desenvolvi agendamento clínico orientado a eventos com lembretes e fila de espera, utilizando Java, Spring Boot, Kafka, PostgreSQL, Redis.",
+      "difficulty": "Avançado",
+      "weeks": 5,
+      "version": 1,
+      "origin": "catalogo",
+      "improved_note": "",
+      "created_at": "2026-11-18T13:06:58.715Z",
+      "updated_at": "2026-11-18T13:06:58.715Z"
+    },
+    {
+      "id": "simulador-de-pagamentos-pix-com-ddd-e-mensageria",
+      "title": "Simulador de pagamentos PIX com DDD e mensageria",
+      "sector": "Tech geral",
+      "problem": "Demonstrar domínio de sistemas financeiros: idempotência, consistência e alto volume.",
+      "stack": [
+        "Java",
+        "Spring Boot",
+        "Kafka",
+        "PostgreSQL",
+        "Redis",
+        "Pagamentos",
+        "DDD",
+        "Event-driven",
+        "Testes automatizados",
+        "Observabilidade"
+      ],
+      "covers": [
+        "Java",
+        "Spring Boot",
+        "Pagamentos",
+        "Testes automatizados"
+      ],
+      "features": [
+        "Chaves PIX e QR Code",
+        "Idempotência e saga para estornos",
+        "Teste de carga (k6) com métricas",
+        "Arquitetura hexagonal documentada"
+      ],
+      "resume_bullet": "Desenvolvi simulador de pagamentos PIX com DDD e mensageria, utilizando Java, Spring Boot, Kafka, PostgreSQL, Redis.",
+      "difficulty": "Avançado",
+      "weeks": 5,
+      "version": 1,
+      "origin": "catalogo",
+      "improved_note": "",
+      "created_at": "2026-11-18T13:06:58.715Z",
+      "updated_at": "2026-11-18T13:06:58.715Z"
+    },
+    {
+      "id": "microsservico-net-na-azure-aks-com-infraestrutura-em-terraform",
+      "title": "Microsserviço .NET na Azure (AKS) com infraestrutura em Terraform",
+      "sector": "Tech geral",
+      "problem": "Muitas vagas pedem .NET + Azure; o projeto mostra o ciclo completo do código à produção.",
+      "stack": [
+        "C#/.NET",
+        "Azure",
+        "Kubernetes",
+        "Terraform",
+        "CI/CD",
+        "Observabilidade",
+        "Docker"
+      ],
+      "covers": [
+        "C#/.NET",
+        "Azure"
+      ],
+      "features": [
+        "API minimal com testes",
+        "AKS provisionado via Terraform",
+        "Pipeline com deploy blue/green",
+        "Application Insights + alertas"
+      ],
+      "resume_bullet": "Desenvolvi microsserviço .NET na Azure (AKS) com infraestrutura em Terraform, utilizando C#/.NET, Azure, Kubernetes, Terraform, CI/CD.",
+      "difficulty": "Intermediário",
+      "weeks": 3,
+      "version": 1,
+      "origin": "catalogo",
+      "improved_note": "",
+      "created_at": "2026-11-18T13:06:58.715Z",
+      "updated_at": "2026-11-18T13:06:58.715Z"
+    }
+  ]
+}

@@ -18,7 +18,7 @@
       "includeFiles": "data/talent-*.json"
     },
     "api/project-ideas.js": {
-      "includeFiles": "data/{jobs-cache,resume}.json",
+      "includeFiles": "data/{jobs-cache,resume,project-ideas-cache}.json",
       "maxDuration": 60
     },
     "api/ats-score.js": {
@@ -27,8 +27,35 @@
     "api/events.js": {
       "includeFiles": "data/events-cache.json",
       "maxDuration": 30
+    },
+    "api/articles.js": {
+      "includeFiles": "data/articles-cache.json",
+      "maxDuration": 30
+    },
+    "api/learning.js": {
+      "includeFiles": "data/{jobs-cache,resume,learning-catalog}.json",
+      "maxDuration": 30
+    },
+    "api/study-plan.js": {
+      "includeFiles": "data/{jobs-cache,resume,learning-catalog,project-ideas-cache}.json",
+      "maxDuration": 30
+    },
+    "api/learning-budget.js": {
+      "includeFiles": "data/{jobs-cache,resume,learning-catalog}.json",
+      "maxDuration": 30
     }
   },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/(.*)",

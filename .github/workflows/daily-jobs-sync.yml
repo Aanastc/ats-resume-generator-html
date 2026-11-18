@@ -39,12 +39,18 @@ jobs:
       - name: Coletar eventos tech futuros (Online e Presencial em BH)
         run: node scripts/fetch-events.mjs
 
+      - name: Coletar artigos técnicos (PT-BR e EN)
+        run: node scripts/fetch-articles.mjs
+
+      - name: Evoluir backlog de ideias de projetos (novas ou melhoria contínua)
+        run: node scripts/fetch-project-ideas.mjs
+
       - name: Commitar e publicar atualizações
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           # Só arquivos versionados (dist/ é gerado e fica fora do git)
-          git add data/jobs-cache.json data/events-cache.json data/resume.json data/resume-pt.json
+          git add data/jobs-cache.json data/events-cache.json data/articles-cache.json data/project-ideas-cache.json data/resume.json data/resume-pt.json
           if git diff --staged --quiet; then
             echo "Nada mudou desde a última coleta."
           else

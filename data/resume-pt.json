@@ -1,6 +1,6 @@
 {
   "name": "ANA LETÍCIA ALVES CLAUDIANO",
-  "title": "Engenheira de Software | Full Stack, Cloud/DevOps & IA Aplicada",
+  "title": "Software Engineer | Full Stack Developer",
   "email": "analeticia_ac@outlook.com",
   "phone_e164": "+5531999679109",
   "phone_display": "+55 31 99967-9109",
@@ -23,48 +23,45 @@
   "linkedin_url": "https://www.linkedin.com/in/analetícia-react/",
   "github_url": "https://github.com/Aanastc",
   "website_url": "https://ana-leticia-ac-portifolio-7cxi.vercel.app/",
-  "design_system_url": "https://designsystemeadedo-git-202612-ana-leticias-projects-198dfb27.vercel.app/",
   "portfolio_source_repo": "https://github.com/Aanastc/ana_leticia.ac__portifolio",
   "language": "pt",
-  "summary": "Engenheira de Software Full Stack & DevOps com experiência na arquitetura, evolução e sustentação de aplicações web em produção, APIs REST resilientes, integração de serviços e automação em cloud. Atuação comprovada em Saúde/HealthTech (Connect Care), EdTechs (plugins Moodle/PHP e integrações corporativas na Lingopass; Design System via NPM na UNIFOR) e engenharia moderna com React, TypeScript, Node.js, Python, AWS, Docker, Kubernetes, Terraform e IA aplicada. Aberta a PJ ou CLT (presencial/híbrido em Belo Horizonte, MG ou 100% remoto Brasil/Global, inglês B2–C1).",
+  "summary": "Engenheira de Software Full Stack com experiência no desenvolvimento de aplicações web em produção, arquitetura de sistemas, integrações corporativas, automação de processos e evolução de plataformas digitais. Atuação prática com React, TypeScript, Node.js, PHP (Moodle LMS), Python e Cloud/DevOps (AWS EC2/S3/EKS/Lambda/SQS, Docker, Kubernetes, Terraform e GitHub Actions) em plataformas EdTech (Lingopass e UNIFOR) e sistemas web. Aberta a PJ ou CLT (presencial/híbrido em Belo Horizonte, MG ou 100% remoto Brasil/Global, inglês B2–C1).",
   "skills": [
     {
-      "group": "Arquitetura, System Design & Backend",
+      "group": "Full Stack Development",
       "items": [
-        "Clean Architecture, SOLID e APIs REST Resilientes",
-        "Microsserviços, Webhooks e Integrações Orientadas a Eventos",
-        "Node.js, TypeScript, Python (FastAPI/Flask) e PHP (Moodle LMS)",
-        "PostgreSQL, Supabase, MySQL, Cache Redis e BigQuery"
+        "React.js, Next.js, TypeScript, JavaScript (ES6+) e React Native",
+        "Node.js, Python (FastAPI/Flask) e PHP (Moodle LMS)",
+        "Design Systems (NPM, Storybook, Tailwind CSS), Acessibilidade (WCAG) e UX Responsiva"
       ]
     },
     {
-      "group": "Cloud, DevOps & Platform Engineering",
+      "group": "Arquitetura de Software & Integração de APIs",
       "items": [
-        "AWS (EC2, S3, ECS, EKS, Lambda, SQS, IAM)",
+        "Clean Architecture, SOLID, APIs REST e Webhooks",
+        "Integrações Corporativas (HubSpot, Stripe, Intercom, BigQuery) e Automação de Processos (RPA/Selenium)",
+        "PostgreSQL, Supabase, MySQL, Cache Redis e Pipelines ETL"
+      ]
+    },
+    {
+      "group": "Cloud & DevOps",
+      "items": [
+        "AWS (EC2, S3, ECS, EKS, RDS, Lambda, SQS, IAM)",
         "Docker, Kubernetes e Terraform (Infraestrutura como Código)",
-        "CI/CD Avançado (GitHub Actions, Vercel) e GitOps (ArgoCD)",
-        "Observabilidade e SRE (Prometheus, Grafana, OpenTelemetry, Linux)"
+        "CI/CD (GitHub Actions, Vercel), GitOps (ArgoCD) e Observabilidade (Prometheus, Grafana, OpenTelemetry)"
       ]
     },
     {
-      "group": "Frontend & UI Systems",
+      "group": "Qualidade, Segurança & IA Aplicada",
       "items": [
-        "React.js, Next.js, TypeScript e React Native",
-        "Design Systems Reutilizáveis (NPM, Storybook, Tailwind CSS)",
-        "Performance Web, Acessibilidade (WCAG) e UX Responsiva"
-      ]
-    },
-    {
-      "group": "IA Aplicada, Qualidade & Domínios (Saúde & EdTech)",
-      "items": [
-        "Integração com LLMs e APIs de IA (Gemini), Automação de Workflows com IA",
-        "Testes Automatizados (Playwright, Jest, Vitest), Code Review e OWASP",
-        "Ambientes Hospitalares e HealthTech (Connect Care, Conformidade LGPD)",
-        "EdTechs e Integrações Corporativas (Moodle LMS, HubSpot, Stripe, Intercom)"
+        "Testes Automatizados (Playwright, Jest, Vitest, Selenium), Code Review e Validação de Releases",
+        "Autenticação, Proteção de APIs, Boas Práticas OWASP e Conformidade LGPD",
+        "Integração com APIs de IA/LLMs (Gemini) e Automação de Workflows com IA"
       ]
     }
   ],
-  "projects": [
+  "projects": [],
+  "portfolio_projects": [
     {
       "title": "Design System - EAD Unifor",
       "category": "React",
@@ -195,10 +192,10 @@
       "date": "Set/2026 – Atual",
       "mode": "Remoto (São Paulo, Brasil)",
       "bullets": [
-        "Desenvolveu e customizou plugins em PHP (atividades, blocos e relatórios analíticos) e evolução de temas (Boost e derivados) com foco em usabilidade, performance e aderência aos protótipos de UI.",
-        "Integrou o Moodle com serviços corporativos e plataformas de CRM, pagamentos e dados (HubSpot, Intercom, Stripe, BigQuery) via APIs REST e Webhooks, utilizando Node.js e TypeScript.",
-        "Sustentou a infraestrutura da plataforma educacional, atuando no monitoramento de disponibilidade, otimização de cache e mitigação preventiva de falhas críticas em produção.",
-        "Homologou continuamente releases e implementação de rotinas de testes antes dos deploys em produção, assegurando confiabilidade operacional e alinhamento com engenharia e produto."
+        "Desenvolveu e estruturou plugins em PHP (atividades, blocos e relatórios analíticos) e evoluiu temas Moodle (Boost e derivados), aplicando componentização, organização modular e foco em usabilidade e performance.",
+        "Integrou o Moodle a sistemas corporativos de CRM, pagamentos e dados (HubSpot, Intercom, Stripe e BigQuery) via APIs REST e Webhooks com Node.js e TypeScript, automatizando fluxos operacionais e sincronização de dados.",
+        "Apoiou a estabilidade da aplicação em produção com otimização de cache, investigação de gargalos em rotas críticas e correções preventivas junto ao time de engenharia.",
+        "Conduziu homologação contínua de releases, revisão de código e rotinas de validação pré-deploy em parceria com engenharia e produto, elevando a previsibilidade das entregas."
       ],
       "stacks": [
         "Moodle",
@@ -218,10 +215,10 @@
       "date": "Set/2025 – Set/2026",
       "mode": "Tempo integral • Presencial (Fortaleza, Ceará)",
       "bullets": [
-        "Liderou tecnicamente a concepção, arquitetura e manutenção do Design System institucional, estruturado como biblioteca front-end reutilizável e versionada via npm, integrada a pipeline de CI/CD e deploy contínuo na Vercel.",
-        "Capacitou e mentorou equipes de desenvolvimento, estruturando documentação de arquitetura, onboarding técnico e padronização dos fluxos de publicação no Moodle.",
-        "Arquitetou e sustentou automações com Node.js, Selenium (RPA) e web scraping para rotinas operacionais e testes, reduzindo erros manuais e aumentando a estabilidade do ecossistema.",
-        "Gerenciou e resolveu incidentes críticos de primeiro nível (L1) no Moodle, assegurando conformidade com SLAs, alta disponibilidade da plataforma e continuidade dos serviços acadêmicos."
+        "Conduziu a concepção, arquitetura e manutenção do Design System institucional em React, estruturado como biblioteca front-end reutilizável versionada via NPM e integrada a pipeline de CI/CD com deploy contínuo na Vercel.",
+        "Projetou e manteve automações com Node.js, Selenium (RPA) e web scraping para rotinas operacionais e validação de entregas, reduzindo tarefas manuais repetitivas e erros de publicação.",
+        "Estruturou documentação técnica, padronização de fluxos de publicação no Moodle e apoio ao onboarding e capacitação de desenvolvedores da equipe.",
+        "Atuou no diagnóstico e resolução de incidentes de primeiro nível (L1) no Moodle em conformidade com SLAs, contribuindo para a continuidade operacional dos serviços acadêmicos."
       ],
       "stacks": [
         "React",
@@ -242,9 +239,9 @@
       "date": "Abr/2023 – Set/2025",
       "mode": "Tempo integral • Presencial (Fortaleza, Ceará)",
       "bullets": [
-        "Desenvolveu interfaces responsivas e acessíveis no Moodle utilizando Bootstrap e JavaScript, garantindo padrões institucionais e conformidade com diretrizes de acessibilidade (WCAG).",
-        "Implementou esteiras de automação com Node.js, Selenium e GitHub Labs para empacotamento e distribuição ágil de componentes padronizados aos desenvolvedores.",
-        "Construiu folders digitais interativos com React.js e esteira de deploy contínuo via Vercel, alcançando alta performance, manutenibilidade e escalabilidade."
+        "Implementou pipelines de automação com Node.js, Selenium e GitHub Actions para empacotamento, validação e distribuição ágil de componentes padronizados para a equipe de desenvolvimento.",
+        "Construiu aplicações e folders digitais interativos com React.js e deploy contínuo via Vercel, priorizando performance de carregamento, componentização e manutenibilidade.",
+        "Desenvolveu interfaces responsivas e acessíveis no Moodle utilizando Bootstrap e JavaScript, seguindo padrões institucionais e diretrizes de acessibilidade (WCAG)."
       ],
       "stacks": [
         "React.js",
@@ -253,6 +250,7 @@
         "Moodle",
         "Node.js",
         "Selenium",
+        "GitHub Actions",
         "Acessibilidade (WCAG)",
         "Vercel"
       ]

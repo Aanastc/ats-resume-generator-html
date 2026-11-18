@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { analyzeSkillGaps } from "../lib/skill-gap.mjs";
-import { CATALOG, generateProjectIdeas, rankCatalog } from "../lib/project-ideas.mjs";
+import { CATALOG, evolveIdeasList, generateProjectIdeas, improveProjectIdea, rankCatalog } from "../lib/project-ideas.mjs";
 import { isOutdated, sanitizeStatus } from "../lib/talent.mjs";
 
 const job = (title, description = "") => ({ title, description, tags: [], company: "X", sector: "tech" });
@@ -32,6 +32,16 @@ test("analyzeSkillGaps separa falta, sem comprovação e comprovado", () => {
   assert.equal(a.jobs_analyzed, JOBS.length);
 });
 
+test("analyzeSkillGaps reconhece portfolio_projects quando projects está vazio no currículo", () => {
+  const resumeWithoutCvProjects = {
+    ...RESUME,
+    projects: [],
+    portfolio_projects: RESUME.projects
+  };
+  const a = analyzeSkillGaps(JOBS, resumeWithoutCvProjects, { minJobs: 2 });
+  assert.ok(a.proven.includes("React"), "React deve seguir comprovado via portfolio_projects");
+});
+
 test("tecnologias do catálogo existem no dicionário de análise", async () => {
   const { TECHS } = await import("../lib/skill-gap.mjs");
   for (const idea of CATALOG) {
@@ -52,6 +62,44 @@ test("sem chave de API usa o catálogo", async () => {
   const out = await generateProjectIdeas({ analysis: a, resume: RESUME, apiKey: null });
   assert.equal(out.generated_by, "catalogo");
   assert.ok(out.ideas.length > 0);
+});
+
+test("rankCatalog exclui títulos já existentes na lista para nunca repetir ideias", () => {
+  const a = analyzeSkillGaps(JOBS, RESUME, { minJobs: 2 });
+  const firstBatch = rankCatalog(a, 3);
+  const excluded = firstBatch.map((i) => i.title);
+  const secondBatch = rankCatalog(a, 3, { excludeTitles: excluded });
+  assert.ok(secondBatch.length > 0);
+  for (const idea of secondBatch) {
+    assert.ok(!excluded.includes(idea.title), `"${idea.title}" não deveria ser repetida`);
+  }
+});
+
+test("improveProjectIdea evolui ideia existente sem IA, incrementando versão e entregas", async () => {
+  const a = analyzeSkillGaps(JOBS, RESUME, { minJobs: 2 });
+  const [base] = rankCatalog(a, 1);
+  const res = await improveProjectIdea({ idea: base, analysis: a, resume: RESUME, apiKey: null });
+  assert.equal(res.idea.id, base.id);
+  assert.equal(res.idea.version, 2);
+  assert.ok(res.idea.features.length > base.features.length);
+  assert.ok(res.idea.improved_note.length > 10);
+});
+
+test("evolveIdeasList popula lista vazia, adiciona nova ideia distinta e evolui quando cheia", async () => {
+  const a = analyzeSkillGaps(JOBS, RESUME, { minJobs: 2 });
+  const boot = await evolveIdeasList({ currentIdeas: [], analysis: a, resume: RESUME, targetCount: 4, maxIdeas: 5 });
+  assert.equal(boot.action, "bootstrap");
+  assert.equal(boot.ideas.length, 4);
+
+  const added = await evolveIdeasList({ currentIdeas: boot.ideas, analysis: a, resume: RESUME, targetCount: 4, maxIdeas: 5 });
+  assert.equal(added.action, "added_new");
+  assert.equal(added.ideas.length, 5);
+  assert.equal(new Set(added.ideas.map((i) => i.id)).size, 5);
+
+  const improved = await evolveIdeasList({ currentIdeas: added.ideas, analysis: a, resume: RESUME, targetCount: 4, maxIdeas: 5 });
+  assert.equal(improved.action, "improved_existing");
+  assert.equal(improved.ideas.length, 5);
+  assert.ok(improved.ideas.some((i) => i.version === 2));
 });
 
 test("cadastro fica desatualizado quando o portfólio muda depois da última atualização", () => {

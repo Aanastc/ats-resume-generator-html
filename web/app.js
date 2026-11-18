@@ -96,8 +96,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	btnOptimize.addEventListener("click", optimizeCv);
 	btnCopyHtml.addEventListener("click", copyHtmlToClipboard);
+	document.getElementById("btnExportDocx")?.addEventListener("click", exportDocx);
 	btnExportPdf.addEventListener("click", exportPdf);
 	document.getElementById("btnPrint").addEventListener("click", printResume);
+	setupAtsToolkit();
 	document
 		.getElementById("btnExpandPreview")
 		?.addEventListener("click", togglePreviewExpand);
@@ -114,9 +116,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	setupJobSearchListeners();
 	setupEvents();
+	setupArticles();
 	document
 		.getElementById("btnGenerateIdeas")
-		.addEventListener("click", generateProjectIdeas);
+		?.addEventListener("click", generateNewProjectIdeas);
+	document
+		.getElementById("btnImproveNextIdea")
+		?.addEventListener("click", improveNextProjectIdea);
 
 	setupAccount();
 	setupApplications();
@@ -124,16 +130,24 @@ document.addEventListener("DOMContentLoaded", () => {
 	loadTalentTracker(); // carrega cedo para mostrar o contador de desatualizados no menu
 	loadJobs(); // idem: contador de vagas no menu
 	loadEvents(); // idem: contador de eventos no menu
+	loadArticles(); // idem: contador de artigos no menu
 });
+
+function safeHttpUrl(url) {
+	const value = String(url ?? "").trim();
+	return /^https?:\/\//i.test(value) ? value : "#";
+}
 
 function togglePreviewExpand() {
 	const expanded = workspace.classList.toggle("preview-expanded");
 	const btn = document.getElementById("btnExpandPreview");
 	if (btn) {
-		btn.setAttribute("aria-pressed", String(expanded));
-		btn.title = expanded
+		const label = expanded
 			? "Voltar para visualização dividida"
 			: "Expandir prévia do currículo";
+		btn.setAttribute("aria-pressed", String(expanded));
+		btn.setAttribute("aria-label", label);
+		btn.title = label;
 		btn.innerHTML = icon(expanded ? "minimize" : "maximize");
 	}
 	requestAnimationFrame(fitPreviewSheet);
@@ -141,9 +155,13 @@ function togglePreviewExpand() {
 
 function switchTab(tabId) {
 	if (!document.getElementById(tabId)) tabId = "tab-optimize";
-	tabs.forEach((t) => t.classList.toggle("active", t.dataset.tab === tabId));
+	tabs.forEach((t) => {
+		const active = t.dataset.tab === tabId;
+		t.classList.toggle("active", active);
+		if (active) t.setAttribute("aria-current", "page");
+		else t.removeAttribute("aria-current");
+	});
 	tabPanes.forEach((p) => p.classList.toggle("active", p.id === tabId));
-	workspace.classList.toggle("with-preview", RESUME_TABS.has(tabId));
 	const isResume = RESUME_TABS.has(tabId);
 	workspace.classList.toggle("with-preview", isResume);
 	if (!isResume && workspace.classList.contains("preview-expanded"))
@@ -154,6 +172,7 @@ function switchTab(tabId) {
 	if (tabId === "tab-json" && currentResume)
 		jsonEditor.value = JSON.stringify(currentResume, null, 2);
 	if (tabId === "tab-form") populateForm();
+	if (tabId === "tab-ideas" && !ideasLoaded && currentResume) loadProjectIdeas();
 	if (isResume) requestAnimationFrame(fitPreviewSheet);
 }
 
@@ -232,6 +251,17 @@ async function loadBaseCv() {
 		populateForm();
 		await renderPreviewNow();
 		if (allJobs.length) applyJobFilters(); // recalcula o match com o currículo carregado
+		updateApplyKit();
+		updatePreApplyAnalysis();
+		loadProjectIdeas(); // carrega backlog automático de ideias + lacunas do currículo atual
+		window.learningHub?.init({
+			store,
+			escapeHtml,
+			notify,
+			switchTab,
+			getResume: () => currentResume,
+			getCloudUser: () => cloudUser,
+		});
 	} catch (err) {
 		notify("Erro ao carregar currículo: " + err.message, "error");
 	}
@@ -283,8 +313,9 @@ async function syncPortfolioCv() {
 		populateForm();
 		await renderPreviewNow();
 		if (cloudUser) await window.cloud.save("resume", { resume: currentResume });
+		const portfolioCount = data.portfolio_projects_count ?? data.projects_count ?? 0;
 		notify(
-			`Portfólio sincronizado: ${data.experiences_count} experiências e ${data.projects_count} projetos.`,
+			`Portfólio sincronizado: ${data.experiences_count} experiências no currículo (${portfolioCount} projetos mantidos no portfólio).`,
 			"success",
 		);
 	} catch (err) {
@@ -556,6 +587,11 @@ async function optimizeCv() {
 		jsonEditor.value = JSON.stringify(currentResume, null, 2);
 		populateForm();
 		await renderPreviewNow();
+		activeCvVersionLabel = "Adaptado com IA";
+		const badge = document.getElementById("activeCvVersionBadge");
+		if (badge) badge.textContent = activeCvVersionLabel;
+		updateApplyKit();
+		updatePreApplyAnalysis();
 		notify(
 			"Currículo adaptado. Revise na prévia e use “Salvar como base” se quiser manter.",
 			"success",
@@ -566,6 +602,345 @@ async function optimizeCv() {
 	} finally {
 		hideLoader();
 	}
+}
+
+async function exportDocx() {
+	if (!currentResume) return;
+	showLoader("Gerando currículo Word (.docx) compatível com ATS…", true);
+	try {
+		const res = await fetch("/api/export-docx", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(currentResume),
+		});
+		const ct = res.headers.get("content-type") || "";
+		if (!res.ok || ct.includes("text/html")) {
+			throw new Error(
+				ct.includes("text/html")
+					? "Servidor local desatualizado para /api/export-docx. Reinicie o `npm run server`."
+					: "Não foi possível gerar o arquivo DOCX.",
+			);
+		}
+		const blob = await res.blob();
+		const url = URL.createObjectURL(blob);
+		const a = document.createElement("a");
+		const lang = currentResume.language === "en" ? "en" : "pt";
+		a.href = url;
+		a.download = `curriculo-${lang}-ats.docx`;
+		document.body.appendChild(a);
+		a.click();
+		a.remove();
+		URL.revokeObjectURL(url);
+		notify("Currículo Word (.docx) baixado — pronto para Gupy, Greenhouse e Workday.", "success");
+	} catch (err) {
+		notify("Erro ao exportar DOCX: " + err.message, "error");
+	} finally {
+		hideLoader();
+	}
+}
+
+// =============================================================================
+// Estratégia ATS: 3 versões de CV, Pré-Análise, Kit Gupy/LinkedIn e Checklist
+// =============================================================================
+let activeCvVersionKey = store.get("active_cv_version", "fullstack");
+let activeCvVersionLabel = "CV 01 — Full Stack & Backend";
+
+const CV_VERSIONS = {
+	fullstack: {
+		label: "CV 01 — Full Stack & Backend",
+		title: "Software Engineer | Full Stack Developer",
+		summary:
+			"Engenheira de Software Full Stack com foco em Backend, arquitetura de sistemas, integrações corporativas e aplicações web em produção. Atuação prática com TypeScript, Node.js, React.js, PHP (Moodle LMS), Python, APIs REST, PostgreSQL, Redis e Continuous Integration and Continuous Delivery (CI/CD) com AWS e Docker. Aberta a PJ ou CLT (presencial/híbrido em Belo Horizonte, MG ou 100% remoto Brasil/Global, inglês B2–C1).",
+		skillOrder: [
+			"Full Stack",
+			"Arquitetura",
+			"Cloud",
+			"Qualidade",
+		],
+		headline:
+			"Software Engineer | Full Stack & Backend | TypeScript | Node.js | React | Python | AWS & Cloud",
+		gupyIntro:
+			"Sou Engenheira de Software Full Stack com foco em Backend, integrações e sistemas em produção utilizando TypeScript, Node.js, React.js, PHP (Moodle LMS), APIs REST e PostgreSQL. Atuei na integração de sistemas corporativos (HubSpot, Stripe, Intercom e BigQuery), no Design System institucional via NPM com CI/CD e em automações com Node.js, Selenium e GitHub Actions.",
+	},
+	backend_ai: {
+		label: "CV 02 — Backend & AI Application",
+		title: "Software Engineer | Backend & AI Applications",
+		summary:
+			"Engenheira de Software com foco em Backend, integração de sistemas, automação de workflows e aplicações práticas com APIs de IA/LLMs. Experiência com Node.js, TypeScript, Python, Representational State Transfer (REST APIs), webhooks, PostgreSQL, Redis, qualidade de software (testes automatizados e code review) e evolução de plataformas digitais em produção. Aberta a PJ ou CLT (BH ou 100% remoto Brasil/Global, inglês B2–C1).",
+		skillOrder: [
+			"Arquitetura",
+			"Qualidade",
+			"Full Stack",
+			"Cloud",
+		],
+		headline:
+			"Backend & AI Application Software Engineer | Node.js | TypeScript | Python | REST APIs | LLMs & AWS",
+		gupyIntro:
+			"Sou Engenheira de Software com foco em Backend, integrações via APIs REST e Webhooks, automação de processos e construção de funcionalidades práticas com APIs de IA/LLMs. Trabalho com Node.js, TypeScript, Python, PostgreSQL, Redis e esteiras de qualidade e CI/CD para colocar sistemas confiáveis em produção.",
+	},
+	cloud: {
+		label: "CV 03 — Cloud Software Engineer",
+		title: "Software Engineer | Full Stack & Cloud",
+		summary:
+			"Engenheira de Software Full Stack combinando experiência prática em sistemas web em produção com especialização complementar em Cloud e Platform Engineering (Pós Tech DevOps & Arquitetura Cloud na FIAP). Atuação com TypeScript, Node.js, React, Python, Infrastructure as Code (IaC) com Terraform, AWS (EC2, S3, EKS, RDS, Lambda, SQS, IAM), Docker, Kubernetes, Continuous Integration and Continuous Delivery (CI/CD) e observabilidade. Aberta a PJ ou CLT (BH ou 100% remoto Brasil/Global, inglês B2–C1).",
+		skillOrder: [
+			"Cloud",
+			"Arquitetura",
+			"Full Stack",
+			"Qualidade",
+		],
+		headline:
+			"Cloud Software Engineer | Full Stack | TypeScript | Node.js | AWS | Docker | Kubernetes | Terraform",
+		gupyIntro:
+			"Sou Engenheira de Software Full Stack com especialização complementar em Cloud e DevOps (Pós Tech FIAP), unindo experiência real em desenvolvimento e integrações em produção (TypeScript, Node.js, React, Python) com automação de CI/CD (GitHub Actions), Docker, Kubernetes, Terraform e serviços AWS (EC2, S3, EKS, RDS, Lambda e SQS).",
+	},
+};
+
+const PRE_APPLY_TECHS = [
+	["React", /\breact(\.js|js)?\b(?! native)/i],
+	["TypeScript", /\btypescript\b/i],
+	["JavaScript", /\bjavascript\b/i],
+	["Next.js", /\bnext\.?js\b/i],
+	["Node.js", /\bnode(\.js|js)?\b/i],
+	["Python", /\bpython\b/i],
+	["PHP", /\bphp\b/i],
+	["Moodle", /\bmoodle\b|\blms\b/i],
+	["Java", /\bjava\b(?!script)/i],
+	["C#/.NET", /\bc#|\.net\b|\bdotnet\b/i],
+	["Go", /\bgolang\b|\bgo developer\b|\bgo engineer\b/i],
+	["Ruby/Rails", /\bruby\b|\brails\b/i],
+	["Angular", /\bangular\b/i],
+	["Vue.js", /\bvue(\.js|js)?\b/i],
+	["PostgreSQL", /\bpostgres(ql)?\b/i],
+	["MySQL", /\bmysql\b/i],
+	["MongoDB", /\bmongo(db)?\b/i],
+	["Redis", /\bredis\b/i],
+	["REST APIs", /\brest(ful)?\b|\bapis? rest/i],
+	["GraphQL", /\bgraphql\b/i],
+	["Kafka", /\bkafka\b/i],
+	["RabbitMQ", /\brabbit ?mq\b/i],
+	["AWS", /\baws\b|amazon web services/i],
+	["GCP", /\bgcp\b|google cloud/i],
+	["Azure", /\bazure\b/i],
+	["Docker", /\bdocker\b/i],
+	["Kubernetes", /\bkubernetes\b|\bk8s\b|\beks\b/i],
+	["Terraform", /\bterraform\b|\biac\b/i],
+	["CI/CD", /\bci\s*\/\s*cd\b|github actions|gitlab ci/i],
+	["Observabilidade", /observabil|prometheus|grafana|opentelemetry|datadog/i],
+	["Testes automatizados", /\b(jest|vitest|playwright|cypress|pytest|tdd)\b|testes? (unit|automatiz|e2e)/i],
+	["System Design", /system design|clean architecture|\bsolid\b|micros?servi[cç]|microservices?/i],
+	["IA / LLMs", /\bllms?\b|\brag\b|\bmcp\b|generative ai|ia generativa|ai agents?/i],
+];
+
+const APPLY_CHECKLIST_ITEMS = [
+	"Li a descrição completa da vaga.",
+	"Atendo aos requisitos técnicos essenciais.",
+	"Verifiquei se a empresa aceita candidatos do Brasil.",
+	"Adaptei o resumo profissional à oportunidade.",
+	"Incluí as palavras-chave relevantes que realmente domino.",
+	"Revisei as descrições das experiências.",
+	"Conferi se o ATS consegue ler o documento (DOCX ou PDF textual em 1 coluna).",
+	"Atualizei e revisei os campos da plataforma de recrutamento (ex.: Gupy).",
+	"Revisei LinkedIn, GitHub e portfólio.",
+	"Registrei a candidatura na aba Candidaturas para acompanhar o processo.",
+];
+
+const CHECKLIST_LOCAL_KEY = "apply_checklist_v1";
+
+function setupAtsToolkit() {
+	// 3 versões de currículo
+	document.querySelectorAll("[data-cv-version]").forEach((btn) => {
+		btn.addEventListener("click", () => applyCvVersion(btn.dataset.cvVersion));
+	});
+
+	// Botões de copiar do Kit Gupy/LinkedIn
+	document.querySelectorAll("[data-copy-target]").forEach((btn) => {
+		btn.addEventListener("click", async () => {
+			const el = document.getElementById(btn.dataset.copyTarget);
+			if (!el) return;
+			try {
+				await navigator.clipboard.writeText(el.value || "");
+				notify("Texto copiado para a área de transferência.", "success", { timeout: 2500 });
+			} catch {
+				notify("Não foi possível copiar automaticamente.", "error");
+			}
+		});
+	});
+
+	// Atualiza análise pré-candidatura e kit ao colar/editar a descrição da vaga
+	let preTimer = null;
+	jobDescriptionInput.addEventListener("input", () => {
+		clearTimeout(preTimer);
+		preTimer = setTimeout(() => {
+			updatePreApplyAnalysis();
+			updateApplyKit();
+		}, 220);
+	});
+
+	// Checklist 0/10
+	document.getElementById("btnResetChecklist")?.addEventListener("click", () => {
+		store.set(CHECKLIST_LOCAL_KEY, {});
+		renderApplyChecklist();
+		notify("Checklist limpo para a próxima candidatura.", "info", { timeout: 2500 });
+	});
+	renderApplyChecklist();
+	syncCvVersionButtons();
+}
+
+function syncCvVersionButtons() {
+	const preset = CV_VERSIONS[activeCvVersionKey] || CV_VERSIONS.fullstack;
+	activeCvVersionLabel = preset.label;
+	const badge = document.getElementById("activeCvVersionBadge");
+	if (badge) badge.textContent = activeCvVersionLabel;
+	document.querySelectorAll("[data-cv-version]").forEach((btn) => {
+		const isActive = btn.dataset.cvVersion === activeCvVersionKey;
+		btn.classList.toggle("active", isActive);
+		btn.setAttribute("aria-pressed", String(isActive));
+	});
+}
+
+function applyCvVersion(key) {
+	const preset = CV_VERSIONS[key];
+	if (!preset || !currentResume) return;
+	activeCvVersionKey = key;
+	store.set("active_cv_version", key);
+	syncCvVersionButtons();
+
+	currentResume.title = preset.title;
+	currentResume.summary = preset.summary;
+	if (Array.isArray(currentResume.skills) && currentResume.skills.length) {
+		const rankOf = (group = "") => {
+			const idx = preset.skillOrder.findIndex((prefix) =>
+				group.toLowerCase().startsWith(prefix.toLowerCase()),
+			);
+			return idx === -1 ? 99 : idx;
+		};
+		currentResume.skills = [...currentResume.skills].sort(
+			(a, b) => rankOf(a.group) - rankOf(b.group),
+		);
+	}
+
+	jsonEditor.value = JSON.stringify(currentResume, null, 2);
+	populateForm();
+	renderPreview();
+	updateApplyKit();
+	updatePreApplyAnalysis();
+	notify(`Versão aplicada: ${preset.label} (prévia atualizada).`, "success", { timeout: 2800 });
+}
+
+function resumeSearchBlob(resume = {}) {
+	const parts = [resume.title, resume.summary];
+	(resume.skills || []).forEach((g) => parts.push(g.group, ...(g.items || [])));
+	(resume.experience || []).forEach((e) => parts.push(e.role, ...(e.bullets || []), ...(e.stacks || [])));
+	(resume.projects || []).forEach((p) => parts.push(p.title, p.stack, ...(p.bullets || [])));
+	return parts.filter(Boolean).join(" \n ");
+}
+
+function analyzeJobMatchLocal(jobText, resume) {
+	const text = String(jobText || "").trim();
+	if (text.length < 30 || !resume) return null;
+	const cvBlob = resumeSearchBlob(resume);
+	const matched = [];
+	const missing = [];
+	for (const [name, re] of PRE_APPLY_TECHS) {
+		if (re.test(text)) {
+			if (re.test(cvBlob)) matched.push(name);
+			else missing.push(name);
+		}
+	}
+	const total = matched.length + missing.length;
+	const pct = total ? Math.round((matched.length / total) * 100) : null;
+	const isEnglish =
+		/\b(requirements|responsibilities|experience with|we are looking|qualifications|software engineer)\b/i.test(
+			text,
+		);
+	return { matched, missing, total, pct, isEnglish };
+}
+
+function updatePreApplyAnalysis() {
+	const box = document.getElementById("preApplyAnalysis");
+	if (!box) return;
+	const res = analyzeJobMatchLocal(jobDescriptionInput?.value, currentResume);
+	if (!res || !res.total) {
+		box.classList.add("hidden");
+		box.innerHTML = "";
+		return;
+	}
+	const tone = res.pct >= 70 ? "text-ok" : res.pct >= 45 ? "text-warn" : "text-danger";
+	const warning =
+		res.pct < 45
+			? `<div class="pre-apply-alert">${icon("alert")} <strong>Atenção à aderência (${res.pct}%):</strong> a vaga pede requisitos centrais ausentes no seu currículo (${escapeHtml(res.missing.slice(0, 4).join(", "))}). Avalie se vale investir tempo nela ou priorizar vagas mais alinhadas ao seu stack.</div>`
+			: "";
+	box.classList.remove("hidden");
+	box.innerHTML = `
+    <div class="pre-apply-head">
+      <strong>Análise pré-candidatura (${res.isEnglish ? "vaga em Inglês" : "vaga em Português"})</strong>
+      <span class="meta-chip ${tone}">Aderência real: ${res.pct}% (${res.matched.length}/${res.total} requisitos)</span>
+    </div>
+    ${res.matched.length ? `<div><span class="idea-label">Você já domina (destaque na vaga)</span><div class="tag-row" style="margin-top:4px">${res.matched.map((t) => `<span class="skill-tag strong">${escapeHtml(t)}</span>`).join("")}</div></div>` : ""}
+    ${res.missing.length ? `<div><span class="idea-label">Lacunas desta vaga (não inventar)</span><div class="tag-row" style="margin-top:4px">${res.missing.map((t) => `<span class="skill-tag">${escapeHtml(t)}</span>`).join("")}</div></div>` : ""}
+    ${warning}`;
+}
+
+function updateApplyKit() {
+	const gupyEl = document.getElementById("kitGupyIntro");
+	const msgEl = document.getElementById("kitRecruiterMsg");
+	const headEl = document.getElementById("kitLinkedinHeadline");
+	if (!gupyEl || !msgEl || !headEl) return;
+
+	const preset = CV_VERSIONS[activeCvVersionKey] || CV_VERSIONS.fullstack;
+	const match = analyzeJobMatchLocal(jobDescriptionInput?.value, currentResume);
+	const matchedTerms = match?.matched?.slice(0, 6) || [];
+
+	const gupySuffix = matchedTerms.length
+		? ` Para esta oportunidade, destaco minha vivência direta com ${matchedTerms.join(", ")}.`
+		: " Busco atuar construindo e evoluindo sistemas confiáveis em produção (remoto Brasil/Global ou híbrido em Belo Horizonte).";
+	gupyEl.value = `${preset.gupyIntro}${gupySuffix}`;
+
+	const stackSummary = matchedTerms.length
+		? matchedTerms.slice(0, 4).join(", ")
+		: activeCvVersionKey === "cloud"
+			? "AWS, Docker, Kubernetes and CI/CD"
+			: "React, TypeScript, Node.js and AWS";
+
+	if (match?.isEnglish) {
+		msgEl.value = `Hi [Name], I just applied for the [Role] position at [Company]. I'm a Software Engineer based in Brazil (remote worldwide, no visa required) with hands-on production experience in ${stackSummary}. I'd love to connect and share more about how my background aligns with the team's goals. Portfolio: ${currentResume?.website_url || ""}`;
+	} else {
+		msgEl.value = `Olá [Nome], tudo bem? Acabei de me candidatar para a vaga de [Cargo] na [Empresa]. Atuo como Engenheira de Software com experiência prática em produção com ${stackSummary}, integrações corporativas e automação de entregas. Fico à disposição para conversar sobre como posso contribuir com o time! Portfólio: ${currentResume?.website_url || ""}`;
+	}
+
+	headEl.value = preset.headline;
+}
+
+function renderApplyChecklist() {
+	const ul = document.getElementById("applyChecklist");
+	const progress = document.getElementById("checklistProgress");
+	const fill = document.getElementById("checklistBarFill");
+	if (!ul) return;
+
+	const state = store.get(CHECKLIST_LOCAL_KEY, {});
+	const checkedCount = APPLY_CHECKLIST_ITEMS.filter((_, idx) => Boolean(state[idx])).length;
+	const total = APPLY_CHECKLIST_ITEMS.length;
+	if (progress) progress.textContent = `${checkedCount}/${total}`;
+	if (fill) fill.style.width = `${Math.round((checkedCount / total) * 100)}%`;
+
+	ul.innerHTML = APPLY_CHECKLIST_ITEMS.map((text, idx) => {
+		const checked = Boolean(state[idx]);
+		return `<li>
+      <label class="${checked ? "checked" : ""}">
+        <input type="checkbox" data-check-idx="${idx}" ${checked ? "checked" : ""}>
+        <span>${escapeHtml(text)}</span>
+      </label>
+    </li>`;
+	}).join("");
+
+	ul.querySelectorAll("[data-check-idx]").forEach((cb) => {
+		cb.addEventListener("change", () => {
+			const next = { ...store.get(CHECKLIST_LOCAL_KEY, {}), [cb.dataset.checkIdx]: cb.checked };
+			store.set(CHECKLIST_LOCAL_KEY, next);
+			renderApplyChecklist();
+		});
+	});
 }
 
 // =============================================================================
@@ -1624,41 +1999,267 @@ function transferJobToOptimizer(job) {
 }
 
 // =============================================================================
-// Ideias de projetos (lacunas entre vagas e currículo)
+// Ideias de projetos (backlog automático, persistente e evolutivo)
 // =============================================================================
-async function generateProjectIdeas() {
-	const container = document.getElementById("ideasResult");
-	const btn = document.getElementById("btnGenerateIdeas");
-	const useAi = document.getElementById("ideasUseAi").checked;
-	if (!currentResume) return;
+const IDEAS_LOCAL_KEY = "project_ideas_state";
+let ideasLoaded = false;
+let ideasStatusFilter = "all";
+let ideasState = store.get(IDEAS_LOCAL_KEY, {
+	ideas: [],
+	statuses: {}, // id -> "planned" | "in_progress" | "done"
+	dismissed: [], // lista de { id, title } descartados pelo usuário
+	analysis: null,
+	jobs_updated_at: "",
+	updated_at: "",
+	generated_by: "catalogo",
+});
 
-	btn.disabled = true;
-	container.innerHTML = `<div class="empty-state"><div class="spinner"></div><h3>Analisando vagas ativas${useAi ? " e gerando ideias com IA" : ""}…</h3><p>Isso leva alguns segundos.</p></div>`;
+function saveIdeasState() {
+	store.set(IDEAS_LOCAL_KEY, ideasState);
+	updateIdeasBadge();
+}
+
+function updateIdeasBadge() {
+	const badge = document.getElementById("ideasNavCount");
+	if (!badge) return;
+	const activeCount = (ideasState.ideas || []).filter(
+		(i) => ideasState.statuses?.[i.id] !== "done",
+	).length;
+	badge.textContent = activeCount ? String(activeCount) : "";
+}
+
+function ideaSlug(title = "") {
+	return String(title || "")
+		.normalize("NFD")
+		.replace(/[\u0300-\u036f]/g, "")
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, "-")
+		.replace(/^-+|-+$/g, "")
+		.slice(0, 72);
+}
+
+function mergeIdeasLists(localList = [], serverList = [], dismissed = []) {
+	const dismissedIds = new Set(
+		(dismissed || []).map((d) => (typeof d === "string" ? d : d.id)),
+	);
+	const byId = new Map();
+	for (const raw of [...serverList, ...localList]) {
+		if (!raw || !raw.title) continue;
+		const id = raw.id || ideaSlug(raw.title);
+		if (dismissedIds.has(id)) continue;
+		const item = { ...raw, id, version: Math.max(1, Number(raw.version) || 1) };
+		const prev = byId.get(id);
+		if (!prev) {
+			byId.set(id, item);
+		} else {
+			const pickNew =
+				item.version > prev.version ||
+				(item.version === prev.version &&
+					String(item.updated_at || "") > String(prev.updated_at || ""));
+			if (pickNew) byId.set(id, item);
+		}
+	}
+	return [...byId.values()];
+}
+
+async function fetchIdeasApi(payload) {
+	const res = await fetch("/api/project-ideas", {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(payload),
+	});
+	const contentType = res.headers.get("content-type") || "";
+	if (!contentType.includes("application/json")) {
+		throw new Error(
+			"Servidor local desatualizado para /api/project-ideas. Reinicie o `npm run server`.",
+		);
+	}
+	const data = await res.json();
+	if (!res.ok || !data.success) {
+		throw new Error(data.error || "Erro ao processar ideias de projetos.");
+	}
+	return data;
+}
+
+async function loadProjectIdeas() {
+	const container = document.getElementById("ideasResult");
+	if (!container) return;
+
+	// Exibe imediatamente o que já existe salvo no navegador enquanto sincroniza lacunas
+	if (ideasState.ideas?.length && ideasState.analysis) {
+		updateIdeasBadge();
+		renderProjectIdeas(container);
+	}
+
 	try {
-		const res = await fetch("/api/project-ideas", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				resume: currentResume,
-				customApiKey: customApiKeyInput.value || null,
-				useAi,
-			}),
+		const data = await fetchIdeasApi({
+			action: "sync",
+			resume: currentResume,
 		});
-		const data = await res.json();
-		if (!res.ok || !data.success)
-			throw new Error(data.error || "Erro ao gerar ideias.");
-		renderProjectIdeas(container, data);
+		ideasLoaded = true;
+		ideasState.ideas = mergeIdeasLists(
+			ideasState.ideas,
+			data.ideas || [],
+			ideasState.dismissed,
+		);
+		ideasState.analysis = data.analysis;
+		ideasState.jobs_updated_at = data.jobs_updated_at || ideasState.jobs_updated_at;
+		ideasState.updated_at = data.updated_at || ideasState.updated_at;
+		if (!ideasState.generated_by) ideasState.generated_by = data.generated_by || "catalogo";
+		saveIdeasState();
+		renderProjectIdeas(container);
 	} catch (err) {
-		container.innerHTML = `<div class="empty-state">${icon("alert")}<h3>Não foi possível gerar as ideias</h3><p>${escapeHtml(err.message)}</p></div>`;
-	} finally {
-		btn.disabled = false;
+		if (!ideasState.ideas?.length) {
+			container.innerHTML = `<div class="empty-state">${icon("alert")}<h3>Não foi possível carregar as ideias</h3><p>${escapeHtml(err.message)}</p></div>`;
+		}
 	}
 }
 
-function renderProjectIdeas(container, data) {
-	const a = data.analysis;
-	const maxJobs = Math.max(1, ...a.top_demand.map((s) => s.jobs));
-	const STATUS = {
+async function generateNewProjectIdeas() {
+	const container = document.getElementById("ideasResult");
+	const btn = document.getElementById("btnGenerateIdeas");
+	const useAi = document.getElementById("ideasUseAi")?.checked ?? true;
+	if (!currentResume) return;
+
+	const existingTitles = [
+		...(ideasState.ideas || []).map((i) => i.title),
+		...(ideasState.dismissed || []).map((d) => (typeof d === "string" ? d : d.title)),
+	].filter(Boolean);
+
+	btn.disabled = true;
+	showLoader(
+		useAi
+			? "Gerando novas ideias inéditas com IA…"
+			: "Buscando novas ideias diferentes no catálogo…",
+		true,
+	);
+	try {
+		const data = await fetchIdeasApi({
+			action: "new",
+			resume: currentResume,
+			customApiKey: customApiKeyInput.value || null,
+			useAi,
+			count: 3,
+			existingTitles,
+		});
+		const existingIds = new Set((ideasState.ideas || []).map((i) => i.id));
+		const fresh = (data.ideas || []).filter((i) => !existingIds.has(i.id));
+		ideasState.analysis = data.analysis || ideasState.analysis;
+		ideasState.jobs_updated_at = data.jobs_updated_at || ideasState.jobs_updated_at;
+		ideasState.updated_at = data.updated_at || new Date().toISOString();
+		ideasState.generated_by = data.generated_by || ideasState.generated_by;
+		ideasState.warning = data.warning || "";
+		if (fresh.length) {
+			ideasState.ideas = [...fresh, ...(ideasState.ideas || [])];
+			saveIdeasState();
+			renderProjectIdeas(container);
+			notify(
+				`${fresh.length} ${fresh.length === 1 ? "nova ideia adicionada" : "novas ideias adicionadas"} à sua lista.`,
+				"success",
+			);
+		} else {
+			saveIdeasState();
+			renderProjectIdeas(container);
+			notify(
+				"Todas as ideias do catálogo já estão na sua lista. Ative a IA ou clique em “Melhorar” em uma ideia existente.",
+				"info",
+			);
+		}
+	} catch (err) {
+		notify(err.message, "error");
+	} finally {
+		btn.disabled = false;
+		hideLoader();
+	}
+}
+
+async function improveProjectIdeaById(id) {
+	const container = document.getElementById("ideasResult");
+	const idx = (ideasState.ideas || []).findIndex((i) => i.id === id);
+	if (idx < 0 || !currentResume) return;
+	const target = ideasState.ideas[idx];
+	const useAi = document.getElementById("ideasUseAi")?.checked ?? true;
+
+	const cardBtn = container.querySelector(`[data-improve-idea="${CSS.escape(id)}"]`);
+	const headerBtn = document.getElementById("btnImproveNextIdea");
+	if (cardBtn) cardBtn.disabled = true;
+	if (headerBtn) headerBtn.disabled = true;
+
+	showLoader(`Evoluindo "${target.title}" para v${(target.version || 1) + 1}…`, true);
+	try {
+		const data = await fetchIdeasApi({
+			action: "improve",
+			idea: target,
+			resume: currentResume,
+			customApiKey: customApiKeyInput.value || null,
+			useAi,
+		});
+		if (data.idea) {
+			ideasState.ideas[idx] = data.idea;
+			ideasState.analysis = data.analysis || ideasState.analysis;
+			ideasState.updated_at = data.updated_at || new Date().toISOString();
+			ideasState.warning = data.warning || "";
+			saveIdeasState();
+			renderProjectIdeas(container);
+			notify(
+				`Ideia evoluída para v${data.idea.version}: ${data.idea.improved_note || "escopo técnico aprofundado."}`,
+				"success",
+			);
+		}
+	} catch (err) {
+		notify(err.message, "error");
+	} finally {
+		if (cardBtn) cardBtn.disabled = false;
+		if (headerBtn) headerBtn.disabled = false;
+		hideLoader();
+	}
+}
+
+function improveNextProjectIdea() {
+	const candidates = (ideasState.ideas || []).filter(
+		(i) => ideasState.statuses?.[i.id] !== "done",
+	);
+	if (!candidates.length) {
+		return generateNewProjectIdeas();
+	}
+	candidates.sort((a, b) => {
+		const dv = (a.version || 1) - (b.version || 1);
+		if (dv !== 0) return dv;
+		return String(a.updated_at || "").localeCompare(String(b.updated_at || ""));
+	});
+	return improveProjectIdeaById(candidates[0].id);
+}
+
+const ROADMAP_12M_KEY = "career_roadmap_12m_v1";
+const CORE_STACK_12 = [
+	"TypeScript",
+	"Node.js",
+	"React",
+	"Python",
+	"PostgreSQL",
+	"Redis",
+	"AWS",
+	"Docker",
+	"Kubernetes",
+	"Terraform",
+	"LLMs / IA generativa",
+	"RAG / Vector DB",
+];
+const ROADMAP_12M = [
+	{ id: "m12", period: "Meses 1–2", focus: "Backend e System Design", delivery: "API robusta, autenticação, filas e testes automatizados" },
+	{ id: "m34", period: "Meses 3–4", focus: "AI Engineering", delivery: "Plataforma RAG com citações e avaliação de respostas (evals)" },
+	{ id: "m56", period: "Meses 5–6", focus: "Cloud e DevOps", delivery: "Deploy AWS, Docker, Terraform e CI/CD automatizado" },
+	{ id: "m78", period: "Meses 7–8", focus: "Segurança e Observabilidade", delivery: "Logs, tracing (OpenTelemetry), métricas e controle de acesso" },
+	{ id: "m910", period: "Meses 9–10", focus: "Produto e Arquitetura", delivery: "Evoluir um projeto flagship para SaaS multi-tenant" },
+	{ id: "m1112", period: "Meses 11–12", focus: "Mercado Internacional", delivery: "Portfólio em inglês, entrevistas técnicas e candidaturas globais" },
+];
+
+function renderProjectIdeas(container) {
+	const a = ideasState.analysis;
+	if (!a) return;
+
+	const maxJobs = Math.max(1, ...(a.top_demand || []).map((s) => s.jobs));
+	const STATUS_GAP = {
 		proven: "Comprovado por projeto",
 		unproven: "No currículo, sem projeto",
 		missing: "Falta no currículo",
@@ -1666,64 +2267,194 @@ function renderProjectIdeas(container, data) {
 	const statusOf = (s) =>
 		s.proven_by_project ? "proven" : s.in_resume ? "unproven" : "missing";
 
-	const rows = a.top_demand
+	const rows = (a.top_demand || [])
 		.slice(0, 15)
 		.map((s) => {
 			const st = statusOf(s);
-			return `<div class="demand-row" title="${escapeHtml(s.sample_jobs.join("\n"))}">
+			return `<div class="demand-row" title="${escapeHtml((s.sample_jobs || []).join("\n"))}">
       <span class="demand-tech">${escapeHtml(s.tech)}</span>
       <span class="demand-bar"><span class="demand-fill ${st}" style="width:${Math.round((s.jobs / maxJobs) * 100)}%"></span></span>
       <span class="demand-count">${s.jobs}</span>
-      <span class="status-pill ${st}"><span class="dot"></span>${STATUS[st]}</span>
+      <span class="status-pill ${st}"><span class="dot"></span>${STATUS_GAP[st]}</span>
     </div>`;
 		})
 		.join("");
 
-	const ideas = (data.ideas || [])
+	const allIdeas = ideasState.ideas || [];
+	const getStatus = (id) => ideasState.statuses?.[id] || "planned";
+	const filteredIdeas =
+		ideasStatusFilter === "all"
+			? allIdeas
+			: allIdeas.filter((i) => getStatus(i.id) === ideasStatusFilter);
+
+	const counts = {
+		all: allIdeas.length,
+		planned: allIdeas.filter((i) => getStatus(i.id) === "planned").length,
+		in_progress: allIdeas.filter((i) => getStatus(i.id) === "in_progress").length,
+		done: allIdeas.filter((i) => getStatus(i.id) === "done").length,
+	};
+
+	const filterChips = [
+		["all", `Todas (${counts.all})`],
+		["planned", `Planejadas (${counts.planned})`],
+		["in_progress", `Construindo (${counts.in_progress})`],
+		["done", `Concluídas (${counts.done})`],
+	]
 		.map(
-			(idea, idx) => `
-    <article class="idea-card">
+			([key, label]) =>
+				`<button type="button" class="chip ${ideasStatusFilter === key ? "active" : ""}" data-ideas-filter="${key}" aria-pressed="${ideasStatusFilter === key}">${escapeHtml(label)}</button>`,
+		)
+		.join("");
+
+	const ideasHtml = filteredIdeas
+		.map((idea) => {
+			const st = getStatus(idea.id);
+			const ver = Math.max(1, Number(idea.version) || 1);
+			return `
+    <article class="idea-card" data-idea-id="${escapeHtml(idea.id)}">
       <header class="idea-header">
         <h3>${escapeHtml(idea.title)}</h3>
-        <span class="meta-chip sector">${escapeHtml(idea.sector || "")}</span>
+        <div class="idea-badges">
+          <span class="idea-version" title="Versão desta ideia">v${ver}</span>
+          <span class="meta-chip sector">${escapeHtml(idea.sector || "")}</span>
+        </div>
       </header>
       <p class="idea-problem">${escapeHtml(idea.problem || "")}</p>
+      ${idea.improved_note ? `<div class="idea-improved">${icon("sparkles")}<span><strong>Evolução v${ver}:</strong> ${escapeHtml(idea.improved_note)}</span></div>` : ""}
       <div class="idea-block"><span class="idea-label">Comprova</span><div class="tag-row">${(idea.covers || []).map((c) => `<span class="skill-tag strong">${escapeHtml(c)}</span>`).join("")}</div></div>
       <div class="idea-block"><span class="idea-label">Stack</span><span class="idea-stack">${escapeHtml((idea.stack || []).join(" · "))}</span></div>
       <ul class="idea-features">${(idea.features || []).map((f) => `<li>${escapeHtml(f)}</li>`).join("")}</ul>
       <footer class="idea-footer">
         <span class="idea-effort">${icon("clock")}~${escapeHtml(String(idea.weeks || "?"))} semanas · ${escapeHtml(idea.difficulty || "")}</span>
-        <button type="button" class="btn btn-secondary btn-sm" data-copy-idea="${idx}" title="Copia um bullet pronto para o currículo (use quando o projeto estiver publicado)">${icon("copy")}Copiar bullet</button>
+        <div class="idea-footer-actions">
+          <select class="idea-status-select" data-idea-status="${escapeHtml(idea.id)}" aria-label="Status do projeto ${escapeHtml(idea.title)}">
+            <option value="planned" ${st === "planned" ? "selected" : ""}>Planejada</option>
+            <option value="in_progress" ${st === "in_progress" ? "selected" : ""}>Construindo</option>
+            <option value="done" ${st === "done" ? "selected" : ""}>Concluída</option>
+          </select>
+          <button type="button" class="btn btn-secondary btn-sm" data-improve-idea="${escapeHtml(idea.id)}" title="Evolui esta ideia com mais profundidade arquitetural e lacunas atuais">${icon("sparkles")}Melhorar</button>
+          <button type="button" class="btn btn-secondary btn-sm" data-copy-idea="${escapeHtml(idea.id)}" title="Copia um bullet pronto para o currículo (use quando o projeto estiver publicado)">${icon("copy")}Bullet</button>
+          <button type="button" class="btn btn-ghost btn-sm" data-dismiss-idea="${escapeHtml(idea.id)}" aria-label="Remover ideia ${escapeHtml(idea.title)}" title="Remover da lista (não será sugerida novamente)">${icon("x")}</button>
+        </div>
       </footer>
-    </article>`,
-		)
+    </article>`;
+		})
 		.join("");
+
+	const roadmapState = store.get(ROADMAP_12M_KEY, {});
+	const roadmapDone = ROADMAP_12M.filter((s) => Boolean(roadmapState[s.id])).length;
+	const byTech = new Map((a.top_demand || []).map((s) => [s.tech, s]));
+	const provenSet = new Set(a.proven || []);
+	const cvBlob = resumeSearchBlob(currentResume || {});
+	const corePills = CORE_STACK_12.map((tech) => {
+		const info = byTech.get(tech);
+		const st = info
+			? statusOf(info)
+			: provenSet.has(tech)
+				? "proven"
+				: new RegExp(`\\b${tech.split(/[ /]/)[0].replace(/[.+?^${}()|[\]\\]/g, "\\$&")}`, "i").test(cvBlob)
+					? "unproven"
+					: "missing";
+		const shortName = tech.replace(" / IA generativa", "").replace(" / Vector DB", "");
+		return `<span class="core-pill ${st}" title="${escapeHtml(STATUS_GAP[st])}"><span class="dot"></span>${escapeHtml(shortName)}</span>`;
+	}).join("");
+
+	const roadmapHtml = ROADMAP_12M.map((step) => {
+		const done = Boolean(roadmapState[step.id]);
+		return `<label class="roadmap-step ${done ? "done" : ""}">
+      <input type="checkbox" data-roadmap-id="${step.id}" ${done ? "checked" : ""}>
+      <div>
+        <strong>${escapeHtml(step.period)} · ${escapeHtml(step.focus)}</strong>
+        <span>${escapeHtml(step.delivery)}</span>
+      </div>
+    </label>`;
+	}).join("");
 
 	container.innerHTML = `
     <div class="stats-row">
       <div class="stat"><span class="stat-value">${a.jobs_analyzed}</span><span class="stat-label">vagas analisadas</span></div>
-      <div class="stat"><span class="stat-value text-danger">${a.missing.length}</span><span class="stat-label">tecnologias faltando</span></div>
-      <div class="stat"><span class="stat-value text-warn">${a.unproven.length}</span><span class="stat-label">sem projeto que comprove</span></div>
-      <div class="stat"><span class="stat-value">${data.generated_by === "ia" ? "IA" : "Catálogo"}</span><span class="stat-label">origem das ideias</span></div>
+      <div class="stat"><span class="stat-value">${allIdeas.length}</span><span class="stat-label">ideias no backlog</span></div>
+      <div class="stat"><span class="stat-value text-danger">${(a.missing || []).length}</span><span class="stat-label">tecnologias faltando</span></div>
+      <div class="stat"><span class="stat-value text-warn">${(a.unproven || []).length}</span><span class="stat-label">sem projeto que comprove</span></div>
     </div>
-    ${data.warning ? `<div class="notice">${icon("alert")}<span>${escapeHtml(data.warning)}</span></div>` : ""}
-    <section class="card">
-      <h2 class="card-title">Tecnologias mais pedidas × seu currículo</h2>
-      <p class="card-sub">Coleta de ${escapeHtml(data.jobs_updated_at || "—")}. Passe o mouse para ver vagas de exemplo.</p>
-      <div class="demand-chart">${rows || '<p class="muted">Poucas vagas para analisar.</p>'}</div>
+    ${ideasState.warning ? `<div class="notice">${icon("alert")}<span>${escapeHtml(ideasState.warning)}</span></div>` : ""}
+    <section class="card" style="margin-bottom:18px">
+      <div class="cv-versions-head" style="margin-bottom:4px">
+        <div>
+          <h2 class="card-title">Foco de evolução: Full Stack + Backend + AI + Cloud</h2>
+          <p class="card-sub">Stack central de 12 tecnologias (evita dispersar em 10 stacks paralelas). Verde = comprovada em projeto · Amarelo = no CV sem projeto · Vermelho = prioridade.</p>
+        </div>
+        <span class="meta-chip sector">${roadmapDone}/${ROADMAP_12M.length} marcos (12m)</span>
+      </div>
+      <div class="core-stack-row">${corePills}</div>
+      <div class="roadmap-grid">${roadmapHtml}</div>
     </section>
-    <h2 class="section-title">Projetos sugeridos</h2>
-    <div class="ideas-grid">${ideas || '<div class="empty-state small"><p>Nenhuma lacuna relevante: seu currículo já cobre o que as vagas pedem.</p></div>'}</div>`;
+    <div class="ideas-toolbar-row">
+      <h2 class="section-title">Backlog de projetos sugeridos</h2>
+      <div class="facet-chips" role="group" aria-label="Filtrar ideias por status">${filterChips}</div>
+    </div>
+    <div class="ideas-grid">${ideasHtml || '<div class="empty-state small"><p>Nenhuma ideia neste filtro. Clique em “+ Novas ideias” ou mude o filtro.</p></div>'}</div>
+    <section class="card" style="margin-top:20px">
+      <h2 class="card-title">Tecnologias mais pedidas × seu currículo</h2>
+      <p class="card-sub">Coleta de ${escapeHtml(ideasState.jobs_updated_at || "—")}. Passe o mouse para ver vagas de exemplo.</p>
+      <div class="demand-chart">${rows || '<p class="muted">Poucas vagas para analisar.</p>'}</div>
+    </section>`;
+
+	container.querySelectorAll("[data-roadmap-id]").forEach((cb) => {
+		cb.addEventListener("change", () => {
+			const next = { ...store.get(ROADMAP_12M_KEY, {}), [cb.dataset.roadmapId]: cb.checked };
+			store.set(ROADMAP_12M_KEY, next);
+			renderProjectIdeas(container);
+		});
+	});
+
+	container.querySelectorAll("[data-ideas-filter]").forEach((btn) => {
+		btn.addEventListener("click", () => {
+			ideasStatusFilter = btn.dataset.ideasFilter;
+			renderProjectIdeas(container);
+		});
+	});
+
+	container.querySelectorAll("[data-idea-status]").forEach((sel) => {
+		sel.addEventListener("change", () => {
+			const id = sel.dataset.ideaStatus;
+			ideasState.statuses = { ...(ideasState.statuses || {}), [id]: sel.value };
+			saveIdeasState();
+			renderProjectIdeas(container);
+		});
+	});
+
+	container.querySelectorAll("[data-improve-idea]").forEach((btn) => {
+		btn.addEventListener("click", () => improveProjectIdeaById(btn.dataset.improveIdea));
+	});
 
 	container.querySelectorAll("[data-copy-idea]").forEach((btn) => {
 		btn.addEventListener("click", async () => {
-			const idea = data.ideas[Number(btn.dataset.copyIdea)];
+			const idea = (ideasState.ideas || []).find((i) => i.id === btn.dataset.copyIdea);
+			if (!idea) return;
 			try {
 				await navigator.clipboard.writeText(idea.resume_bullet || idea.title);
 				notify("Bullet copiado.", "success", { timeout: 2500 });
 			} catch {
 				notify("Não foi possível copiar automaticamente.", "error");
 			}
+		});
+	});
+
+	container.querySelectorAll("[data-dismiss-idea]").forEach((btn) => {
+		btn.addEventListener("click", () => {
+			const id = btn.dataset.dismissIdea;
+			const target = (ideasState.ideas || []).find((i) => i.id === id);
+			ideasState.ideas = (ideasState.ideas || []).filter((i) => i.id !== id);
+			if (target) {
+				ideasState.dismissed = [
+					...(ideasState.dismissed || []),
+					{ id: target.id, title: target.title },
+				];
+			}
+			saveIdeasState();
+			renderProjectIdeas(container);
+			notify("Ideia removida da lista.", "info", { timeout: 2500 });
 		});
 	});
 }
@@ -2151,7 +2882,24 @@ async function handleAuthChange() {
 			}),
 		);
 
-		// 3) Vagas acompanhadas e candidaturas: o que estava só no navegador sobe para a conta
+		// 3) Learning Hub: sincroniza cursos, certificações e metas sob careerStudio/{uid}/data/learning
+		cloudUnsubs.push(
+			window.cloud.watch("learning", (data, pending) => {
+				if (pending) return;
+				if (data?.state) {
+					window.learningHub?.onCloudSnapshot(data);
+				} else {
+					const localLearning = window.learningHub?.getState?.();
+					if (localLearning?.items?.length) {
+						window.cloud
+							.save("learning", { state: localLearning })
+							.catch((e) => console.warn("[cloud] learning:", e.message));
+					}
+				}
+			}),
+		);
+
+		// 4) Vagas acompanhadas e candidaturas: o que estava só no navegador sobe para a conta
 		await migrateLocalTracking();
 		cloudUnsubs.push(
 			window.cloud.watchJobs((map) => {
@@ -2306,6 +3054,7 @@ async function toggleJobTrack(job, kind) {
 			await trackJob(job, {
 				applied_at: at,
 				stage: "applied",
+				cv_version: activeCvVersionLabel,
 				history: [...(cur.history || []), { stage: "applied", at }],
 			});
 			notify(`“${job.title}” foi para a planilha de candidaturas.`, "success", {
@@ -2439,6 +3188,99 @@ async function changeStage(id, stage) {
 	}
 }
 
+function renderFunnelDiagnosis(all = [], interviews = 0) {
+	const box = document.getElementById("appsFunnelDiagnosis");
+	if (!box) return;
+
+	const hadStage = (a, ids) =>
+		ids.includes(a.stage) || (a.history || []).some((h) => ids.includes(h.stage));
+	const closedNegative = (a) => a.stage === "rejected" || a.stage === "ghosted";
+
+	const total = all.length;
+	const interviewRate = total ? interviews / total : 0;
+	const preTechRejected = all.filter(
+		(a) => closedNegative(a) && !hadStage(a, ["technical", "final", "offer", "hired"]),
+	).length;
+	const techRejected = all.filter(
+		(a) =>
+			closedNegative(a) &&
+			hadStage(a, ["hr_interview", "technical"]) &&
+			!hadStage(a, ["final", "offer", "hired"]),
+	).length;
+	const finalRejected = all.filter(
+		(a) => closedNegative(a) && hadStage(a, ["final"]) && !hadStage(a, ["offer", "hired"]),
+	).length;
+	const offerNotClosed = all.filter(
+		(a) =>
+			["rejected", "withdrawn", "ghosted"].includes(a.stage) &&
+			hadStage(a, ["offer"]) &&
+			a.stage !== "hired",
+	).length;
+
+	const rows = [
+		{
+			signal: "Muitas candidaturas, poucas entrevistas",
+			hypothesis:
+				"Currículo, posicionamento ou baixa compatibilidade com as vagas escolhidas — revise palavras-chave, formato DOCX/1 coluna e priorize vagas com maior aderência.",
+			triggered: total >= 5 && interviewRate < 0.15,
+			count: total >= 5 ? `${interviews}/${total} (${Math.round(interviewRate * 100)}%)` : "",
+		},
+		{
+			signal: "Reprovação antes da entrevista técnica",
+			hypothesis:
+				"Requisitos eliminatórios, localização/fuso, idioma ou nível de experiência exigido na triagem inicial.",
+			triggered: preTechRejected >= 3,
+			count: preTechRejected ? `${preTechRejected} vaga(s)` : "",
+		},
+		{
+			signal: "Passa no RH, reprova no técnico",
+			hypothesis:
+				"Preparação técnica (System Design, live coding, arquitetura) ou clareza ao defender decisões técnicas na entrevista.",
+			triggered: techRejected >= 2,
+			count: techRejected ? `${techRejected} vaga(s)` : "",
+		},
+		{
+			signal: "Passa no técnico, reprova na entrevista final",
+			hypothesis:
+				"Comunicação executiva, demonstração de autonomia, storytelling de entregas ou alinhamento cultural com a equipe.",
+			triggered: finalRejected >= 1,
+			count: finalRejected ? `${finalRejected} vaga(s)` : "",
+		},
+		{
+			signal: "Chega à negociação / proposta e não fecha",
+			hypothesis:
+				"Alinhamento de remuneração, modelo de contrato (PJ/EOR/CLT) ou expectativas de escopo e benefícios.",
+			triggered: offerNotClosed >= 1,
+			count: offerNotClosed ? `${offerNotClosed} vaga(s)` : "",
+		},
+	];
+
+	const triggeredCount = rows.filter((r) => r.triggered).length;
+	const subtitle = triggeredCount
+		? `${triggeredCount} padrão(ões) identificado(s) no seu histórico — use como hipóteses (não diagnóstico definitivo) para ajustar sua estratégia.`
+		: "Registre suas etapas (RH, técnica, final, proposta) para o sistema sinalizar onde o funil está travando. Use sempre como hipótese para ajustar a estratégia.";
+
+	box.innerHTML = `
+    <details class="card funnel-card" ${triggeredCount ? "open" : ""}>
+      <summary class="ats-resources-summary">
+        <span><strong>Diagnóstico do funil de candidaturas</strong> ${triggeredCount ? `<span class="meta-chip text-warn">${triggeredCount} alerta(s)</span>` : `<small class="muted">(como interpretar seus resultados)</small>`}</span>
+        <svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+      </summary>
+      <p class="card-sub" style="margin-top:8px">${escapeHtml(subtitle)}</p>
+      <div class="funnel-list">
+        ${rows
+					.map(
+						(r) => `
+          <div class="funnel-row ${r.triggered ? "triggered" : ""}">
+            <strong>${escapeHtml(r.signal)}${r.count ? ` <span class="muted">(${escapeHtml(r.count)})</span>` : ""}</strong>
+            <span>${escapeHtml(r.hypothesis)}</span>
+          </div>`,
+					)
+					.join("")}
+      </div>
+    </details>`;
+}
+
 function renderApplications() {
 	const table = document.getElementById("appsTable");
 	if (!table) return;
@@ -2473,6 +3315,8 @@ function renderApplications() {
     <div class="stat"><span class="stat-value">${interviews}</span><span class="stat-label">chegaram a entrevista</span></div>
     <div class="stat"><span class="stat-value ${offers ? "text-ok" : ""}">${offers}</span><span class="stat-label">propostas</span></div>
     <div class="stat"><span class="stat-value ${needsAction ? "text-warn" : ""}">${needsAction}</span><span class="stat-label">pedem ação</span></div>`;
+
+	renderFunnelDiagnosis(all, interviews);
 
 	// Filtro por etapa (com contagem)
 	const counts = all.reduce(
@@ -2551,7 +3395,7 @@ function renderApplications() {
             <td class="col-job">
               <button type="button" class="link-cell" data-open-app="${escapeHtml(a.id)}">
                 <span class="cell-title">${escapeHtml(a.title)}</span>
-                <span class="cell-sub">${escapeHtml(a.company)}${a.source ? ` · ${escapeHtml(a.source.replace(/^Site da empresa \((.*)\)$/, "site da empresa"))}` : ""}</span>
+                <span class="cell-sub">${escapeHtml(a.company)}${a.source ? ` · ${escapeHtml(a.source.replace(/^Site da empresa \((.*)\)$/, "site da empresa"))}` : ""}${a.cv_version ? ` · ${escapeHtml(a.cv_version)}` : ""}</span>
               </button>
               ${alerts.map((x) => `<span class="row-alert ${x.cls}">${icon(x.cls === "warn" ? "alert" : "clock")}${escapeHtml(x.text)}</span>`).join("")}
             </td>
@@ -2595,6 +3439,7 @@ function openAppModal(id) {
 	set("appNextNote", a.next_note);
 	set("appContact", a.contact);
 	set("appSource", a.source_label || a.source || "");
+	set("appCvVersion", a.cv_version || activeCvVersionLabel || "CV 01 — Full Stack & Backend");
 	set("appNotes", a.notes);
 	document.getElementById("btnDeleteApp").hidden = isNew;
 	document.getElementById("appFormError").hidden = true;
@@ -2650,6 +3495,7 @@ async function saveAppFromModal() {
 		contact: val("appContact"),
 		source_label: val("appSource"),
 		source: cur.source || val("appSource"),
+		cv_version: val("appCvVersion"),
 		notes: document.getElementById("appNotes").value,
 		manual: cur.manual ?? !editingAppId,
 	};
@@ -2729,6 +3575,7 @@ function exportApplicationsCsv() {
 		["Link", (a) => a.url],
 		["Local", (a) => a.location],
 		["Onde se candidatou", (a) => a.source_label || a.source],
+		["Versão do currículo", (a) => a.cv_version || ""],
 		["Data da inscrição", (a) => formatDateBR(a.applied_at)],
 		["Etapa atual", (a) => stageLabel(a.stage)],
 		["Em andamento", (a) => (isActiveStage(a.stage) ? "Sim" : "Não")],
@@ -2834,6 +3681,12 @@ async function loadEvents(forceRefresh = false) {
 
 	try {
 		const res = await fetch(`/api/events?limit=120&refresh=${forceRefresh}`);
+		const ct = res.headers.get("content-type") || "";
+		if (!ct.includes("application/json")) {
+			throw new Error(
+				"A rota /api/events ainda não está ativa no servidor atual. Se estiver rodando localmente, reinicie o servidor (Ctrl+C e npm run server); em produção, aguarde o novo deploy."
+			);
+		}
 		const data = await res.json();
 		if (!res.ok || !data.success) throw new Error(data.error || "Erro ao buscar eventos.");
 
@@ -2925,14 +3778,14 @@ function renderEventFacets() {
 	box.innerHTML = `
 		<div class="facet-row">
 			<span class="facet-label">Modalidade</span>
-			<div class="facet-chips">
-				${modes.map((m) => `<button type="button" class="chip ${eventFilters.mode === m.id ? "active" : ""}" data-ev-mode="${m.id}">${escapeHtml(m.label)}</button>`).join("")}
+			<div class="facet-chips" role="group" aria-label="Filtrar eventos por modalidade">
+				${modes.map((m) => `<button type="button" class="chip ${eventFilters.mode === m.id ? "active" : ""}" aria-pressed="${eventFilters.mode === m.id}" data-ev-mode="${m.id}">${escapeHtml(m.label)}</button>`).join("")}
 			</div>
 		</div>
 		<div class="facet-row">
 			<span class="facet-label">Tema</span>
-			<div class="facet-chips">
-				${topics.map((t) => `<button type="button" class="chip ${eventFilters.topic === t.id ? "active" : ""}" data-ev-topic="${t.id}">${escapeHtml(t.label)}</button>`).join("")}
+			<div class="facet-chips" role="group" aria-label="Filtrar eventos por tema">
+				${topics.map((t) => `<button type="button" class="chip ${eventFilters.topic === t.id ? "active" : ""}" aria-pressed="${eventFilters.topic === t.id}" data-ev-topic="${t.id}">${escapeHtml(t.label)}</button>`).join("")}
 			</div>
 		</div>
 	`;
@@ -3022,11 +3875,11 @@ function renderEvents() {
 				<div class="event-foot">
 					<span class="event-source">Fonte: ${escapeHtml(ev.source)}</span>
 					<div class="event-actions">
-						<button type="button" class="btn btn-secondary btn-sm toggle ${isSaved ? "on" : ""}" data-save-ev="${escapeHtml(ev.id)}" title="${isSaved ? "Remover dos salvos" : "Salvar evento"}">
+						<button type="button" class="btn btn-secondary btn-sm toggle ${isSaved ? "on" : ""}" aria-pressed="${isSaved}" data-save-ev="${escapeHtml(ev.id)}" title="${isSaved ? "Remover dos salvos" : "Salvar evento"}">
 							${icon("bookmark")}<span>${isSaved ? "Salvo" : "Salvar"}</span>
 						</button>
-						${calUrl ? `<a href="${escapeHtml(calUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="Adicionar ao Google Agenda">${icon("calendar")}<span>Agenda</span></a>` : ""}
-						<a href="${escapeHtml(ev.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+						${calUrl ? `<a href="${escapeHtml(safeHttpUrl(calUrl))}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="Adicionar ao Google Agenda">${icon("calendar")}<span>Agenda</span></a>` : ""}
+						<a href="${escapeHtml(safeHttpUrl(ev.url))}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
 							<span>Abrir evento</span>${icon("external")}
 						</a>
 					</div>
@@ -3035,6 +3888,269 @@ function renderEvents() {
 		`;
 
 		card.querySelector("[data-save-ev]")?.addEventListener("click", () => toggleSavedEvent(ev.id));
+		listEl.appendChild(card);
+	});
+}
+
+// -----------------------------------------------------------------------------
+// Artigos técnicos (curadoria diária 2027 — PT-BR e EN)
+// -----------------------------------------------------------------------------
+let allArticles = [];
+let articleFilters = { search: "", view: "all", topic: "all", sort: "recent" };
+const SAVED_ARTICLES_KEY = "saved_articles";
+const READ_ARTICLES_KEY = "read_articles";
+const getSavedArticles = () => new Set(store.get(SAVED_ARTICLES_KEY, []));
+const getReadArticles = () => new Set(store.get(READ_ARTICLES_KEY, []));
+
+function toggleSavedArticle(id) {
+	const set = getSavedArticles();
+	if (set.has(id)) set.delete(id);
+	else set.add(id);
+	store.set(SAVED_ARTICLES_KEY, [...set]);
+	renderArticles();
+}
+
+function toggleReadArticle(id, forceRead = null) {
+	const set = getReadArticles();
+	const next = forceRead === null ? !set.has(id) : Boolean(forceRead);
+	if (next) set.add(id);
+	else set.delete(id);
+	store.set(READ_ARTICLES_KEY, [...set]);
+	renderArticles();
+}
+
+const ARTICLE_TOPIC_LABELS = {
+	ia: "IA, LLMs & Agentes",
+	arquitetura: "Arquitetura & System Design",
+	cloud: "Cloud, DevOps & SRE",
+	fullstack: "Full Stack & Web",
+	qualidade: "Qualidade & Segurança",
+	carreira: "Carreira & Global",
+};
+
+function setupArticles() {
+	const searchInput = document.getElementById("articleSearchQuery");
+	const sortSelect = document.getElementById("articleSort");
+	const btnRefresh = document.getElementById("btnRefreshArticles");
+	const btnClear = document.getElementById("btnClearArticleFilters");
+
+	if (searchInput) {
+		searchInput.addEventListener("input", () => {
+			articleFilters.search = searchInput.value.trim();
+			renderArticles();
+		});
+	}
+	if (sortSelect) {
+		sortSelect.addEventListener("change", () => {
+			articleFilters.sort = sortSelect.value;
+			renderArticles();
+		});
+	}
+	if (btnRefresh) {
+		btnRefresh.addEventListener("click", () => loadArticles(true));
+	}
+	if (btnClear) {
+		btnClear.addEventListener("click", () => {
+			articleFilters = { search: "", view: "all", topic: "all", sort: "recent" };
+			if (searchInput) searchInput.value = "";
+			if (sortSelect) sortSelect.value = "recent";
+			renderArticles();
+		});
+	}
+}
+
+async function loadArticles(forceRefresh = false) {
+	const listEl = document.getElementById("articlesList");
+	const countEl = document.getElementById("articlesCount");
+	const navBadge = document.getElementById("articlesNavCount");
+	const updatedEl = document.getElementById("articlesLastUpdated");
+
+	if (forceRefresh && listEl) {
+		listEl.innerHTML = `<div class="empty-state small"><div class="spinner"></div><p>Buscando artigos técnicos atualizados…</p></div>`;
+	}
+
+	try {
+		const res = await fetch(`/api/articles?limit=80&refresh=${forceRefresh}`);
+		const ct = res.headers.get("content-type") || "";
+		if (!ct.includes("application/json")) {
+			throw new Error(
+				"A rota /api/articles ainda não está ativa no servidor atual. Se estiver rodando localmente, reinicie o servidor (Ctrl+C e npm run server); em produção, aguarde o novo deploy."
+			);
+		}
+		const data = await res.json();
+		if (!res.ok || !data.success) throw new Error(data.error || "Erro ao buscar artigos.");
+
+		allArticles = data.articles || [];
+		if (navBadge) navBadge.textContent = allArticles.length ? String(allArticles.length) : "";
+		if (updatedEl && data.last_updated) {
+			updatedEl.textContent = `Atualizado: ${data.last_updated}`;
+		}
+		renderArticles();
+		if (forceRefresh) notify(`${allArticles.length} artigos técnicos atualizados.`, "success");
+	} catch (err) {
+		console.warn("Artigos indisponíveis:", err.message);
+		if (countEl) countEl.textContent = "Não foi possível carregar artigos.";
+		if (listEl) {
+			listEl.innerHTML = `<div class="empty-state">${icon("book")}<h3>Erro ao carregar artigos</h3><p>${escapeHtml(err.message)}</p></div>`;
+		}
+	}
+}
+
+function formatRelativeArticleDate(iso) {
+	const d = new Date(iso);
+	if (Number.isNaN(d.getTime())) return "";
+	const diffDays = Math.floor((Date.now() - d.getTime()) / 86400000);
+	if (diffDays <= 0) return "Hoje";
+	if (diffDays === 1) return "Ontem";
+	if (diffDays < 7) return `Há ${diffDays} dias`;
+	return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" });
+}
+
+function renderArticleFacets() {
+	const box = document.getElementById("articleFacets");
+	if (!box) return;
+	const saved = getSavedArticles();
+	const read = getReadArticles();
+
+	const ptCount = allArticles.filter((a) => a.lang === "pt").length;
+	const enCount = allArticles.filter((a) => a.lang === "en").length;
+	const savedCount = allArticles.filter((a) => saved.has(a.id)).length;
+	const readCount = allArticles.filter((a) => read.has(a.id)).length;
+
+	const views = [
+		{ id: "all", label: `Todos (${allArticles.length})` },
+		{ id: "pt", label: `Português (${ptCount})` },
+		{ id: "en", label: `Inglês · prática técnica (${enCount})` },
+		...(savedCount ? [{ id: "saved", label: `Salvos para ler (${savedCount})` }] : []),
+		...(readCount ? [{ id: "unread", label: `Não lidos (${allArticles.length - readCount})` }] : []),
+	];
+
+	const topicCounts = {};
+	allArticles.forEach((a) => (a.topics || []).forEach((t) => (topicCounts[t] = (topicCounts[t] || 0) + 1)));
+	const topics = [
+		{ id: "all", label: "Todos" },
+		...Object.entries(ARTICLE_TOPIC_LABELS)
+			.filter(([k]) => topicCounts[k] > 0)
+			.map(([k, label]) => ({ id: k, label: `${label} (${topicCounts[k]})` })),
+	];
+
+	box.innerHTML = `
+		<div class="facet-row">
+			<span class="facet-label">Idioma / Lista</span>
+			<div class="facet-chips" role="group" aria-label="Filtrar artigos por idioma ou lista">
+				${views.map((v) => `<button type="button" class="chip ${articleFilters.view === v.id ? "active" : ""}" aria-pressed="${articleFilters.view === v.id}" data-art-view="${v.id}">${escapeHtml(v.label)}</button>`).join("")}
+			</div>
+		</div>
+		<div class="facet-row">
+			<span class="facet-label">Pilar 2027</span>
+			<div class="facet-chips" role="group" aria-label="Filtrar artigos por pilar técnico">
+				${topics.map((t) => `<button type="button" class="chip ${articleFilters.topic === t.id ? "active" : ""}" aria-pressed="${articleFilters.topic === t.id}" data-art-topic="${t.id}">${escapeHtml(t.label)}</button>`).join("")}
+			</div>
+		</div>
+	`;
+
+	box.querySelectorAll("[data-art-view]").forEach((btn) => {
+		btn.addEventListener("click", () => {
+			articleFilters.view = btn.dataset.artView;
+			renderArticles();
+		});
+	});
+	box.querySelectorAll("[data-art-topic]").forEach((btn) => {
+		btn.addEventListener("click", () => {
+			articleFilters.topic = btn.dataset.artTopic;
+			renderArticles();
+		});
+	});
+}
+
+function renderArticles() {
+	const listEl = document.getElementById("articlesList");
+	const countEl = document.getElementById("articlesCount");
+	const btnClear = document.getElementById("btnClearArticleFilters");
+	if (!listEl) return;
+
+	renderArticleFacets();
+	const saved = getSavedArticles();
+	const read = getReadArticles();
+	const q = articleFilters.search.toLowerCase();
+
+	let filtered = allArticles.filter((a) => {
+		if (articleFilters.view === "pt" && a.lang !== "pt") return false;
+		if (articleFilters.view === "en" && a.lang !== "en") return false;
+		if (articleFilters.view === "saved" && !saved.has(a.id)) return false;
+		if (articleFilters.view === "unread" && read.has(a.id)) return false;
+		if (articleFilters.topic !== "all" && !(a.topics || []).includes(articleFilters.topic)) return false;
+
+		if (q) {
+			const hay = `${a.title} ${a.author || ""} ${a.source} ${a.description || ""} ${(a.tags || []).join(" ")} ${(a.topics || []).map((t) => ARTICLE_TOPIC_LABELS[t] || t).join(" ")}`.toLowerCase();
+			if (!hay.includes(q)) return false;
+		}
+		return true;
+	});
+
+	if (articleFilters.sort === "relevance") {
+		filtered = [...filtered].sort((a, b) => (b.relevance || 0) - (a.relevance || 0) || new Date(b.published_at) - new Date(a.published_at));
+	} else {
+		filtered = [...filtered].sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+	}
+
+	const hasActiveFilter = articleFilters.search || articleFilters.view !== "all" || articleFilters.topic !== "all";
+	if (btnClear) btnClear.classList.toggle("hidden", !hasActiveFilter);
+	if (countEl) {
+		countEl.textContent = `${filtered.length} ${filtered.length === 1 ? "artigo encontrado" : "artigos encontrados"}`;
+	}
+
+	if (!filtered.length) {
+		listEl.innerHTML = `<div class="empty-state">${icon("book")}<h3>Nenhum artigo com esses filtros</h3><p>Limpe os filtros ou clique em “Atualizar” para buscar novos conteúdos.</p></div>`;
+		return;
+	}
+
+	listEl.innerHTML = "";
+	filtered.forEach((a) => {
+		const isSaved = saved.has(a.id);
+		const isRead = read.has(a.id);
+		const relDate = formatRelativeArticleDate(a.published_at);
+
+		const card = document.createElement("article");
+		card.className = `article-card ${isRead ? "is-read" : ""}`;
+		card.innerHTML = `
+			<div class="article-top">
+				<div class="article-meta">
+					<span class="article-lang ${a.lang === "pt" ? "lang-pt" : "lang-en"}">${a.lang === "pt" ? "PT" : "EN"}</span>
+					<span class="article-source-badge">${escapeHtml(a.source)}</span>
+					${a.author && a.author !== a.source ? `<span>· ${escapeHtml(a.author)}</span>` : ""}
+					${relDate ? `<span>· ${escapeHtml(relDate)}</span>` : ""}
+					${a.reading_time ? `<span>· ${a.reading_time} min de leitura</span>` : ""}
+				</div>
+				<div class="event-badges">
+					${(a.topics || []).slice(0, 3).map((t) => `<span class="event-pill">${escapeHtml(ARTICLE_TOPIC_LABELS[t] || t)}</span>`).join("")}
+				</div>
+			</div>
+			<h3 class="article-title">
+				<a href="${escapeHtml(safeHttpUrl(a.url))}" target="_blank" rel="noopener noreferrer" data-open-art="${escapeHtml(a.id)}">${escapeHtml(a.title)}</a>
+			</h3>
+			${a.description ? `<p class="article-desc">${escapeHtml(a.description)}</p>` : ""}
+			<div class="article-foot">
+				<span class="event-source">${isRead ? "✓ Marcado como lido" : "Leitura recomendada"}</span>
+				<div class="article-actions">
+					<button type="button" class="btn btn-secondary btn-sm toggle ${isRead ? "on" : ""}" aria-pressed="${isRead}" data-read-art="${escapeHtml(a.id)}" title="${isRead ? "Marcar como não lido" : "Marcar como lido"}">
+						${icon("check")}<span>${isRead ? "Lido" : "Marcar lido"}</span>
+					</button>
+					<button type="button" class="btn btn-secondary btn-sm toggle ${isSaved ? "on" : ""}" aria-pressed="${isSaved}" data-save-art="${escapeHtml(a.id)}" title="${isSaved ? "Remover da lista" : "Salvar para ler depois"}">
+						${icon("bookmark")}<span>${isSaved ? "Salvo" : "Salvar"}</span>
+					</button>
+					<a href="${escapeHtml(safeHttpUrl(a.url))}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" data-open-art="${escapeHtml(a.id)}">
+						<span>Ler artigo</span>${icon("external")}
+					</a>
+				</div>
+			</div>
+		`;
+
+		card.querySelector("[data-save-art]")?.addEventListener("click", () => toggleSavedArticle(a.id));
+		card.querySelector("[data-read-art]")?.addEventListener("click", () => toggleReadArticle(a.id));
+		card.querySelectorAll("[data-open-art]").forEach((el) => {
+			el.addEventListener("click", () => toggleReadArticle(a.id, true));
+		});
 		listEl.appendChild(card);
 	});
 }

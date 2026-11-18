@@ -53,15 +53,19 @@
       <symbol id="i-send" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
       <symbol id="i-maximize" viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></symbol>
       <symbol id="i-minimize" viewBox="0 0 24 24"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+      <symbol id="i-graduation" viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
       <symbol id="i-google" viewBox="0 0 24 24"><path fill="#4285F4" stroke="none" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/><path fill="#34A853" stroke="none" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="#FBBC05" stroke="none" d="M6.4 14a6 6 0 0 1 0-3.9V7.5H3.1a10 10 0 0 0 0 9z"/><path fill="#EA4335" stroke="none" d="M12 6c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.5L6.4 10C7.2 7.8 9.4 6 12 6z"/></symbol>
     </defs>
   </svg>
 
+  <a href="#mainContent" class="skip-link">Pular para o conteúdo principal</a>
+
   <div class="app-shell">
     <!-- ===================== Sidebar ===================== -->
-    <aside class="sidebar">
+    <aside class="sidebar" aria-label="Menu lateral">
       <div class="brand">
-        <div class="brand-mark"><svg><use href="#i-file"/></svg></div>
+        <div class="brand-mark" aria-hidden="true"><svg><use href="#i-file"/></svg></div>
         <div>
           <div class="brand-name">Career Studio</div>
           <div class="brand-sub">Currículo ATS &amp; vagas</div>
@@ -69,42 +73,44 @@
       </div>
 
       <nav class="nav" aria-label="Navegação principal">
-        <div class="nav-group-label">Currículo</div>
-        <button class="nav-item tab-btn active" data-tab="tab-optimize"><svg><use href="#i-sparkles"/></svg><span>Adaptar com IA</span></button>
-        <button class="nav-item tab-btn" data-tab="tab-form"><svg><use href="#i-edit"/></svg><span>Editar currículo</span></button>
-        <button class="nav-item tab-btn" data-tab="tab-json"><svg><use href="#i-code"/></svg><span>JSON</span></button>
+        <div class="nav-group-label" aria-hidden="true">Currículo</div>
+        <button type="button" class="nav-item tab-btn active" data-tab="tab-optimize" aria-current="page"><svg aria-hidden="true"><use href="#i-sparkles"/></svg><span>Adaptar com IA</span></button>
+        <button type="button" class="nav-item tab-btn" data-tab="tab-form"><svg aria-hidden="true"><use href="#i-edit"/></svg><span>Editar currículo</span></button>
+        <button type="button" class="nav-item tab-btn" data-tab="tab-json"><svg aria-hidden="true"><use href="#i-code"/></svg><span>JSON</span></button>
 
-        <div class="nav-group-label">Carreira</div>
-        <button class="nav-item tab-btn" data-tab="tab-jobs"><svg><use href="#i-briefcase"/></svg><span>Vagas</span><span id="jobsNavCount" class="nav-count"></span></button>
-        <button class="nav-item tab-btn" data-tab="tab-events"><svg><use href="#i-calendar"/></svg><span>Eventos</span><span id="eventsNavCount" class="nav-count"></span></button>
-        <button class="nav-item tab-btn" data-tab="tab-applications"><svg><use href="#i-table"/></svg><span>Candidaturas</span><span id="appsNavCount" class="nav-count"></span></button>
-        <button class="nav-item tab-btn" data-tab="tab-ideas"><svg><use href="#i-bulb"/></svg><span>Ideias de projetos</span></button>
-        <button class="nav-item tab-btn" data-tab="tab-talent"><svg><use href="#i-check-square"/></svg><span>Cadastros</span><span id="talentOutdatedCount" class="nav-count warn hidden" title="Cadastros desatualizados"></span></button>
+        <div class="nav-group-label" aria-hidden="true">Carreira</div>
+        <button type="button" class="nav-item tab-btn" data-tab="tab-jobs"><svg aria-hidden="true"><use href="#i-briefcase"/></svg><span>Vagas</span><span id="jobsNavCount" class="nav-count" aria-hidden="true"></span></button>
+        <button type="button" class="nav-item tab-btn" data-tab="tab-events"><svg aria-hidden="true"><use href="#i-calendar"/></svg><span>Eventos</span><span id="eventsNavCount" class="nav-count" aria-hidden="true"></span></button>
+        <button type="button" class="nav-item tab-btn" data-tab="tab-articles"><svg aria-hidden="true"><use href="#i-book"/></svg><span>Artigos</span><span id="articlesNavCount" class="nav-count" aria-hidden="true"></span></button>
+        <button type="button" class="nav-item tab-btn" data-tab="tab-applications"><svg aria-hidden="true"><use href="#i-table"/></svg><span>Candidaturas</span><span id="appsNavCount" class="nav-count" aria-hidden="true"></span></button>
+        <button type="button" class="nav-item tab-btn" data-tab="tab-ideas"><svg aria-hidden="true"><use href="#i-bulb"/></svg><span>Ideias de projetos</span><span id="ideasNavCount" class="nav-count" aria-hidden="true"></span></button>
+        <button type="button" class="nav-item tab-btn" data-tab="tab-learning"><svg aria-hidden="true"><use href="#i-graduation"/></svg><span>Learning Hub</span><span id="learningNavCount" class="nav-count" aria-hidden="true"></span></button>
+        <button type="button" class="nav-item tab-btn" data-tab="tab-talent"><svg aria-hidden="true"><use href="#i-check-square"/></svg><span>Cadastros</span><span id="talentOutdatedCount" class="nav-count warn hidden" title="Cadastros desatualizados" aria-hidden="true"></span></button>
       </nav>
 
       <div class="sidebar-footer">
         <div id="accountBox" class="account hidden">
-          <button id="btnSignIn" class="btn btn-secondary btn-block" title="Sincroniza currículo, cadastros e vagas acompanhadas entre seus dispositivos">
-            <svg><use href="#i-cloud"/></svg><span>Entrar ou criar conta</span>
+          <button type="button" id="btnSignIn" class="btn btn-secondary btn-block" title="Sincroniza currículo, cadastros e vagas acompanhadas entre seus dispositivos">
+            <svg aria-hidden="true"><use href="#i-cloud"/></svg><span>Entrar ou criar conta</span>
           </button>
           <div id="accountInfo" class="account-info hidden">
-            <div id="accountAvatar" class="avatar"></div>
+            <div id="accountAvatar" class="avatar" aria-hidden="true"></div>
             <div class="account-text">
               <div id="accountName" class="account-name"></div>
-              <div id="accountStatus" class="account-status"><svg><use href="#i-cloud"/></svg><span>Sincronizado</span></div>
+              <div id="accountStatus" class="account-status"><svg aria-hidden="true"><use href="#i-cloud"/></svg><span>Sincronizado</span></div>
             </div>
-            <button id="btnSignOut" class="btn btn-icon-only" title="Sair da conta"><svg><use href="#i-logout"/></svg></button>
+            <button type="button" id="btnSignOut" class="btn btn-icon-only" title="Sair da conta" aria-label="Sair da conta"><svg aria-hidden="true"><use href="#i-logout"/></svg></button>
           </div>
         </div>
-        <button id="btnSyncPortfolio" class="btn btn-ghost btn-block" title="Busca os dados mais recentes do seu portfólio no GitHub">
-          <svg><use href="#i-refresh"/></svg><span>Sincronizar portfólio</span>
+        <button type="button" id="btnSyncPortfolio" class="btn btn-ghost btn-block" title="Busca os dados mais recentes do seu portfólio no GitHub">
+          <svg aria-hidden="true"><use href="#i-refresh"/></svg><span>Sincronizar portfólio</span>
         </button>
-        <button id="saveBaseCv" class="btn btn-ghost btn-block" title="Salva o currículo atual como base">
-          <svg><use href="#i-save"/></svg><span>Salvar como base</span>
+        <button type="button" id="saveBaseCv" class="btn btn-ghost btn-block" title="Salva o currículo atual como base">
+          <svg aria-hidden="true"><use href="#i-save"/></svg><span>Salvar como base</span>
         </button>
         <details class="api-key-box">
-          <summary><svg><use href="#i-key"/></svg><span>Chave do Gemini</span><svg class="chev"><use href="#i-chevron"/></svg></summary>
-          <input type="password" id="customApiKey" placeholder="Opcional — usa a do servidor" autocomplete="off">
+          <summary><svg aria-hidden="true"><use href="#i-key"/></svg><span>Chave do Gemini</span><svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <input type="password" id="customApiKey" aria-label="Chave de API do Gemini" placeholder="Opcional — usa a do servidor" autocomplete="off">
           <p class="hint">Fica salva só neste navegador.</p>
         </details>
       </div>
@@ -112,20 +118,49 @@
 
     <!-- ===================== Workspace ===================== -->
     <div class="workspace" id="workspace">
-      <main class="content">
+      <main class="content" id="mainContent" tabindex="-1">
 
         <!-- Adaptar com IA -->
         <section id="tab-optimize" class="tab-pane active">
           <header class="page-header">
             <div>
               <h1>Adaptar currículo com IA</h1>
-              <p>Cole a descrição da vaga. A IA reescreve o currículo com as palavras-chave da vaga, sem inventar experiências nem alterar seus contatos.</p>
+              <p>Escolha a versão base do currículo, cole a vaga para analisar aderência e adapte para ATS (Gupy, Greenhouse, Lever e Workday) sem inventar experiências.</p>
             </div>
           </header>
 
+          <!-- 3 Versões Estratégicas -->
+          <div class="card cv-versions-card">
+            <div class="cv-versions-head">
+              <div>
+                <h2 class="card-title">Versão base do currículo</h2>
+                <p class="card-sub">Mesmo histórico real com resumo, competências e ênfase ajustados à trilha da vaga.</p>
+              </div>
+              <span id="activeCvVersionBadge" class="meta-chip sector">CV 01 — Full Stack</span>
+            </div>
+            <div class="cv-versions-grid" role="group" aria-label="Escolher versão estratégica do currículo">
+              <button type="button" class="cv-version-btn active" data-cv-version="fullstack" aria-pressed="true">
+                <span class="cv-v-tag">CV 01 · Principal</span>
+                <strong>Software Engineer (Full Stack &amp; Backend)</strong>
+                <small>React, TypeScript, Node.js, PHP, PostgreSQL, Redis, APIs REST e arquitetura</small>
+              </button>
+              <button type="button" class="cv-version-btn" data-cv-version="backend_ai" aria-pressed="false">
+                <span class="cv-v-tag">CV 02</span>
+                <strong>Backend &amp; AI Application Engineer</strong>
+                <small>Node.js, TypeScript, Python, APIs/Webhooks, filas, integração com LLMs/IA e automação</small>
+              </button>
+              <button type="button" class="cv-version-btn" data-cv-version="cloud" aria-pressed="false">
+                <span class="cv-v-tag">CV 03</span>
+                <strong>Cloud Software Engineer</strong>
+                <small>Full Stack em produção + especialização complementar em AWS, Docker, Kubernetes, Terraform e CI/CD</small>
+              </button>
+            </div>
+          </div>
+
           <div class="card">
             <label class="field-label" for="jobDescription">Descrição da vaga</label>
-            <textarea id="jobDescription" rows="12" placeholder="Cole aqui os requisitos, responsabilidades e tecnologias da vaga (português ou inglês)."></textarea>
+            <textarea id="jobDescription" rows="10" placeholder="Cole aqui os requisitos, responsabilidades e tecnologias da vaga (português ou inglês)."></textarea>
+            <div id="preApplyAnalysis" class="pre-apply-box hidden" aria-live="polite"></div>
             <div class="field-row">
               <div class="field-inline">
                 <label class="field-label" for="languageMode">Idioma do currículo</label>
@@ -135,15 +170,93 @@
                   <option value="en">Inglês</option>
                 </select>
               </div>
-              <button id="btnOptimize" class="btn btn-primary btn-lg">
-                <svg><use href="#i-sparkles"/></svg><span>Adaptar currículo</span>
+              <button type="button" id="btnOptimize" class="btn btn-primary btn-lg">
+                <svg aria-hidden="true"><use href="#i-sparkles"/></svg><span>Adaptar currículo</span>
               </button>
             </div>
           </div>
 
+          <!-- Kit de Candidatura (Gupy + LinkedIn) -->
+          <div class="card" id="applyKitCard">
+            <div class="cv-versions-head">
+              <div>
+                <h2 class="card-title">Kit rápido para Gupy &amp; LinkedIn</h2>
+                <p class="card-sub">Personalizado automaticamente pela versão do currículo e pela vaga colada (sem inventar competências).</p>
+              </div>
+            </div>
+            <div class="kit-grid">
+              <div class="kit-item">
+                <div class="kit-item-head">
+                  <label class="idea-label" for="kitGupyIntro">Campo “Apresente-se” (Gupy)</label>
+                  <button type="button" class="btn btn-ghost btn-sm" data-copy-target="kitGupyIntro"><svg aria-hidden="true"><use href="#i-copy"/></svg>Copiar</button>
+                </div>
+                <textarea id="kitGupyIntro" rows="4" class="short-textarea"></textarea>
+              </div>
+              <div class="kit-item">
+                <div class="kit-item-head">
+                  <label class="idea-label" for="kitRecruiterMsg">Mensagem curta para recrutador (LinkedIn)</label>
+                  <button type="button" class="btn btn-ghost btn-sm" data-copy-target="kitRecruiterMsg"><svg aria-hidden="true"><use href="#i-copy"/></svg>Copiar</button>
+                </div>
+                <textarea id="kitRecruiterMsg" rows="4" class="short-textarea"></textarea>
+              </div>
+              <div class="kit-item kit-item-full">
+                <div class="kit-item-head">
+                  <label class="idea-label" for="kitLinkedinHeadline">LinkedIn Headline otimizado para ATS</label>
+                  <button type="button" class="btn btn-ghost btn-sm" data-copy-target="kitLinkedinHeadline"><svg aria-hidden="true"><use href="#i-copy"/></svg>Copiar</button>
+                </div>
+                <input type="text" id="kitLinkedinHeadline" readonly>
+              </div>
+            </div>
+          </div>
+
+          <!-- Checklist antes de cada candidatura -->
+          <div class="card" id="applyChecklistCard">
+            <div class="cv-versions-head">
+              <div>
+                <h2 class="card-title">Checklist antes de cada candidatura</h2>
+                <p class="card-sub">Revise antes de enviar para garantir leitura correta em Gupy, Greenhouse, Lever e Workday.</p>
+              </div>
+              <div class="checklist-meta">
+                <span id="checklistProgress" class="meta-chip" aria-live="polite">0/10</span>
+                <button type="button" id="btnResetChecklist" class="link-btn">Limpar checklist</button>
+              </div>
+            </div>
+            <div class="checklist-bar" aria-hidden="true"><span id="checklistBarFill"></span></div>
+            <ul id="applyChecklist" class="checklist-list"></ul>
+          </div>
+
+          <!-- Ferramentas e guias ATS -->
+          <details class="card ats-resources-card">
+            <summary class="ats-resources-summary">
+              <span><strong>Ferramentas de análise &amp; guias oficiais de ATS</strong> <small class="muted">(Jobscan, Teal, Resume Worded, Gupy e Dept. of Labor)</small></span>
+              <svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+            </summary>
+            <p class="card-sub" style="margin-top:10px">Ferramentas externas oferecem estimativas úteis, mas não reproduzem o algoritmo exato de cada empresa — nunca sacrifique clareza para perseguir 100%.</p>
+            <div class="ats-resources-grid">
+              <a class="resource-link" href="https://www.jobscan.co/" target="_blank" rel="noopener noreferrer">
+                <strong>Jobscan</strong><span>Compara currículo × descrição da vaga e aponta lacunas (1ª escolha)</span>
+              </a>
+              <a class="resource-link" href="https://www.tealhq.com/" target="_blank" rel="noopener noreferrer">
+                <strong>Teal</strong><span>Organiza versões de currículo, candidaturas e palavras-chave</span>
+              </a>
+              <a class="resource-link" href="https://resumeworded.com/" target="_blank" rel="noopener noreferrer">
+                <strong>Resume Worded</strong><span>Feedback estruturado de currículo e perfil LinkedIn</span>
+              </a>
+              <a class="resource-link" href="https://gupy.io/blog-do-emprego/boas-praticas-curriculo-gupy" target="_blank" rel="noopener noreferrer">
+                <strong>Boas práticas oficiais da Gupy</strong><span>Layout 1 coluna, DOCX, datas junto aos cargos e revisão do cadastro</span>
+              </a>
+              <a class="resource-link" href="https://gupy.io/blog-do-emprego/informacoes-no-curriculo" target="_blank" rel="noopener noreferrer">
+                <strong>Como a Gupy analisa currículos</strong><span>Peso dos campos de experiência, habilidades e compatibilidade</span>
+              </a>
+              <a class="resource-link" href="https://www.dol.gov/sites/dolgov/files/VETS/files/ResumeEssentials_PG_Interactive_Feb2026.pdf" target="_blank" rel="noopener noreferrer">
+                <strong>Resume Essentials (U.S. Dept. of Labor)</strong><span>Guia oficial americano de estrutura e compatibilidade ATS</span>
+              </a>
+            </div>
+          </details>
+
           <div class="tip-list">
-            <div class="tip"><svg><use href="#i-shield"/></svg><span>Nome, e-mail, telefone e links são sempre preservados do original.</span></div>
-            <div class="tip"><svg><use href="#i-briefcase"/></svg><span>Em <strong>Vagas</strong>, o botão “Adaptar currículo” preenche esta descrição automaticamente.</span></div>
+            <div class="tip"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>Nome, e-mail, telefone e links são sempre preservados do original. Prefira <strong>DOCX</strong> ou <strong>PDF textual</strong> (1 coluna) e revise os campos importados na Gupy.</span></div>
+            <div class="tip"><svg aria-hidden="true"><use href="#i-briefcase"/></svg><span>Em <strong>Vagas</strong>, o botão “Adaptar currículo” preenche esta descrição automaticamente.</span></div>
           </div>
         </section>
 
@@ -159,23 +272,23 @@
           <div class="card form-section">
             <h2 class="card-title">Informações pessoais</h2>
             <div class="grid-2">
-              <div class="form-group"><label>Nome completo</label><input type="text" id="f-name"></div>
-              <div class="form-group"><label>Cargo / título</label><input type="text" id="f-title"></div>
-              <div class="form-group"><label>E-mail</label><input type="email" id="f-email"></div>
-              <div class="form-group"><label>Telefone (exibição)</label><input type="text" id="f-phone-display"></div>
-              <div class="form-group"><label>Telefone (formato E.164)</label><input type="text" id="f-phone-e164"></div>
-              <div class="form-group"><label>Localização</label><input type="text" id="f-location"></div>
+              <div class="form-group"><label for="f-name">Nome completo</label><input type="text" id="f-name" autocomplete="name"></div>
+              <div class="form-group"><label for="f-title">Cargo / título</label><input type="text" id="f-title"></div>
+              <div class="form-group"><label for="f-email">E-mail</label><input type="email" id="f-email" autocomplete="email"></div>
+              <div class="form-group"><label for="f-phone-display">Telefone (exibição)</label><input type="text" id="f-phone-display" autocomplete="tel"></div>
+              <div class="form-group"><label for="f-phone-e164">Telefone (formato E.164)</label><input type="text" id="f-phone-e164"></div>
+              <div class="form-group"><label for="f-location">Localização</label><input type="text" id="f-location"></div>
             </div>
             <div class="grid-3">
-              <div class="form-group"><label>LinkedIn</label><input type="text" id="f-linkedin"></div>
-              <div class="form-group"><label>GitHub</label><input type="text" id="f-github"></div>
-              <div class="form-group"><label>Portfólio / site</label><input type="text" id="f-website"></div>
+              <div class="form-group"><label for="f-linkedin">LinkedIn</label><input type="text" id="f-linkedin"></div>
+              <div class="form-group"><label for="f-github">GitHub</label><input type="text" id="f-github"></div>
+              <div class="form-group"><label for="f-website">Portfólio / site</label><input type="text" id="f-website"></div>
             </div>
           </div>
 
           <div class="card form-section">
-            <h2 class="card-title">Resumo profissional</h2>
-            <textarea id="f-summary" class="short-textarea" rows="5"></textarea>
+            <h2 class="card-title" id="lbl-summary">Resumo profissional</h2>
+            <textarea id="f-summary" aria-labelledby="lbl-summary" class="short-textarea" rows="5"></textarea>
           </div>
 
           <div class="card form-section">
@@ -189,7 +302,8 @@
           </div>
 
           <div class="card form-section">
-            <div class="section-header-btn"><h2 class="card-title">Projetos</h2><button type="button" class="btn btn-ghost btn-sm" id="add-project"><svg><use href="#i-plus"/></svg>Adicionar</button></div>
+            <div class="section-header-btn"><h2 class="card-title">Projetos (opcional)</h2><button type="button" class="btn btn-ghost btn-sm" id="add-project"><svg aria-hidden="true"><use href="#i-plus"/></svg>Adicionar</button></div>
+            <p class="muted" style="font-size:12.5px;margin:-4px 0 10px">Por padrão o currículo principal foca em Experiência Profissional e mantém os projetos no link do Portfólio (cabeçalho). Adicione aqui apenas se quiser exibir uma seção separada para uma vaga específica.</p>
             <div id="projects-list" class="nested-list"></div>
           </div>
 
@@ -213,7 +327,7 @@
             </div>
           </header>
           <div class="card card-flush">
-            <textarea id="jsonEditor" class="code-font" spellcheck="false"></textarea>
+            <textarea id="jsonEditor" aria-label="Código JSON do currículo" class="code-font" spellcheck="false"></textarea>
           </div>
         </section>
 
@@ -233,8 +347,8 @@
 
           <div class="jobs-toolbar">
             <div class="search-field">
-              <svg><use href="#i-search"/></svg>
-              <input type="search" id="jobSearchQuery" placeholder="Buscar por cargo, empresa ou tecnologia" autocomplete="off">
+              <svg aria-hidden="true"><use href="#i-search"/></svg>
+              <input type="search" id="jobSearchQuery" aria-label="Buscar vagas por cargo, empresa ou tecnologia" placeholder="Buscar por cargo, empresa ou tecnologia" autocomplete="off">
             </div>
             <select id="jobSort" aria-label="Ordenar vagas">
               <option value="match">Maior compatibilidade</option>
@@ -245,7 +359,7 @@
           <div id="jobFacets" class="facets"></div>
 
           <div class="results-bar">
-            <span id="jobsCount">Carregando vagas…</span>
+            <span id="jobsCount" aria-live="polite">Carregando vagas…</span>
             <button type="button" id="btnClearFilters" class="link-btn hidden">Limpar filtros</button>
           </div>
 
@@ -261,14 +375,14 @@
             </div>
             <div class="page-actions">
               <span id="eventsLastUpdated" class="muted" style="font-size:12.5px"></span>
-              <button type="button" id="btnRefreshEvents" class="btn btn-secondary" title="Buscar eventos atualizados agora"><svg><use href="#i-refresh"/></svg><span>Atualizar</span></button>
+              <button type="button" id="btnRefreshEvents" class="btn btn-secondary" title="Buscar eventos atualizados agora"><svg aria-hidden="true"><use href="#i-refresh"/></svg><span>Atualizar</span></button>
             </div>
           </header>
 
           <div class="jobs-toolbar">
             <div class="search-field">
-              <svg><use href="#i-search"/></svg>
-              <input type="search" id="eventSearchQuery" placeholder="Buscar por tema, comunidade ou tecnologia (ex.: IA, GDG, React, DevOps, BH)" autocomplete="off">
+              <svg aria-hidden="true"><use href="#i-search"/></svg>
+              <input type="search" id="eventSearchQuery" aria-label="Buscar eventos por tema, comunidade ou tecnologia" placeholder="Buscar por tema, comunidade ou tecnologia (ex.: IA, GDG, React, DevOps, BH)" autocomplete="off">
             </div>
             <select id="eventWindow" aria-label="Período dos eventos">
               <option value="all">Todos os próximos</option>
@@ -280,11 +394,45 @@
           <div id="eventFacets" class="facets"></div>
 
           <div class="results-bar">
-            <span id="eventsCount">Carregando eventos…</span>
+            <span id="eventsCount" aria-live="polite">Carregando eventos…</span>
             <button type="button" id="btnClearEventFilters" class="link-btn hidden">Limpar filtros</button>
           </div>
 
           <div id="eventsList" class="events-list"></div>
+        </section>
+
+        <!-- Artigos -->
+        <section id="tab-articles" class="tab-pane">
+          <header class="page-header">
+            <div>
+              <h1>Artigos técnicos</h1>
+              <p>Curadoria diária de engenharia de software — Arquitetura, System Design, IA Aplicada, AWS/DevOps e Full Stack (TabNews, AWS Blog, Martin Fowler, Cloudflare, DEV.to e Hacker News).</p>
+            </div>
+            <div class="page-actions">
+              <span id="articlesLastUpdated" class="muted" style="font-size:12.5px"></span>
+              <button type="button" id="btnRefreshArticles" class="btn btn-secondary" title="Buscar artigos atualizados agora"><svg aria-hidden="true"><use href="#i-refresh"/></svg><span>Atualizar</span></button>
+            </div>
+          </header>
+
+          <div class="jobs-toolbar">
+            <div class="search-field">
+              <svg aria-hidden="true"><use href="#i-search"/></svg>
+              <input type="search" id="articleSearchQuery" aria-label="Buscar artigos técnicos por assunto ou fonte" placeholder="Buscar por assunto ou fonte (ex.: RAG, AWS, Kubernetes, System Design, TabNews)" autocomplete="off">
+            </div>
+            <select id="articleSort" aria-label="Ordenar artigos">
+              <option value="recent">Mais recentes</option>
+              <option value="relevance">Mais relevantes (pilares 2027)</option>
+            </select>
+          </div>
+
+          <div id="articleFacets" class="facets"></div>
+
+          <div class="results-bar">
+            <span id="articlesCount" aria-live="polite">Carregando artigos…</span>
+            <button type="button" id="btnClearArticleFilters" class="link-btn hidden">Limpar filtros</button>
+          </div>
+
+          <div id="articlesList" class="articles-list"></div>
         </section>
 
         <!-- Candidaturas -->
@@ -301,11 +449,12 @@
           </header>
 
           <div id="appsStats" class="stats-row"></div>
+          <div id="appsFunnelDiagnosis"></div>
 
           <div class="jobs-toolbar">
             <div class="search-field">
-              <svg><use href="#i-search"/></svg>
-              <input type="search" id="appsSearch" placeholder="Buscar por empresa, vaga ou anotação" autocomplete="off">
+              <svg aria-hidden="true"><use href="#i-search"/></svg>
+              <input type="search" id="appsSearch" aria-label="Buscar candidaturas por empresa, vaga ou anotação" placeholder="Buscar por empresa, vaga ou anotação" autocomplete="off">
             </div>
             <select id="appsSort" aria-label="Ordenar candidaturas">
               <option value="recent">Atualizadas recentemente</option>
@@ -325,20 +474,57 @@
           <header class="page-header">
             <div>
               <h1>Ideias de projetos</h1>
-              <p>Compara as tecnologias mais pedidas nas vagas ativas com o seu currículo e sugere projetos pessoais que comprovam o que falta.</p>
+              <p>Backlog automático e contínuo baseado nas vagas ativas: carrega pronto, gera novas ideias diferentes das existentes e permite evoluir qualquer ideia da lista.</p>
             </div>
             <div class="page-actions">
-              <label class="switch" title="Sem IA, as ideias vêm de um catálogo curado, ranqueado pelas suas lacunas">
+              <label class="switch" title="Sem IA, usa o catálogo curado e o motor de evolução de engenharia">
                 <input type="checkbox" id="ideasUseAi" checked><span class="switch-track"></span><span>Usar IA</span>
               </label>
-              <button id="btnGenerateIdeas" class="btn btn-primary"><svg><use href="#i-sparkles"/></svg><span>Analisar vagas</span></button>
+              <button type="button" id="btnImproveNextIdea" class="btn btn-secondary" title="Escolhe a ideia mais antiga da lista e evolui para a próxima versão">
+                <svg aria-hidden="true"><use href="#i-refresh"/></svg><span>Evoluir 1 ideia</span>
+              </button>
+              <button type="button" id="btnGenerateIdeas" class="btn btn-primary" title="Gera novas ideias diferentes das que já estão na lista">
+                <svg aria-hidden="true"><use href="#i-sparkles"/></svg><span>+ Novas ideias</span>
+              </button>
             </div>
           </header>
           <div id="ideasResult">
-            <div class="empty-state">
-              <svg><use href="#i-bulb"/></svg>
-              <h3>Descubra o que estudar e construir</h3>
-              <p>Clique em “Analisar vagas” para ver as tecnologias em alta e projetos que preenchem suas lacunas.</p>
+            <div class="empty-state small">
+              <div class="spinner"></div>
+              <p>Carregando análise de lacunas e backlog de ideias…</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Learning Hub -->
+        <section id="tab-learning" class="tab-pane">
+          <header class="page-header">
+            <div>
+              <h1>Learning Hub</h1>
+              <p>Gestão estratégica de cursos, certificações oficiais, competências prioritárias e integração via API com o StudyFlow.</p>
+            </div>
+            <div class="page-actions">
+              <button type="button" id="btnExportStudyFlowTop" class="btn btn-secondary" title="Copia o JSON pronto da API /api/study-plan para importar no StudyFlow">
+                <svg aria-hidden="true"><use href="#i-code"/></svg><span>API StudyFlow</span>
+              </button>
+              <button type="button" id="btnAddLearningItem" class="btn btn-primary">
+                <svg aria-hidden="true"><use href="#i-plus"/></svg><span>Novo registro</span>
+              </button>
+            </div>
+          </header>
+
+          <div class="facet-chips lh-subnav" role="group" aria-label="Seções do Learning Hub">
+            <button type="button" class="chip active" data-lh-view="overview" aria-pressed="true">Dashboard</button>
+            <button type="button" class="chip" data-lh-view="items" aria-pressed="false">Meus estudos &amp; credenciais</button>
+            <button type="button" class="chip" data-lh-view="gaps" aria-pressed="false">Skill Gaps &amp; Recomendações</button>
+            <button type="button" class="chip" data-lh-view="roadmap" aria-pressed="false">Roadmap &amp; Dependências</button>
+            <button type="button" class="chip" data-lh-view="export" aria-pressed="false">Exportar (CV &amp; LinkedIn)</button>
+          </div>
+
+          <div id="learningContent">
+            <div class="empty-state small">
+              <div class="spinner"></div>
+              <p>Carregando Learning Hub e cruzando competências com as vagas…</p>
             </div>
           </div>
         </section>
@@ -357,20 +543,21 @@
       </main>
 
       <!-- ===================== Prévia do currículo ===================== -->
-      <aside class="preview-panel">
+      <aside class="preview-panel" aria-label="Prévia do currículo">
         <div class="preview-header">
-          <div class="preview-title"><svg><use href="#i-eye"/></svg><span>Prévia</span></div>
+          <div class="preview-title"><svg aria-hidden="true"><use href="#i-eye"/></svg><span>Prévia</span></div>
           <div class="preview-metrics">
-            <span id="pageCount" class="metric" title="Páginas no PDF A4 (estimativa pela prévia)"><svg><use href="#i-file"/></svg><span>— pág.</span></span>
+            <span id="pageCount" class="metric" title="Páginas no PDF A4 (estimativa pela prévia)" aria-live="polite"><svg aria-hidden="true"><use href="#i-file"/></svg><span>— pág.</span></span>
             <button type="button" id="atsScoreBtn" class="metric metric-btn" aria-expanded="false" aria-controls="atsPanel" title="Ver o detalhamento da nota ATS">
-              <svg><use href="#i-target"/></svg><span>ATS —</span><svg class="chev"><use href="#i-chevron"/></svg>
+              <svg aria-hidden="true"><use href="#i-target"/></svg><span>ATS —</span><svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg>
             </button>
           </div>
           <div class="preview-actions">
-            <button id="btnExpandPreview" class="btn btn-icon-only" aria-pressed="false" title="Expandir prévia do currículo"><svg><use href="#i-maximize"/></svg></button>
-            <button id="btnCopyHtml" class="btn btn-icon-only" title="Copiar HTML"><svg><use href="#i-copy"/></svg></button>
-            <button id="btnPrint" class="btn btn-icon-only" title="Imprimir ou salvar como PDF pelo navegador"><svg><use href="#i-printer"/></svg></button>
-            <button id="btnExportPdf" class="btn btn-primary btn-sm" title="Gera o PDF em formato A4"><svg><use href="#i-download"/></svg><span>Baixar PDF</span></button>
+            <button type="button" id="btnExpandPreview" class="btn btn-icon-only" aria-pressed="false" aria-label="Expandir prévia do currículo" title="Expandir prévia do currículo"><svg aria-hidden="true"><use href="#i-maximize"/></svg></button>
+            <button type="button" id="btnCopyHtml" class="btn btn-icon-only" aria-label="Copiar HTML do currículo" title="Copiar HTML"><svg aria-hidden="true"><use href="#i-copy"/></svg></button>
+            <button type="button" id="btnPrint" class="btn btn-icon-only" aria-label="Imprimir ou salvar como PDF pelo navegador" title="Imprimir ou salvar como PDF pelo navegador"><svg aria-hidden="true"><use href="#i-printer"/></svg></button>
+            <button type="button" id="btnExportDocx" class="btn btn-secondary btn-sm" title="Baixar em Word (.docx) — formato recomendado para Gupy, Workday e Greenhouse"><svg aria-hidden="true"><use href="#i-file"/></svg><span>DOCX</span></button>
+            <button type="button" id="btnExportPdf" class="btn btn-primary btn-sm" title="Gera o PDF em formato A4"><svg aria-hidden="true"><use href="#i-download"/></svg><span>Baixar PDF</span></button>
           </div>
         </div>
         <div class="iframe-container" id="iframeContainer">
@@ -437,6 +624,16 @@
           <div class="form-group"><label for="appNextNote">Próximo passo (o quê)</label><input id="appNextNote" type="text" placeholder="Ex.: entrevista técnica, enviar teste, follow-up"></div>
           <div class="form-group"><label for="appContact">Contato (recrutador/a)</label><input id="appContact" type="text" placeholder="Nome, e-mail ou LinkedIn"></div>
           <div class="form-group"><label for="appSource">Onde se candidatou</label><input id="appSource" type="text" placeholder="Ex.: Gupy, LinkedIn, site da empresa, indicação"></div>
+          <div class="form-group">
+            <label for="appCvVersion">Versão do currículo usada</label>
+            <select id="appCvVersion">
+              <option value="CV 01 — Full Stack & Backend">CV 01 — Full Stack &amp; Backend</option>
+              <option value="CV 02 — Backend & AI Application">CV 02 — Backend &amp; AI Application</option>
+              <option value="CV 03 — Cloud Software Engineer">CV 03 — Cloud Software Engineer</option>
+              <option value="Adaptado com IA">Adaptado com IA</option>
+              <option value="Outra versão">Outra versão</option>
+            </select>
+          </div>
         </div>
         <div class="form-group"><label for="appNotes">Anotações</label><textarea id="appNotes" rows="4" placeholder="Perguntas da entrevista, pontos fortes, feedback recebido…"></textarea></div>
         <div id="appTimeline" class="timeline"></div>
@@ -463,10 +660,102 @@
     </div>
   </div>
 
+  <!-- Learning Hub: cadastro / edição de curso ou certificação -->
+  <div id="learningModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="learningModalTitle">
+    <div class="modal-card modal-wide">
+      <button type="button" class="modal-close" data-close-learning aria-label="Fechar"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
+      <h2 id="learningModalTitle">Novo registro de estudo</h2>
+      <p class="muted modal-sub">Priorize links oficiais da instituição. Campos sem dado verificado podem ficar em branco.</p>
+      <form id="learningForm" novalidate>
+        <div class="grid-2">
+          <div class="form-group"><label for="lhTitle">Título do curso / certificação</label><input id="lhTitle" type="text" required placeholder="Ex.: AWS Certified Developer – Associate"></div>
+          <div class="form-group"><label for="lhInstitution">Instituição</label><input id="lhInstitution" type="text" placeholder="Ex.: Amazon Web Services, CNCF, FIAP"></div>
+          <div class="form-group">
+            <label for="lhType">Tipo</label>
+            <select id="lhType">
+              <option value="course">Curso</option>
+              <option value="official_certification">Certificação oficial</option>
+              <option value="workshop">Workshop</option>
+              <option value="track">Trilha</option>
+              <option value="degree">Formação / Pós</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="lhCredentialKind">Tipo de credencial</label>
+            <select id="lhCredentialKind">
+              <option value="official_certification">Certificação oficial (exame)</option>
+              <option value="completion_certificate">Certificado de conclusão</option>
+              <option value="badge">Badge digital</option>
+              <option value="none">Sem credencial</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="lhStatus">Status</label>
+            <select id="lhStatus">
+              <option value="planned">Planejado</option>
+              <option value="in_progress">Em andamento</option>
+              <option value="completed">Concluído</option>
+              <option value="paused">Pausado</option>
+              <option value="expired">Expirado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="lhLevel">Nível</label>
+            <select id="lhLevel">
+              <option value="beginner">Introdutório</option>
+              <option value="intermediate">Intermediário</option>
+              <option value="advanced">Avançado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="lhLanguage">Idioma</label>
+            <select id="lhLanguage">
+              <option value="pt">Português</option>
+              <option value="en">Inglês</option>
+              <option value="es">Espanhol</option>
+            </select>
+          </div>
+          <div class="form-group"><label for="lhOfficialUrl">URL oficial</label><input id="lhOfficialUrl" type="url" placeholder="https://"></div>
+          <div class="form-group"><label for="lhPriceAmount">Preço (vazio se não verificado)</label><input id="lhPriceAmount" type="number" min="0" step="0.01" placeholder="Ex.: 0 ou 150"></div>
+          <div class="form-group">
+            <label for="lhCurrency">Moeda</label>
+            <select id="lhCurrency">
+              <option value="BRL">BRL (R$)</option>
+              <option value="USD">USD (US$)</option>
+              <option value="EUR">EUR (€)</option>
+            </select>
+          </div>
+          <div class="form-group"><label for="lhDurationHours">Duração total (horas)</label><input id="lhDurationHours" type="number" min="0" step="0.5" placeholder="Opcional"></div>
+          <div class="form-group"><label for="lhStudiedHours">Horas já estudadas</label><input id="lhStudiedHours" type="number" min="0" step="0.5" value="0"></div>
+          <div class="form-group"><label for="lhProgressPct">Progresso (%)</label><input id="lhProgressPct" type="number" min="0" max="100" value="0"></div>
+          <div class="form-group"><label for="lhDueDate">Meta / prazo no roadmap</label><input id="lhDueDate" type="date"></div>
+          <div class="form-group"><label for="lhIssuedAt">Data de emissão</label><input id="lhIssuedAt" type="date"></div>
+          <div class="form-group"><label for="lhExpiresAt">Validade (se aplicável)</label><input id="lhExpiresAt" type="date"></div>
+          <div class="form-group"><label for="lhCredentialId">ID da credencial</label><input id="lhCredentialId" type="text" placeholder="Ex.: AWS-DVA-12345"></div>
+          <div class="form-group"><label for="lhProofUrl">Link do comprovante / certificado</label><input id="lhProofUrl" type="url" placeholder="https://"></div>
+          <div class="form-group"><label for="lhRating">Sua avaliação (1 a 5)</label><input id="lhRating" type="number" min="1" max="5" placeholder="Opcional"></div>
+          <div class="form-group"><label for="lhVerifiedAt">Última verificação oficial</label><input id="lhVerifiedAt" type="date"></div>
+        </div>
+        <div class="form-group"><label for="lhPricingNote">Observação de preço / disponibilidade</label><input id="lhPricingNote" type="text" placeholder="Ex.: Taxa oficial conferida no site da instituição"></div>
+        <div class="form-group"><label for="lhSkills">Competências relacionadas (separadas por vírgula)</label><input id="lhSkills" type="text" placeholder="Ex.: AWS, Kubernetes, Terraform, RAG / Vector DB"></div>
+        <div class="form-group"><label for="lhDependsOn">Dependências / pré-requisitos no roadmap (Ctrl+clique para múltiplos)</label><select id="lhDependsOn" multiple size="3"></select></div>
+        <div class="form-group"><label for="lhNotes">Anotações</label><textarea id="lhNotes" rows="3" placeholder="Plano de estudo, pontos fortes do conteúdo, observações para o StudyFlow…"></textarea></div>
+        <p id="learningFormError" class="form-error" role="alert" hidden></p>
+        <div class="modal-actions">
+          <button type="button" id="btnDeleteLearning" class="btn btn-danger-ghost" hidden><svg aria-hidden="true"><use href="#i-trash"/></svg><span>Excluir</span></button>
+          <span class="spacer"></span>
+          <button type="button" class="btn btn-secondary" data-close-learning>Cancelar</button>
+          <button type="submit" class="btn btn-primary"><svg aria-hidden="true"><use href="#i-check"/></svg><span>Salvar</span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Notificações -->
   <div id="toasts" class="toasts" aria-live="polite"></div>
 
   <script src="app.js"></script>
+  <script src="learning-hub.js"></script>
   <!-- Firebase (módulo): carrega depois do app; se falhar, o app segue só com armazenamento local -->
   <script type="module" src="cloud.js"></script>
 </body>
