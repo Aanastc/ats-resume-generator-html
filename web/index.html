@@ -76,6 +76,7 @@
 
         <div class="nav-group-label">Carreira</div>
         <button class="nav-item tab-btn" data-tab="tab-jobs"><svg><use href="#i-briefcase"/></svg><span>Vagas</span><span id="jobsNavCount" class="nav-count"></span></button>
+        <button class="nav-item tab-btn" data-tab="tab-events"><svg><use href="#i-calendar"/></svg><span>Eventos</span><span id="eventsNavCount" class="nav-count"></span></button>
         <button class="nav-item tab-btn" data-tab="tab-applications"><svg><use href="#i-table"/></svg><span>Candidaturas</span><span id="appsNavCount" class="nav-count"></span></button>
         <button class="nav-item tab-btn" data-tab="tab-ideas"><svg><use href="#i-bulb"/></svg><span>Ideias de projetos</span></button>
         <button class="nav-item tab-btn" data-tab="tab-talent"><svg><use href="#i-check-square"/></svg><span>Cadastros</span><span id="talentOutdatedCount" class="nav-count warn hidden" title="Cadastros desatualizados"></span></button>
@@ -249,6 +250,41 @@
           </div>
 
           <div id="jobsList" class="jobs-list"></div>
+        </section>
+
+        <!-- Eventos -->
+        <section id="tab-events" class="tab-pane">
+          <header class="page-header">
+            <div>
+              <h1>Eventos tech</h1>
+              <p>Meetups, workshops e conferências futuras — presenciais/híbridos em Belo Horizonte e 100% online (Brasil e internacional). Atualizados diariamente às 08h.</p>
+            </div>
+            <div class="page-actions">
+              <span id="eventsLastUpdated" class="muted" style="font-size:12.5px"></span>
+              <button type="button" id="btnRefreshEvents" class="btn btn-secondary" title="Buscar eventos atualizados agora"><svg><use href="#i-refresh"/></svg><span>Atualizar</span></button>
+            </div>
+          </header>
+
+          <div class="jobs-toolbar">
+            <div class="search-field">
+              <svg><use href="#i-search"/></svg>
+              <input type="search" id="eventSearchQuery" placeholder="Buscar por tema, comunidade ou tecnologia (ex.: IA, GDG, React, DevOps, BH)" autocomplete="off">
+            </div>
+            <select id="eventWindow" aria-label="Período dos eventos">
+              <option value="all">Todos os próximos</option>
+              <option value="week">Próximos 7 dias</option>
+              <option value="month">Próximos 30 dias</option>
+            </select>
+          </div>
+
+          <div id="eventFacets" class="facets"></div>
+
+          <div class="results-bar">
+            <span id="eventsCount">Carregando eventos…</span>
+            <button type="button" id="btnClearEventFilters" class="link-btn hidden">Limpar filtros</button>
+          </div>
+
+          <div id="eventsList" class="events-list"></div>
         </section>
 
         <!-- Candidaturas -->

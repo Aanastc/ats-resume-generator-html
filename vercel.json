@@ -23,6 +23,10 @@
     },
     "api/ats-score.js": {
       "includeFiles": "data/jobs-cache.json"
+    },
+    "api/events.js": {
+      "includeFiles": "data/events-cache.json",
+      "maxDuration": 30
     }
   },
   "rewrites": [

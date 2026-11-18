@@ -36,12 +36,15 @@ jobs:
           # Token automático do Actions: limite maior na API do GitHub (comunidades de vagas)
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Coletar eventos tech futuros (Online e Presencial em BH)
+        run: node scripts/fetch-events.mjs
+
       - name: Commitar e publicar atualizações
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           # Só arquivos versionados (dist/ é gerado e fica fora do git)
-          git add data/jobs-cache.json data/resume.json data/resume-pt.json
+          git add data/jobs-cache.json data/events-cache.json data/resume.json data/resume-pt.json
           if git diff --staged --quiet; then
             echo "Nada mudou desde a última coleta."
           else

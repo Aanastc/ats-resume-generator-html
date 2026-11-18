@@ -1,0 +1,952 @@
+{
+  "updated_at": "2026-11-18T12:08:47.867Z",
+  "formatted_date": "18/11/2026, 09:08:47",
+  "next_update": "Diariamente às 08:00 (Horário de Brasília)",
+  "total_events": 44,
+  "counts": {
+    "bh": 6,
+    "online_br": 2,
+    "online_global": 36
+  },
+  "events": [
+    {
+      "id": "sympla-3644354",
+      "title": "Workshop - WebTech: Spec-Driven Development (SDD) e Programação agêntica",
+      "organizer": "WebTech - PUC Minas",
+      "url": "https://www.sympla.com.br/evento/workshop-webtech-spec-driven-development-sdd-e-programacao-agentica/3644354",
+      "start_date": "2026-11-18T18:30:00-03:00",
+      "end_date": "2026-11-18T21:00:00-03:00",
+      "mode": "bh",
+      "location": "📍 Presencial • Belo Horizonte, MG",
+      "venue": "R. Cláudio Manoel, 1185",
+      "description": "",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [],
+      "price": "",
+      "source": "Sympla BH"
+    },
+    {
+      "id": "gdg-bh-135819",
+      "title": "O último GDGolo do ano!",
+      "organizer": "GDG Belo Horizonte",
+      "url": "https://gdg.community.dev/events/details/google-gdg-belo-horizonte-presents-o-ultimo-gdgolo-do-ano/",
+      "start_date": "2026-11-19T18:30:00-03:00",
+      "end_date": "2026-11-19T23:30:00-03:00",
+      "mode": "bh",
+      "location": "📍 Presencial • Belo Horizonte, MG",
+      "venue": "Belo Horizonte, MG",
+      "description": "",
+      "topics": [
+        "comunidade"
+      ],
+      "tags": [
+        "GDG",
+        "Comunidade"
+      ],
+      "price": "Gratuito",
+      "source": "GDG Belo Horizonte"
+    },
+    {
+      "id": "devevents-aHR0cHM6Ly9kZXYu",
+      "title": "Forward Deployed Engineer: az AI bevezetés hiányzó láncszeme",
+      "organizer": "Dev.events",
+      "url": "https://dev.events/conferences/forward-deployed-engineer-az-ai-bevezetes-hianyzo-lancszeme-mpsa7lgk",
+      "start_date": "2026-11-20T12:00:00Z",
+      "end_date": null,
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Forward Deployed Engineer: az AI bevezetés hiányzó láncszeme is happening on November 20, 2026, Online. More information: https://dev.events/conferences/forward-deployed-engineer-az-ai-bevezetes-hianyzo-lancszeme-mpsa7lgk",
+      "topics": [
+        "ia",
+        "comunidade"
+      ],
+      "tags": [
+        "Artificial Intelligence (AI)",
+        "meetup"
+      ],
+      "price": "",
+      "source": "Dev.events"
+    },
+    {
+      "id": "devevents-aHR0cHM6Ly9kZXYu",
+      "title": "Gensyn Agent Arena Competition: Evidence Mining",
+      "organizer": "Dev.events",
+      "url": "https://dev.events/conferences/gensyn-agent-arena-competition-evidence-mining-hl9q2uru",
+      "start_date": "2026-11-24T12:00:00Z",
+      "end_date": null,
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Gensyn Agent Arena Competition: Evidence Mining is happening on November 24, 2026, Online. More information: https://dev.events/conferences/gensyn-agent-arena-competition-evidence-mining-hl9q2uru",
+      "topics": [
+        "ia",
+        "comunidade"
+      ],
+      "tags": [
+        "Artificial Intelligence (AI)",
+        "hackathon"
+      ],
+      "price": "",
+      "source": "Dev.events"
+    },
+    {
+      "id": "sympla-3626702",
+      "title": "Festival SESI de Robótica - Regional Minas Gerais 2026",
+      "organizer": "SESI MG",
+      "url": "https://www.sympla.com.br/evento/festival-sesi-de-robotica-regional-minas-gerais-2026/3626702",
+      "start_date": "2026-11-27T08:30:00-03:00",
+      "end_date": "2026-11-28T18:00:00-03:00",
+      "mode": "bh",
+      "location": "📍 Presencial • Belo Horizonte, MG",
+      "venue": "SESI SENAI Horto",
+      "description": "",
+      "topics": [
+        "comunidade"
+      ],
+      "tags": [],
+      "price": "",
+      "source": "Sympla BH"
+    },
+    {
+      "id": "sympla-3656849",
+      "title": "Workshop - WebTech: IA em Produção com o JEV: decisões por 1/10 do custo",
+      "organizer": "WebTech - PUC Minas",
+      "url": "https://www.sympla.com.br/evento/workshop-webtech-ia-em-producao-com-o-jev-decisoes-por-1-10-do-custo/3656849",
+      "start_date": "2026-11-28T09:00:00-03:00",
+      "end_date": "2026-11-28T12:00:00-03:00",
+      "mode": "bh",
+      "location": "📍 Presencial • Belo Horizonte, MG",
+      "venue": "Prédio 4",
+      "description": "",
+      "topics": [
+        "ia",
+        "fullstack"
+      ],
+      "tags": [],
+      "price": "",
+      "source": "Sympla BH"
+    },
+    {
+      "id": "sympla-3616023",
+      "title": "Imersão Fluência em IA",
+      "organizer": "Ailton Alcântara",
+      "url": "https://www.sympla.com.br/evento/imersao-fluencia-em-ia/3616023",
+      "start_date": "2026-11-28T09:00:00-03:00",
+      "end_date": "2026-11-28T13:00:00-03:00",
+      "mode": "bh",
+      "location": "📍 Presencial • Belo Horizonte, MG",
+      "venue": "Edifício Acaiaca",
+      "description": "",
+      "topics": [
+        "ia"
+      ],
+      "tags": [],
+      "price": "",
+      "source": "Sympla BH"
+    },
+    {
+      "id": "agendabr-2026-11-28-GambiConf2026",
+      "title": "GambiConf 2026",
+      "organizer": "Agenda Tech Brasil",
+      "url": "https://gambiconf.dev/",
+      "start_date": "2026-11-28T09:00:00-03:00",
+      "end_date": "2026-11-29T18:00:00-03:00",
+      "mode": "online_br",
+      "location": "🌐 Online • Brasil",
+      "venue": "",
+      "description": "Evento híbrido listado na Agenda Tech Brasil (São Paulo/SP).",
+      "topics": [
+        "comunidade"
+      ],
+      "tags": [
+        "Brasil",
+        "híbrido"
+      ],
+      "price": "",
+      "source": "Agenda Tech Brasil"
+    },
+    {
+      "id": "confstech-2026-11-30-DevOpsConMunich",
+      "title": "DevOpsCon Munich",
+      "organizer": "Confs.tech",
+      "url": "https://devopscon.io/muenchen",
+      "start_date": "2026-11-30T12:00:00Z",
+      "end_date": "2026-12-04T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de devops.",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "devops",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "confstech-2026-11-30-ITSecuritySummitM",
+      "title": "IT Security Summit Munich",
+      "organizer": "Confs.tech",
+      "url": "https://it-security-summit.com/munich",
+      "start_date": "2026-11-30T12:00:00Z",
+      "end_date": "2026-12-04T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de devops.",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "devops",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "confstech-2026-12-03-betterCodePHP",
+      "title": "betterCode() PHP",
+      "organizer": "Confs.tech",
+      "url": "https://php.bettercode.eu",
+      "start_date": "2026-12-03T12:00:00Z",
+      "end_date": "2026-12-03T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de php.",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "php",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "devevents-aHR0cHM6Ly9kZXYu",
+      "title": "The Principal Dev – Masterclass for Tech Leads",
+      "organizer": "Dev.events",
+      "url": "https://dev.events/conferences/principal-developer-online-5-2022",
+      "start_date": "2026-12-03T12:00:00Z",
+      "end_date": null,
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "The Principal Dev – Masterclass for Tech Leads is happening on December 3, 2026, Online. More information: https://dev.events/conferences/principal-developer-online-5-2022",
+      "topics": [
+        "comunidade"
+      ],
+      "tags": [
+        "Tech leadership",
+        "masterclass"
+      ],
+      "price": "",
+      "source": "Dev.events"
+    },
+    {
+      "id": "devevents-aHR0cHM6Ly9kZXYu",
+      "title": "Chaos Engineering 2026",
+      "organizer": "Dev.events",
+      "url": "https://dev.events/conferences/chaos-engineering-2026-x8luasru",
+      "start_date": "2026-12-03T12:00:00Z",
+      "end_date": null,
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Chaos Engineering 2026 is happening on December 3, 2026, Online. More information: https://dev.events/conferences/chaos-engineering-2026-x8luasru",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "SRE",
+        "conference"
+      ],
+      "price": "",
+      "source": "Dev.events"
+    },
+    {
+      "id": "confstech-2026-12-04-ReactDayBerlin",
+      "title": "React Day Berlin",
+      "organizer": "Confs.tech",
+      "url": "https://reactday.berlin",
+      "start_date": "2026-12-04T12:00:00Z",
+      "end_date": "2026-12-07T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de javascript (Call for Papers aberto).",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "javascript",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "devevents-aHR0cHM6Ly9kZXYu",
+      "title": ".NET Conf GT Online 2026",
+      "organizer": "Dev.events",
+      "url": "https://dev.events/conferences/net-conf-gt-online-2026-wriv02k2",
+      "start_date": "2026-12-05T12:00:00Z",
+      "end_date": null,
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": ".NET Conf GT Online 2026 is happening on December 5, 2026, Online. More information: https://dev.events/conferences/net-conf-gt-online-2026-wriv02k2",
+      "topics": [
+        "comunidade"
+      ],
+      "tags": [
+        ".NET",
+        "conference"
+      ],
+      "price": "",
+      "source": "Dev.events"
+    },
+    {
+      "id": "agendabr-2026-12-09-TDCXPORTOALEGRE",
+      "title": "TDCX PORTO ALEGRE",
+      "organizer": "Agenda Tech Brasil",
+      "url": "https://thedevconf.com/tdc/2026/index.html",
+      "start_date": "2026-12-09T09:00:00-03:00",
+      "end_date": "2026-12-10T18:00:00-03:00",
+      "mode": "online_br",
+      "location": "🌐 Online • Brasil",
+      "venue": "",
+      "description": "Evento híbrido listado na Agenda Tech Brasil (Porto Alegre/RS).",
+      "topics": [
+        "comunidade"
+      ],
+      "tags": [
+        "Brasil",
+        "híbrido"
+      ],
+      "price": "",
+      "source": "Agenda Tech Brasil"
+    },
+    {
+      "id": "devevents-aHR0cHM6Ly9kZXYu",
+      "title": "Clean Architecture Masterclass",
+      "organizer": "Dev.events",
+      "url": "https://dev.events/conferences/clean-architecture-online-4-2023",
+      "start_date": "2026-12-10T12:00:00Z",
+      "end_date": null,
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Clean Architecture Masterclass is happening on December 10, 2026, Online. More information: https://dev.events/conferences/clean-architecture-online-4-2023",
+      "topics": [
+        "fullstack",
+        "arquitetura"
+      ],
+      "tags": [
+        "Java",
+        "masterclass"
+      ],
+      "price": "",
+      "source": "Dev.events"
+    },
+    {
+      "id": "devevents-aHR0cHM6Ly9kZXYu",
+      "title": "GrainZap Global Innovation Challenge 2026",
+      "organizer": "Dev.events",
+      "url": "https://dev.events/conferences/grain-zap-global-innovation-challenge-2026-4xlavo1f",
+      "start_date": "2026-12-12T12:00:00Z",
+      "end_date": null,
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "GrainZap Global Innovation Challenge 2026 is happening on December 12, 2026, Online. More information: https://dev.events/conferences/grain-zap-global-innovation-challenge-2026-4xlavo1f",
+      "topics": [
+        "comunidade"
+      ],
+      "tags": [
+        "Tech",
+        "hackathon"
+      ],
+      "price": "",
+      "source": "Dev.events"
+    },
+    {
+      "id": "sympla-3657550",
+      "title": "Encontro Anual de Filiados e Voluntários PMI MG",
+      "organizer": "PMI-MG",
+      "url": "https://www.sympla.com.br/evento/encontro-anual-de-filiados-e-voluntarios-pmi-mg/3657550",
+      "start_date": "2026-12-12T14:00:00-03:00",
+      "end_date": "2026-12-12T20:00:00-03:00",
+      "mode": "bh",
+      "location": "📍 Presencial • Belo Horizonte, MG",
+      "venue": "Evü Café \\u0026 Co.",
+      "description": "",
+      "topics": [
+        "comunidade"
+      ],
+      "tags": [],
+      "price": "",
+      "source": "Sympla BH"
+    },
+    {
+      "id": "devevents-aHR0cHM6Ly9kZXYu",
+      "title": "APEX Online Hackathon 2026",
+      "organizer": "Dev.events",
+      "url": "https://dev.events/conferences/apex-online-hackathon-2026-durj-yzz",
+      "start_date": "2026-12-14T12:00:00Z",
+      "end_date": null,
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "APEX Online Hackathon 2026 is happening on December 14, 2026, Online. More information: https://dev.events/conferences/apex-online-hackathon-2026-durj-yzz",
+      "topics": [
+        "ia",
+        "comunidade"
+      ],
+      "tags": [
+        "Artificial Intelligence (AI)",
+        "hackathon"
+      ],
+      "price": "",
+      "source": "Dev.events"
+    },
+    {
+      "id": "confstech-2026-12-17-AIforDevelopers",
+      "title": "AI for Developers",
+      "organizer": "Confs.tech",
+      "url": "https://aiconference.dev",
+      "start_date": "2026-12-17T12:00:00Z",
+      "end_date": "2026-12-18T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de data (Call for Papers aberto).",
+      "topics": [
+        "ia",
+        "arquitetura"
+      ],
+      "tags": [
+        "data",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "devevents-aHR0cHM6Ly9kZXYu",
+      "title": "Teens in AI Global AI Techathon 2027 - Shape What’s Next",
+      "organizer": "Dev.events",
+      "url": "https://dev.events/conferences/teens-in-ai-global-ai-techathon-2027-shape-what-s-next-vaczvswe",
+      "start_date": "2027-01-18T12:00:00Z",
+      "end_date": null,
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Teens in AI Global AI Techathon 2027 - Shape What’s Next is happening on January 18, 2027, Online. More information: https://dev.events/conferences/teens-in-ai-global-ai-techathon-2027-shape-what-s-next-vaczvswe",
+      "topics": [
+        "ia",
+        "comunidade"
+      ],
+      "tags": [
+        "Artificial Intelligence (AI)",
+        "hackathon"
+      ],
+      "price": "",
+      "source": "Dev.events"
+    },
+    {
+      "id": "devevents-aHR0cHM6Ly9kZXYu",
+      "title": "Quarkus:Dev",
+      "organizer": "Dev.events",
+      "url": "https://dev.events/conferences/quarkus-dev-ts48qmfx",
+      "start_date": "2027-02-02T12:00:00Z",
+      "end_date": null,
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Quarkus:Dev is happening on February 2, 2027, Online. More information: https://dev.events/conferences/quarkus-dev-ts48qmfx",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "Java",
+        "conference"
+      ],
+      "price": "",
+      "source": "Dev.events"
+    },
+    {
+      "id": "devevents-aHR0cHM6Ly9kZXYu",
+      "title": "AI-SEC Global Virtual Summit 2027",
+      "organizer": "Dev.events",
+      "url": "https://dev.events/conferences/ai-sec-global-virtual-summit-2027-e5pfjji1",
+      "start_date": "2027-02-12T12:00:00Z",
+      "end_date": null,
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "AI-SEC Global Virtual Summit 2027 is happening on February 12, 2027, Online. More information: https://dev.events/conferences/ai-sec-global-virtual-summit-2027-e5pfjji1",
+      "topics": [
+        "ia"
+      ],
+      "tags": [
+        "Artificial Intelligence (AI)",
+        "conference"
+      ],
+      "price": "",
+      "source": "Dev.events"
+    },
+    {
+      "id": "confstech-2027-03-01-BASTASpring",
+      "title": "BASTA! Spring",
+      "organizer": "Confs.tech",
+      "url": "https://basta.net/frankfurt",
+      "start_date": "2027-03-01T12:00:00Z",
+      "end_date": "2027-03-05T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de devops.",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "devops",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "confstech-2027-03-12-JSWorldConference",
+      "title": "JSWorld Conference",
+      "organizer": "Confs.tech",
+      "url": "https://www.jsworldconference.com",
+      "start_date": "2027-03-12T12:00:00Z",
+      "end_date": "2027-03-12T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de javascript.",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "javascript",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "confstech-2027-03-20-PyCascades",
+      "title": "PyCascades",
+      "organizer": "Confs.tech",
+      "url": "https://2027.pycascades.com",
+      "start_date": "2027-03-20T12:00:00Z",
+      "end_date": "2027-03-21T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de python (Call for Papers aberto).",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "python",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "devevents-aHR0cHM6Ly9kZXYu",
+      "title": "POSETTE: An Event for Postgres 2027",
+      "organizer": "Dev.events",
+      "url": "https://dev.events/conferences/posette-an-event-for-postgres-2027-yfxsyryg",
+      "start_date": "2027-03-30T12:00:00Z",
+      "end_date": null,
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "POSETTE: An Event for Postgres 2027 is happening on March 30, 2027, Online. More information: https://dev.events/conferences/posette-an-event-for-postgres-2027-yfxsyryg",
+      "topics": [
+        "arquitetura"
+      ],
+      "tags": [
+        "Postgres",
+        "conference"
+      ],
+      "price": "",
+      "source": "Dev.events"
+    },
+    {
+      "id": "confstech-2027-05-24-InternationalJavaSc",
+      "title": "International JavaScript Conference San Diego",
+      "organizer": "Confs.tech",
+      "url": "https://javascript-conference.com/san-diego",
+      "start_date": "2027-05-24T12:00:00Z",
+      "end_date": "2027-05-28T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de javascript.",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "javascript",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "confstech-2027-05-24-DevOpsConSanDiego",
+      "title": "DevOpsCon San Diego",
+      "organizer": "Confs.tech",
+      "url": "https://devopscon.io/san-diego",
+      "start_date": "2027-05-24T12:00:00Z",
+      "end_date": "2027-05-28T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de devops.",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "devops",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "devevents-aHR0cHM6Ly9kZXYu",
+      "title": "New Stars of Data #11",
+      "organizer": "Dev.events",
+      "url": "https://dev.events/conferences/new-stars-of-data-11-xwtns5sj",
+      "start_date": "2027-06-04T12:00:00Z",
+      "end_date": null,
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "New Stars of Data #11 is happening on June 4, 2027, Online. More information: https://dev.events/conferences/new-stars-of-data-11-xwtns5sj",
+      "topics": [
+        "arquitetura"
+      ],
+      "tags": [
+        "Data / Database",
+        "conference"
+      ],
+      "price": "",
+      "source": "Dev.events"
+    },
+    {
+      "id": "confstech-2027-06-06-AIConUSA",
+      "title": "AI Con USA",
+      "organizer": "Confs.tech",
+      "url": "https://aiconusa.techwell.com",
+      "start_date": "2027-06-06T12:00:00Z",
+      "end_date": "2027-06-11T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de data (Call for Papers aberto).",
+      "topics": [
+        "ia",
+        "arquitetura"
+      ],
+      "tags": [
+        "data",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "confstech-2027-06-07-InternationalJavaSc",
+      "title": "International JavaScript Conference London",
+      "organizer": "Confs.tech",
+      "url": "https://javascript-conference.com/london",
+      "start_date": "2027-06-07T12:00:00Z",
+      "end_date": "2027-06-11T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de javascript.",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "javascript",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "confstech-2027-06-07-APIConferenceLondo",
+      "title": "API Conference London",
+      "organizer": "Confs.tech",
+      "url": "https://apiconference.net/london",
+      "start_date": "2027-06-07T12:00:00Z",
+      "end_date": "2027-06-11T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de devops.",
+      "topics": [
+        "cloud",
+        "fullstack"
+      ],
+      "tags": [
+        "devops",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "confstech-2027-06-07-DevOpsConLondon",
+      "title": "DevOpsCon London",
+      "organizer": "Confs.tech",
+      "url": "https://devopscon.io/london",
+      "start_date": "2027-06-07T12:00:00Z",
+      "end_date": "2027-06-11T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de devops.",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "devops",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "confstech-2027-06-14-webinaleBerlin",
+      "title": "webinale Berlin",
+      "organizer": "Confs.tech",
+      "url": "https://webinale.com/berlin",
+      "start_date": "2027-06-14T12:00:00Z",
+      "end_date": "2027-06-18T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de javascript.",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "javascript",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "confstech-2027-06-14-DevOpsConBerlin",
+      "title": "DevOpsCon Berlin",
+      "organizer": "Confs.tech",
+      "url": "https://devopscon.io/berlin",
+      "start_date": "2027-06-14T12:00:00Z",
+      "end_date": "2027-06-18T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de devops.",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "devops",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "confstech-2027-06-14-InternationalPHPCo",
+      "title": "International PHP Conference Berlin",
+      "organizer": "Confs.tech",
+      "url": "https://phpconference.com/berlin-en",
+      "start_date": "2027-06-14T12:00:00Z",
+      "end_date": "2027-06-18T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de php.",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "php",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "devevents-aHR0cHM6Ly9kZXYu",
+      "title": "API Conference Munich 2027",
+      "organizer": "Dev.events",
+      "url": "https://dev.events/conferences/api-conference-munich-2027-ay2uvmk4",
+      "start_date": "2027-06-21T12:00:00Z",
+      "end_date": null,
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "API Conference Munich 2027 is happening on June 21, 2027 in Munchen, Germany, Europe and Online. More information: https://dev.events/conferences/api-conference-munich-2027-ay2uvmk4",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "API",
+        "conference"
+      ],
+      "price": "",
+      "source": "Dev.events"
+    },
+    {
+      "id": "confstech-2027-09-27-BASTAFall",
+      "title": "BASTA! Fall",
+      "organizer": "Confs.tech",
+      "url": "https://basta.net/mainz",
+      "start_date": "2027-09-27T12:00:00Z",
+      "end_date": "2027-10-01T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de devops.",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "devops",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "confstech-2027-11-15-InternationalJavaSc",
+      "title": "International JavaScript Conference Munich",
+      "organizer": "Confs.tech",
+      "url": "https://javascript-conference.com/muenchen",
+      "start_date": "2027-11-15T12:00:00Z",
+      "end_date": "2027-11-19T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de javascript.",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "javascript",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "confstech-2027-11-15-webinaleMunich",
+      "title": "webinale Munich",
+      "organizer": "Confs.tech",
+      "url": "https://webinale.com/munich",
+      "start_date": "2027-11-15T12:00:00Z",
+      "end_date": "2027-11-19T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de javascript.",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "javascript",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "confstech-2027-11-15-InternationalPHPCo",
+      "title": "International PHP Conference Munich",
+      "organizer": "Confs.tech",
+      "url": "https://phpconference.com/munich",
+      "start_date": "2027-11-15T12:00:00Z",
+      "end_date": "2027-11-19T18:00:00Z",
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Conferência internacional de php.",
+      "topics": [
+        "fullstack"
+      ],
+      "tags": [
+        "php",
+        "Conferência",
+        "Online"
+      ],
+      "price": "",
+      "source": "Confs.tech"
+    },
+    {
+      "id": "devevents-aHR0cHM6Ly9kZXYu",
+      "title": "Chaos Engineering 2027",
+      "organizer": "Dev.events",
+      "url": "https://dev.events/conferences/chaos-engineering-2027-z-8wryzh",
+      "start_date": "2027-12-16T12:00:00Z",
+      "end_date": null,
+      "mode": "online_global",
+      "location": "🌎 Online • Internacional (EN)",
+      "venue": "",
+      "description": "Chaos Engineering 2027 is happening on December 16, 2027, Online. More information: https://dev.events/conferences/chaos-engineering-2027-z-8wryzh",
+      "topics": [
+        "cloud"
+      ],
+      "tags": [
+        "SRE",
+        "conference"
+      ],
+      "price": "",
+      "source": "Dev.events"
+    }
+  ]
+}

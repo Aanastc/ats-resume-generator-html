@@ -2872,3 +2872,204 @@ input[type="date"]:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-soft);
 }
+
+/* -----------------------------------------------------------------------------
+   Eventos tech (Online e Presencial em BH)
+   ----------------------------------------------------------------------------- */
+.events-list {
+  display: grid;
+  gap: 12px;
+}
+
+.event-card {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 16px;
+  align-items: start;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.event-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.event-card.event-bh {
+  border-left: 3px solid var(--accent);
+}
+
+.event-date-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 6px;
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  text-align: center;
+  line-height: 1.15;
+}
+
+.event-date-box.soon {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+.event-date-mon {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.event-date-box.soon .event-date-mon {
+  color: var(--accent-text);
+}
+
+.event-date-day {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 2px 0;
+}
+
+.event-date-sub {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.event-body {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.event-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.event-title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text);
+}
+
+.event-org {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.event-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.event-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--surface-2);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+}
+
+.event-pill.mode-bh {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  border-color: transparent;
+}
+
+.event-pill.mode-online-br {
+  background: var(--ok-soft);
+  color: var(--ok);
+  border-color: var(--ok-border);
+}
+
+.event-pill.mode-online-global {
+  background: var(--info-soft);
+  color: var(--info);
+  border-color: transparent;
+}
+
+.event-pill.free {
+  background: var(--ok-soft);
+  color: var(--ok);
+  border-color: var(--ok-border);
+}
+
+.event-pill.soon-tag {
+  background: var(--warn-soft);
+  color: var(--warn);
+  border-color: var(--warn-border);
+  font-weight: 600;
+}
+
+.event-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.event-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.event-source {
+  font-size: 12px;
+  color: var(--faint);
+}
+
+.event-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .event-card {
+    grid-template-columns: 1fr;
+  }
+
+  .event-date-box {
+    flex-direction: row;
+    gap: 8px;
+    justify-content: flex-start;
+    padding: 6px 10px;
+  }
+
+  .event-date-day {
+    font-size: 16px;
+    margin: 0;
+  }
+}

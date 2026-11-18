@@ -4,9 +4,11 @@ import path from "node:path";
 import fs from "node:fs";
 import dotenv from "dotenv";
 import { runJobSync } from "./fetch-jobs.mjs";
+import { runEventsSync } from "./fetch-events.mjs";
 import { runPortfolioSync } from "./sync-portfolio.mjs";
 import { renderToHtml } from "../lib/render-files.mjs";
 import { buildJobsResponse } from "../lib/jobs-filter.mjs";
+import { filterEvents } from "../lib/events.mjs";
 import { optimizeResume } from "../lib/gemini.mjs";
 import { talentHandler } from "../lib/talent.mjs";
 import { projectIdeasHandler } from "../lib/project-ideas.mjs";
@@ -84,6 +86,37 @@ app.get("/api/jobs", async (req, res) => {
   } catch (err) {
     console.error("Erro ao carregar vagas:", err.message);
     res.status(500).json({ error: "Erro ao buscar vagas." });
+  }
+});
+
+// Eventos tech (Online e Presencial em BH)
+app.get("/api/events", async (req, res) => {
+  const { search = "", mode = "", topic = "", window = "", limit = 100, refresh = "false" } = req.query || {};
+  const cachePath = path.join(dataDir, "events-cache.json");
+
+  try {
+    const cacheData =
+      refresh !== "true" && fs.existsSync(cachePath)
+        ? JSON.parse(fs.readFileSync(cachePath, "utf8"))
+        : await runEventsSync({ writeDisk: true });
+    const allEvents = cacheData?.events || [];
+    const filtered = filterEvents(allEvents, { search, mode, topic, window, limit });
+    res.json({
+      success: true,
+      count: filtered.length,
+      total_in_cache: allEvents.length,
+      counts: cacheData?.counts || {
+        bh: allEvents.filter((e) => e.mode === "bh").length,
+        online_br: allEvents.filter((e) => e.mode === "online_br").length,
+        online_global: allEvents.filter((e) => e.mode === "online_global").length
+      },
+      last_updated: cacheData?.formatted_date || "Hoje às 08:00 (BRT)",
+      next_update: cacheData?.next_update || "Diariamente às 08:00 (Horário de Brasília)",
+      events: filtered
+    });
+  } catch (err) {
+    console.error("Erro ao carregar eventos:", err.message);
+    res.status(500).json({ error: "Erro ao buscar eventos." });
   }
 });
 

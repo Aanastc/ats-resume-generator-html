@@ -113,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	setupJobSearchListeners();
+	setupEvents();
 	document
 		.getElementById("btnGenerateIdeas")
 		.addEventListener("click", generateProjectIdeas);
@@ -122,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	loadBaseCv();
 	loadTalentTracker(); // carrega cedo para mostrar o contador de desatualizados no menu
 	loadJobs(); // idem: contador de vagas no menu
+	loadEvents(); // idem: contador de eventos no menu
 });
 
 function togglePreviewExpand() {
@@ -2762,4 +2764,277 @@ function exportApplicationsCsv() {
 	link.click();
 	setTimeout(() => URL.revokeObjectURL(link.href), 1000);
 	notify(`Planilha exportada com ${rows.length} candidatura(s).`, "success");
+}
+
+// -----------------------------------------------------------------------------
+// Eventos tech (Online Brasil/Global e Presencial/Híbrido em BH)
+// -----------------------------------------------------------------------------
+let allEvents = [];
+let eventFilters = { search: "", mode: "all", topic: "all", window: "all" };
+const SAVED_EVENTS_KEY = "saved_events";
+const getSavedEvents = () => new Set(store.get(SAVED_EVENTS_KEY, []));
+function toggleSavedEvent(id) {
+	const saved = getSavedEvents();
+	if (saved.has(id)) saved.delete(id);
+	else saved.add(id);
+	store.set(SAVED_EVENTS_KEY, [...saved]);
+	renderEvents();
+}
+
+const EVENT_TOPIC_LABELS = {
+	ia: "IA & Agentes",
+	cloud: "Cloud & DevOps",
+	fullstack: "Full Stack & Web",
+	arquitetura: "Arquitetura & Dados",
+	saude: "Saúde & HealthTech",
+	edtech: "EdTech & Educação",
+	comunidade: "Comunidade & Carreira",
+};
+
+function setupEvents() {
+	const searchInput = document.getElementById("eventSearchQuery");
+	const winSelect = document.getElementById("eventWindow");
+	const btnRefresh = document.getElementById("btnRefreshEvents");
+	const btnClear = document.getElementById("btnClearEventFilters");
+
+	if (searchInput) {
+		searchInput.addEventListener("input", () => {
+			eventFilters.search = searchInput.value.trim();
+			renderEvents();
+		});
+	}
+	if (winSelect) {
+		winSelect.addEventListener("change", () => {
+			eventFilters.window = winSelect.value;
+			renderEvents();
+		});
+	}
+	if (btnRefresh) {
+		btnRefresh.addEventListener("click", () => loadEvents(true));
+	}
+	if (btnClear) {
+		btnClear.addEventListener("click", () => {
+			eventFilters = { search: "", mode: "all", topic: "all", window: "all" };
+			if (searchInput) searchInput.value = "";
+			if (winSelect) winSelect.value = "all";
+			renderEvents();
+		});
+	}
+}
+
+async function loadEvents(forceRefresh = false) {
+	const listEl = document.getElementById("eventsList");
+	const countEl = document.getElementById("eventsCount");
+	const navBadge = document.getElementById("eventsNavCount");
+	const updatedEl = document.getElementById("eventsLastUpdated");
+
+	if (forceRefresh && listEl) {
+		listEl.innerHTML = `<div class="empty-state small"><div class="spinner"></div><p>Coletando eventos de BH e online…</p></div>`;
+	}
+
+	try {
+		const res = await fetch(`/api/events?limit=120&refresh=${forceRefresh}`);
+		const data = await res.json();
+		if (!res.ok || !data.success) throw new Error(data.error || "Erro ao buscar eventos.");
+
+		allEvents = data.events || [];
+		if (navBadge) navBadge.textContent = allEvents.length ? String(allEvents.length) : "";
+		if (updatedEl && data.last_updated) {
+			updatedEl.textContent = `Atualizado: ${data.last_updated}`;
+		}
+		renderEvents();
+		if (forceRefresh) notify(`${allEvents.length} eventos atualizados (BH e online).`, "success");
+	} catch (err) {
+		console.warn("Eventos indisponíveis:", err.message);
+		if (countEl) countEl.textContent = "Não foi possível carregar eventos.";
+		if (listEl) {
+			listEl.innerHTML = `<div class="empty-state">${icon("calendar")}<h3>Erro ao carregar eventos</h3><p>${escapeHtml(err.message)}</p></div>`;
+		}
+	}
+}
+
+function buildEventCalendarUrl(ev) {
+	const start = ev.start_date ? new Date(ev.start_date) : null;
+	if (!start || Number.isNaN(start.getTime())) return "";
+	const end =
+		ev.end_date && !Number.isNaN(new Date(ev.end_date).getTime())
+			? new Date(ev.end_date)
+			: new Date(start.getTime() + 2 * 3600000);
+	const fmt = (d) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
+	const params = new URLSearchParams({
+		action: "TEMPLATE",
+		text: ev.title || "Evento Tech",
+		dates: `${fmt(start)}/${fmt(end)}`,
+		details: [ev.description, ev.url ? `Link do evento: ${ev.url}` : ""].filter(Boolean).join("\n\n"),
+		location: ev.venue || ev.location || "Online",
+	});
+	return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
+function formatEventDateParts(iso) {
+	const d = new Date(iso);
+	if (Number.isNaN(d.getTime())) return { mon: "—", day: "—", sub: "", soonLabel: "", isSoon: false };
+	const mon = d.toLocaleDateString("pt-BR", { month: "short", timeZone: "America/Sao_Paulo" }).replace(".", "");
+	const day = d.toLocaleDateString("pt-BR", { day: "2-digit", timeZone: "America/Sao_Paulo" });
+	const wk = d.toLocaleDateString("pt-BR", { weekday: "short", timeZone: "America/Sao_Paulo" }).replace(".", "");
+	const hm = d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", timeZone: "America/Sao_Paulo" });
+
+	const now = new Date();
+	const todayKey = now.toLocaleDateString("en-CA", { timeZone: "America/Sao_Paulo" });
+	const tomorrow = new Date(now.getTime() + 86400000);
+	const tomKey = tomorrow.toLocaleDateString("en-CA", { timeZone: "America/Sao_Paulo" });
+	const evKey = d.toLocaleDateString("en-CA", { timeZone: "America/Sao_Paulo" });
+
+	let soonLabel = "";
+	if (evKey === todayKey) soonLabel = "Hoje";
+	else if (evKey === tomKey) soonLabel = "Amanhã";
+	const diffDays = (d.getTime() - now.getTime()) / 86400000;
+	const isSoon = diffDays <= 3 && diffDays >= -1;
+	const showTime = hm !== "09:00" && hm !== "12:00" && hm !== "00:00";
+
+	return { mon, day, sub: showTime ? `${wk} · ${hm}` : wk, soonLabel, isSoon };
+}
+
+function renderEventFacets() {
+	const box = document.getElementById("eventFacets");
+	if (!box) return;
+	const saved = getSavedEvents();
+	const bhCount = allEvents.filter((e) => e.mode === "bh").length;
+	const onBrCount = allEvents.filter((e) => e.mode === "online_br").length;
+	const onGlCount = allEvents.filter((e) => e.mode === "online_global").length;
+	const savedCount = allEvents.filter((e) => saved.has(e.id)).length;
+
+	const modes = [
+		{ id: "all", label: `Todos (${allEvents.length})` },
+		{ id: "bh", label: `Presencial / Híbrido BH (${bhCount})` },
+		{ id: "online", label: `Todos Online (${onBrCount + onGlCount})` },
+		{ id: "online_br", label: `Online Brasil (${onBrCount})` },
+		{ id: "online_global", label: `Online Global (${onGlCount})` },
+		...(savedCount ? [{ id: "saved", label: `Salvos (${savedCount})` }] : []),
+	];
+
+	const topicCounts = {};
+	allEvents.forEach((e) => (e.topics || []).forEach((t) => (topicCounts[t] = (topicCounts[t] || 0) + 1)));
+	const topics = [
+		{ id: "all", label: "Todos" },
+		...Object.entries(EVENT_TOPIC_LABELS)
+			.filter(([k]) => topicCounts[k] > 0)
+			.map(([k, label]) => ({ id: k, label: `${label} (${topicCounts[k]})` })),
+	];
+
+	box.innerHTML = `
+		<div class="facet-row">
+			<span class="facet-label">Modalidade</span>
+			<div class="facet-chips">
+				${modes.map((m) => `<button type="button" class="chip ${eventFilters.mode === m.id ? "active" : ""}" data-ev-mode="${m.id}">${escapeHtml(m.label)}</button>`).join("")}
+			</div>
+		</div>
+		<div class="facet-row">
+			<span class="facet-label">Tema</span>
+			<div class="facet-chips">
+				${topics.map((t) => `<button type="button" class="chip ${eventFilters.topic === t.id ? "active" : ""}" data-ev-topic="${t.id}">${escapeHtml(t.label)}</button>`).join("")}
+			</div>
+		</div>
+	`;
+
+	box.querySelectorAll("[data-ev-mode]").forEach((btn) => {
+		btn.addEventListener("click", () => {
+			eventFilters.mode = btn.dataset.evMode;
+			renderEvents();
+		});
+	});
+	box.querySelectorAll("[data-ev-topic]").forEach((btn) => {
+		btn.addEventListener("click", () => {
+			eventFilters.topic = btn.dataset.evTopic;
+			renderEvents();
+		});
+	});
+}
+
+function renderEvents() {
+	const listEl = document.getElementById("eventsList");
+	const countEl = document.getElementById("eventsCount");
+	const btnClear = document.getElementById("btnClearEventFilters");
+	if (!listEl) return;
+
+	renderEventFacets();
+	const saved = getSavedEvents();
+	const now = Date.now();
+	const q = eventFilters.search.toLowerCase();
+
+	const filtered = allEvents.filter((ev) => {
+		if (eventFilters.mode === "saved" && !saved.has(ev.id)) return false;
+		if (eventFilters.mode === "online" && ev.mode !== "online_br" && ev.mode !== "online_global") return false;
+		if (["bh", "online_br", "online_global"].includes(eventFilters.mode) && ev.mode !== eventFilters.mode) return false;
+		if (eventFilters.topic !== "all" && !(ev.topics || []).includes(eventFilters.topic)) return false;
+
+		if (eventFilters.window === "week" && new Date(ev.start_date).getTime() > now + 8 * 86400000) return false;
+		if (eventFilters.window === "month" && new Date(ev.start_date).getTime() > now + 32 * 86400000) return false;
+
+		if (q) {
+			const hay = `${ev.title} ${ev.organizer} ${ev.location} ${ev.venue || ""} ${ev.description || ""} ${(ev.tags || []).join(" ")} ${(ev.topics || []).map((t) => EVENT_TOPIC_LABELS[t] || t).join(" ")}`.toLowerCase();
+			if (!hay.includes(q)) return false;
+		}
+		return true;
+	});
+
+	const hasActiveFilter =
+		eventFilters.search || eventFilters.mode !== "all" || eventFilters.topic !== "all" || eventFilters.window !== "all";
+	if (btnClear) btnClear.classList.toggle("hidden", !hasActiveFilter);
+	if (countEl) {
+		countEl.textContent = `${filtered.length} ${filtered.length === 1 ? "evento encontrado" : "eventos encontrados"}`;
+	}
+
+	if (!filtered.length) {
+		listEl.innerHTML = `<div class="empty-state">${icon("calendar")}<h3>Nenhum evento com esses filtros</h3><p>Tente limpar os filtros ou clique em “Atualizar” para buscar novas datas.</p></div>`;
+		return;
+	}
+
+	listEl.innerHTML = "";
+	filtered.forEach((ev) => {
+		const dt = formatEventDateParts(ev.start_date);
+		const isSaved = saved.has(ev.id);
+		const modeClass = ev.mode === "bh" ? "mode-bh" : ev.mode === "online_br" ? "mode-online-br" : "mode-online-global";
+		const calUrl = buildEventCalendarUrl(ev);
+
+		const card = document.createElement("article");
+		card.className = `event-card ${ev.mode === "bh" ? "event-bh" : ""}`;
+		card.innerHTML = `
+			<div class="event-date-box ${dt.isSoon ? "soon" : ""}">
+				<span class="event-date-mon">${escapeHtml(dt.mon)}</span>
+				<span class="event-date-day">${escapeHtml(dt.day)}</span>
+				<span class="event-date-sub">${escapeHtml(dt.sub)}</span>
+			</div>
+			<div class="event-body">
+				<div class="event-head">
+					<div>
+						<h3 class="event-title">${escapeHtml(ev.title)}</h3>
+						<div class="event-org">${escapeHtml(ev.organizer)}${ev.venue && ev.mode === "bh" ? ` · ${escapeHtml(ev.venue)}` : ""}</div>
+					</div>
+				</div>
+				<div class="event-badges">
+					${dt.soonLabel ? `<span class="event-pill soon-tag">${escapeHtml(dt.soonLabel)}</span>` : ""}
+					<span class="event-pill ${modeClass}">${escapeHtml(ev.location)}</span>
+					${ev.price ? `<span class="event-pill free">${escapeHtml(ev.price)}</span>` : ""}
+					${(ev.topics || []).slice(0, 3).map((t) => `<span class="event-pill">${escapeHtml(EVENT_TOPIC_LABELS[t] || t)}</span>`).join("")}
+				</div>
+				${ev.description ? `<p class="event-desc">${escapeHtml(ev.description)}</p>` : ""}
+				<div class="event-foot">
+					<span class="event-source">Fonte: ${escapeHtml(ev.source)}</span>
+					<div class="event-actions">
+						<button type="button" class="btn btn-secondary btn-sm toggle ${isSaved ? "on" : ""}" data-save-ev="${escapeHtml(ev.id)}" title="${isSaved ? "Remover dos salvos" : "Salvar evento"}">
+							${icon("bookmark")}<span>${isSaved ? "Salvo" : "Salvar"}</span>
+						</button>
+						${calUrl ? `<a href="${escapeHtml(calUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="Adicionar ao Google Agenda">${icon("calendar")}<span>Agenda</span></a>` : ""}
+						<a href="${escapeHtml(ev.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+							<span>Abrir evento</span>${icon("external")}
+						</a>
+					</div>
+				</div>
+			</div>
+		`;
+
+		card.querySelector("[data-save-ev]")?.addEventListener("click", () => toggleSavedEvent(ev.id));
+		listEl.appendChild(card);
+	});
 }
