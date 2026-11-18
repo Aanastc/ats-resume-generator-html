@@ -1,8 +1,15 @@
 import fs from "node:fs";
 import path from "node:path";
+import { exportDocxHandler } from "../lib/docx.mjs";
 import { renderResumeHtml } from "../lib/render.mjs";
 
 export default function handler(req, res) {
+  const fmt = String(req.query?.format || "").toLowerCase();
+  const url = String(req.url || "");
+  if (fmt === "docx" || url.includes("/export-docx")) {
+    return exportDocxHandler(req, res);
+  }
+
   if (req.method !== "POST") {
     return res.status(405).send("Method Not Allowed");
   }

@@ -33,15 +33,7 @@
       "maxDuration": 30
     },
     "api/learning.js": {
-      "includeFiles": "data/{jobs-cache,resume,learning-catalog}.json",
-      "maxDuration": 30
-    },
-    "api/study-plan.js": {
       "includeFiles": "data/{jobs-cache,resume,learning-catalog,project-ideas-cache}.json",
-      "maxDuration": 30
-    },
-    "api/learning-budget.js": {
-      "includeFiles": "data/{jobs-cache,resume,learning-catalog}.json",
       "maxDuration": 30
     }
   },
@@ -57,6 +49,18 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/api/study-plan",
+      "destination": "/api/learning?endpoint=study-plan"
+    },
+    {
+      "source": "/api/learning-budget",
+      "destination": "/api/learning?endpoint=budget"
+    },
+    {
+      "source": "/api/export-docx",
+      "destination": "/api/render?format=docx"
+    },
     {
       "source": "/api/(.*)",
       "destination": "/api/$1"
