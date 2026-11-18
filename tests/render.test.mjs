@@ -28,7 +28,8 @@ test("seção de projetos some quando não há projetos", () => {
 
 test("rótulos em inglês quando language = en", () => {
   const html = renderResumeHtml({ ...example, language: "en" }, tpl);
-  assert.match(html, />Experience</);
+  assert.match(html, />Professional Experience</);
+  assert.match(html, />Technical Skills</);
   assert.match(html, />\s*Portfolio\s*</);
 });
 

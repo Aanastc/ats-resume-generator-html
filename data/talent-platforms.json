@@ -164,10 +164,55 @@
       "id": "wellfound",
       "name": "Wellfound (AngelList Talent)",
       "category": "internacional",
-      "url": "https://wellfound.com/",
+      "url": "https://wellfound.com/jobs",
       "signup_url": "https://wellfound.com/",
       "why": "Startups do mundo todo recrutam aqui; dá para sinalizar remoto e país.",
       "tip": "Marque 'open to remote' e o fuso horário de Brasília."
+    },
+    {
+      "id": "weworkremotely",
+      "name": "We Work Remotely",
+      "category": "internacional",
+      "url": "https://weworkremotely.com/",
+      "signup_url": "https://weworkremotely.com/",
+      "why": "Um dos maiores boards de vagas 100% remotas do mundo em engenharia de software.",
+      "tip": "Filtre por 'Anywhere in the World' ou 'LATAM' para vagas sem restrição de visto."
+    },
+    {
+      "id": "remoteok",
+      "name": "Remote OK",
+      "category": "internacional",
+      "url": "https://remoteok.com/",
+      "signup_url": "https://remoteok.com/",
+      "why": "Excelente para filtrar vagas internacionais por tecnologia (React, TypeScript, Node, AWS).",
+      "tip": "Verifique o selo 'Worldwide' ou 'LATAM' antes de aplicar."
+    },
+    {
+      "id": "yc-workatastartup",
+      "name": "Y Combinator — Work at a Startup",
+      "category": "internacional",
+      "url": "https://www.workatastartup.com/",
+      "signup_url": "https://www.workatastartup.com/",
+      "why": "Acesso direto a fundadores e líderes técnicos de startups da Y Combinator em crescimento.",
+      "tip": "Perfil em inglês objetivo destacando sistemas em produção, Full Stack + Cloud."
+    },
+    {
+      "id": "openabroad",
+      "name": "OpenAbroad (vagas abertas ao Brasil)",
+      "category": "internacional",
+      "url": "https://openabroad.org/work/software/",
+      "signup_url": "https://openabroad.org/work/software/",
+      "why": "Agregador internacional que já identifica restrições geográficas e filtra contratos abertos ao Brasil.",
+      "tip": "Ideal para economizar tempo evitando vagas 'US Only'."
+    },
+    {
+      "id": "globallyremotejobs",
+      "name": "Globally Remote Jobs (Brasil)",
+      "category": "internacional",
+      "url": "https://www.globallyremotejobs.com/country/br/software-backend",
+      "signup_url": "https://www.globallyremotejobs.com/country/br/software-backend",
+      "why": "Reúne vagas internacionais de software que aceitam candidatas residindo no Brasil (Contractor ou EOR).",
+      "tip": "Combine com o currículo em inglês adaptado na aba 'Adaptar com IA'."
     },
     {
       "id": "himalayas",

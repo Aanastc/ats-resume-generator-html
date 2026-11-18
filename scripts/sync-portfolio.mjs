@@ -25,6 +25,48 @@ export async function fetchPortfolioData() {
   return { ptData, enData };
 }
 
+// Converte frases nominalizadas do portfólio ("Desenvolvimento de...") em bullets de engenharia com verbo de ação forte,
+// preservando 100% dos fatos e tecnologias sem inventar métricas.
+export function normalizeActionBullet(text = "") {
+  let s = String(text || "").trim();
+  const replacements = [
+    [/^Desenvolvimento e customização de\s+/i, "Desenvolveu e customizou "],
+    [/^Desenvolvimento de\s+/i, "Desenvolveu "],
+    [/^Integração do\s+/i, "Integrou o "],
+    [/^Integração da\s+/i, "Integrou a "],
+    [/^Integração de\s+/i, "Integrou "],
+    [/^Sustentação proativa da\s+/i, "Sustentou a "],
+    [/^Sustentação da\s+/i, "Sustentou a "],
+    [/^Sustentação de\s+/i, "Sustentou "],
+    [/^Homologação contínua de\s+/i, "Homologou continuamente "],
+    [/^Homologação de\s+/i, "Homologou "],
+    [/^Liderança técnica na\s+/i, "Liderou tecnicamente a "],
+    [/^Liderança técnica no\s+/i, "Liderou tecnicamente o "],
+    [/^Capacitação e mentoria técnica de\s+/i, "Capacitou e mentorou "],
+    [/^Arquitetura e sustentação de\s+/i, "Arquitetou e sustentou "],
+    [/^Arquitetura de\s+/i, "Arquitetou "],
+    [/^Gestão e resolução de\s+/i, "Gerenciou e resolveu "],
+    [/^Gestão de\s+/i, "Gerenciou "],
+    [/^Implementação de\s+/i, "Implementou "],
+    [/^Construção de\s+/i, "Construiu "],
+    [/^Customização técnica e sustentação de\s+/i, "Customizou e sustentou "],
+    [/^Customização de\s+/i, "Customizou "],
+    [/^Pesquisa aplicada no\s+/i, "Conduziu pesquisa aplicada no "],
+    [/^Pesquisa aplicada em\s+/i, "Conduziu pesquisa aplicada em "],
+    [/^Otimização de\s+/i, "Otimizou "],
+    [/^Automação de\s+/i, "Automatizou "],
+    [/^Manutenção de\s+/i, "Manteve "],
+    [/^Criação de\s+/i, "Criou "]
+  ];
+  for (const [re, rep] of replacements) {
+    if (re.test(s)) {
+      s = s.replace(re, rep);
+      break;
+    }
+  }
+  return s.replace(/\bproativ[oa]\b\s*/gi, "");
+}
+
 export function buildResumeFromPortfolio(ptData, enData, lang = "pt") {
   const isEn = lang === "en";
   const source = isEn && enData ? enData : ptData;
@@ -39,12 +81,12 @@ export function buildResumeFromPortfolio(ptData, enData, lang = "pt") {
     : "Belo Horizonte, MG (Presencial/Híbrido) | Remoto (Brasil e Global)";
 
   const title = isEn
-    ? "Senior Full Stack & DevOps Engineer (HealthTech, EdTech & Critical Systems)"
-    : "Desenvolvedora Full Stack & DevOps (Sistemas Críticos, Hospitais/Saúde & EdTechs)";
+    ? "Software Engineer | Full Stack, Cloud/DevOps & AI Engineering"
+    : "Engenheira de Software | Full Stack, Cloud/DevOps & IA Aplicada";
 
   const summary = isEn
-    ? "Senior Full Stack & DevOps Engineer with 5+ years of experience architecting high-availability platforms across three core domains: 1) Healthcare & Clinical Systems (Connect Care HealthTech, patient workflows, data security); 2) EdTech Platforms (Moodle plugin development and infrastructure at Lingopass, institutional Design System at UNIFOR); and 3) Conventional Enterprise Cloud (microservices, CI/CD automation, AWS, Docker, Kubernetes). Proficient in React, Node.js, TypeScript, Python, and PHP. Open to PJ, CLT, and Freelance engagements (on-site/hybrid in Belo Horizonte, MG or 100% remote)."
-    : "Desenvolvedora Full Stack & DevOps com mais de 5 anos de experiência na concepção e sustentação de sistemas escaláveis e de alta criticidade. Atuação especializada em três ecossistemas fundamentais: 1) Ambientes Hospitalares e Clínicas (Connect Care HealthTech, agendamentos, segurança de dados em saúde); 2) EdTechs e Plataformas Educacionais (desenvolvimento de plugins e sustentação Moodle na Lingopass, Design System institucional e portais de ensino na UNIFOR); 3) Empresas Convencionais & Tech (microsserviços Node/Python, esteiras CI/CD, Docker, Kubernetes e AWS). Especialista em React, Node.js, TypeScript, Python e PHP. Aberta a regimes PJ, CLT e Freelance (presencial/híbrido estritamente em Belo Horizonte/MG ou 100% remoto para todo o Brasil/exterior).";
+    ? "Full Stack & DevOps Software Engineer experienced in architecting, evolving, and operating production web applications, resilient REST APIs, distributed service integrations, and automated cloud infrastructure. Proven delivery across HealthTech (Connect Care), EdTech (Moodle/PHP and CRM/billing integrations at Lingopass; institutional Design System via NPM at UNIFOR), and modern engineering with React, TypeScript, Node.js, Python, AWS, Docker, Kubernetes, Terraform, and applied AI. Open to PJ/Contractor or CLT (on-site/hybrid in Belo Horizonte, MG or 100% remote Brazil/Global; B2–C1 English, no visa required)."
+    : "Engenheira de Software Full Stack & DevOps com experiência na arquitetura, evolução e sustentação de aplicações web em produção, APIs REST resilientes, integração de serviços e automação em cloud. Atuação comprovada em Saúde/HealthTech (Connect Care), EdTechs (plugins Moodle/PHP e integrações corporativas na Lingopass; Design System via NPM na UNIFOR) e engenharia moderna com React, TypeScript, Node.js, Python, AWS, Docker, Kubernetes, Terraform e IA aplicada. Aberta a PJ ou CLT (presencial/híbrido em Belo Horizonte, MG ou 100% remoto Brasil/Global, inglês B2–C1).";
 
   // Map experiences from portfolio
   const rawExps = source.experience?.items || [];
@@ -52,7 +94,7 @@ export function buildResumeFromPortfolio(ptData, enData, lang = "pt") {
     let role = exp.role || "";
     let company = exp.company || "";
     let date = exp.period || "";
-    let bullets = (exp.activities || []).map((act) => act.trim());
+    let bullets = (exp.activities || []).map((act) => (isEn ? act.trim() : normalizeActionBullet(act)));
 
     // Highlight domain context
     if (company.toLowerCase().includes("lingopass")) {
@@ -94,85 +136,79 @@ export function buildResumeFromPortfolio(ptData, enData, lang = "pt") {
     };
   });
 
-  // Map skills into targeted categories
+  // Map skills into 2027 engineering-oriented pillars
   const skills = isEn
     ? [
         {
-          group: "Healthcare & Critical Systems (HealthTech)",
+          group: "Architecture, System Design & Backend",
           items: [
-            "Connect Care HealthTech Architecture",
-            "Clinical & Patient Management Platforms",
-            "Data Privacy & Security (LGPD / HIPAA Compliance)",
-            "High-Availability APIs & Mission-Critical Reliability"
+            "Clean Architecture, SOLID & Resilient REST APIs",
+            "Microservices, Webhooks & Event-Driven Integrations",
+            "Node.js, TypeScript, Python (FastAPI/Flask) & PHP (Moodle LMS)",
+            "PostgreSQL, Supabase, MySQL, Redis Caching & BigQuery"
           ]
         },
         {
-          group: "EdTech & Educational Platforms",
+          group: "Cloud, DevOps & Platform Engineering",
           items: [
-            "Moodle LMS Development (Custom PHP Plugins & Themes)",
-            "Third-Party Integrations (HubSpot, Intercom, Stripe, BigQuery)",
-            "Reusable Institutional Design Systems (NPM, Storybook, CI/CD)",
-            "High-Volume Multi-Tenant Student Portals"
+            "AWS (EC2, S3, ECS, EKS, Lambda, SQS, IAM)",
+            "Docker, Kubernetes & Terraform (IaC)",
+            "CI/CD Automation (GitHub Actions, Vercel) & GitOps (ArgoCD)",
+            "Observability & SRE (Prometheus, Grafana, OpenTelemetry, Linux)"
           ]
         },
         {
-          group: "Full Stack & Backend Engineering",
+          group: "Frontend & UI Systems",
           items: [
-            "React.js, Next.js & React Native",
-            "Node.js, TypeScript & JavaScript (ES6+)",
-            "Python (FastAPI, Flask) & PHP",
-            "RESTful APIs, Webhooks & Microservices",
-            "PostgreSQL, Supabase, MySQL & Redis Caching"
+            "React.js, Next.js, TypeScript & React Native",
+            "Reusable Design Systems (NPM, Storybook, Tailwind CSS)",
+            "Web Performance, Accessibility (WCAG) & Responsive UX"
           ]
         },
         {
-          group: "Cloud, DevOps & SRE",
+          group: "Applied AI, Quality & Domains (HealthTech & EdTech)",
           items: [
-            "AWS (EC2, S3, ECS, Lambda, IAM)",
-            "Docker Containerization & Kubernetes (EKS)",
-            "CI/CD Automation (GitHub Actions, Vercel)",
-            "Infrastructure as Code (Terraform) & GitOps (ArgoCD)",
-            "Observability & Monitoring (Prometheus, Grafana, OpenTelemetry)"
+            "LLM & AI API Integration (Gemini), AI Workflow Automation",
+            "Automated Testing (Playwright, Jest, Vitest), Code Review & OWASP",
+            "HealthTech & Clinical Systems (Connect Care, LGPD Compliance)",
+            "EdTech & Corporate Integrations (Moodle LMS, HubSpot, Stripe, Intercom)"
           ]
         }
       ]
     : [
         {
-          group: "Hospitais, Clínicas & Saúde (HealthTech)",
+          group: "Arquitetura, System Design & Backend",
           items: [
-            "Arquitetura da Plataforma Connect Care (Home Care e Clínicas)",
-            "Sistemas de Agendamento e Fluxo de Pacientes",
-            "Privacidade e Segurança de Dados em Saúde (Conformidade LGPD)",
-            "APIs Resilientes e Alta Disponibilidade para Ambientes Críticos"
+            "Clean Architecture, SOLID e APIs REST Resilientes",
+            "Microsserviços, Webhooks e Integrações Orientadas a Eventos",
+            "Node.js, TypeScript, Python (FastAPI/Flask) e PHP (Moodle LMS)",
+            "PostgreSQL, Supabase, MySQL, Cache Redis e BigQuery"
           ]
         },
         {
-          group: "EdTechs & Plataformas Educacionais",
+          group: "Cloud, DevOps & Platform Engineering",
           items: [
-            "Desenvolvimento Moodle LMS (Plugins Customizados em PHP e Temas)",
-            "Integrações Corporativas (HubSpot, Stripe, Intercom, BigQuery)",
-            "Design Systems Institucionais Reutilizáveis (NPM, Storybook, CI/CD)",
-            "Portais Acadêmicos de Alto Tráfego para Milhares de Alunos"
+            "AWS (EC2, S3, ECS, EKS, Lambda, SQS, IAM)",
+            "Docker, Kubernetes e Terraform (Infraestrutura como Código)",
+            "CI/CD Avançado (GitHub Actions, Vercel) e GitOps (ArgoCD)",
+            "Observabilidade e SRE (Prometheus, Grafana, OpenTelemetry, Linux)"
           ]
         },
         {
-          group: "Desenvolvimento Full Stack & Backend",
+          group: "Frontend & UI Systems",
           items: [
-            "React.js, Next.js e React Native",
-            "Node.js, TypeScript e JavaScript (ES6+)",
-            "Python (FastAPI, Flask) e PHP",
-            "APIs RESTful, Webhooks e Microsserviços",
-            "PostgreSQL, Supabase, MySQL e Cache Redis"
+            "React.js, Next.js, TypeScript e React Native",
+            "Design Systems Reutilizáveis (NPM, Storybook, Tailwind CSS)",
+            "Performance Web, Acessibilidade (WCAG) e UX Responsiva"
           ]
         },
         {
-          group: "DevOps, Cloud & Observabilidade (SRE)",
+          group: "IA Aplicada, Qualidade & Domínios (Saúde & EdTech)",
           items: [
-            "AWS (EC2, S3, ECS, Lambda, IAM)",
-            "Conteinerização com Docker e Orquestração com Kubernetes (EKS)",
-            "Automação de CI/CD (GitHub Actions, Vercel)",
-            "Infraestrutura como Código (Terraform) e GitOps (ArgoCD)",
-            "Observabilidade Ponta a Ponta (Prometheus, Grafana, OpenTelemetry)"
+            "Integração com LLMs e APIs de IA (Gemini), Automação de Workflows com IA",
+            "Testes Automatizados (Playwright, Jest, Vitest), Code Review e OWASP",
+            "Ambientes Hospitalares e HealthTech (Connect Care, Conformidade LGPD)",
+            "EdTechs e Integrações Corporativas (Moodle LMS, HubSpot, Stripe, Intercom)"
           ]
         }
       ];
